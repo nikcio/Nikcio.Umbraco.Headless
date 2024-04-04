@@ -4,8 +4,6 @@ using NSubstitute;
 
 namespace Nikcio.UHeadless.Base.Tests.Reflection;
 
-[TestFixture]
-[Parallelizable(ParallelScope.All)]
 public class DependencyReflectorFactoryTests
 {
     internal class BasicClass
@@ -17,7 +15,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_BasicClass()
     {
         var serviceProvider = Substitute.For<IServiceProvider>();
@@ -28,8 +26,9 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<BasicClass>(typeof(BasicClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.InstanceOf(typeof(BasicClass)));
-        Assert.That(reflectedType!.Required, Is.EqualTo(expectedRequiredValue));
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<BasicClass>(reflectedType);
+        Assert.Equal(expectedRequiredValue, reflectedType.Required);
     }
 
     internal class ServiceClass
@@ -44,7 +43,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_ServiceClass()
     {
         const string expectedRequiredValue = "Required";
@@ -56,17 +55,19 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<ServiceClass>(typeof(ServiceClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.InstanceOf(typeof(ServiceClass)));
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<ServiceClass>(reflectedType);
         Assert.Multiple(() =>
         {
-            Assert.That(reflectedType!.Required, Is.EqualTo(expectedRequiredValue));
-            Assert.That(reflectedType.Service, Is.InstanceOf(typeof(ServiceClass)));
+            Assert.Equal(expectedRequiredValue, reflectedType.Required);
+            Assert.NotNull(reflectedType.Service);
+            Assert.IsAssignableFrom<ServiceClass>(reflectedType.Service);
         });
         Assert.Multiple(() =>
         {
-            Assert.That(reflectedType!.Service, Is.Not.Null);
-            Assert.That(reflectedType.Service?.Required, Is.EqualTo(expectedRequiredValue));
-            Assert.That(reflectedType.Service?.Service, Is.EqualTo(null));
+            Assert.NotNull(reflectedType.Service);
+            Assert.Equal(expectedRequiredValue, reflectedType.Service.Required);
+            Assert.Null(reflectedType.Service.Service);
         });
     }
 
@@ -77,7 +78,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_NoContructorsClass()
     {
         var serviceProvider = Substitute.For<IServiceProvider>();
@@ -87,7 +88,7 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<NoConstructorsClass>(typeof(NoConstructorsClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.Null);
+        Assert.Null(reflectedType);
     }
 
     internal class NoRequiredParametersClass
@@ -97,7 +98,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_NoRequiredParametersClass()
     {
         var serviceProvider = Substitute.For<IServiceProvider>();
@@ -107,8 +108,8 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<NoRequiredParametersClass>(typeof(NoRequiredParametersClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.Not.Null);
-        Assert.That(reflectedType, Is.InstanceOf<NoRequiredParametersClass>());
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<NoRequiredParametersClass>(reflectedType);
     }
 
     internal class NoRequiredParameters_ServiceClass
@@ -121,7 +122,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_NoRequiredParameters_ServiceClass()
     {
         const string expectedRequiredValue = "Required";
@@ -133,18 +134,18 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<NoRequiredParameters_ServiceClass>(typeof(NoRequiredParameters_ServiceClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.Not.Null);
-        Assert.That(reflectedType, Is.InstanceOf<NoRequiredParameters_ServiceClass>());
-        Assert.Multiple(() => Assert.That(reflectedType!.Service, Is.InstanceOf(typeof(ServiceClass))));
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<NoRequiredParameters_ServiceClass>(reflectedType);
+        Assert.IsAssignableFrom<ServiceClass>(reflectedType.Service);
         Assert.Multiple(() =>
         {
-            Assert.That(reflectedType!.Service, Is.Not.Null);
-            Assert.That(reflectedType.Service?.Required, Is.EqualTo(expectedRequiredValue));
-            Assert.That(reflectedType.Service?.Service, Is.EqualTo(null));
+            Assert.NotNull(reflectedType.Service);
+            Assert.Equal(expectedRequiredValue, reflectedType.Service.Required);
+            Assert.Null(reflectedType.Service.Service);
         });
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_RequiredParametersIsNull_ServiceClass()
     {
         const string expectedRequiredValue = "Required";
@@ -158,14 +159,14 @@ public class DependencyReflectorFactoryTests
         var reflectedType = reflectorFactory.GetReflectedType<NoRequiredParameters_ServiceClass>(typeof(NoRequiredParameters_ServiceClass), constructorRequiredParamerters);
 #pragma warning restore CS8604 // Possible null reference argument.
 
-        Assert.That(reflectedType, Is.Not.Null);
-        Assert.That(reflectedType, Is.InstanceOf<NoRequiredParameters_ServiceClass>());
-        Assert.Multiple(() => Assert.That(reflectedType!.Service, Is.InstanceOf(typeof(ServiceClass))));
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<NoRequiredParameters_ServiceClass>(reflectedType);
+        Assert.IsAssignableFrom<ServiceClass>(reflectedType.Service);
         Assert.Multiple(() =>
         {
-            Assert.That(reflectedType!.Service, Is.Not.Null);
-            Assert.That(reflectedType.Service?.Required, Is.EqualTo(expectedRequiredValue));
-            Assert.That(reflectedType.Service?.Service, Is.EqualTo(null));
+            Assert.NotNull(reflectedType.Service);
+            Assert.Equal(expectedRequiredValue, reflectedType.Service.Required);
+            Assert.Null(reflectedType.Service.Service);
         });
     }
 
@@ -178,7 +179,7 @@ public class DependencyReflectorFactoryTests
         }
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_WrongRequiredParameters()
     {
         var serviceProvider = Substitute.For<IServiceProvider>();
@@ -188,10 +189,10 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<IntegerRequiredClass>(typeof(IntegerRequiredClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.Null);
+        Assert.Null(reflectedType);
     }
 
-    [Test]
+    [Fact]
     public void GetReflectedType_TooManyRequiredParameters()
     {
         var serviceProvider = Substitute.For<IServiceProvider>();
@@ -201,7 +202,7 @@ public class DependencyReflectorFactoryTests
 
         var reflectedType = reflectorFactory.GetReflectedType<IntegerRequiredClass>(typeof(IntegerRequiredClass), constructorRequiredParamerters);
 
-        Assert.That(reflectedType, Is.Not.Null);
-        Assert.That(reflectedType, Is.InstanceOf<IntegerRequiredClass>());
+        Assert.NotNull(reflectedType);
+        Assert.IsAssignableFrom<IntegerRequiredClass>(reflectedType);
     }
 }

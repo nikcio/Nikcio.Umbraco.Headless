@@ -20,7 +20,7 @@ public class PropertyMapTests
         }
     }
 
-    [Test]
+    [Fact]
     public void AddEditorMapping_BasicClass()
     {
         var propertyMap = new PropertyMap();
@@ -32,16 +32,16 @@ public class PropertyMapTests
         var types = propertyMap.GetAllTypes();
         var value = propertyMap.GetEditorValue(editorName);
 
-        Assert.That(containsEditor, Is.True);
+        Assert.True(containsEditor);
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(1));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
+            Assert.Single(types);
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
         });
-        Assert.That(value, Is.EqualTo(basicClassAssemblyName));
+        Assert.Equal(basicClassAssemblyName, value);
     }
 
-    [Test]
+    [Fact]
     public void AddAliasMapping_BasicClass()
     {
         var propertyMap = new PropertyMap();
@@ -54,16 +54,16 @@ public class PropertyMapTests
         var types = propertyMap.GetAllTypes();
         var value = propertyMap.GetAliasValue(contentTypeAlias, propertyTypeAlias);
 
-        Assert.That(containsEditor, Is.True);
+        Assert.True(containsEditor);
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(1));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
+            Assert.Single(types);
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
         });
-        Assert.That(value, Is.EqualTo(basicClassAssemblyName));
+        Assert.Equal(basicClassAssemblyName, value);
     }
 
-    [Test]
+    [Fact]
     public void ContainsEditor_ReturnsFalse_WhenEditorIsNotMapped()
     {
         var propertyMap = new PropertyMap();
@@ -71,10 +71,10 @@ public class PropertyMapTests
 
         var containsEditor = propertyMap.ContainsEditor(editorName);
 
-        Assert.That(containsEditor, Is.False);
+        Assert.False(containsEditor);
     }
 
-    [Test]
+    [Fact]
     public void ContainsAlias_ReturnsFalse_WhenAliasIsNotMapped()
     {
         var propertyMap = new PropertyMap();
@@ -83,10 +83,10 @@ public class PropertyMapTests
 
         var containsAlias = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
 
-        Assert.That(containsAlias, Is.False);
+        Assert.False(containsAlias);
     }
 
-    [Test]
+    [Fact]
     public void GetEditorValue_ThrowsException_WhenEditorIsNotMapped()
     {
         var propertyMap = new PropertyMap();
@@ -95,7 +95,7 @@ public class PropertyMapTests
         Assert.Throws<KeyNotFoundException>(() => propertyMap.GetEditorValue(editorName));
     }
 
-    [Test]
+    [Fact]
     public void GetAliasValue_ThrowsException_WhenAliasIsNotMapped()
     {
         var propertyMap = new PropertyMap();
@@ -105,17 +105,17 @@ public class PropertyMapTests
         Assert.Throws<KeyNotFoundException>(() => propertyMap.GetAliasValue(contentTypeAlias, propertyTypeAlias));
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsEmptyCollection_WhenNoMappings()
     {
         var propertyMap = new PropertyMap();
 
         var types = propertyMap.GetAllTypes();
 
-        Assert.That(types.Count(), Is.EqualTo(0));
+        Assert.Empty(types);
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsCollectionWithOneType_WhenOneMapping()
     {
         var propertyMap = new PropertyMap();
@@ -127,13 +127,13 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(1));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
-            Assert.That(types.First().AssemblyQualifiedName, Is.EqualTo(basicClassAssemblyName));
+            Assert.Single(types);
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
+            Assert.Equal(basicClassAssemblyName, types.First().AssemblyQualifiedName);
         });
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsCollectionWithTwoTypes_WhenTwoMappings()
     {
         var propertyMap = new PropertyMap();
@@ -148,13 +148,13 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(2));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
-            Assert.That(types.First().AssemblyQualifiedName, Is.EqualTo(basicClassAssemblyName));
+            Assert.Equal(2, types.Count());
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
+            Assert.Equal(basicClassAssemblyName, types.First().AssemblyQualifiedName);
         });
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsCollectionWithTwoTypes_WhenTwoMappingsWithSameType()
     {
         var propertyMap = new PropertyMap();
@@ -170,13 +170,13 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(2));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
-            Assert.That(types.First().AssemblyQualifiedName, Is.EqualTo(basicClassAlternateAssemblyName));
+            Assert.Equal(2, types.Count());
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
+            Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsCollectionWithTwoTypes_WhenTwoMappingsWithSameTypeAndOneDifferent()
     {
         var propertyMap = new PropertyMap();
@@ -192,13 +192,13 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(2));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
-            Assert.That(types.First().AssemblyQualifiedName, Is.EqualTo(basicClassAlternateAssemblyName));
+            Assert.Equal(2, types.Count());
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
+            Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });
     }
 
-    [Test]
+    [Fact]
     public void GetAllTypes_ReturnsCollectionWithOneType_WhenTwoMappingsWithSameTypeAndOneDifferentAndOneEditor()
     {
         var propertyMap = new PropertyMap();
@@ -214,9 +214,9 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(types.Count(), Is.EqualTo(1));
-            Assert.That(types, Is.InstanceOf<IEnumerable<Type>>());
-            Assert.That(types.First().AssemblyQualifiedName, Is.EqualTo(basicClassAssemblyName));
+            Assert.Single(types);
+            Assert.IsAssignableFrom<IEnumerable<Type>>(types);
+            Assert.Equal(basicClassAssemblyName, types.First().AssemblyQualifiedName);
         });
     }
 }
