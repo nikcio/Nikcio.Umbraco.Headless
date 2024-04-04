@@ -1,0 +1,552 @@
+{
+  "data": {
+    "contentDescendantsByGuid": {
+      "nodes": [
+        {
+          "id": 1153,
+          "key": "fa22ad17-c823-4e1f-a87f-7597d0ed75b2",
+          "path": "-1,1147,1153",
+          "name": "No domain homepage",
+          "creatorId": -1,
+          "writerId": -1,
+          "properties": [
+            {
+              "alias": "blockGrid"
+            },
+            {
+              "alias": "blockList"
+            },
+            {
+              "alias": "checkboxList"
+            },
+            {
+              "alias": "colorPicker"
+            },
+            {
+              "alias": "contentPicker"
+            },
+            {
+              "alias": "datePicker"
+            },
+            {
+              "alias": "datePickerWithTime"
+            },
+            {
+              "alias": "decimal"
+            },
+            {
+              "alias": "dropdown"
+            },
+            {
+              "alias": "emailAddress"
+            },
+            {
+              "alias": "eyeDropperColorPicker"
+            },
+            {
+              "alias": "article"
+            },
+            {
+              "alias": "audio"
+            },
+            {
+              "alias": "file"
+            },
+            {
+              "alias": "svg"
+            },
+            {
+              "alias": "video"
+            },
+            {
+              "alias": "imageCropper"
+            },
+            {
+              "alias": "markdown"
+            },
+            {
+              "alias": "imageMediaPicker"
+            },
+            {
+              "alias": "mediaPicker"
+            },
+            {
+              "alias": "multipleImageMediaPicker"
+            },
+            {
+              "alias": "multipleMediaPicker"
+            },
+            {
+              "alias": "mediaPickerLegacy"
+            },
+            {
+              "alias": "multipleMediaPickerLegacy"
+            },
+            {
+              "alias": "memberGroupPicker"
+            },
+            {
+              "alias": "memberPicker"
+            },
+            {
+              "alias": "multinodeTreepicker"
+            },
+            {
+              "alias": "multiUrlPicker"
+            },
+            {
+              "alias": "numeric"
+            },
+            {
+              "alias": "radiobox"
+            },
+            {
+              "alias": "repeatableTextstrings"
+            },
+            {
+              "alias": "richtext"
+            },
+            {
+              "alias": "slider"
+            },
+            {
+              "alias": "tags"
+            },
+            {
+              "alias": "textarea"
+            },
+            {
+              "alias": "textstring"
+            },
+            {
+              "alias": "trueOrFalse"
+            },
+            {
+              "alias": "userPicker"
+            }
+          ],
+          "itemType": "CONTENT",
+          "level": 2,
+          "parent": {
+            "name": "No domain site"
+          },
+          "redirect": null,
+          "sortOrder": 0,
+          "templateId": null,
+          "url": "/no-domain-homepage/",
+          "urlSegment": "no-domain-homepage",
+          "absoluteUrl": "http://localhost/no-domain-homepage/",
+          "children": []
+        },
+        {
+          "id": 1160,
+          "key": "4c50202e-28cc-40ca-9f77-b960c1c01a94",
+          "path": "-1,1147,1160",
+          "name": "Page 1",
+          "creatorId": -1,
+          "writerId": -1,
+          "properties": [
+            {
+              "alias": "blockGrid"
+            },
+            {
+              "alias": "blockList"
+            },
+            {
+              "alias": "checkboxList"
+            },
+            {
+              "alias": "colorPicker"
+            },
+            {
+              "alias": "contentPicker"
+            },
+            {
+              "alias": "datePicker"
+            },
+            {
+              "alias": "datePickerWithTime"
+            },
+            {
+              "alias": "decimal"
+            },
+            {
+              "alias": "dropdown"
+            },
+            {
+              "alias": "emailAddress"
+            },
+            {
+              "alias": "eyeDropperColorPicker"
+            },
+            {
+              "alias": "article"
+            },
+            {
+              "alias": "audio"
+            },
+            {
+              "alias": "file"
+            },
+            {
+              "alias": "svg"
+            },
+            {
+              "alias": "video"
+            },
+            {
+              "alias": "imageCropper"
+            },
+            {
+              "alias": "markdown"
+            },
+            {
+              "alias": "imageMediaPicker"
+            },
+            {
+              "alias": "mediaPicker"
+            },
+            {
+              "alias": "multipleImageMediaPicker"
+            },
+            {
+              "alias": "multipleMediaPicker"
+            },
+            {
+              "alias": "mediaPickerLegacy"
+            },
+            {
+              "alias": "multipleMediaPickerLegacy"
+            },
+            {
+              "alias": "memberGroupPicker"
+            },
+            {
+              "alias": "memberPicker"
+            },
+            {
+              "alias": "multinodeTreepicker"
+            },
+            {
+              "alias": "multiUrlPicker"
+            },
+            {
+              "alias": "numeric"
+            },
+            {
+              "alias": "radiobox"
+            },
+            {
+              "alias": "repeatableTextstrings"
+            },
+            {
+              "alias": "richtext"
+            },
+            {
+              "alias": "slider"
+            },
+            {
+              "alias": "tags"
+            },
+            {
+              "alias": "textarea"
+            },
+            {
+              "alias": "textstring"
+            },
+            {
+              "alias": "trueOrFalse"
+            },
+            {
+              "alias": "userPicker"
+            }
+          ],
+          "itemType": "CONTENT",
+          "level": 2,
+          "parent": {
+            "name": "No domain site"
+          },
+          "redirect": null,
+          "sortOrder": 1,
+          "templateId": null,
+          "url": "/page-1/",
+          "urlSegment": "page-1",
+          "absoluteUrl": "http://localhost/page-1/",
+          "children": []
+        },
+        {
+          "id": 1164,
+          "key": "0cf0f5b5-266d-48e9-aacd-4dc41cb0d618",
+          "path": "-1,1147,1164",
+          "name": "Page 2",
+          "creatorId": -1,
+          "writerId": -1,
+          "properties": [
+            {
+              "alias": "blockGrid"
+            },
+            {
+              "alias": "blockList"
+            },
+            {
+              "alias": "checkboxList"
+            },
+            {
+              "alias": "colorPicker"
+            },
+            {
+              "alias": "contentPicker"
+            },
+            {
+              "alias": "datePicker"
+            },
+            {
+              "alias": "datePickerWithTime"
+            },
+            {
+              "alias": "decimal"
+            },
+            {
+              "alias": "dropdown"
+            },
+            {
+              "alias": "emailAddress"
+            },
+            {
+              "alias": "eyeDropperColorPicker"
+            },
+            {
+              "alias": "article"
+            },
+            {
+              "alias": "audio"
+            },
+            {
+              "alias": "file"
+            },
+            {
+              "alias": "svg"
+            },
+            {
+              "alias": "video"
+            },
+            {
+              "alias": "imageCropper"
+            },
+            {
+              "alias": "markdown"
+            },
+            {
+              "alias": "imageMediaPicker"
+            },
+            {
+              "alias": "mediaPicker"
+            },
+            {
+              "alias": "multipleImageMediaPicker"
+            },
+            {
+              "alias": "multipleMediaPicker"
+            },
+            {
+              "alias": "mediaPickerLegacy"
+            },
+            {
+              "alias": "multipleMediaPickerLegacy"
+            },
+            {
+              "alias": "memberGroupPicker"
+            },
+            {
+              "alias": "memberPicker"
+            },
+            {
+              "alias": "multinodeTreepicker"
+            },
+            {
+              "alias": "multiUrlPicker"
+            },
+            {
+              "alias": "numeric"
+            },
+            {
+              "alias": "radiobox"
+            },
+            {
+              "alias": "repeatableTextstrings"
+            },
+            {
+              "alias": "richtext"
+            },
+            {
+              "alias": "slider"
+            },
+            {
+              "alias": "tags"
+            },
+            {
+              "alias": "textarea"
+            },
+            {
+              "alias": "textstring"
+            },
+            {
+              "alias": "trueOrFalse"
+            },
+            {
+              "alias": "userPicker"
+            }
+          ],
+          "itemType": "CONTENT",
+          "level": 2,
+          "parent": {
+            "name": "No domain site"
+          },
+          "redirect": null,
+          "sortOrder": 2,
+          "templateId": null,
+          "url": "/page-2/",
+          "urlSegment": "page-2",
+          "absoluteUrl": "http://localhost/page-2/",
+          "children": []
+        },
+        {
+          "id": 1167,
+          "key": "9b979f25-4ffe-4686-962b-87b9dedc7447",
+          "path": "-1,1147,1167",
+          "name": "Page 3",
+          "creatorId": -1,
+          "writerId": -1,
+          "properties": [
+            {
+              "alias": "blockGrid"
+            },
+            {
+              "alias": "blockList"
+            },
+            {
+              "alias": "checkboxList"
+            },
+            {
+              "alias": "colorPicker"
+            },
+            {
+              "alias": "contentPicker"
+            },
+            {
+              "alias": "datePicker"
+            },
+            {
+              "alias": "datePickerWithTime"
+            },
+            {
+              "alias": "decimal"
+            },
+            {
+              "alias": "dropdown"
+            },
+            {
+              "alias": "emailAddress"
+            },
+            {
+              "alias": "eyeDropperColorPicker"
+            },
+            {
+              "alias": "article"
+            },
+            {
+              "alias": "audio"
+            },
+            {
+              "alias": "file"
+            },
+            {
+              "alias": "svg"
+            },
+            {
+              "alias": "video"
+            },
+            {
+              "alias": "imageCropper"
+            },
+            {
+              "alias": "markdown"
+            },
+            {
+              "alias": "imageMediaPicker"
+            },
+            {
+              "alias": "mediaPicker"
+            },
+            {
+              "alias": "multipleImageMediaPicker"
+            },
+            {
+              "alias": "multipleMediaPicker"
+            },
+            {
+              "alias": "mediaPickerLegacy"
+            },
+            {
+              "alias": "multipleMediaPickerLegacy"
+            },
+            {
+              "alias": "memberGroupPicker"
+            },
+            {
+              "alias": "memberPicker"
+            },
+            {
+              "alias": "multinodeTreepicker"
+            },
+            {
+              "alias": "multiUrlPicker"
+            },
+            {
+              "alias": "numeric"
+            },
+            {
+              "alias": "radiobox"
+            },
+            {
+              "alias": "repeatableTextstrings"
+            },
+            {
+              "alias": "richtext"
+            },
+            {
+              "alias": "slider"
+            },
+            {
+              "alias": "tags"
+            },
+            {
+              "alias": "textarea"
+            },
+            {
+              "alias": "textstring"
+            },
+            {
+              "alias": "trueOrFalse"
+            },
+            {
+              "alias": "userPicker"
+            }
+          ],
+          "itemType": "CONTENT",
+          "level": 2,
+          "parent": {
+            "name": "No domain site"
+          },
+          "redirect": null,
+          "sortOrder": 3,
+          "templateId": null,
+          "url": "/page-3/",
+          "urlSegment": "page-3",
+          "absoluteUrl": "http://localhost/page-3/",
+          "children": []
+        }
+      ]
+    }
+  }
+}
