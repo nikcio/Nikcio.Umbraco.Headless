@@ -16,7 +16,7 @@ public class SnapshotProvider
     public SnapshotProvider(string snapshotFolder)
     {
         // We need to go up 3 levels to get to the root of the project instead of bin/Debug/netX.Z
-        _snapshotFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..", snapshotFolder);
+        _snapshotFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../..", snapshotFolder);
     }
 
     public async Task AssertIsSnapshotEqualAsync(string snapshotName, string content)
