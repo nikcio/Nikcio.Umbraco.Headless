@@ -1,5 +1,0 @@
-query GetNodeIdContentByGuid($Guid: UUID!, $culture: String) {
-    contentByGuid(id: $Guid culture: $culture) { 
-        id
-    }
-}

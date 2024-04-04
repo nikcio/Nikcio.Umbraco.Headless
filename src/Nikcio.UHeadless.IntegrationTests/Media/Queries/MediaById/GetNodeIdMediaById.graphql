@@ -1,5 +1,0 @@
-query GetNodeIdMediaById($Id: Int!) {
-    mediaById(id: $Id) { 
-        id
-    }
-}

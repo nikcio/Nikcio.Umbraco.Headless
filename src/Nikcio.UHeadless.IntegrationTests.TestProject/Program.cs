@@ -12,10 +12,6 @@ using Umbraco.Cms.Core;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var databaseMaintainer = new DatabaseMaintainer(builder.Configuration);
-
-builder.Services.AddSingleton(databaseMaintainer);
-
 builder.Services.AddErrorFilter<GraphQLErrorFilter>();
 
 builder.Services.ConfigureOptions<ConfigureExamineIndexes>();
@@ -119,22 +115,10 @@ app.UseUmbraco()
 
 await app.RunAsync();
 
-public partial class Program { }
-
-public class DatabaseMaintainer : IDisposable
+public partial class Program
 {
-    private readonly SqliteConnection _databaseConnection;
-
-    public DatabaseMaintainer(IConfiguration config)
+    private Program()
     {
-        _databaseConnection = new SqliteConnection(config.GetConnectionString(Constants.System.UmbracoConnectionName));
-        _databaseConnection.Open();
-    }
 
-    public void Dispose()
-    {
-        _databaseConnection.Close();
-        _databaseConnection.Dispose();
-        GC.SuppressFinalize(this);
     }
 }

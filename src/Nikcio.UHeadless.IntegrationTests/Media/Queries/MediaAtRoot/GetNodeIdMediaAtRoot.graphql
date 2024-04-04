@@ -1,7 +1,0 @@
-query GetNodeIdMediaAtRoot {
-    mediaAtRoot { 
-        nodes {
-            id 
-        }
-    }
-}

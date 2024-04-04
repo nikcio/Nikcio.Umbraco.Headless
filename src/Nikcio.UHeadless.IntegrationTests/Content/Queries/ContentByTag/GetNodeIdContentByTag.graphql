@@ -1,7 +1,0 @@
-query GetNodeIdContentByTag($culture: String) {
-    contentByTag(tag: "normal", first: 50, culture: $culture) { 
-        nodes {
-            id 
-        }
-    }
-}

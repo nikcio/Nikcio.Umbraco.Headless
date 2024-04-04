@@ -1,7 +1,0 @@
-query GetNodeIdMediaByContentType {
-    mediaByContentType(contentType: "image") { 
-        nodes {
-            id 
-        }
-    }
-}

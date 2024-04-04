@@ -1,0 +1,253 @@
+{
+  "data": {
+    "mediaByContentType": {
+      "nodes": [
+        {
+          "properties": [
+            {
+              "alias": "umbracoFile",
+              "value": {
+                "basicValue": {
+                  "src": "/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
+                  "focalPoint": null,
+                  "crops": []
+                },
+                "model": "BasicPropertyValue"
+              },
+              "editorAlias": "Umbraco.ImageCropper"
+            },
+            {
+              "alias": "umbracoWidth",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoHeight",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoBytes",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoExtension",
+              "value": {
+                "label": "",
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            }
+          ],
+          "children": []
+        },
+        {
+          "properties": [
+            {
+              "alias": "umbracoFile",
+              "value": {
+                "basicValue": {
+                  "src": "/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
+                  "focalPoint": null,
+                  "crops": []
+                },
+                "model": "BasicPropertyValue"
+              },
+              "editorAlias": "Umbraco.ImageCropper"
+            },
+            {
+              "alias": "umbracoWidth",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoHeight",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoBytes",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoExtension",
+              "value": {
+                "label": "",
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            }
+          ],
+          "children": []
+        },
+        {
+          "properties": [
+            {
+              "alias": "umbracoFile",
+              "value": {
+                "basicValue": {
+                  "src": "/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
+                  "focalPoint": null,
+                  "crops": []
+                },
+                "model": "BasicPropertyValue"
+              },
+              "editorAlias": "Umbraco.ImageCropper"
+            },
+            {
+              "alias": "umbracoWidth",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoHeight",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoBytes",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoExtension",
+              "value": {
+                "label": "",
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            }
+          ],
+          "children": []
+        },
+        {
+          "properties": [
+            {
+              "alias": "umbracoFile",
+              "value": {
+                "basicValue": {
+                  "src": "/media/gy0bdnwp/skaermbillede-2023-04-17-kl-201618.png",
+                  "focalPoint": null,
+                  "crops": []
+                },
+                "model": "BasicPropertyValue"
+              },
+              "editorAlias": "Umbraco.ImageCropper"
+            },
+            {
+              "alias": "umbracoWidth",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoHeight",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoBytes",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoExtension",
+              "value": {
+                "label": "",
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            }
+          ],
+          "children": []
+        },
+        {
+          "properties": [
+            {
+              "alias": "umbracoFile",
+              "value": {
+                "basicValue": {
+                  "src": "/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
+                  "focalPoint": null,
+                  "crops": []
+                },
+                "model": "BasicPropertyValue"
+              },
+              "editorAlias": "Umbraco.ImageCropper"
+            },
+            {
+              "alias": "umbracoWidth",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoHeight",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoBytes",
+              "value": {
+                "label": 0,
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            },
+            {
+              "alias": "umbracoExtension",
+              "value": {
+                "label": "",
+                "model": "BasicLabel"
+              },
+              "editorAlias": "Umbraco.Label"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  }
+}

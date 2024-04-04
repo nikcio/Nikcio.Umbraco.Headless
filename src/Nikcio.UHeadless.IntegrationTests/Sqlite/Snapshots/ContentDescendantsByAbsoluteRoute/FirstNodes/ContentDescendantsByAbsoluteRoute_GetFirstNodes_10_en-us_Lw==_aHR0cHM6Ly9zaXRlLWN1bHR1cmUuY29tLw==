@@ -1,0 +1,23 @@
+{
+  "data": {
+    "contentDescendantsByAbsoluteRoute": {
+      "nodes": [
+        {
+          "id": 1155
+        },
+        {
+          "id": 1162
+        },
+        {
+          "id": 1166
+        },
+        {
+          "id": 1168
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false
+      }
+    }
+  }
+}

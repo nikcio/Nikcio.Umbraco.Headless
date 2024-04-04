@@ -1,7 +1,0 @@
-query GetPreviewNodeIdContentAtRoot($culture: String) {
-    contentAtRoot(preview: true, culture: $culture) { 
-        nodes {
-            id 
-        }
-    }
-}
