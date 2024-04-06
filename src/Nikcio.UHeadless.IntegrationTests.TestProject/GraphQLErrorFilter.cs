@@ -13,7 +13,7 @@ public class GraphQLErrorFilter : IErrorFilter
 
     public IError OnError(IError error)
     {
-        ArgumentNullException.ThrowIfNull(error, nameof(error));
+        ArgumentNullException.ThrowIfNull(error);
 
         _logger.LogError(error.Exception, "Request failed");
         return error.Exception != null ? error.WithMessage(error.Exception.Message) : error;

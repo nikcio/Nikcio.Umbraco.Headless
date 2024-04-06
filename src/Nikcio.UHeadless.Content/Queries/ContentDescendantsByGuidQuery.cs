@@ -38,7 +38,7 @@ public class ContentDescendantsByGuidQuery<TContent>
                                                            [GraphQLDescription("The property variation segment")] string? segment = null,
                                                            [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
-        ArgumentNullException.ThrowIfNull(contentRepository, nameof(contentRepository));
+        ArgumentNullException.ThrowIfNull(contentRepository);
 
         return contentRepository.GetContentList(x => x?.GetById(preview, id)?.Descendants(culture) ?? Enumerable.Empty<IPublishedContent>(), culture, segment, fallback?.ToFallback());
     }

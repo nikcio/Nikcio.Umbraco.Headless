@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Base.Basics.Models;
@@ -93,7 +93,7 @@ public class BasicContent<TProperty, TContentType, TContentRedirect, TContent> :
     /// <inheritdoc/>
     public BasicContent(CreateContent createContent, IPropertyFactory<TProperty> propertyFactory, IContentTypeFactory<TContentType> contentTypeFactory, IContentFactory<TContent> contentFactory, IVariationContextAccessor variationContextAccessor) : base(createContent, propertyFactory)
     {
-        ArgumentNullException.ThrowIfNull(variationContextAccessor, nameof(variationContextAccessor));
+        ArgumentNullException.ThrowIfNull(variationContextAccessor);
 
         ContentFactory = contentFactory;
         ContentTypeFactory = contentTypeFactory;

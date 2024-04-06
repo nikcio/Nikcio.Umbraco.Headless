@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Maps;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Core.Reflection.Factories;
@@ -28,7 +28,7 @@ public class PropertyValueFactory : IPropertyValueFactory
     /// <inheritdoc/>
     public virtual PropertyValue? GetPropertyValue(CreatePropertyValue createPropertyValue)
     {
-        ArgumentNullException.ThrowIfNull(createPropertyValue, nameof(createPropertyValue));
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
 
         if (createPropertyValue.Property.PropertyType.ContentType == null)
         {

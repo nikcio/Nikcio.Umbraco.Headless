@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Base.Properties.Extensions.Options;
 
 namespace Nikcio.UHeadless.Base.Properties.Extensions;
@@ -16,7 +16,7 @@ public static class MapExtensions
     /// <returns></returns>
     public static IServiceCollection AddPropertyMaps(this IServiceCollection services, PropertyMapOptions propertyMapOptions)
     {
-        ArgumentNullException.ThrowIfNull(propertyMapOptions, nameof(propertyMapOptions));
+        ArgumentNullException.ThrowIfNull(propertyMapOptions);
 
         services
             .AddSingleton(propertyMapOptions.PropertyMap);

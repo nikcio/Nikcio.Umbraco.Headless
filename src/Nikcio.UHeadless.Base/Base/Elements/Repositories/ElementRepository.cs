@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Elements.Factories;
+using Nikcio.UHeadless.Base.Elements.Factories;
 using Nikcio.UHeadless.Base.Elements.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
@@ -20,7 +20,7 @@ public abstract class ElementRepository<TElement>
     /// <inheritdoc/>
     protected ElementRepository(IUmbracoContextFactory umbracoContextFactory, IElementFactory<TElement> elementFactory)
     {
-        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory);
 
         umbracoContextFactory.EnsureUmbracoContext();
         this.elementFactory = elementFactory;

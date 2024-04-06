@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Base.Elements.Repositories;
 using Nikcio.UHeadless.Content.Factories;
 using Nikcio.UHeadless.Content.Models;
@@ -15,7 +15,7 @@ public class ContentRepository<TContent> : CachedElementRepository<TContent>, IC
     /// <inheritdoc/>
     public ContentRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, IUmbracoContextFactory umbracoContextFactory, IContentFactory<TContent> contentFactory, ILogger<ContentRepository<TContent>> logger) : base(publishedSnapshotAccessor, umbracoContextFactory, contentFactory, logger)
     {
-        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory);
 
         umbracoContextFactory.EnsureUmbracoContext();
     }

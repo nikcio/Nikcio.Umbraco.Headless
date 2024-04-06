@@ -41,7 +41,7 @@ public class ContentByTagQuery<TContent>
                                                 [GraphQLDescription("The property variation segment")] string? segment = null,
                                                 [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
-        ArgumentNullException.ThrowIfNull(contentRepository, nameof(contentRepository));
+        ArgumentNullException.ThrowIfNull(contentRepository);
 
         return contentRepository.GetContentList(x =>
         {

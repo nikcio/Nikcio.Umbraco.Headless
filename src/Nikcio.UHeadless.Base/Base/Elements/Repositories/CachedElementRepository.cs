@@ -28,7 +28,7 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     /// <inheritdoc/>
     protected CachedElementRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, IUmbracoContextFactory umbracoContextFactory, IElementFactory<TElement> elementFactory, ILogger logger) : base(umbracoContextFactory, elementFactory)
     {
-        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory);
 
         umbracoContextFactory.EnsureUmbracoContext();
         this.publishedSnapshotAccessor = publishedSnapshotAccessor;
@@ -47,7 +47,7 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     protected virtual TElement? GetElement<TPublishedCache>(Func<TPublishedCache?, IPublishedContent?> fetch, string? culture, string? segment, Fallback? fallback, Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
         where TPublishedCache : IPublishedCache
     {
-        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+        ArgumentNullException.ThrowIfNull(fetch);
 
         IPublishedCache? publishedCache = GetPublishedCache(cacheSelector);
         if (publishedCache is TPublishedCache typedPublishedCache)
@@ -69,7 +69,7 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     protected virtual IEnumerable<TElement?> GetElementList<TPublishedCache>(Func<TPublishedCache?, IEnumerable<IPublishedContent>?> fetch, string? culture, string? segment, Fallback? fallback, Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
         where TPublishedCache : IPublishedCache
     {
-        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+        ArgumentNullException.ThrowIfNull(fetch);
 
         IPublishedCache? publishedCache = GetPublishedCache(cacheSelector);
         if (publishedCache is TPublishedCache typedPublishedCache)
@@ -86,7 +86,7 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     /// <returns></returns>
     protected virtual IPublishedCache? GetPublishedCache(Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
     {
-        ArgumentNullException.ThrowIfNull(cacheSelector, nameof(cacheSelector));
+        ArgumentNullException.ThrowIfNull(cacheSelector);
 
         if (publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot))
         {

@@ -38,8 +38,8 @@ public static class UHeadlessExtensions
     /// <returns></returns>
     public static IUmbracoBuilder AddUHeadless(this IUmbracoBuilder builder, UHeadlessOptions uHeadlessOptions)
     {
-        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        ArgumentNullException.ThrowIfNull(uHeadlessOptions, nameof(uHeadlessOptions));
+        ArgumentNullException.ThrowIfNull(builder);
+        ArgumentNullException.ThrowIfNull(uHeadlessOptions);
 
         builder.Services
             .AddReflectionServices()
@@ -90,8 +90,8 @@ public static class UHeadlessExtensions
     [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions) instead")]
     public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder, UHeadlessEndpointOptions uHeadlessEndpointOptions)
     {
-        ArgumentNullException.ThrowIfNull(applicationBuilder, nameof(applicationBuilder));
-        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions, nameof(uHeadlessEndpointOptions));
+        ArgumentNullException.ThrowIfNull(applicationBuilder);
+        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions);
 
         applicationBuilder.UseRouting();
 
@@ -128,7 +128,7 @@ public static class UHeadlessExtensions
     /// <returns></returns>
     public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions)
     {
-        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions, nameof(uHeadlessEndpointOptions));
+        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions);
 
         if (uHeadlessEndpointOptions.CorsPolicy != null)
         {
@@ -148,7 +148,7 @@ public static class UHeadlessExtensions
     /// </summary>
     public static IUmbracoBuilder AddUHeadlessComposers(this IUmbracoBuilder builder)
     {
-        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        ArgumentNullException.ThrowIfNull(builder);
 
         IEnumerable<Type> composerTypes = builder.TypeLoader.GetTypes<IUHeadlessComposer>();
         IEnumerable<Attribute> enableDisable =

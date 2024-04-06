@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
 using Nikcio.UHeadless.Members.Models;
@@ -31,7 +31,7 @@ public class FindMembersByRoleQuery<TMember>
                                             [GraphQLDescription("The username to match.")] string usernameToMatch,
                                             [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
     {
-        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+        ArgumentNullException.ThrowIfNull(memberRepository);
 
         return memberRepository.GetMemberList(x => x.FindMembersInRole(roleName, usernameToMatch, matchType));
     }

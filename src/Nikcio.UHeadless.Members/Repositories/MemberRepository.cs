@@ -22,7 +22,7 @@ public class MemberRepository<TMember> : IMemberRepository<TMember>
     /// <inheritdoc/>
     public MemberRepository(IUmbracoContextFactory umbracoContextFactory, IMemberFactory<TMember> memberFactory, IMemberService memberService)
     {
-        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory);
 
         umbracoContextFactory.EnsureUmbracoContext();
         this.memberFactory = memberFactory;
@@ -32,7 +32,7 @@ public class MemberRepository<TMember> : IMemberRepository<TMember>
     /// <inheritdoc/>
     public virtual TMember? GetMember(Func<IMemberService, Umbraco.Cms.Core.Models.IMember?> fetch)
     {
-        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+        ArgumentNullException.ThrowIfNull(fetch);
 
         Umbraco.Cms.Core.Models.IMember? member = fetch(memberService);
         if (member is null)
@@ -45,7 +45,7 @@ public class MemberRepository<TMember> : IMemberRepository<TMember>
     /// <inheritdoc/>
     public virtual IEnumerable<TMember?> GetMemberList(Func<IMemberService, IEnumerable<Umbraco.Cms.Core.Models.IMember>?> fetch)
     {
-        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+        ArgumentNullException.ThrowIfNull(fetch);
 
         IEnumerable<Umbraco.Cms.Core.Models.IMember>? members = fetch(memberService);
         if (members is null)

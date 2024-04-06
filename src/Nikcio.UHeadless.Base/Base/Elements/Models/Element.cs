@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Elements.Commands;
+using Nikcio.UHeadless.Base.Elements.Commands;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -12,7 +12,7 @@ public abstract class Element<TProperty> : IElement
     /// <inheritdoc/>
     protected Element(CreateElement createElement, IPropertyFactory<TProperty> propertyFactory)
     {
-        ArgumentNullException.ThrowIfNull(createElement, nameof(createElement));
+        ArgumentNullException.ThrowIfNull(createElement);
 
         Content = createElement.Content;
         Culture = createElement.Culture;
