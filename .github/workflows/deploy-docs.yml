@@ -25,9 +25,9 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
-            path: docs
+            path: ./docs
             node-version: 20
-            package-manager: pnpm
+            package-manager: pnpm@latest
 
   deploy:
     needs: build
