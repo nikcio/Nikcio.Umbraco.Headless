@@ -5,6 +5,8 @@ using Nikcio.UHeadless.Base.Properties.Extensions;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Content.Models;
 using Nikcio.UHeadless.Content.Repositories;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Content.Queries;
 
@@ -16,8 +18,10 @@ public class ContentByContentTypeQuery<TContent>
     where TContent : IContent
 {
     /// <summary>
-    /// Gets all the content items by content type (Missing preview)
+    /// Gets all the content items by content type
     /// </summary>
+    /// <param name="variationContextAccessor"></param>
+    /// <param name="preview"></param>
     /// <param name="contentRepository"></param>
     /// <param name="contentType"></param>
     /// <param name="culture"></param>
@@ -29,8 +33,10 @@ public class ContentByContentTypeQuery<TContent>
     [UseFiltering]
     [UseSorting]
     public virtual IEnumerable<TContent?> ContentByContentType([Service] IContentRepository<TContent> contentRepository,
+                                                           [Service] IVariationContextAccessor variationContextAccessor,
                                                            [GraphQLDescription("The contentType to fetch.")] string contentType,
                                                            [GraphQLDescription("The culture.")] string? culture = null,
+                                                           [GraphQLDescription("Fetch preview values. Preview will show unpublished items.")] bool preview = false,
                                                            [GraphQLDescription("The property variation segment")] string? segment = null,
                                                            [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
@@ -38,8 +44,16 @@ public class ContentByContentTypeQuery<TContent>
 
         return contentRepository.GetContentList(x =>
         {
-            Umbraco.Cms.Core.Models.PublishedContent.IPublishedContentType? publishedContentType = x?.GetContentType(contentType);
-            return publishedContentType != null ? x?.GetByContentType(publishedContentType) : default;
+            IPublishedContentType? publishedContentType = x?.GetContentType(contentType);
+
+            if(publishedContentType == null)
+            {
+                return default;
+            }
+
+            return x?.GetAtRoot(preview, culture)
+                    .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, culture))
+                    .Where(content => content.ContentType.Id == publishedContentType.Id);
         }, culture, segment, fallback?.ToFallback());
     }
 }
