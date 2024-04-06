@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Base.Elements.Repositories;
 using Nikcio.UHeadless.Media.Factories;
 using Nikcio.UHeadless.Media.Models;
@@ -15,6 +15,8 @@ public class MediaRepository<TMedia> : CachedElementRepository<TMedia>, IMediaRe
     /// <inheritdoc/>
     public MediaRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, IUmbracoContextFactory umbracoContextFactory, IMediaFactory<TMedia> mediaFactory, ILogger<MediaRepository<TMedia>> logger) : base(publishedSnapshotAccessor, umbracoContextFactory, mediaFactory, logger)
     {
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+
         umbracoContextFactory.EnsureUmbracoContext();
     }
 

@@ -13,6 +13,8 @@ public class BasicContentRedirect : ContentRedirect
     /// <inheritdoc/>
     public BasicContentRedirect(CreateContentRedirect createContentRedirect) : base(createContentRedirect)
     {
+        ArgumentNullException.ThrowIfNull(createContentRedirect);
+
         RedirectUrl = createContentRedirect.RedirectUrl;
         IsPermanent = createContentRedirect.IsPermanent;
     }

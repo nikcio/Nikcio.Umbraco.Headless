@@ -11,7 +11,7 @@ public class ContentRedirectFactory<TContentRedirect> : IContentRedirectFactory<
     /// <summary>
     /// A factory for creating models with DI and reflection
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <inheritdoc/>
     public ContentRedirectFactory(IDependencyReflectorFactory dependencyReflectorFactory)
@@ -22,7 +22,7 @@ public class ContentRedirectFactory<TContentRedirect> : IContentRedirectFactory<
     /// <inheritdoc/>
     public virtual TContentRedirect? CreateContentRedirect(CreateContentRedirect createContentRedirectCommand)
     {
-        var createdContent = dependencyReflectorFactory.GetReflectedType<IContentRedirect>(typeof(TContentRedirect), new object[] { createContentRedirectCommand });
+        IContentRedirect? createdContent = dependencyReflectorFactory.GetReflectedType<IContentRedirect>(typeof(TContentRedirect), new object[] { createContentRedirectCommand });
         return createdContent == null ? default : (TContentRedirect) createdContent;
     }
 }

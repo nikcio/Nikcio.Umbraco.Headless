@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Collections;
@@ -13,6 +13,7 @@ namespace Nikcio.UHeadless.Base.Composers;
 
 // note: this class is NOT thread-safe in any way
 
+#pragma warning disable CA2201 // Do not raise reserved exception types
 /// <summary>
 ///     Handles the composers.
 /// </summary>
@@ -89,7 +90,7 @@ public class UHeadlessComposerGraph
             text.AppendLine(type.FullName);
             foreach (ComposeAfterAttribute attribute in type.GetCustomAttributes<ComposeAfterAttribute>())
             {
-                var weak = !(attribute.RequiredType.IsInterface ? attribute.Weak == false : attribute.Weak != true);
+                bool weak = !(attribute.RequiredType.IsInterface ? attribute.Weak == false : attribute.Weak != true);
                 text.AppendLine("  > " + attribute.RequiredType +
                                 (weak ? " (weak" : " (strong") +
                                 (HasReq(requirements.Keys, attribute.RequiredType) ? ", found" : ", missing") + ")");
@@ -216,7 +217,8 @@ public class UHeadlessComposerGraph
         try
         {
             sortedComposerTypes = graph.GetSortedItems().Select(x => x.Key).Where(x => !x.IsInterface).ToList();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             // in case of an error, force-dump everything to log
             _logger.LogInformation("Composer Report:\r\n{ComposerReport}", GetComposersReport(requirements));
@@ -255,13 +257,15 @@ public class UHeadlessComposerGraph
             enableInfo.Weight = weight2;
         }
 
-        foreach (EnableComposerAttribute attr in enableDisableAttributes.OfType<EnableComposerAttribute>())
+        var enableDisableAttributesList = enableDisableAttributes.ToList();
+
+        foreach (EnableComposerAttribute attr in enableDisableAttributesList.OfType<EnableComposerAttribute>())
         {
             Type type = attr.EnabledType;
             UpdateEnableInfo(type, 2, enabled, true);
         }
 
-        foreach (DisableComposerAttribute attr in enableDisableAttributes.OfType<DisableComposerAttribute>())
+        foreach (DisableComposerAttribute attr in enableDisableAttributesList.OfType<DisableComposerAttribute>())
         {
             Type type = attr.DisabledType;
             UpdateEnableInfo(type, 2, enabled, false);
@@ -272,14 +276,14 @@ public class UHeadlessComposerGraph
             foreach (EnableAttribute attr in composerType.GetCustomAttributes<EnableAttribute>())
             {
                 Type type = attr.EnabledType ?? composerType;
-                var weight = type == composerType ? 1 : 3;
+                int weight = type == composerType ? 1 : 3;
                 UpdateEnableInfo(type, weight, enabled, true);
             }
 
             foreach (DisableAttribute attr in composerType.GetCustomAttributes<DisableAttribute>())
             {
                 Type type = attr.DisabledType ?? composerType;
-                var weight = type == composerType ? 1 : 3;
+                int weight = type == composerType ? 1 : 3;
                 UpdateEnableInfo(type, weight, enabled, false);
             }
         }
@@ -419,10 +423,11 @@ public class UHeadlessComposerGraph
         }
     }
 
-    private class EnableInfo
+    private sealed class EnableInfo
     {
         public bool Enabled { get; set; }
 
         public int Weight { get; set; } = -1;
     }
 }
+#pragma warning restore CA2201 // Do not raise reserved exception types

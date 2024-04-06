@@ -27,7 +27,7 @@ public static class ContentExtensions
     /// <summary>
     /// This is for internal use only.
     /// </summary>
-    internal static bool UsingContentQueries { get; set; } = false;
+    internal static bool UsingContentQueries { get; set; }
 
     /// <summary>
     /// Adds the necessary extensions to properly use content queries.

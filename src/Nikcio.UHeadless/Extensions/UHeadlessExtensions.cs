@@ -1,21 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Base.Basics.Maps.Extensions;
 using Nikcio.UHeadless.Base.Composers;
 using Nikcio.UHeadless.Base.Properties.Extensions;
 using Nikcio.UHeadless.Content.Basics.Queries;
-using Nikcio.UHeadless.Content.Composers;
 using Nikcio.UHeadless.Content.Extensions;
-using Nikcio.UHeadless.Content.NotificationHandlers;
-using Nikcio.UHeadless.Content.TypeModules;
 using Nikcio.UHeadless.ContentTypes.Extensions;
 using Nikcio.UHeadless.Core.Reflection.Extensions;
 using Nikcio.UHeadless.Extensions.Options;
-using Nikcio.UHeadless.Media.Extensions;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
-using Umbraco.Cms.Core.Notifications;
 
 namespace Nikcio.UHeadless.Extensions;
 
@@ -43,6 +38,9 @@ public static class UHeadlessExtensions
     /// <returns></returns>
     public static IUmbracoBuilder AddUHeadless(this IUmbracoBuilder builder, UHeadlessOptions uHeadlessOptions)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        ArgumentNullException.ThrowIfNull(uHeadlessOptions, nameof(uHeadlessOptions));
+
         builder.Services
             .AddReflectionServices()
             .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)
@@ -57,7 +55,7 @@ public static class UHeadlessExtensions
         }
 
         uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.AddPropertyMapDefaults();
-        var propertyValueTypes = uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.GetAllTypes();
+        IEnumerable<Type> propertyValueTypes = uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.GetAllTypes();
 
         uHeadlessOptions.UHeadlessGraphQLOptions.PropertyValueTypes.AddRange(propertyValueTypes);
 
@@ -92,12 +90,16 @@ public static class UHeadlessExtensions
     [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions) instead")]
     public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder, UHeadlessEndpointOptions uHeadlessEndpointOptions)
     {
+        ArgumentNullException.ThrowIfNull(applicationBuilder, nameof(applicationBuilder));
+        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions, nameof(uHeadlessEndpointOptions));
+
         applicationBuilder.UseRouting();
 
         if (uHeadlessEndpointOptions.CorsPolicy != null)
         {
             applicationBuilder.UseCors(uHeadlessEndpointOptions.CorsPolicy);
-        } else
+        }
+        else
         {
             applicationBuilder.UseCors();
         }
@@ -126,10 +128,13 @@ public static class UHeadlessExtensions
     /// <returns></returns>
     public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions)
     {
+        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions, nameof(uHeadlessEndpointOptions));
+
         if (uHeadlessEndpointOptions.CorsPolicy != null)
         {
             app.UseCors(uHeadlessEndpointOptions.CorsPolicy);
-        } else
+        }
+        else
         {
             app.UseCors();
         }
@@ -143,6 +148,8 @@ public static class UHeadlessExtensions
     /// </summary>
     public static IUmbracoBuilder AddUHeadlessComposers(this IUmbracoBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
         IEnumerable<Type> composerTypes = builder.TypeLoader.GetTypes<IUHeadlessComposer>();
         IEnumerable<Attribute> enableDisable =
             builder.TypeLoader.GetAssemblyAttributes(typeof(EnableComposerAttribute), typeof(DisableComposerAttribute));

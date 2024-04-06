@@ -37,13 +37,16 @@ public class BasicMemberPicker<TMember> : PropertyValue
     /// <inheritdoc/>
     public BasicMemberPicker(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory) : base(createPropertyValue)
     {
-        var objectValue = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        object? objectValue = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (objectValue is IPublishedContent memberItem)
         {
             AddMemberPickerItem(dependencyReflectorFactory, createPropertyValue, memberItem);
-        } else if (objectValue is IEnumerable<IPublishedContent> members)
+        }
+        else if (objectValue is IEnumerable<IPublishedContent> members)
         {
-            foreach (var member in members)
+            foreach (IPublishedContent member in members)
             {
                 AddMemberPickerItem(dependencyReflectorFactory, createPropertyValue, member);
             }
@@ -58,7 +61,9 @@ public class BasicMemberPicker<TMember> : PropertyValue
     /// <param name="member"></param>
     protected void AddMemberPickerItem(IDependencyReflectorFactory dependencyReflectorFactory, CreatePropertyValue createPropertyValue, IPublishedContent member)
     {
-        var memberItem = dependencyReflectorFactory.GetReflectedType<TMember>(typeof(TMember), new object[] { new CreateMemberPickerItem(createPropertyValue, member) });
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+
+        TMember? memberItem = dependencyReflectorFactory.GetReflectedType<TMember>(typeof(TMember), new object[] { new CreateMemberPickerItem(createPropertyValue, member) });
         if (memberItem != null)
         {
             Members.Add(memberItem);

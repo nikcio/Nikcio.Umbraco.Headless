@@ -14,6 +14,8 @@ public class BasicProperty : Property
     /// <inheritdoc/>
     public BasicProperty(CreateProperty createProperty, IPropertyValueFactory propertyValueFactory) : base(createProperty)
     {
+        ArgumentNullException.ThrowIfNull(createProperty, nameof(createProperty));
+
         publishedProperty = createProperty.PublishedProperty;
         this.propertyValueFactory = propertyValueFactory;
         _createPropertyValue = new CreatePropertyValue(createProperty.PublishedContent, createProperty.PublishedProperty, createProperty.Culture, createProperty.Segment, createProperty.PublishedValueFallback, createProperty.Fallback);
@@ -21,6 +23,7 @@ public class BasicProperty : Property
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the alias of a property.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Alias is a name native to the Umbraco landscape and should therefore be easy to understand.")]
     public virtual string? Alias => publishedProperty.Alias;
 
     /// <inheritdoc/>
@@ -34,10 +37,10 @@ public class BasicProperty : Property
     /// <summary>
     /// The published property
     /// </summary>
-    protected readonly IPublishedProperty publishedProperty;
+    protected IPublishedProperty publishedProperty { get; }
 
     /// <summary>
     /// A factory for creating property values
     /// </summary>
-    protected readonly IPropertyValueFactory propertyValueFactory;
+    protected IPropertyValueFactory propertyValueFactory { get; }
 }

@@ -11,12 +11,13 @@ public partial class ApiTests
     [InlineData("40e37a26-8570-47dd-b30a-a1bd391f603b")]
     [InlineData("d6355171-2e04-4b73-b11b-01f408ec242a")]
     [InlineData("b6113530-0ccf-4006-88d4-3dcd31c8297e")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task MediaByGuid_Can_Get_General_Async(string guid)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByGuidSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralMediaByGuid($guid: UUID!) {
@@ -67,13 +68,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaByGuid_GetGeneral_{guid}";
+        string snapshotName = $"MediaByGuid_GetGeneral_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -82,12 +83,13 @@ public partial class ApiTests
     [InlineData("40e37a26-8570-47dd-b30a-a1bd391f603b")]
     [InlineData("d6355171-2e04-4b73-b11b-01f408ec242a")]
     [InlineData("b6113530-0ccf-4006-88d4-3dcd31c8297e")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task MediaByGuid_Can_Get_NodeId_Async(string guid)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByGuidSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdMediaByGuid($guid: UUID!) {
@@ -102,13 +104,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaByGuid_GetNodeId_{guid}";
+        string snapshotName = $"MediaByGuid_GetNodeId_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -117,12 +119,13 @@ public partial class ApiTests
     [InlineData("40e37a26-8570-47dd-b30a-a1bd391f603b")]
     [InlineData("d6355171-2e04-4b73-b11b-01f408ec242a")]
     [InlineData("b6113530-0ccf-4006-88d4-3dcd31c8297e")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task MediaByGuid_Can_Get_Properties_Async(string guid)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByGuidSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesMediaByGuid($guid: UUID!) {
@@ -151,13 +154,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaByGuid_GetProperties_{guid}";
+        string snapshotName = $"MediaByGuid_GetProperties_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

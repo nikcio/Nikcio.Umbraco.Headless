@@ -31,6 +31,8 @@ public class FindMembersByUsernameQuery<TMember>
                                             [GraphQLDescription("The page size.")] int pageSize,
                                             [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+
         return memberRepository.GetMemberList(x => x.FindByUsername(username, pageIndex, pageSize, out _, matchType));
     }
 }

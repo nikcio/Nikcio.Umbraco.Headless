@@ -35,9 +35,12 @@ public class BasicNestedContentElement<TProperty> : NestedContentElement
     /// <inheritdoc/>
     public BasicNestedContentElement(CreateNestedContentElement createElement, IPropertyFactory<TProperty> propertyFactory) : base(createElement)
     {
+        ArgumentNullException.ThrowIfNull(createElement);
+        ArgumentNullException.ThrowIfNull(propertyFactory);
+
         if (createElement.Element != null)
         {
-            foreach (var property in createElement.Element.Properties)
+            foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createElement.Element.Properties)
             {
                 Properties.Add(propertyFactory.GetProperty(property, createElement.Content, createElement.Culture, createElement.Segment, createElement.Fallback));
             }

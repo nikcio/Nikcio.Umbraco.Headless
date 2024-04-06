@@ -37,6 +37,8 @@ public class BasicMultiUrlPickerItem : MultiUrlPickerItem
     /// <inheritdoc/>
     public BasicMultiUrlPickerItem(CreateMultiUrlPickerItem createLink) : base(createLink)
     {
+        ArgumentNullException.ThrowIfNull(createLink);
+
         Name = createLink.UmbracoLink.Name;
         Target = createLink.UmbracoLink.Target;
         Type = createLink.UmbracoLink.Type;

@@ -1,4 +1,4 @@
-﻿using HotChocolate.Execution.Configuration;
+using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Media.TypeModules;
 
@@ -26,7 +26,7 @@ public static class MediaExtensions
     /// <summary>
     /// This is for internal use only
     /// </summary>
-    internal static bool UsingMediaQueries { get; set; } = false;
+    internal static bool UsingMediaQueries { get; set; }
 
     /// <summary>
     /// Adds the necessary extensions to properly use media queries.

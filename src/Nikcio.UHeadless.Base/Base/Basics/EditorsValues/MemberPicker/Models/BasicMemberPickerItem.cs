@@ -24,6 +24,9 @@ public class BasicMemberPickerItem<TProperty> : MemberPickerItem
     /// <inheritdoc/>
     public BasicMemberPickerItem(CreateMemberPickerItem createMember, IPropertyFactory<TProperty> propertyFactory) : base(createMember)
     {
+        ArgumentNullException.ThrowIfNull(createMember);
+        ArgumentNullException.ThrowIfNull(propertyFactory);
+
         if (createMember.Member == null)
         {
             return;
@@ -33,7 +36,7 @@ public class BasicMemberPickerItem<TProperty> : MemberPickerItem
         Name = createMember.Member.Name;
         if (createMember.Member.Properties != null)
         {
-            foreach (var property in createMember.Member.Properties)
+            foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createMember.Member.Properties)
             {
                 Properties.Add(propertyFactory.GetProperty(property, createMember.CreatePropertyValue.Content, createMember.CreatePropertyValue.Culture, createMember.CreatePropertyValue.Segment, createMember.CreatePropertyValue.Fallback));
             }

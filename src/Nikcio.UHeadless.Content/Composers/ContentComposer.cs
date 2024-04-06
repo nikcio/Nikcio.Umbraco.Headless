@@ -16,6 +16,8 @@ public class ContentComposer : IUHeadlessComposer
     /// <inheritdoc/>
     public void Compose(IUmbracoBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
         if (!ContentExtensions.UsingContentQueries)
         {
             return;

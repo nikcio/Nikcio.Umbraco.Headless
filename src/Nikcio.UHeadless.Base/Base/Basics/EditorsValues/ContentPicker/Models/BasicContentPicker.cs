@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.ContentPicker.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.ContentPicker.Models;
 using Nikcio.UHeadless.Base.Properties.Models;
@@ -36,13 +36,16 @@ public class BasicContentPicker<TContentPickerItem> : PropertyValue
     /// <inheritdoc/>
     public BasicContentPicker(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory, IVariationContextAccessor variationContextAccessor) : base(createPropertyValue)
     {
-        var objectValue = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        object? objectValue = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (objectValue is IPublishedContent content)
         {
             AddContentPickerItem(dependencyReflectorFactory, content, variationContextAccessor, createPropertyValue.Culture);
-        } else if (objectValue is IEnumerable<IPublishedContent> contentItems)
+        }
+        else if (objectValue is IEnumerable<IPublishedContent> contentItems)
         {
-            foreach (var contentItem in contentItems)
+            foreach (IPublishedContent contentItem in contentItems)
             {
                 AddContentPickerItem(dependencyReflectorFactory, contentItem, variationContextAccessor, createPropertyValue.Culture);
             }
@@ -58,7 +61,9 @@ public class BasicContentPicker<TContentPickerItem> : PropertyValue
     /// <param name="culture"></param>
     protected void AddContentPickerItem(IDependencyReflectorFactory dependencyReflectorFactory, IPublishedContent content, IVariationContextAccessor variationContextAccessor, string? culture)
     {
-        var contentPickerItem = dependencyReflectorFactory.GetReflectedType<TContentPickerItem>(typeof(TContentPickerItem), new object[] { new CreateContentPickerItem(content, variationContextAccessor, culture) });
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+
+        TContentPickerItem? contentPickerItem = dependencyReflectorFactory.GetReflectedType<TContentPickerItem>(typeof(TContentPickerItem), new object[] { new CreateContentPickerItem(content, variationContextAccessor, culture) });
         if (contentPickerItem != null)
         {
             ContentList.Add(contentPickerItem);

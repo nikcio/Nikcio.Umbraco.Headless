@@ -25,6 +25,8 @@ public static class PropertyMapExtensions
     /// </summary>
     public static void AddPropertyMapDefaults(this IPropertyMap propertyMap)
     {
+        ArgumentNullException.ThrowIfNull(propertyMap);
+
         propertyMap.AddEditorMapping<BasicPropertyValue>(PropertyConstants.DefaultKey);
         propertyMap.AddEditorMapping<BasicBlockListModel>(Constants.PropertyEditors.Aliases.BlockList);
         propertyMap.AddEditorMapping<BasicBlockGridModel>(Constants.PropertyEditors.Aliases.BlockGrid);

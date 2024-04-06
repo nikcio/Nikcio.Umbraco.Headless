@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using Nikcio.UHeadless.ContentTypes.Commands;
 using Nikcio.UHeadless.ContentTypes.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -32,6 +32,7 @@ public class BasicContentType : ContentType
     /// Gets the content type alias
     /// </summary>
     [GraphQLDescription("Gets the content type alias.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Alias is a name native to the Umbraco landscape and should therefore be easy to understand.")]
     public virtual string? Alias => PublishedContentType.Alias;
 
     /// <summary>

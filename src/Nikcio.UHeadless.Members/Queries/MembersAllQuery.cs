@@ -35,6 +35,8 @@ public class MembersAllQuery<TMember>
                                             [GraphQLDescription("The member type alias to search for.")] string? memberTypeAlias = null,
                                             [GraphQLDescription("The search text filter.")] string? filter = null)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository);
+
         filter ??= "";
         return memberRepository.GetMemberList(x => x.GetAll(pageIndex, pageSize, out _, orderBy, orderDirection, memberTypeAlias, filter));
     }

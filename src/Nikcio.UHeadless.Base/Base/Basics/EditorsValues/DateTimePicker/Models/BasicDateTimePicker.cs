@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Extensions;
 
@@ -19,12 +19,15 @@ public class BasicDateTimePicker : PropertyValue
     /// <inheritdoc/>
     public BasicDateTimePicker(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
-        var value = createPropertyValue.Property.Value<DateTime?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        DateTime? value = createPropertyValue.Property.Value<DateTime?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
 
         if (value == default(DateTime))
         {
             Value = null;
-        } else
+        }
+        else
         {
             Value = value;
         }

@@ -11,9 +11,13 @@ public sealed class ConfigureExamineIndexes : IConfigureNamedOptions<LuceneDirec
 {
     public void Configure(string? name, LuceneDirectoryIndexOptions options)
     {
+        ArgumentNullException.ThrowIfNull(options, nameof(options));
+
         options.DirectoryFactory = new LuceneRAMDirectoryFactory();
     }
 
     public void Configure(LuceneDirectoryIndexOptions options)
-        => throw new NotImplementedException("This is never called and is just part of the interface");
+    {
+        throw new NotImplementedException("This is never called and is just part of the interface");
+    }
 }

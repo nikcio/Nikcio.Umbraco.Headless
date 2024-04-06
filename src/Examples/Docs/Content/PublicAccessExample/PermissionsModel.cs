@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using HotChocolate;
 
 namespace Examples.Docs.Content.PublicAccessExample;
@@ -8,7 +8,7 @@ public class PermissionsModel
 {
     public PermissionsModel()
     {
-        AccessRules = new List<AccessRuleModel>();
+        AccessRules = [];
     }
 
     [GraphQLDescription("Gets the url to the login page.")]

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Nikcio.UHeadless.Content.Commands;
 using Nikcio.UHeadless.Content.Models;
 using Nikcio.UHeadless.Content.Repositories;
@@ -16,22 +16,22 @@ public class ContentRouter<TContent, TContentRedirect> : IContentRouter<TContent
     /// <summary>
     /// A content redirect repository
     /// </summary>
-    protected readonly IContentRedirectRepository<TContentRedirect> contentRedirectRepository;
+    protected IContentRedirectRepository<TContentRedirect> contentRedirectRepository { get; }
 
     /// <summary>
     /// A content repository
     /// </summary>
-    protected readonly IContentRepository<TContent> contentRepository;
+    protected IContentRepository<TContent> contentRepository { get; }
 
     /// <summary>
     /// The published router
     /// </summary>
-    protected readonly IPublishedRouter publishedRouter;
+    protected IPublishedRouter publishedRouter { get; }
 
     /// <summary>
     /// The httpcontext accessor
     /// </summary>
-    protected readonly IHttpContextAccessor httpContextAccessor;
+    protected IHttpContextAccessor httpContextAccessor { get; }
 
     /// <inheritdoc/>
     public ContentRouter(IContentRedirectRepository<TContentRedirect> contentRedirectRepository, IContentRepository<TContent> contentRepository, IPublishedRouter publishedRouter, IHttpContextAccessor httpContextAccessor)
@@ -45,19 +45,22 @@ public class ContentRouter<TContent, TContentRedirect> : IContentRouter<TContent
     /// <inheritdoc/>
     public virtual TContent? GetRedirect(IPublishedRequest request)
     {
+        ArgumentNullException.ThrowIfNull(request, nameof(request));
+
         if (request.RedirectUrl == null)
         {
             return default;
         }
-        var redirect = contentRedirectRepository.GetContentRedirect(new CreateContentRedirect(request.RedirectUrl, request.IsRedirectPermanent()));
-        var emptyContent = contentRepository.GetConvertedContent(null, null, null, null);
+        TContentRedirect? redirect = contentRedirectRepository.GetContentRedirect(new CreateContentRedirect(request.RedirectUrl, request.IsRedirectPermanent()));
+        TContent? emptyContent = contentRepository.GetConvertedContent(null, null, null, null);
 
         if (emptyContent == null)
         {
             return default;
-        } else
+        }
+        else
         {
-            var redirectProperty = emptyContent.GetType().GetProperty(nameof(IContent.Redirect), typeof(TContentRedirect));
+            System.Reflection.PropertyInfo? redirectProperty = emptyContent.GetType().GetProperty(nameof(IContent.Redirect), typeof(TContentRedirect));
             if (redirectProperty == null)
             {
                 return default;
@@ -70,8 +73,8 @@ public class ContentRouter<TContent, TContentRedirect> : IContentRouter<TContent
     /// <inheritdoc/>
     public virtual async Task<TContent?> GetContentByRouting(string route, string baseUrl, string? culture, string? segment, Fallback? fallback)
     {
-        var builder = await publishedRouter.CreateRequestAsync(new Uri($"{baseUrl}{route}"));
-        var request = await publishedRouter.RouteRequestAsync(builder, new RouteRequestOptions(RouteDirection.Inbound));
+        IPublishedRequestBuilder builder = await publishedRouter.CreateRequestAsync(new Uri($"{baseUrl}{route}")).ConfigureAwait(false);
+        IPublishedRequest request = await publishedRouter.RouteRequestAsync(builder, new RouteRequestOptions(RouteDirection.Inbound)).ConfigureAwait(false);
 
         return request.GetRouteResult() switch
         {
@@ -118,8 +121,8 @@ public class ContentRouter<TContent, TContentRedirect> : IContentRouter<TContent
     /// <inheritdoc/>
     public async Task<IEnumerable<TContent?>> GetContentDescendantsByRouting(string route, string baseUrl, string? culture, string? segment, Fallback? fallback)
     {
-        var builder = await publishedRouter.CreateRequestAsync(new Uri($"{baseUrl}{route}"));
-        var request = await publishedRouter.RouteRequestAsync(builder, new RouteRequestOptions(RouteDirection.Inbound));
+        IPublishedRequestBuilder builder = await publishedRouter.CreateRequestAsync(new Uri($"{baseUrl}{route}")).ConfigureAwait(false);
+        IPublishedRequest request = await publishedRouter.RouteRequestAsync(builder, new RouteRequestOptions(RouteDirection.Inbound)).ConfigureAwait(false);
 
         return request.GetRouteResult() switch
         {

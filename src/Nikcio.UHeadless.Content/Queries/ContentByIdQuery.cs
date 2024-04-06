@@ -34,6 +34,8 @@ public class ContentByIdQuery<TContent>
                                             [GraphQLDescription("The property variation segment")] string? segment = null,
                                             [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
+        ArgumentNullException.ThrowIfNull(contentRepository);
+
         return contentRepository.GetContent(x => x?.GetById(preview, id), culture, segment, fallback?.ToFallback());
     }
 }

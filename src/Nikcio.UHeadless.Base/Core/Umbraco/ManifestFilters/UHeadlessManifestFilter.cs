@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Reflection;
 using Umbraco.Cms.Core.Manifest;
 
 namespace Nikcio.UHeadless.Core.Umbraco.ManifestFilters;
 
-internal class UHeadlessManifestFilter : IManifestFilter
+internal sealed class UHeadlessManifestFilter : IManifestFilter
 {
     public void Filter(List<PackageManifest> manifests)
     {

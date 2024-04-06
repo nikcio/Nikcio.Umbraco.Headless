@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -23,9 +23,9 @@ public partial class ApiTests
     public async Task ContentByAbsoluteRoute_Can_Get_General_Async(string baseUrl, string route, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByAbsoluteRouteSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralContentByAbsoluteRoute($baseUrl: String!, $route: String!, $culture: String) {
@@ -84,13 +84,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByAbsoluteRoute_GetGeneral_{culture}_{UrlEncoder.Default.Encode(route)}_{UrlEncoder.Default.Encode(baseUrl)}";
+        string snapshotName = $"ContentByAbsoluteRoute_GetGeneral_{culture}_{UrlEncoder.Default.Encode(route)}_{UrlEncoder.Default.Encode(baseUrl)}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -109,9 +109,9 @@ public partial class ApiTests
     public async Task ContentByAbsoluteRoute_Can_Get_NodeId_Async(string baseUrl, string route, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByAbsoluteRouteSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdContentByAbsoluteRoute($baseUrl: String!, $route: String!, $culture: String) {
@@ -128,13 +128,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByAbsoluteRoute_GetNodeId_{culture}_{UrlEncoder.Default.Encode(route)}_{UrlEncoder.Default.Encode(baseUrl)}";
+        string snapshotName = $"ContentByAbsoluteRoute_GetNodeId_{culture}_{UrlEncoder.Default.Encode(route)}_{UrlEncoder.Default.Encode(baseUrl)}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -153,9 +153,9 @@ public partial class ApiTests
     public async Task ContentByAbsoluteRoute_Can_Get_Properties_Async(string baseUrl, string route, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByAbsoluteRouteSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesContentByAbsoluteRoute($baseUrl: String!, $route: String!, $culture: String) {
@@ -186,13 +186,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByAbsoluteRoute_GetProperties_{culture}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(route))}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(baseUrl))}";
+        string snapshotName = $"ContentByAbsoluteRoute_GetProperties_{culture}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(route))}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(baseUrl))}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

@@ -13,12 +13,12 @@ public class ContentFactory<TContent> : IContentFactory<TContent>
     /// <summary>
     /// A factory that can create object with DI
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <summary>
     /// The published value fallback
     /// </summary>
-    protected readonly IPublishedValueFallback publishedValueFallback;
+    protected IPublishedValueFallback publishedValueFallback { get; }
 
     /// <inheritdoc/>
     public ContentFactory(IDependencyReflectorFactory dependencyReflectorFactory, IPublishedValueFallback publishedValueFallback)
@@ -39,7 +39,7 @@ public class ContentFactory<TContent> : IContentFactory<TContent>
         var createElementCommand = new CreateElement(element, culture, segment, fallback);
         var createContentCommand = new CreateContent(element, culture, createElementCommand);
 
-        var createdContent = dependencyReflectorFactory.GetReflectedType<IContent>(typeof(TContent), new object[] { createContentCommand });
+        IContent? createdContent = dependencyReflectorFactory.GetReflectedType<IContent>(typeof(TContent), new object[] { createContentCommand });
         return createdContent == null ? default : (TContent) createdContent;
     }
 }

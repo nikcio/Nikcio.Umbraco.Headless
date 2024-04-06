@@ -34,6 +34,7 @@ public class ContentDescendantsByAbsoluteRouteQuery<TContent, TContentRedirect>
     [UsePaging]
     [UseFiltering]
     [UseSorting]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "Used in GraphQL schema")]
     public virtual async Task<IEnumerable<TContent?>> ContentDescendantsByAbsoluteRoute(
                                                 [Service] IContentRouter<TContent, TContentRedirect> contentRouter,
                                                 [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
@@ -44,6 +45,8 @@ public class ContentDescendantsByAbsoluteRouteQuery<TContent, TContentRedirect>
                                                 [GraphQLDescription("The property variation segment")] string? segment = null,
                                                 [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
+        ArgumentNullException.ThrowIfNull(contentRouter);
+
         if (routeMode is RouteMode.Routing or RouteMode.RoutingOrCache)
         {
             baseUrl = contentRouter.SetBaseUrl(baseUrl);
@@ -51,11 +54,11 @@ public class ContentDescendantsByAbsoluteRouteQuery<TContent, TContentRedirect>
 
         return routeMode switch
         {
-            RouteMode.Routing => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()),
-            RouteMode.RoutingOrCache => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()) ?? contentRouter.GetContentDescendantsByRouteCache(route, culture, preview, segment, fallback?.ToFallback()),
-            RouteMode.CacheOrRouting => contentRouter.GetContentDescendantsByRouteCache(route, culture, preview, segment, fallback?.ToFallback()) ?? await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()),
+            RouteMode.Routing => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()).ConfigureAwait(false),
+            RouteMode.RoutingOrCache => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()).ConfigureAwait(false) ?? contentRouter.GetContentDescendantsByRouteCache(route, culture, preview, segment, fallback?.ToFallback()),
+            RouteMode.CacheOrRouting => contentRouter.GetContentDescendantsByRouteCache(route, culture, preview, segment, fallback?.ToFallback()) ?? await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()).ConfigureAwait(false),
             RouteMode.CacheOnly => contentRouter.GetContentDescendantsByRouteCache(route, culture, preview, segment, fallback?.ToFallback()),
-            _ => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()),
+            _ => await contentRouter.GetContentDescendantsByRouting(route, baseUrl, culture, segment, fallback?.ToFallback()).ConfigureAwait(false),
         };
     }
 }

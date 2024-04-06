@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Microsoft.Extensions.Logging;
 
 namespace Nikcio.UHeadless.Core.Reflection.Factories;
@@ -20,13 +20,15 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
     public virtual T? GetReflectedType<T>(Type typeToReflect, object[] constructorRequiredParamerters)
         where T : class
     {
-        var constructors = typeToReflect.GetConstructors();
+        ArgumentNullException.ThrowIfNull(typeToReflect);
+
+        ConstructorInfo[] constructors = typeToReflect.GetConstructors();
         if (constructors.Length == 0)
         {
             LogConstructorError(typeToReflect, constructorRequiredParamerters);
             return null;
         }
-        var parameters = GetConstructor(constructors, constructorRequiredParamerters)?.GetParameters();
+        ParameterInfo[]? parameters = GetConstructor(constructors, constructorRequiredParamerters)?.GetParameters();
         if (parameters == null)
         {
             LogConstructorError(typeToReflect, constructorRequiredParamerters);
@@ -39,7 +41,8 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
                 .Select(parameter => _serviceProvider.GetService(parameter.ParameterType))
                 .OfType<object>()
                 .ToArray();
-        } else
+        }
+        else
         {
             injectedParamerters = constructorRequiredParamerters
                 .Take(parameters.Length)
@@ -58,7 +61,7 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
     private void LogConstructorError(Type typeToReflect, object[] constructorRequiredParamerters)
     {
         string constructorNames = string.Join(", ", constructorRequiredParamerters.Select(item => item.GetType().Name));
-        _logger.LogError("Unable to create instance of {typeToReflect.Name}. Could not find a constructor with {constructorNames} as first argument(s)", typeToReflect.Name, constructorNames);
+        _logger.LogError("Unable to create instance of {TypeToReflectName}. Could not find a constructor with {ConstructorNames} as first argument(s)", typeToReflect.Name, constructorNames);
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
     /// <returns></returns>
     private static ParameterInfo[] TakeConstructorRequiredParamters(ConstructorInfo constructor, int constructorRequiredParamertersLength)
     {
-        var parameters = constructor.GetParameters();
+        ParameterInfo[] parameters = constructor.GetParameters();
         if (parameters.Length < constructorRequiredParamertersLength)
         {
             return parameters;
@@ -89,10 +92,10 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
         {
             return true;
         }
-        var parameters = TakeConstructorRequiredParamters(constructor, constructorRequiredParameters.Length);
+        ParameterInfo[] parameters = TakeConstructorRequiredParamters(constructor, constructorRequiredParameters.Length);
         for (int i = 0; i < parameters.Length; i++)
         {
-            var requiredParameter = constructorRequiredParameters[i].GetType();
+            Type requiredParameter = constructorRequiredParameters[i].GetType();
             if (parameters[i].ParameterType != requiredParameter && !parameters[i].ParameterType.IsAssignableFrom(requiredParameter))
             {
                 return false;

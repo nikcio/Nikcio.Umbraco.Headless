@@ -1,5 +1,4 @@
 using HotChocolate.Execution.Configuration;
-using Microsoft.Data.Sqlite;
 using Nikcio.UHeadless.Content.Basics.Queries;
 using Nikcio.UHeadless.Content.Extensions;
 using Nikcio.UHeadless.Extensions;
@@ -8,7 +7,6 @@ using Nikcio.UHeadless.Media.Basics.Queries;
 using Nikcio.UHeadless.Media.Extensions;
 using Nikcio.UHeadless.Members.Basics.Queries;
 using Nikcio.UHeadless.Members.Extensions;
-using Umbraco.Cms.Core;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +25,7 @@ builder.CreateUmbracoBuilder()
         {
             PropertyMapOptions = new()
             {
-                PropertyMappings = new()
-                {
-                }
+                PropertyMappings = []
             },
         },
         TracingOptions = new()
@@ -81,7 +77,7 @@ builder.CreateUmbracoBuilder()
 
 WebApplication app = builder.Build();
 
-await app.BootUmbracoAsync();
+await app.BootUmbracoAsync().ConfigureAwait(false);
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -113,7 +109,7 @@ app.UseUmbraco()
         u.UseWebsiteEndpoints();
     });
 
-await app.RunAsync();
+await app.RunAsync().ConfigureAwait(false);
 
 public partial class Program
 {

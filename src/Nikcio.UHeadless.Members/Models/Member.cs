@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Elements.Models;
+using Nikcio.UHeadless.Base.Elements.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Members.Commands;
@@ -14,7 +14,10 @@ public abstract class Member<TProperty> : Element<TProperty>, IMember
     where TProperty : IProperty
 {
     /// <inheritdoc/>
-    protected Member(CreateMember createMember, IPropertyFactory<TProperty> propertyFactory) : base(createMember.CreateElement, propertyFactory)
+    protected Member(CreateMember createMember, IPropertyFactory<TProperty> propertyFactory) :
+        base(
+            createMember?.CreateElement ?? throw new ArgumentNullException(nameof(createMember)),
+            propertyFactory)
     {
         MemberItem = createMember.Member;
     }

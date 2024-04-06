@@ -24,6 +24,8 @@ public class MemberByEmailQuery<TMember>
     public virtual TMember? MemberByEmail([Service] IMemberRepository<TMember> memberRepository,
                                             [GraphQLDescription("The email to fetch.")] string email)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository);
+
         return memberRepository.GetMember(x => x.GetByEmail(email));
     }
 }

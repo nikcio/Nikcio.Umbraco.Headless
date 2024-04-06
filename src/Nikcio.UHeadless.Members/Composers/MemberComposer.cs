@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Base.Composers;
 using Nikcio.UHeadless.Members.Extensions;
 using Nikcio.UHeadless.Members.NotificationHandlers;
@@ -16,6 +16,8 @@ public class MemberComposer : IUHeadlessComposer
     /// <inheritdoc/>
     public void Compose(IUmbracoBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
         if (!MemberExtensions.UsingMemberQueries)
         {
             return;

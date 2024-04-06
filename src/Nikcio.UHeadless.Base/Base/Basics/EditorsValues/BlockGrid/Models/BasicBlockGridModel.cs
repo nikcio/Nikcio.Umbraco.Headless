@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Models;
 using Nikcio.UHeadless.Base.Properties.Models;
@@ -42,11 +42,13 @@ public class BasicBlockGridModel<TBlockGridItem> : PropertyValue
     /// <inheritdoc/>
     public BasicBlockGridModel(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory) : base(createPropertyValue)
     {
-        var propertyValue = createPropertyValue.Property.Value<Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        Umbraco.Cms.Core.Models.Blocks.BlockGridModel? propertyValue = createPropertyValue.Property.Value<Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
 
         Blocks = propertyValue?.Select(blockGridItem =>
         {
-            var type = typeof(TBlockGridItem);
+            Type type = typeof(TBlockGridItem);
             return dependencyReflectorFactory.GetReflectedType<TBlockGridItem>(type, new object[] { new CreateBlockGridItem(createPropertyValue.Content, blockGridItem, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback) });
         }).OfType<TBlockGridItem>().ToList();
 

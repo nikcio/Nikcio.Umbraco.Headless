@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using Nikcio.UHeadless.Base.Properties.Models;
 
 namespace Nikcio.UHeadless.Media.Models;
@@ -7,6 +7,7 @@ namespace Nikcio.UHeadless.Media.Models;
 /// Represents the properties that can be queried by the alias name
 /// </summary>
 [GraphQLDescription("Represents a property that can be queried by the alias name.")]
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1040:Avoid empty interfaces", Justification = "Used as a base for the media named properties")]
 public interface INamedMediaProperties : INamedProperties
 {
 }

@@ -1,7 +1,6 @@
 ﻿using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Maps;
 using Nikcio.UHeadless.Base.Properties.Models;
-using Nikcio.UHeadless.Core.Constants;
 using Nikcio.UHeadless.Core.Reflection.Factories;
 
 namespace Nikcio.UHeadless.Base.Properties.Factories;
@@ -12,12 +11,12 @@ public class PropertyValueFactory : IPropertyValueFactory
     /// <summary>
     /// A map of what class to use for a property
     /// </summary>
-    protected readonly IPropertyMap propertyMap;
+    protected IPropertyMap propertyMap { get; }
 
     /// <summary>
     /// A factory that can create object with DI
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <inheritdoc/>
     public PropertyValueFactory(IPropertyMap propertyMapper, IDependencyReflectorFactory dependencyReflectorFactory)
@@ -29,6 +28,8 @@ public class PropertyValueFactory : IPropertyValueFactory
     /// <inheritdoc/>
     public virtual PropertyValue? GetPropertyValue(CreatePropertyValue createPropertyValue)
     {
+        ArgumentNullException.ThrowIfNull(createPropertyValue, nameof(createPropertyValue));
+
         if (createPropertyValue.Property.PropertyType.ContentType == null)
         {
             return default;

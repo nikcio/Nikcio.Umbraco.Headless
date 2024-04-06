@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Basics.Models;
+using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
@@ -37,6 +37,10 @@ public class BasicBlockGridItem<TProperty, TBlockGridArea> : BlockGridItem
     /// <inheritdoc/>
     public BasicBlockGridItem(CreateBlockGridItem createBlockGridItem, IPropertyFactory<TProperty> propertyFactory, IDependencyReflectorFactory dependencyReflectorFactory) : base(createBlockGridItem)
     {
+        ArgumentNullException.ThrowIfNull(createBlockGridItem);
+        ArgumentNullException.ThrowIfNull(propertyFactory);
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+
         if (createBlockGridItem.BlockGridItem == null)
         {
             return;
@@ -44,7 +48,7 @@ public class BasicBlockGridItem<TProperty, TBlockGridArea> : BlockGridItem
         if (createBlockGridItem.Content != null)
         {
             ContentAlias = createBlockGridItem.BlockGridItem.Content.ContentType?.Alias;
-            foreach (var property in createBlockGridItem.BlockGridItem.Content.Properties)
+            foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createBlockGridItem.BlockGridItem.Content.Properties)
             {
                 ContentProperties.Add(propertyFactory.GetProperty(property, createBlockGridItem.Content, createBlockGridItem.Culture, createBlockGridItem.Segment, createBlockGridItem.Fallback));
             }
@@ -52,7 +56,7 @@ public class BasicBlockGridItem<TProperty, TBlockGridArea> : BlockGridItem
             if (createBlockGridItem.BlockGridItem.Settings != null)
             {
                 SettingsAlias = createBlockGridItem.BlockGridItem.Settings.ContentType?.Alias;
-                foreach (var property in createBlockGridItem.BlockGridItem.Settings.Properties)
+                foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createBlockGridItem.BlockGridItem.Settings.Properties)
                 {
                     SettingsProperties.Add(propertyFactory.GetProperty(property, createBlockGridItem.Content, createBlockGridItem.Culture, createBlockGridItem.Segment, createBlockGridItem.Fallback));
                 }
@@ -60,7 +64,7 @@ public class BasicBlockGridItem<TProperty, TBlockGridArea> : BlockGridItem
 
             if (createBlockGridItem.BlockGridItem.Areas != null)
             {
-                foreach (var area in createBlockGridItem.BlockGridItem.Areas)
+                foreach (Umbraco.Cms.Core.Models.Blocks.BlockGridArea area in createBlockGridItem.BlockGridItem.Areas)
                 {
                     var createBlockGridArea = new CreateBlockGridArea(createBlockGridItem.Content, area, createBlockGridItem.Culture, createBlockGridItem.Segment, createBlockGridItem.Fallback);
                     Areas.Add(dependencyReflectorFactory.GetReflectedType<TBlockGridArea>(typeof(TBlockGridArea), new object[] { createBlockGridArea }));

@@ -1,4 +1,4 @@
-﻿using HotChocolate.Execution.Configuration;
+using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Members.TypeModules;
 
@@ -26,7 +26,7 @@ public static class MemberExtensions
     /// <summary>
     /// This is for internal use only
     /// </summary>
-    internal static bool UsingMemberQueries { get; set; } = false;
+    internal static bool UsingMemberQueries { get; set; }
 
     /// <summary>
     /// Adds the necessary extensions to properly use member queries.

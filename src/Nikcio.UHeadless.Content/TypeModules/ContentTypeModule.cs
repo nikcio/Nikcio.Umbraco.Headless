@@ -1,17 +1,7 @@
-﻿using HotChocolate.Execution.Configuration;
-using HotChocolate.Types;
-using HotChocolate.Types.Descriptors;
-using HotChocolate.Types.Descriptors.Definitions;
-using Nikcio.UHeadless.Base.Basics.Models;
-using Nikcio.UHeadless.Base.Elements.Models;
-using Nikcio.UHeadless.Base.Properties.Commands;
-using Nikcio.UHeadless.Base.Properties.Factories;
-using Nikcio.UHeadless.Base.Properties.Maps;
+﻿using Nikcio.UHeadless.Base.Properties.Maps;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Base.TypeModules;
-using Nikcio.UHeadless.Core.Extensions;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Content.TypeModules;

@@ -26,6 +26,8 @@ public class BasicMediaPickerItem : MediaPickerItem
     /// <inheritdoc/>
     public BasicMediaPickerItem(CreateMediaPickerItem createMediaPickerItem) : base(createMediaPickerItem)
     {
+        ArgumentNullException.ThrowIfNull(createMediaPickerItem);
+
         Url = createMediaPickerItem.PublishedContent.MediaUrl(mode: UrlMode.Absolute);
         Id = createMediaPickerItem.PublishedContent.Id;
     }

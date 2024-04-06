@@ -26,9 +26,11 @@ public class MediaByContentTypeQuery<TMedia>
     public virtual IEnumerable<TMedia?> MediaByContentType([Service] IMediaRepository<TMedia> mediaRepository,
                                                            [GraphQLDescription("The contentType to fetch.")] string contentType)
     {
+        ArgumentNullException.ThrowIfNull(mediaRepository, nameof(mediaRepository));
+
         return mediaRepository.GetMediaList(x =>
         {
-            var publishedContentType = x?.GetContentType(contentType);
+            Umbraco.Cms.Core.Models.PublishedContent.IPublishedContentType? publishedContentType = x?.GetContentType(contentType);
             return publishedContentType != null ? x?.GetByContentType(publishedContentType) : default;
         });
     }

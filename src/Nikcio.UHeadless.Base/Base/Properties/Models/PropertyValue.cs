@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
@@ -13,16 +13,18 @@ public abstract class PropertyValue : IDiscoverable
     /// <inheritdoc/>
     protected PropertyValue(CreatePropertyValue createPropertyValue)
     {
+        ArgumentNullException.ThrowIfNull(createPropertyValue, nameof(createPropertyValue));
+
         publishedProperty = createPropertyValue.Property;
     }
 
     /// <summary>
     /// The published property
     /// </summary>
-    protected readonly IPublishedProperty publishedProperty;
+    protected IPublishedProperty publishedProperty { get; }
 
     /// <summary>
     /// The model of the property value
     /// </summary>
-    public string Model => this.GetType().Name;
+    public string Model => GetType().Name;
 }
