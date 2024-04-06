@@ -16,7 +16,7 @@ public class MediaComposer : IUHeadlessComposer
     /// <inheritdoc/>
     public void Compose(IUmbracoBuilder builder)
     {
-        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        ArgumentNullException.ThrowIfNull(builder);
 
         if (!MediaExtensions.UsingMediaQueries)
         {

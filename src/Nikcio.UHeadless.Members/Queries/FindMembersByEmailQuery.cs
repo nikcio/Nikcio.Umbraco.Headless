@@ -31,7 +31,7 @@ public class FindMembersByEmailQuery<TMember>
                                             [GraphQLDescription("The page size.")] int pageSize,
                                             [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
     {
-        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+        ArgumentNullException.ThrowIfNull(memberRepository);
 
         return memberRepository.GetMemberList(x => x.FindByEmail(email, pageIndex, pageSize, out _, matchType));
     }

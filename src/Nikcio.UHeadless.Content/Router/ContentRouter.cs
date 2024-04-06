@@ -45,7 +45,7 @@ public class ContentRouter<TContent, TContentRedirect> : IContentRouter<TContent
     /// <inheritdoc/>
     public virtual TContent? GetRedirect(IPublishedRequest request)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
 
         if (request.RedirectUrl == null)
         {

@@ -26,7 +26,7 @@ public class MediaByContentTypeQuery<TMedia>
     public virtual IEnumerable<TMedia?> MediaByContentType([Service] IMediaRepository<TMedia> mediaRepository,
                                                            [GraphQLDescription("The contentType to fetch.")] string contentType)
     {
-        ArgumentNullException.ThrowIfNull(mediaRepository, nameof(mediaRepository));
+        ArgumentNullException.ThrowIfNull(mediaRepository);
 
         return mediaRepository.GetMediaList(x =>
         {

@@ -9,7 +9,7 @@ public abstract class ContentType : IContentType
     /// <inheritdoc/>
     protected ContentType(CreateContentType createContentType)
     {
-        ArgumentNullException.ThrowIfNull(createContentType, nameof(createContentType));
+        ArgumentNullException.ThrowIfNull(createContentType);
 
         PublishedContentType = createContentType.PublishedContentType;
     }

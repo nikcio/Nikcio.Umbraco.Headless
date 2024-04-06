@@ -19,7 +19,7 @@ public static class UHeadlessGraphQLExtensions
     /// <returns></returns>
     public static IRequestExecutorBuilder AddTracing(this IRequestExecutorBuilder requestExecutorBuilder, TracingOptions tracingOptions)
     {
-        ArgumentNullException.ThrowIfNull(tracingOptions, nameof(tracingOptions));
+        ArgumentNullException.ThrowIfNull(tracingOptions);
 
         if (tracingOptions.TracingPreference != null)
         {
@@ -37,7 +37,7 @@ public static class UHeadlessGraphQLExtensions
     /// <returns></returns>
     public static IRequestExecutorBuilder AddUHeadlessGraphQL(this IRequestExecutorBuilder requestExecutorBuilder, UHeadlessGraphQLOptions uHeadlessGraphQLOptions)
     {
-        ArgumentNullException.ThrowIfNull(uHeadlessGraphQLOptions, nameof(uHeadlessGraphQLOptions));
+        ArgumentNullException.ThrowIfNull(uHeadlessGraphQLOptions);
 
         requestExecutorBuilder
             .InitializeOnStartup()

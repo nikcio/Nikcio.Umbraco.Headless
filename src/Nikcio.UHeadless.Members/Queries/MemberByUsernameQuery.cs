@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using HotChocolate.Data;
 using Nikcio.UHeadless.Members.Models;
 using Nikcio.UHeadless.Members.Repositories;
@@ -24,7 +24,7 @@ public class MemberByUsernameQuery<TMember>
     public virtual TMember? MemberByUsername([Service] IMemberRepository<TMember> memberRepository,
                                             [GraphQLDescription("The username to fetch.")] string username)
     {
-        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+        ArgumentNullException.ThrowIfNull(memberRepository);
 
         return memberRepository.GetMember(x => x.GetByUsername(username));
     }

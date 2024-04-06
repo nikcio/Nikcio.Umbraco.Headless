@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nikcio.UHeadless.Base.Properties.Extensions;
 
@@ -15,7 +15,7 @@ public static class PropertyExtensions
     /// <returns></returns>
     public static IServiceCollection AddPropertyServices(this IServiceCollection services, PropertyServicesOptions propertyServicesOptions)
     {
-        ArgumentNullException.ThrowIfNull(propertyServicesOptions, nameof(propertyServicesOptions));
+        ArgumentNullException.ThrowIfNull(propertyServicesOptions);
 
         services
             .AddPropertyFactories()

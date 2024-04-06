@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 using HotChocolate.Data;
 using Nikcio.UHeadless.Members.Models;
 using Nikcio.UHeadless.Members.Repositories;
@@ -31,7 +31,7 @@ public class FindMembersByUsernameQuery<TMember>
                                             [GraphQLDescription("The page size.")] int pageSize,
                                             [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
     {
-        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+        ArgumentNullException.ThrowIfNull(memberRepository);
 
         return memberRepository.GetMemberList(x => x.FindByUsername(username, pageIndex, pageSize, out _, matchType));
     }

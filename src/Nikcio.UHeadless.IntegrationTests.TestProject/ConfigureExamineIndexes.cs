@@ -11,7 +11,7 @@ public sealed class ConfigureExamineIndexes : IConfigureNamedOptions<LuceneDirec
 {
     public void Configure(string? name, LuceneDirectoryIndexOptions options)
     {
-        ArgumentNullException.ThrowIfNull(options, nameof(options));
+        ArgumentNullException.ThrowIfNull(options);
 
         options.DirectoryFactory = new LuceneRAMDirectoryFactory();
     }

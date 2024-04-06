@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -14,7 +14,7 @@ public class BasicProperty : Property
     /// <inheritdoc/>
     public BasicProperty(CreateProperty createProperty, IPropertyValueFactory propertyValueFactory) : base(createProperty)
     {
-        ArgumentNullException.ThrowIfNull(createProperty, nameof(createProperty));
+        ArgumentNullException.ThrowIfNull(createProperty);
 
         publishedProperty = createProperty.PublishedProperty;
         this.propertyValueFactory = propertyValueFactory;

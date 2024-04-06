@@ -1,4 +1,4 @@
-﻿namespace Nikcio.UHeadless.Core.Maps;
+namespace Nikcio.UHeadless.Core.Maps;
 
 /// <summary>
 /// The base for maps
@@ -14,8 +14,8 @@ public abstract class DictionaryMap
     /// <returns>Whether the mapping has been added</returns>
     protected virtual bool AddMapping<TType>(string key, Dictionary<string, string> map) where TType : class
     {
-        ArgumentNullException.ThrowIfNull(key, nameof(key));
-        ArgumentNullException.ThrowIfNull(map, nameof(map));
+        ArgumentNullException.ThrowIfNull(key);
+        ArgumentNullException.ThrowIfNull(map);
 
         if (!map.ContainsKey(key))
         {

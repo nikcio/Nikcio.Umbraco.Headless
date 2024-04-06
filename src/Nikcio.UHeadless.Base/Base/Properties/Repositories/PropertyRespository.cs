@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Factories;
+using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
@@ -22,7 +22,7 @@ public class PropertyRespository<TProperty> : IPropertyRespository<TProperty>
     /// <inheritdoc/>
     public virtual IEnumerable<TProperty?> GetProperties(IPublishedContent content, string? culture, string? segment, Fallback? fallback)
     {
-        ArgumentNullException.ThrowIfNull(content, nameof(content));
+        ArgumentNullException.ThrowIfNull(content);
 
         return content.Properties.Select(IPublishedProperty => propertyFactory.GetProperty(IPublishedProperty, content, culture, segment, fallback));
     }

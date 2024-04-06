@@ -13,7 +13,7 @@ public abstract class PropertyValue : IDiscoverable
     /// <inheritdoc/>
     protected PropertyValue(CreatePropertyValue createPropertyValue)
     {
-        ArgumentNullException.ThrowIfNull(createPropertyValue, nameof(createPropertyValue));
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
 
         publishedProperty = createPropertyValue.Property;
     }

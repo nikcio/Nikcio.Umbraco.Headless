@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Models;
+using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Core.Constants;
 using Nikcio.UHeadless.Core.Maps;
 
@@ -73,7 +73,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <inheritdoc/>
     public virtual string GetEditorMappingKey(string editorName)
     {
-        ArgumentNullException.ThrowIfNull(editorName, nameof(editorName));
+        ArgumentNullException.ThrowIfNull(editorName);
 
         return editorName.ToUpperInvariant();
     }
@@ -81,8 +81,8 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <inheritdoc/>
     public virtual string GetAliasMappingKey(string contentTypeAlias, string propertyTypeAlias)
     {
-        ArgumentNullException.ThrowIfNull(contentTypeAlias, nameof(contentTypeAlias));
-        ArgumentNullException.ThrowIfNull(propertyTypeAlias, nameof(propertyTypeAlias));
+        ArgumentNullException.ThrowIfNull(contentTypeAlias);
+        ArgumentNullException.ThrowIfNull(propertyTypeAlias);
 
         return $"{contentTypeAlias}&&{propertyTypeAlias}".ToUpperInvariant();
     }
