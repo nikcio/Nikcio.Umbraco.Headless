@@ -1,10 +1,11 @@
 ﻿using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 
 namespace Nikcio.UHeadless.IntegrationTests.Sqlite;
 
-public class SnapshotProvider
+public partial class SnapshotProvider
 {
     private readonly string _snapshotFolder;
 
@@ -22,7 +23,7 @@ public class SnapshotProvider
     public async Task AssertIsSnapshotEqualAsync(string snapshotName, string content)
     {
         var jsonContent = await GetContentAsJsonAsync(content);
-        var snapshot = GetSnapshotAsync(snapshotName, content).Result;
+        var snapshot = await GetSnapshotAsync(snapshotName, content);
         Assert.Equal(snapshot, jsonContent);
     }
 
@@ -55,7 +56,7 @@ public class SnapshotProvider
         {
             await JsonSerializer.SerializeAsync(jsonStream, jsonObject, _options);
             var json = Encoding.UTF8.GetString(jsonStream.ToArray());
-            return FixJsonString(Encoding.UTF8.GetString(jsonStream.ToArray()));
+            return FormatDateTimesAsUTCInJson(Encoding.UTF8.GetString(jsonStream.ToArray()));
         } else
         {
             // Anything that is not JSON, we just write as is - This could be an error message or something else
@@ -63,9 +64,17 @@ public class SnapshotProvider
         }
     }
 
-    private string FixJsonString(string json)
+    /// <summary>
+    /// This makes sure that all date times in the JSON are formatted as UTC this will make the snapshots more stable as the time zone will not be a factor
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    private string FormatDateTimesAsUTCInJson(string json)
     {
-        // We need to replace the timezone offset with Z to make the comparison work on Github Actions
-        return json.Replace(@"\\u002B01:00", "Z");
+        var regex = DateTimeRegex();
+        return regex.Replace(json, "$1Z");
     }
+
+    [GeneratedRegex("""(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3,})([\\u002B+]\d{2}:\d{2})""")]
+    private static partial Regex DateTimeRegex();
 }
