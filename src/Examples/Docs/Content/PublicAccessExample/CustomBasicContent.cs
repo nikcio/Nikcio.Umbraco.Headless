@@ -25,6 +25,9 @@ public class CustomBasicContent : BasicContent<BasicProperty, BasicContentType, 
     public CustomBasicContent(CreateContent createContent, IPropertyFactory<BasicProperty> propertyFactory, IContentTypeFactory<BasicContentType> contentTypeFactory, IContentFactory<CustomBasicContent> contentFactory, IVariationContextAccessor variationContextAccessor, IPublicAccessService publicAccessService, IContentService contentService, IUmbracoContextAccessor context, ILogger<CustomBasicContent> logger) : base(createContent, propertyFactory, contentTypeFactory, contentFactory, variationContextAccessor)
     {
         ArgumentNullException.ThrowIfNull(createContent);
+        ArgumentNullException.ThrowIfNull(logger);
+        ArgumentNullException.ThrowIfNull(publicAccessService);
+        ArgumentNullException.ThrowIfNull(contentService);
 
         if (createContent.Content == null)
         {
