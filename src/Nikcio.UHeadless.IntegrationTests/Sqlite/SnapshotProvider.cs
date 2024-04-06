@@ -66,6 +66,6 @@ public class SnapshotProvider
     private string FixJsonString(string json)
     {
         // We need to replace the timezone offset with Z to make the comparison work on Github Actions
-        return json.Replace("\\u002B01:00", "Z");
+        return json.Replace(@"\\u002B01:00", "Z");
     }
 }
