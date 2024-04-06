@@ -55,11 +55,17 @@ public class SnapshotProvider
         {
             await JsonSerializer.SerializeAsync(jsonStream, jsonObject, _options);
             var json = Encoding.UTF8.GetString(jsonStream.ToArray());
-            return Encoding.UTF8.GetString(jsonStream.ToArray());
+            return FixJsonString(Encoding.UTF8.GetString(jsonStream.ToArray()));
         } else
         {
             // Anything that is not JSON, we just write as is - This could be an error message or something else
             return content;
         }
+    }
+
+    private string FixJsonString(string json)
+    {
+        // We need to replace the timezone offset with Z to make the comparison work on Github Actions
+        return json.Replace("\\u002B01:00", "Z");
     }
 }
