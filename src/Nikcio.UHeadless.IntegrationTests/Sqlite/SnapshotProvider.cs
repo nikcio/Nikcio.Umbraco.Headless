@@ -71,10 +71,9 @@ public partial class SnapshotProvider
     /// <returns></returns>
     private string FormatDateTimesAsUTCInJson(string json)
     {
-        var regex = DateTimeRegex();
-        return regex.Replace(json, "$1Z");
+        return DateTimeRegex().Replace(json, "$1Z");
     }
 
-    [GeneratedRegex("""(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3,})([\\u002B+]\d{2}:\d{2})""")]
+    [GeneratedRegex("""(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3,})((\\u002B|\+)\d{2}:\d{2})""")]
     private static partial Regex DateTimeRegex();
 }
