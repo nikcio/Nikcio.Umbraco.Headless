@@ -1,0 +1,2184 @@
+schema {
+  query: Query
+}
+
+interface IBlockGridEditor {
+  blockGrid: BasicBlockGridModel
+}
+
+interface IBlockListEditor {
+  blockList: BasicBlockListModel
+}
+
+interface IBlockListEditorCulture {
+  blockListCulture: BasicBlockListModel
+}
+
+interface ICheckboxListEditor {
+  checkboxList: BasicPropertyValue
+}
+
+interface ICheckboxListEditorCulture {
+  checkboxListCulture: BasicPropertyValue
+}
+
+interface IColorPickerEditor {
+  colorPicker: BasicPropertyValue
+}
+
+interface IColorPickerEditorCulture {
+  colorPickerCulture: BasicPropertyValue
+}
+
+interface IContentPickerEditor {
+  contentPicker: BasicContentPicker
+}
+
+interface IContentPickerEditorCulture {
+  contentPickerCulture: BasicContentPicker
+}
+
+interface ICustomMediaType {
+  approvedColorEditor: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  blockList: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  dropDown: BasicPropertyValue
+  dropdownMultiple: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  file: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  imageMediaPicker: BasicMediaPicker
+  markdownEditor: BasicRichText
+  memberGroupPicker: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  repeatableTextStrings: BasicPropertyValue
+  richText: BasicRichText
+  slider: BasicPropertyValue
+  sVG: BasicPropertyValue
+  tags: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textstring: BasicPropertyValue
+  toggle: BasicPropertyValue
+  userPicker: BasicPropertyValue
+  video: BasicPropertyValue
+}
+
+interface IDatePickerEditor {
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+}
+
+interface IDatePickerEditorCulture {
+  datePickerCulture: BasicDateTimePicker
+  datePickerWithTimeCulture: BasicDateTimePicker
+}
+
+interface IDecimalEditor {
+  decimal: BasicPropertyValue
+}
+
+interface IDecimalEditorCulture {
+  decimalCulture: BasicPropertyValue
+}
+
+interface IDefault {
+  blockGrid: BasicBlockGridModel
+  blockList: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  colorPicker: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  dropdown: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  markdown: BasicRichText
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+  memberGroupPicker: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  repeatableTextstrings: BasicPropertyValue
+  richtext: BasicRichText
+  slider: BasicPropertyValue
+  tags: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textstring: BasicPropertyValue
+  trueOrFalse: BasicPropertyValue
+  userPicker: BasicPropertyValue
+}
+
+interface IDefaultCulture {
+  blockList: BasicBlockListModel
+  blockListCulture: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  checkboxListCulture: BasicPropertyValue
+  colorPicker: BasicPropertyValue
+  colorPickerCulture: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  contentPickerCulture: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  datePickerCulture: BasicDateTimePicker
+  datePickerWithTimeCulture: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  decimalCulture: BasicPropertyValue
+  dropdown: BasicPropertyValue
+  dropdownCulture: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  emailAddressCulture: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  eyeDropperColorPickerCulture: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+  articleCulture: BasicPropertyValue
+  audioCulture: BasicPropertyValue
+  fileCulture: BasicPropertyValue
+  svgCulture: BasicPropertyValue
+  videoCulture: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  imageCropperCulture: BasicPropertyValue
+  markdown: BasicRichText
+  markdownCulture: BasicRichText
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+  imageMediaPickerCulture: BasicMediaPicker
+  mediaPickerCulture: BasicMediaPicker
+  multipleImageMediaPickerCulture: BasicMediaPicker
+  multipleMediaPickerCulture: BasicMediaPicker
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+  mediaPickerLegacyCulture: BasicMediaPicker
+  multipleMediaPickerLegacyCulture: BasicMediaPicker
+  memberGroupPicker: BasicPropertyValue
+  memberGroupPickerCulture: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  memberPickerCulture: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multinodeTreepickerCulture: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  multiUrlPickerCulture: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  numericCulture: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  radioboxCulture: BasicPropertyValue
+  repeatableTextstrings: BasicPropertyValue
+  repeatableTextstringsCulture: BasicPropertyValue
+  richtext: BasicRichText
+  richtextCulture: BasicRichText
+  slider: BasicPropertyValue
+  sliderCulture: BasicPropertyValue
+  tags: BasicPropertyValue
+  tagsCulture: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textareaCulture: BasicPropertyValue
+  textstring: BasicPropertyValue
+  textstringCulture: BasicPropertyValue
+  trueOrFalse: BasicPropertyValue
+  trueOrFalseCulture: BasicPropertyValue
+  userPicker: BasicPropertyValue
+  userPickerCulture: BasicPropertyValue
+}
+
+interface IDropdownEditor {
+  dropdown: BasicPropertyValue
+}
+
+interface IDropdownEditorCulture {
+  dropdownCulture: BasicPropertyValue
+}
+
+interface IEmailAddressEditor {
+  emailAddress: BasicPropertyValue
+}
+
+interface IEmailAddressEditorCulture {
+  emailAddressCulture: BasicPropertyValue
+}
+
+interface IEyeDropperColorPickerEditor {
+  eyeDropperColorPicker: BasicPropertyValue
+}
+
+interface IEyeDropperColorPickerEditorCulture {
+  eyeDropperColorPickerCulture: BasicPropertyValue
+}
+
+interface IFile {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+interface IFileUpload {
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+}
+
+interface IFileUploadCulture {
+  articleCulture: BasicPropertyValue
+  audioCulture: BasicPropertyValue
+  fileCulture: BasicPropertyValue
+  svgCulture: BasicPropertyValue
+  videoCulture: BasicPropertyValue
+}
+
+interface IImage {
+  umbracoFile: BasicPropertyValue
+  "in pixels"
+  umbracoWidth: BasicLabel
+  "in pixels"
+  umbracoHeight: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+  umbracoExtension: BasicLabel
+}
+
+interface IImageCropperEditor {
+  imageCropper: BasicPropertyValue
+}
+
+interface IImageCropperEditorCulture {
+  imageCropperCulture: BasicPropertyValue
+}
+
+interface ILabelEditor {
+  bigint: BasicLabel
+  datetime: BasicLabel
+  decimal: BasicLabel
+  integer: BasicLabel
+  string: BasicLabel
+  time: BasicLabel
+}
+
+interface ILabelEditorCulture {
+  bigintCulture: BasicLabel
+  datetimeCulture: BasicLabel
+  decimalCulture: BasicLabel
+  integerCulture: BasicLabel
+  stringCulture: BasicLabel
+  timeCulture: BasicLabel
+}
+
+interface IMarkdownEditor {
+  markdown: BasicRichText
+}
+
+interface IMarkdownEditorCulture {
+  markdownCulture: BasicRichText
+}
+
+interface IMediaPickerEditor {
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+}
+
+interface IMediaPickerEditorCulture {
+  imageMediaPickerCulture: BasicMediaPicker
+  mediaPickerCulture: BasicMediaPicker
+  multipleImageMediaPickerCulture: BasicMediaPicker
+  multipleMediaPickerCulture: BasicMediaPicker
+}
+
+interface IMediaPickerLegacyEditor {
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+}
+
+interface IMediaPickerLegacyEditorCulture {
+  mediaPickerLegacyCulture: BasicMediaPicker
+  multipleMediaPickerLegacyCulture: BasicMediaPicker
+}
+
+interface IMember {
+  umbracoMemberComments: BasicPropertyValue
+  umbracoMemberFailedPasswordAttempts: BasicLabel
+  umbracoMemberApproved: BasicPropertyValue
+  umbracoMemberLockedOut: BasicPropertyValue
+  umbracoMemberLastLockoutDate: BasicLabel
+  umbracoMemberLastLogin: BasicLabel
+  umbracoMemberLastPasswordChangeDate: BasicLabel
+}
+
+interface IMemberGroupPickerEditor {
+  memberGroupPicker: BasicPropertyValue
+}
+
+interface IMemberGroupPickerEditorCulture {
+  memberGroupPickerCulture: BasicPropertyValue
+}
+
+interface IMemberPickerEditor {
+  memberPicker: BasicMemberPicker
+}
+
+interface IMemberPickerEditorCulture {
+  memberPickerCulture: BasicMemberPicker
+}
+
+interface IMultiUrlPickerEditor {
+  multiUrlPicker: BasicMultiUrlPicker
+}
+
+interface IMultiUrlPickerEditorCulture {
+  multiUrlPickerCulture: BasicMultiUrlPicker
+}
+
+interface IMultinodeTreepickerEditor {
+  multinodeTreepicker: BasicContentPicker
+}
+
+interface IMultinodeTreepickerEditorCulture {
+  multinodeTreepickerCulture: BasicContentPicker
+}
+
+interface INumericEditor {
+  numeric: BasicPropertyValue
+}
+
+interface INumericEditorCulture {
+  numericCulture: BasicPropertyValue
+}
+
+interface IRadioboxEditor {
+  radiobox: BasicPropertyValue
+}
+
+interface IRadioboxEditorCulture {
+  radioboxCulture: BasicPropertyValue
+}
+
+interface IRepeatableTextstringsEditor {
+  repeatableTextstrings: BasicPropertyValue
+}
+
+interface IRepeatableTextstringsEditorCulture {
+  repeatableTextstringsCulture: BasicPropertyValue
+}
+
+interface IRichtextEditor {
+  richtext: BasicRichText
+}
+
+interface IRichtextEditorCulture {
+  richtextCulture: BasicRichText
+}
+
+interface ISiteWithCulture {
+  textstring: BasicPropertyValue
+  textstringCulture: BasicPropertyValue
+}
+
+interface ISliderEditor {
+  slider: BasicPropertyValue
+}
+
+interface ISliderEditorCulture {
+  sliderCulture: BasicPropertyValue
+}
+
+interface ITagsEditor {
+  tags: BasicPropertyValue
+}
+
+interface ITagsEditorCulture {
+  tagsCulture: BasicPropertyValue
+}
+
+interface ITestMember {
+  blockList: BasicBlockListModel
+  nestedContent: BasicMemberPicker
+  umbracoMemberComments: BasicPropertyValue
+}
+
+interface ITextareaEditor {
+  textarea: BasicPropertyValue
+}
+
+interface ITextareaEditorCulture {
+  textareaCulture: BasicPropertyValue
+}
+
+interface ITextboxEditor {
+  textstring: BasicPropertyValue
+}
+
+interface ITextboxEditorCulture {
+  textstringCulture: BasicPropertyValue
+}
+
+interface IToggleEditor {
+  trueOrFalse: BasicPropertyValue
+}
+
+interface IToggleEditorCulture {
+  trueOrFalseCulture: BasicPropertyValue
+}
+
+interface IUmbBlockGridDemoHeadlineBlock {
+  headline: BasicPropertyValue
+}
+
+interface IUmbBlockGridDemoImageBlock {
+  image: BasicMediaPicker
+}
+
+interface IUmbBlockGridDemoRichTextBlock {
+  richText: BasicRichText
+}
+
+interface IUmbracoMediaArticle {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+interface IUmbracoMediaAudio {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+interface IUmbracoMediaVectorGraphics {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+interface IUmbracoMediaVideo {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+interface IUserPickerEditor {
+  userPicker: BasicPropertyValue
+}
+
+interface IUserPickerEditorCulture {
+  userPickerCulture: BasicPropertyValue
+}
+
+"A base for property values"
+interface PropertyValue {
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a block grid area."
+type BasicBlockGridArea {
+  "Gets the blocks of the block grid area."
+  blocks: [BasicBlockGridItem!]
+  "Gets the alias block grid area."
+  alias: String
+  "Gets the row dimensions of the block."
+  rowSpan: Int!
+  "Gets the column dimensions of the block."
+  columnSpan: Int!
+}
+
+"Represents a block grid item."
+type BasicBlockGridItem {
+  "Gets the content properties of the block grid item."
+  contentProperties: [BasicProperty]!
+  "Gets the setting properties of the block grid item."
+  settingsProperties: [BasicProperty]!
+  "Gets the alias of the content block grid item."
+  contentAlias: String
+  "Gets the alias of the settings block grid item."
+  settingsAlias: String
+  "Gets the areas of the block grid item."
+  areas: [BasicBlockGridArea]!
+  "Gets the row dimensions of the block."
+  rowSpan: Int!
+  "Gets the column dimensions of the block."
+  columnSpan: Int!
+}
+
+"Represents a block list model."
+type BasicBlockGridModel implements PropertyValue {
+  "Gets the blocks of a block grid model."
+  blocks: [BasicBlockGridItem!]
+  "Gets the number of columns defined for the grid."
+  gridColumns: Int
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a block list item."
+type BasicBlockListItem {
+  "Gets the content properties of the block list item."
+  contentProperties: [BasicProperty]!
+  "Gets the setting properties of the block list item."
+  settingsProperties: [BasicProperty]!
+  "Gets the alias of the content block list item."
+  contentAlias: String
+  "Gets the alias of the settings block list item."
+  settingsAlias: String
+}
+
+"Represents a block list model."
+type BasicBlockListModel implements PropertyValue {
+  "Gets the blocks of a block list model."
+  blocks: [BasicBlockListItem!]
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a content item."
+type BasicContent {
+  "Gets the named properties of the element using the content types in Umbraco."
+  namedProperties: INamedContentProperties!
+  "Gets the identifier of the template to use to render the content item."
+  templateId: Int
+  "Gets the parent of the content item."
+  parent: BasicContent
+  "Gets the type of the content item (document, media...)."
+  itemType: PublishedItemType
+  "Gets available culture infos."
+  cultures: [KeyValuePairOfStringAndPublishedCultureInfo!]
+  "Gets the date the content item was last updated."
+  updateDate: DateTime
+  "Gets the identifier of the user who last updated the content item."
+  writerId: Int
+  "Gets the date that the content was created."
+  createDate: DateTime
+  "Gets the identifier of the user who created the content item."
+  creatorId: Int
+  "Gets all the children of the content item, regardless of whether they are available for the current culture."
+  childrenForAllCultures(where: BasicContentFilterInput order: [BasicContentSortInput!]): [BasicContent]
+  "Gets the tree path of the content item."
+  path: String
+  "Gets the tree level of the content item."
+  level: Int
+  "Gets the sort order of the content item."
+  sortOrder: Int
+  "Gets the URL segment of the content item for the current culture."
+  urlSegment: String
+  "Gets the url of the content item."
+  url: String
+  "Gets the absolute url of the content item."
+  absoluteUrl: String
+  "Gets the name of the content item for the current culture."
+  name: String
+  "Gets the unique identifier of the content item."
+  id: Int
+  "Gets the children of the content item that are available for the current culture."
+  children(where: BasicContentFilterInput order: [BasicContentSortInput!]): [BasicContent]
+  "Gets the content type."
+  contentType: BasicContentType
+  "Gets the unique key of the element."
+  key: UUID
+  "Gets the properties of the element."
+  properties(where: BasicPropertyFilterInput): [BasicProperty]
+  "Gets the redirect information."
+  redirect: BasicContentRedirect
+}
+
+"Represents a content picker value."
+type BasicContentPicker implements PropertyValue {
+  "Gets the list of content."
+  contentList: [BasicContentPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a content picker item."
+type BasicContentPickerItem {
+  "Gets the url segment of the content item."
+  urlSegment: String
+  "Gets the url of a content item."
+  url: String!
+  "Gets the absolute url of a content item."
+  absoluteUrl: String!
+  "Gets the name of a content item."
+  name: String
+  "Gets the id of a content item."
+  id: Int!
+  "Gets the key of a content item."
+  key: UUID!
+}
+
+"Represents a content redirect"
+type BasicContentRedirect {
+  "The url to redirect to"
+  redirectUrl: String!
+  "Is the redirect permanent"
+  isPermanent: Boolean!
+}
+
+"Represents a content type."
+type BasicContentType {
+  "Gets the unique key for the content type."
+  key: UUID!
+  "Gets the content type identifier."
+  id: Int!
+  "Gets the content type alias."
+  alias: String
+  "Gets the content item type."
+  itemType: PublishedItemType!
+  "Gets the aliases of the content types participating in the composition."
+  compositionAliases: [String!]
+  "Gets the content variations of the content type."
+  variations: ContentVariation!
+  "Gets a value indicating whether this content type is for an element."
+  isElement: Boolean!
+}
+
+"Represents a date time property value."
+type BasicDateTimePicker implements PropertyValue {
+  "Gets the value of the property."
+  value: DateTime
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a date time property value."
+type BasicLabel implements PropertyValue {
+  "Gets the value of the property."
+  value: Any
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a Media item."
+type BasicMedia {
+  "Gets the named properties of the element using the media types in Umbraco."
+  namedProperties: INamedMediaProperties!
+  "Gets the identifier of the template to use to render the Media item."
+  templateId: Int
+  "Gets the parent of the Media item."
+  parent: BasicMedia
+  "Gets the type of the Media item (document, media...)."
+  itemType: PublishedItemType
+  "Gets the date the Media item was last updated."
+  updateDate: DateTime
+  "Gets the identifier of the user who last updated the Media item."
+  writerId: Int
+  "Gets the date that the Media was created."
+  createDate: DateTime
+  "Gets the identifier of the user who created the Media item."
+  creatorId: Int
+  "Gets the tree path of the Media item."
+  path: String
+  "Gets the tree level of the Media item."
+  level: Int
+  "Gets the sort order of the Media item."
+  sortOrder: Int
+  "Gets the URL segment of the Media item for the current culture."
+  urlSegment: String
+  "Gets the url of the Media item."
+  url: String
+  "Gets the absolute url of the Media item."
+  absoluteUrl: String
+  "Gets the name of the Media item for the current culture."
+  name: String
+  "Gets the unique identifier of the Media item."
+  id: Int
+  "Gets the children of the Media item that are available for the current culture."
+  children: [BasicMedia]
+  "Gets the content type."
+  contentType: BasicContentType
+  "Gets the unique key of the element."
+  key: UUID
+  "Gets the properties of the element."
+  properties(where: BasicPropertyFilterInput): [BasicProperty]
+}
+
+"Represents a media picker item."
+type BasicMediaPicker implements PropertyValue {
+  "Gets the media items of a picker."
+  mediaItems: [BasicMediaPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a media item."
+type BasicMediaPickerItem {
+  "Gets the absolute url of a media item."
+  url: String!
+  "Gets the id of a media item."
+  id: Int!
+}
+
+"Represents a member"
+type BasicMember {
+  "Gets the named properties of the element using the member types in Umbraco."
+  namedProperties: INamedMemberProperties!
+  "The member id"
+  id: Int
+  "The member parent id"
+  parentId: Int
+  "The member content type id"
+  contentTypeId: Int
+  "The member content type alias"
+  contentTypeAlias: String
+  "The member create date"
+  createDate: DateTime
+  "The member creator id"
+  creatorId: Int
+  "The member key"
+  key: UUID
+  "The member level"
+  level: Int
+  "The member name"
+  name: String
+  "The members path"
+  path: String
+  "The members properties"
+  properties: [BasicProperty]
+  "The member sort order"
+  sortOrder: Int
+  "The member writer id"
+  writerId: Int
+}
+
+"Represents a member picker."
+type BasicMemberPicker implements PropertyValue {
+  "Gets the members."
+  members: [BasicMemberPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a member item."
+type BasicMemberPickerItem {
+  "Gets the id of the member."
+  id: Int
+  "Gets the name of a member."
+  name: String
+  "Gets the properties of a member."
+  properties: [BasicProperty]!
+}
+
+"Represents a multi url picker."
+type BasicMultiUrlPicker implements PropertyValue {
+  "Gets the links."
+  links: [BasicMultiUrlPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a link item."
+type BasicMultiUrlPickerItem {
+  "Gets the name of the link."
+  name: String
+  "Gets the target of the link."
+  target: String
+  "Gets the type of the link."
+  type: LinkType!
+  "Gets the url of a link."
+  url: String
+}
+
+"Represents nested content."
+type BasicNestedContent implements PropertyValue {
+  "Gets the elements of a nested content."
+  elements: [BasicNestedContentElement!]
+  "The model of the property value"
+  model: String!
+}
+
+"Represents nested content."
+type BasicNestedContentElement {
+  "Gets the properties of the nested content."
+  properties: [BasicProperty]!
+}
+
+"Represents a property."
+type BasicProperty {
+  "Gets the alias of a property."
+  alias: String
+  "Gets the value of a property."
+  value: PropertyValue
+  "Gets the editor alias of a property."
+  editorAlias: String
+}
+
+"Represents a basic property value."
+type BasicPropertyValue implements PropertyValue {
+  "Gets the value of the property."
+  value: Any
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a rich text editor."
+type BasicRichText implements PropertyValue {
+  "Gets the HTML value of the rich text editor or markdown editor."
+  value: String
+  "Gets the original value of the rich text editor or markdown editor."
+  sourceValue: String
+  "The model of the property value"
+  model: String!
+}
+
+"Represents an unsupported property value."
+type BasicUnsupportedPropertyValue implements PropertyValue {
+  "Gets the message of the property."
+  message: String!
+  "The model of the property value"
+  model: String!
+}
+
+type BlockGridEditor implements IBlockGridEditor {
+  blockGrid: BasicBlockGridModel
+}
+
+type BlockListEditor implements IBlockListEditor {
+  blockList: BasicBlockListModel
+}
+
+type BlockListEditorCulture implements IBlockListEditorCulture {
+  blockListCulture: BasicBlockListModel
+}
+
+type CheckboxListEditor implements ICheckboxListEditor {
+  checkboxList: BasicPropertyValue
+}
+
+type CheckboxListEditorCulture implements ICheckboxListEditorCulture {
+  checkboxListCulture: BasicPropertyValue
+}
+
+type ColorPickerEditor implements IColorPickerEditor {
+  colorPicker: BasicPropertyValue
+}
+
+type ColorPickerEditorCulture implements IColorPickerEditorCulture {
+  colorPickerCulture: BasicPropertyValue
+}
+
+"A connection to a list of items."
+type ContentAllConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentAllEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentAllEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentAtRootConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentAtRootEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentAtRootEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentByContentTypeConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentByContentTypeEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentByContentTypeEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentByTagConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentByTagEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentByTagEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentDescendantsByAbsoluteRouteConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentDescendantsByAbsoluteRouteEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentDescendantsByAbsoluteRouteEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentDescendantsByContentTypeConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentDescendantsByContentTypeEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentDescendantsByContentTypeEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentDescendantsByGuidConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentDescendantsByGuidEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentDescendantsByGuidEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+"A connection to a list of items."
+type ContentDescendantsByIdConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ContentDescendantsByIdEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicContent]
+}
+
+"An edge in a connection."
+type ContentDescendantsByIdEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicContent
+}
+
+type ContentPickerEditor implements IContentPickerEditor {
+  contentPicker: BasicContentPicker
+}
+
+type ContentPickerEditorCulture implements IContentPickerEditorCulture {
+  contentPickerCulture: BasicContentPicker
+}
+
+type CustomMediaType implements ICustomMediaType {
+  approvedColorEditor: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  blockList: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  dropDown: BasicPropertyValue
+  dropdownMultiple: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  file: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  imageMediaPicker: BasicMediaPicker
+  markdownEditor: BasicRichText
+  memberGroupPicker: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  repeatableTextStrings: BasicPropertyValue
+  richText: BasicRichText
+  slider: BasicPropertyValue
+  sVG: BasicPropertyValue
+  tags: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textstring: BasicPropertyValue
+  toggle: BasicPropertyValue
+  userPicker: BasicPropertyValue
+  video: BasicPropertyValue
+}
+
+type DatePickerEditor implements IDatePickerEditor {
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+}
+
+type DatePickerEditorCulture implements IDatePickerEditorCulture {
+  datePickerCulture: BasicDateTimePicker
+  datePickerWithTimeCulture: BasicDateTimePicker
+}
+
+type DecimalEditor implements IDecimalEditor {
+  decimal: BasicPropertyValue
+}
+
+type DecimalEditorCulture implements IDecimalEditorCulture {
+  decimalCulture: BasicPropertyValue
+}
+
+type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMediaPickerLegacyEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
+  blockGrid: BasicBlockGridModel
+  blockList: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  colorPicker: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  dropdown: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  markdown: BasicRichText
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+  memberGroupPicker: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  repeatableTextstrings: BasicPropertyValue
+  richtext: BasicRichText
+  slider: BasicPropertyValue
+  tags: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textstring: BasicPropertyValue
+  trueOrFalse: BasicPropertyValue
+  userPicker: BasicPropertyValue
+}
+
+type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMediaPickerLegacyEditor & IMediaPickerLegacyEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
+  blockList: BasicBlockListModel
+  blockListCulture: BasicBlockListModel
+  checkboxList: BasicPropertyValue
+  checkboxListCulture: BasicPropertyValue
+  colorPicker: BasicPropertyValue
+  colorPickerCulture: BasicPropertyValue
+  contentPicker: BasicContentPicker
+  contentPickerCulture: BasicContentPicker
+  datePicker: BasicDateTimePicker
+  datePickerWithTime: BasicDateTimePicker
+  datePickerCulture: BasicDateTimePicker
+  datePickerWithTimeCulture: BasicDateTimePicker
+  decimal: BasicPropertyValue
+  decimalCulture: BasicPropertyValue
+  dropdown: BasicPropertyValue
+  dropdownCulture: BasicPropertyValue
+  emailAddress: BasicPropertyValue
+  emailAddressCulture: BasicPropertyValue
+  eyeDropperColorPicker: BasicPropertyValue
+  eyeDropperColorPickerCulture: BasicPropertyValue
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+  articleCulture: BasicPropertyValue
+  audioCulture: BasicPropertyValue
+  fileCulture: BasicPropertyValue
+  svgCulture: BasicPropertyValue
+  videoCulture: BasicPropertyValue
+  imageCropper: BasicPropertyValue
+  imageCropperCulture: BasicPropertyValue
+  markdown: BasicRichText
+  markdownCulture: BasicRichText
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+  imageMediaPickerCulture: BasicMediaPicker
+  mediaPickerCulture: BasicMediaPicker
+  multipleImageMediaPickerCulture: BasicMediaPicker
+  multipleMediaPickerCulture: BasicMediaPicker
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+  mediaPickerLegacyCulture: BasicMediaPicker
+  multipleMediaPickerLegacyCulture: BasicMediaPicker
+  memberGroupPicker: BasicPropertyValue
+  memberGroupPickerCulture: BasicPropertyValue
+  memberPicker: BasicMemberPicker
+  memberPickerCulture: BasicMemberPicker
+  multinodeTreepicker: BasicContentPicker
+  multinodeTreepickerCulture: BasicContentPicker
+  multiUrlPicker: BasicMultiUrlPicker
+  multiUrlPickerCulture: BasicMultiUrlPicker
+  numeric: BasicPropertyValue
+  numericCulture: BasicPropertyValue
+  radiobox: BasicPropertyValue
+  radioboxCulture: BasicPropertyValue
+  repeatableTextstrings: BasicPropertyValue
+  repeatableTextstringsCulture: BasicPropertyValue
+  richtext: BasicRichText
+  richtextCulture: BasicRichText
+  slider: BasicPropertyValue
+  sliderCulture: BasicPropertyValue
+  tags: BasicPropertyValue
+  tagsCulture: BasicPropertyValue
+  textarea: BasicPropertyValue
+  textareaCulture: BasicPropertyValue
+  textstring: BasicPropertyValue
+  textstringCulture: BasicPropertyValue
+  trueOrFalse: BasicPropertyValue
+  trueOrFalseCulture: BasicPropertyValue
+  userPicker: BasicPropertyValue
+  userPickerCulture: BasicPropertyValue
+}
+
+type DropdownEditor implements IDropdownEditor {
+  dropdown: BasicPropertyValue
+}
+
+type DropdownEditorCulture implements IDropdownEditorCulture {
+  dropdownCulture: BasicPropertyValue
+}
+
+type EmailAddressEditor implements IEmailAddressEditor {
+  emailAddress: BasicPropertyValue
+}
+
+type EmailAddressEditorCulture implements IEmailAddressEditorCulture {
+  emailAddressCulture: BasicPropertyValue
+}
+
+"Represents a content type that doesn't have any properties and therefore needs a placeholder"
+type EmptyINamedContentProperties {
+  "Placeholder field. Will never hold a value."
+  Empty_Field: String!
+}
+
+"Represents a content type that doesn't have any properties and therefore needs a placeholder"
+type EmptyINamedMediaProperties {
+  "Placeholder field. Will never hold a value."
+  Empty_Field: String!
+}
+
+"Represents a content type that doesn't have any properties and therefore needs a placeholder"
+type EmptyINamedMemberProperties {
+  "Placeholder field. Will never hold a value."
+  Empty_Field: String!
+}
+
+type EyeDropperColorPickerEditor implements IEyeDropperColorPickerEditor {
+  eyeDropperColorPicker: BasicPropertyValue
+}
+
+type EyeDropperColorPickerEditorCulture implements IEyeDropperColorPickerEditorCulture {
+  eyeDropperColorPickerCulture: BasicPropertyValue
+}
+
+type File implements IFile {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+type FileUpload implements IFileUpload {
+  article: BasicPropertyValue
+  audio: BasicPropertyValue
+  file: BasicPropertyValue
+  svg: BasicPropertyValue
+  video: BasicPropertyValue
+}
+
+type FileUploadCulture implements IFileUploadCulture {
+  articleCulture: BasicPropertyValue
+  audioCulture: BasicPropertyValue
+  fileCulture: BasicPropertyValue
+  svgCulture: BasicPropertyValue
+  videoCulture: BasicPropertyValue
+}
+
+"A connection to a list of items."
+type FindMembersByRoleConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [FindMembersByRoleEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicMember]
+}
+
+"An edge in a connection."
+type FindMembersByRoleEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicMember
+}
+
+type Image implements IImage {
+  umbracoFile: BasicPropertyValue
+  "in pixels"
+  umbracoWidth: BasicLabel
+  "in pixels"
+  umbracoHeight: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+  umbracoExtension: BasicLabel
+}
+
+type ImageCropperEditor implements IImageCropperEditor {
+  imageCropper: BasicPropertyValue
+}
+
+type ImageCropperEditorCulture implements IImageCropperEditorCulture {
+  imageCropperCulture: BasicPropertyValue
+}
+
+type KeyValuePairOfStringAndPublishedCultureInfo {
+  key: String!
+  value: PublishedCultureInfo!
+}
+
+type LabelEditor implements ILabelEditor {
+  bigint: BasicLabel
+  datetime: BasicLabel
+  decimal: BasicLabel
+  integer: BasicLabel
+  string: BasicLabel
+  time: BasicLabel
+}
+
+type LabelEditorCulture implements ILabelEditorCulture {
+  bigintCulture: BasicLabel
+  datetimeCulture: BasicLabel
+  decimalCulture: BasicLabel
+  integerCulture: BasicLabel
+  stringCulture: BasicLabel
+  timeCulture: BasicLabel
+}
+
+type MarkdownEditor implements IMarkdownEditor {
+  markdown: BasicRichText
+}
+
+type MarkdownEditorCulture implements IMarkdownEditorCulture {
+  markdownCulture: BasicRichText
+}
+
+"A connection to a list of items."
+type MediaAtRootConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MediaAtRootEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicMedia]
+}
+
+"An edge in a connection."
+type MediaAtRootEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicMedia
+}
+
+"A connection to a list of items."
+type MediaByContentTypeConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MediaByContentTypeEdge!]
+  "A flattened list of the nodes."
+  nodes: [BasicMedia]
+}
+
+"An edge in a connection."
+type MediaByContentTypeEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: BasicMedia
+}
+
+type MediaPickerEditor implements IMediaPickerEditor {
+  imageMediaPicker: BasicMediaPicker
+  mediaPicker: BasicMediaPicker
+  multipleImageMediaPicker: BasicMediaPicker
+  multipleMediaPicker: BasicMediaPicker
+}
+
+type MediaPickerEditorCulture implements IMediaPickerEditorCulture {
+  imageMediaPickerCulture: BasicMediaPicker
+  mediaPickerCulture: BasicMediaPicker
+  multipleImageMediaPickerCulture: BasicMediaPicker
+  multipleMediaPickerCulture: BasicMediaPicker
+}
+
+type MediaPickerLegacyEditor implements IMediaPickerLegacyEditor {
+  mediaPickerLegacy: BasicMediaPicker
+  multipleMediaPickerLegacy: BasicMediaPicker
+}
+
+type MediaPickerLegacyEditorCulture implements IMediaPickerLegacyEditorCulture {
+  mediaPickerLegacyCulture: BasicMediaPicker
+  multipleMediaPickerLegacyCulture: BasicMediaPicker
+}
+
+type Member implements IMember {
+  umbracoMemberComments: BasicPropertyValue
+  umbracoMemberFailedPasswordAttempts: BasicLabel
+  umbracoMemberApproved: BasicPropertyValue
+  umbracoMemberLockedOut: BasicPropertyValue
+  umbracoMemberLastLockoutDate: BasicLabel
+  umbracoMemberLastLogin: BasicLabel
+  umbracoMemberLastPasswordChangeDate: BasicLabel
+}
+
+type MemberGroupPickerEditor implements IMemberGroupPickerEditor {
+  memberGroupPicker: BasicPropertyValue
+}
+
+type MemberGroupPickerEditorCulture implements IMemberGroupPickerEditorCulture {
+  memberGroupPickerCulture: BasicPropertyValue
+}
+
+type MemberPickerEditor implements IMemberPickerEditor {
+  memberPicker: BasicMemberPicker
+}
+
+type MemberPickerEditorCulture implements IMemberPickerEditorCulture {
+  memberPickerCulture: BasicMemberPicker
+}
+
+type MultiUrlPickerEditor implements IMultiUrlPickerEditor {
+  multiUrlPicker: BasicMultiUrlPicker
+}
+
+type MultiUrlPickerEditorCulture implements IMultiUrlPickerEditorCulture {
+  multiUrlPickerCulture: BasicMultiUrlPicker
+}
+
+type MultinodeTreepickerEditor implements IMultinodeTreepickerEditor {
+  multinodeTreepicker: BasicContentPicker
+}
+
+type MultinodeTreepickerEditorCulture implements IMultinodeTreepickerEditorCulture {
+  multinodeTreepickerCulture: BasicContentPicker
+}
+
+type NumericEditor implements INumericEditor {
+  numeric: BasicPropertyValue
+}
+
+type NumericEditorCulture implements INumericEditorCulture {
+  numericCulture: BasicPropertyValue
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type PublishedCultureInfo {
+  culture: String!
+  name: String!
+  urlSegment: String
+  date: DateTime!
+}
+
+"The default query implementation of the MembersById query"
+type Query {
+  "Gets all the content items available."
+  contentAll("The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentAllConnection
+  "Gets all the content items at root level."
+  contentAtRoot("The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentAtRootConnection
+  "Gets a content item by an absolute route."
+  contentByAbsoluteRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "Modes for requesting by route" routeMode: RouteMode! = ROUTING "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] where: BasicContentFilterInput order: [BasicContentSortInput!]): BasicContent
+  "Gets all the content items by content type."
+  contentByContentType("The contentType to fetch." contentType: String! "The culture." culture: String "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentByContentTypeConnection
+  "Gets a content item by guid."
+  contentByGuid("The id to fetch." id: UUID! "The culture to fetch." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] where: BasicContentFilterInput order: [BasicContentSortInput!]): BasicContent
+  "Gets a content item by id."
+  contentById("The id to fetch." id: Int! "The culture to fetch." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] where: BasicContentFilterInput order: [BasicContentSortInput!]): BasicContent
+  "Gets content items by tag."
+  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "The culture to fetch." culture: String "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentByTagConnection
+  "Gets content item descendants by an absolute route."
+  contentDescendantsByAbsoluteRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "Modes for requesting by route" routeMode: RouteMode! = ROUTING "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentDescendantsByAbsoluteRouteConnection
+  "Gets all descendants of content items with a specific content type."
+  contentDescendantsByContentType("The contentType to fetch." contentType: String! "The culture." culture: String "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentDescendantsByContentTypeConnection
+  "Gets descendants on a content item selected by guid."
+  contentDescendantsByGuid("The id to fetch." id: UUID! "The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentDescendantsByGuidConnection
+  "Gets descendants on a content item selected by id."
+  contentDescendantsById("The id to fetch." id: Int! "The culture." culture: String "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "The property variation segment" segment: String "The property value fallback strategy" fallback: [PropertyFallback!] "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicContentFilterInput order: [BasicContentSortInput!]): ContentDescendantsByIdConnection
+  "Gets all the Media items at root level."
+  mediaAtRoot("Fetch preview values. Preview will show unpublished items." preview: Boolean! = false "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicMediaFilterInput order: [BasicMediaSortInput!]): MediaAtRootConnection
+  "Gets all the media items by content type."
+  mediaByContentType("The contentType to fetch." contentType: String! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicMediaFilterInput order: [BasicMediaSortInput!]): MediaByContentTypeConnection
+  "Gets a Media item by guid."
+  mediaByGuid("The id to fetch." id: UUID! "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false where: BasicMediaFilterInput order: [BasicMediaSortInput!]): BasicMedia
+  "Gets a Media item by id."
+  mediaById("The id to fetch." id: Int! "Fetch preview values. Preview will show unpublished items." preview: Boolean! = false where: BasicMediaFilterInput order: [BasicMediaSortInput!]): BasicMedia
+  "Gets all members by filter and\/or pageindex."
+  membersAll("The current page index." pageIndex: Long! "The page size." pageSize: Int! "The field to order by." orderBy: String! "The direction to order by." orderDirection: Direction! "The member type alias to search for." memberTypeAlias: String "The search text filter." filter: String where: BasicMemberFilterInput order: [BasicMemberSortInput!]): [BasicMember]!
+  "Finds members by display name."
+  findMembersByDisplayName("The display name (may be partial)." displayName: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): [BasicMember]!
+  "Finds members by email."
+  findMembersByEmail("The email (may be partial)." email: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): [BasicMember]!
+  "Finds members by role."
+  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BasicMemberFilterInput order: [BasicMemberSortInput!]): FindMembersByRoleConnection
+  "Finds members by username."
+  findMembersByUsername("The username (may be partial)." username: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): [BasicMember]!
+  "Gets a member by email."
+  memberByEmail("The email to fetch." email: String! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): BasicMember
+  "Gets a member by id."
+  memberById("The id to fetch." id: Int! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): BasicMember
+  "Gets a member by key."
+  memberByKey("The key to fetch." key: UUID! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): BasicMember
+  "Gets a member by username."
+  memberByUsername("The username to fetch." username: String! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): BasicMember
+  "Gets members by id."
+  membersById("The ids to fetch." ids: [Int!]! where: BasicMemberFilterInput order: [BasicMemberSortInput!]): [BasicMember]!
+}
+
+type RadioboxEditor implements IRadioboxEditor {
+  radiobox: BasicPropertyValue
+}
+
+type RadioboxEditorCulture implements IRadioboxEditorCulture {
+  radioboxCulture: BasicPropertyValue
+}
+
+type RepeatableTextstringsEditor implements IRepeatableTextstringsEditor {
+  repeatableTextstrings: BasicPropertyValue
+}
+
+type RepeatableTextstringsEditorCulture implements IRepeatableTextstringsEditorCulture {
+  repeatableTextstringsCulture: BasicPropertyValue
+}
+
+type RichtextEditor implements IRichtextEditor {
+  richtext: BasicRichText
+}
+
+type RichtextEditorCulture implements IRichtextEditorCulture {
+  richtextCulture: BasicRichText
+}
+
+type SiteWithCulture implements ITextboxEditor & ITextboxEditorCulture & ISiteWithCulture {
+  textstring: BasicPropertyValue
+  textstringCulture: BasicPropertyValue
+}
+
+type SliderEditor implements ISliderEditor {
+  slider: BasicPropertyValue
+}
+
+type SliderEditorCulture implements ISliderEditorCulture {
+  sliderCulture: BasicPropertyValue
+}
+
+type TagsEditor implements ITagsEditor {
+  tags: BasicPropertyValue
+}
+
+type TagsEditorCulture implements ITagsEditorCulture {
+  tagsCulture: BasicPropertyValue
+}
+
+type TestMember implements ITestMember {
+  blockList: BasicBlockListModel
+  nestedContent: BasicMemberPicker
+  umbracoMemberComments: BasicPropertyValue
+}
+
+type TextareaEditor implements ITextareaEditor {
+  textarea: BasicPropertyValue
+}
+
+type TextareaEditorCulture implements ITextareaEditorCulture {
+  textareaCulture: BasicPropertyValue
+}
+
+type TextboxEditor implements ITextboxEditor {
+  textstring: BasicPropertyValue
+}
+
+type TextboxEditorCulture implements ITextboxEditorCulture {
+  textstringCulture: BasicPropertyValue
+}
+
+type ToggleEditor implements IToggleEditor {
+  trueOrFalse: BasicPropertyValue
+}
+
+type ToggleEditorCulture implements IToggleEditorCulture {
+  trueOrFalseCulture: BasicPropertyValue
+}
+
+type UmbBlockGridDemoHeadlineBlock implements IUmbBlockGridDemoHeadlineBlock {
+  headline: BasicPropertyValue
+}
+
+type UmbBlockGridDemoImageBlock implements IUmbBlockGridDemoImageBlock {
+  image: BasicMediaPicker
+}
+
+type UmbBlockGridDemoRichTextBlock implements IUmbBlockGridDemoRichTextBlock {
+  richText: BasicRichText
+}
+
+type UmbracoMediaArticle implements IUmbracoMediaArticle {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+type UmbracoMediaAudio implements IUmbracoMediaAudio {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+type UmbracoMediaVectorGraphics implements IUmbracoMediaVectorGraphics {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+type UmbracoMediaVideo implements IUmbracoMediaVideo {
+  umbracoFile: BasicPropertyValue
+  umbracoExtension: BasicLabel
+  "in bytes"
+  umbracoBytes: BasicLabel
+}
+
+type UserPickerEditor implements IUserPickerEditor {
+  userPicker: BasicPropertyValue
+}
+
+type UserPickerEditorCulture implements IUserPickerEditorCulture {
+  userPickerCulture: BasicPropertyValue
+}
+
+"Represents a property that can be queried by the alias name."
+union INamedContentProperties = EmptyINamedContentProperties | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture
+
+"Represents a property that can be queried by the alias name."
+union INamedMediaProperties = EmptyINamedMediaProperties | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType
+
+"Represents a property that can be queried by the alias name."
+union INamedMemberProperties = EmptyINamedMemberProperties | Member | TestMember
+
+"Represents a content item."
+input BasicContentFilterInput {
+  and: [BasicContentFilterInput!]
+  or: [BasicContentFilterInput!]
+  "Gets the identifier of the template to use to render the content item."
+  templateId: IntOperationFilterInput
+  "Gets the parent of the content item."
+  parent: BasicContentFilterInput
+  "Gets the type of the content item (document, media...)."
+  itemType: NullableOfPublishedItemTypeOperationFilterInput
+  "Gets available culture infos."
+  cultures: ListFilterInputTypeOfKeyValuePairOfStringAndPublishedCultureInfoFilterInput
+  "Gets the date the content item was last updated."
+  updateDate: DateTimeOperationFilterInput
+  "Gets the identifier of the user who last updated the content item."
+  writerId: IntOperationFilterInput
+  "Gets the date that the content was created."
+  createDate: DateTimeOperationFilterInput
+  "Gets the identifier of the user who created the content item."
+  creatorId: IntOperationFilterInput
+  "Gets all the children of the content item, regardless of whether they are available for the current culture."
+  childrenForAllCultures: ListFilterInputTypeOfBasicContentFilterInput
+  "Gets the tree path of the content item."
+  path: StringOperationFilterInput
+  "Gets the tree level of the content item."
+  level: IntOperationFilterInput
+  "Gets the sort order of the content item."
+  sortOrder: IntOperationFilterInput
+  "Gets the URL segment of the content item for the current culture."
+  urlSegment: StringOperationFilterInput
+  "Gets the url of the content item."
+  url: StringOperationFilterInput
+  "Gets the absolute url of the content item."
+  absoluteUrl: StringOperationFilterInput
+  "Gets the name of the content item for the current culture."
+  name: StringOperationFilterInput
+  "Gets the unique identifier of the content item."
+  id: IntOperationFilterInput
+  "Gets the children of the content item that are available for the current culture."
+  children: ListFilterInputTypeOfBasicContentFilterInput
+  "Gets the content type."
+  contentType: BasicContentTypeFilterInput
+  "Gets the unique key of the element."
+  key: UuidOperationFilterInput
+  "Gets the properties of the element."
+  properties: ListFilterInputTypeOfBasicPropertyFilterInput
+  "Gets the redirect information."
+  redirect: BasicContentRedirectFilterInput
+}
+
+"Represents a content redirect"
+input BasicContentRedirectFilterInput {
+  and: [BasicContentRedirectFilterInput!]
+  or: [BasicContentRedirectFilterInput!]
+  "The url to redirect to"
+  redirectUrl: StringOperationFilterInput
+  "Is the redirect permanent"
+  isPermanent: BooleanOperationFilterInput
+}
+
+"Represents a content redirect"
+input BasicContentRedirectSortInput {
+  "The url to redirect to"
+  redirectUrl: SortEnumType
+  "Is the redirect permanent"
+  isPermanent: SortEnumType
+}
+
+"Represents a content item."
+input BasicContentSortInput {
+  "Gets the identifier of the template to use to render the content item."
+  templateId: SortEnumType
+  "Gets the parent of the content item."
+  parent: BasicContentSortInput
+  "Gets the type of the content item (document, media...)."
+  itemType: SortEnumType
+  "Gets the date the content item was last updated."
+  updateDate: SortEnumType
+  "Gets the identifier of the user who last updated the content item."
+  writerId: SortEnumType
+  "Gets the date that the content was created."
+  createDate: SortEnumType
+  "Gets the identifier of the user who created the content item."
+  creatorId: SortEnumType
+  "Gets the tree path of the content item."
+  path: SortEnumType
+  "Gets the tree level of the content item."
+  level: SortEnumType
+  "Gets the sort order of the content item."
+  sortOrder: SortEnumType
+  "Gets the URL segment of the content item for the current culture."
+  urlSegment: SortEnumType
+  "Gets the url of the content item."
+  url: SortEnumType
+  "Gets the absolute url of the content item."
+  absoluteUrl: SortEnumType
+  "Gets the name of the content item for the current culture."
+  name: SortEnumType
+  "Gets the unique identifier of the content item."
+  id: SortEnumType
+  "Gets the content type."
+  contentType: BasicContentTypeSortInput
+  "Gets the unique key of the element."
+  key: SortEnumType
+  "Gets the redirect information."
+  redirect: BasicContentRedirectSortInput
+}
+
+"Represents a content type."
+input BasicContentTypeFilterInput {
+  and: [BasicContentTypeFilterInput!]
+  or: [BasicContentTypeFilterInput!]
+  "Gets the unique key for the content type."
+  key: UuidOperationFilterInput
+  "Gets the content type identifier."
+  id: IntOperationFilterInput
+  "Gets the content type alias."
+  alias: StringOperationFilterInput
+  "Gets the content item type."
+  itemType: PublishedItemTypeOperationFilterInput
+  "Gets the aliases of the content types participating in the composition."
+  compositionAliases: ListStringOperationFilterInput
+  "Gets the content variations of the content type."
+  variations: ContentVariationOperationFilterInput
+  "Gets a value indicating whether this content type is for an element."
+  isElement: BooleanOperationFilterInput
+}
+
+"Represents a content type."
+input BasicContentTypeSortInput {
+  "Gets the unique key for the content type."
+  key: SortEnumType
+  "Gets the content type identifier."
+  id: SortEnumType
+  "Gets the content type alias."
+  alias: SortEnumType
+  "Gets the content item type."
+  itemType: SortEnumType
+  "Gets the content variations of the content type."
+  variations: SortEnumType
+  "Gets a value indicating whether this content type is for an element."
+  isElement: SortEnumType
+}
+
+"Represents a Media item."
+input BasicMediaFilterInput {
+  and: [BasicMediaFilterInput!]
+  or: [BasicMediaFilterInput!]
+  "Gets the identifier of the template to use to render the Media item."
+  templateId: IntOperationFilterInput
+  "Gets the parent of the Media item."
+  parent: BasicMediaFilterInput
+  "Gets the type of the Media item (document, media...)."
+  itemType: NullableOfPublishedItemTypeOperationFilterInput
+  "Gets the date the Media item was last updated."
+  updateDate: DateTimeOperationFilterInput
+  "Gets the identifier of the user who last updated the Media item."
+  writerId: IntOperationFilterInput
+  "Gets the date that the Media was created."
+  createDate: DateTimeOperationFilterInput
+  "Gets the identifier of the user who created the Media item."
+  creatorId: IntOperationFilterInput
+  "Gets the tree path of the Media item."
+  path: StringOperationFilterInput
+  "Gets the tree level of the Media item."
+  level: IntOperationFilterInput
+  "Gets the sort order of the Media item."
+  sortOrder: IntOperationFilterInput
+  "Gets the URL segment of the Media item for the current culture."
+  urlSegment: StringOperationFilterInput
+  "Gets the url of the Media item."
+  url: StringOperationFilterInput
+  "Gets the absolute url of the Media item."
+  absoluteUrl: StringOperationFilterInput
+  "Gets the name of the Media item for the current culture."
+  name: StringOperationFilterInput
+  "Gets the unique identifier of the Media item."
+  id: IntOperationFilterInput
+  "Gets the children of the Media item that are available for the current culture."
+  children: ListFilterInputTypeOfBasicMediaFilterInput
+  "Gets the content type."
+  contentType: BasicContentTypeFilterInput
+  "Gets the unique key of the element."
+  key: UuidOperationFilterInput
+  "Gets the properties of the element."
+  properties: ListFilterInputTypeOfBasicPropertyFilterInput
+}
+
+"Represents a Media item."
+input BasicMediaSortInput {
+  "Gets the identifier of the template to use to render the Media item."
+  templateId: SortEnumType
+  "Gets the parent of the Media item."
+  parent: BasicMediaSortInput
+  "Gets the type of the Media item (document, media...)."
+  itemType: SortEnumType
+  "Gets the date the Media item was last updated."
+  updateDate: SortEnumType
+  "Gets the identifier of the user who last updated the Media item."
+  writerId: SortEnumType
+  "Gets the date that the Media was created."
+  createDate: SortEnumType
+  "Gets the identifier of the user who created the Media item."
+  creatorId: SortEnumType
+  "Gets the tree path of the Media item."
+  path: SortEnumType
+  "Gets the tree level of the Media item."
+  level: SortEnumType
+  "Gets the sort order of the Media item."
+  sortOrder: SortEnumType
+  "Gets the URL segment of the Media item for the current culture."
+  urlSegment: SortEnumType
+  "Gets the url of the Media item."
+  url: SortEnumType
+  "Gets the absolute url of the Media item."
+  absoluteUrl: SortEnumType
+  "Gets the name of the Media item for the current culture."
+  name: SortEnumType
+  "Gets the unique identifier of the Media item."
+  id: SortEnumType
+  "Gets the content type."
+  contentType: BasicContentTypeSortInput
+  "Gets the unique key of the element."
+  key: SortEnumType
+}
+
+"Represents a member"
+input BasicMemberFilterInput {
+  and: [BasicMemberFilterInput!]
+  or: [BasicMemberFilterInput!]
+  "The member id"
+  id: IntOperationFilterInput
+  "The member parent id"
+  parentId: IntOperationFilterInput
+  "The member content type id"
+  contentTypeId: IntOperationFilterInput
+  "The member content type alias"
+  contentTypeAlias: StringOperationFilterInput
+  "The member create date"
+  createDate: DateTimeOperationFilterInput
+  "The member creator id"
+  creatorId: IntOperationFilterInput
+  "The member key"
+  key: UuidOperationFilterInput
+  "The member level"
+  level: IntOperationFilterInput
+  "The member name"
+  name: StringOperationFilterInput
+  "The members path"
+  path: StringOperationFilterInput
+  "The members properties"
+  properties: ListFilterInputTypeOfBasicPropertyFilterInput
+  "The member sort order"
+  sortOrder: IntOperationFilterInput
+  "The member writer id"
+  writerId: IntOperationFilterInput
+}
+
+"Represents a member"
+input BasicMemberSortInput {
+  "The member id"
+  id: SortEnumType
+  "The member parent id"
+  parentId: SortEnumType
+  "The member content type id"
+  contentTypeId: SortEnumType
+  "The member content type alias"
+  contentTypeAlias: SortEnumType
+  "The member create date"
+  createDate: SortEnumType
+  "The member creator id"
+  creatorId: SortEnumType
+  "The member key"
+  key: SortEnumType
+  "The member level"
+  level: SortEnumType
+  "The member name"
+  name: SortEnumType
+  "The members path"
+  path: SortEnumType
+  "The member sort order"
+  sortOrder: SortEnumType
+  "The member writer id"
+  writerId: SortEnumType
+}
+
+"Represents a property."
+input BasicPropertyFilterInput {
+  and: [BasicPropertyFilterInput!]
+  or: [BasicPropertyFilterInput!]
+  "Gets the alias of a property."
+  alias: StringOperationFilterInput
+  "Gets the value of a property."
+  value: PropertyValueFilterInput
+  "Gets the editor alias of a property."
+  editorAlias: StringOperationFilterInput
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+input ContentVariationOperationFilterInput {
+  eq: ContentVariation
+  neq: ContentVariation
+  in: [ContentVariation!]
+  nin: [ContentVariation!]
+}
+
+input DateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input IntOperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input KeyValuePairOfStringAndPublishedCultureInfoFilterInput {
+  and: [KeyValuePairOfStringAndPublishedCultureInfoFilterInput!]
+  or: [KeyValuePairOfStringAndPublishedCultureInfoFilterInput!]
+  key: StringOperationFilterInput
+  value: PublishedCultureInfoFilterInput
+}
+
+input ListFilterInputTypeOfBasicContentFilterInput {
+  all: BasicContentFilterInput
+  none: BasicContentFilterInput
+  some: BasicContentFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfBasicMediaFilterInput {
+  all: BasicMediaFilterInput
+  none: BasicMediaFilterInput
+  some: BasicMediaFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfBasicPropertyFilterInput {
+  all: BasicPropertyFilterInput
+  none: BasicPropertyFilterInput
+  some: BasicPropertyFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfKeyValuePairOfStringAndPublishedCultureInfoFilterInput {
+  all: KeyValuePairOfStringAndPublishedCultureInfoFilterInput
+  none: KeyValuePairOfStringAndPublishedCultureInfoFilterInput
+  some: KeyValuePairOfStringAndPublishedCultureInfoFilterInput
+  any: Boolean
+}
+
+input ListStringOperationFilterInput {
+  all: StringOperationFilterInput
+  none: StringOperationFilterInput
+  some: StringOperationFilterInput
+  any: Boolean
+}
+
+input NullableOfPublishedItemTypeOperationFilterInput {
+  eq: PublishedItemType
+  neq: PublishedItemType
+  in: [PublishedItemType]
+  nin: [PublishedItemType]
+}
+
+"A base for property values"
+input PropertyValueFilterInput {
+  and: [PropertyValueFilterInput!]
+  or: [PropertyValueFilterInput!]
+  "The model of the property value"
+  model: StringOperationFilterInput
+}
+
+input PublishedCultureInfoFilterInput {
+  and: [PublishedCultureInfoFilterInput!]
+  or: [PublishedCultureInfoFilterInput!]
+  culture: StringOperationFilterInput
+  name: StringOperationFilterInput
+  urlSegment: StringOperationFilterInput
+  date: DateTimeOperationFilterInput
+}
+
+input PublishedItemTypeOperationFilterInput {
+  eq: PublishedItemType
+  neq: PublishedItemType
+  in: [PublishedItemType!]
+  nin: [PublishedItemType!]
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input UuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID]
+  nin: [UUID]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}
+
+enum ContentVariation {
+  NOTHING
+  CULTURE
+  SEGMENT
+  CULTURE_AND_SEGMENT
+}
+
+enum Direction {
+  ASCENDING
+  DESCENDING
+}
+
+enum LinkType {
+  CONTENT
+  MEDIA
+  EXTERNAL
+}
+
+"Represents a property fallback strategy"
+enum PropertyFallback {
+  "Do not fallback"
+  NONE
+  "Fallback to default value"
+  DEFAULT_VALUE
+  "Fallback to other languages"
+  LANGUAGE
+  "Fallback to tree ancestors"
+  ANCESTORS
+}
+
+enum PublishedItemType {
+  UNKNOWN
+  ELEMENT
+  CONTENT
+  MEDIA
+  MEMBER
+}
+
+"Modes for requesting by route"
+enum RouteMode {
+  "Cache only will only look in the content cache for the url"
+  CACHE_ONLY
+  "Routing will use routing to determine a route. This will also show redirects"
+  ROUTING
+  "Routing or cache will first use routing to find content and then use the cache if none is found. This also shows redirects"
+  ROUTING_OR_CACHE
+  "Cache or routing will first use the content cache to find content and then use routing. This will only find redirects if no content is found in the content cache"
+  CACHE_OR_ROUTING
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+enum StringPropertyMatchType {
+  EXACT
+  CONTAINS
+  STARTS_WITH
+  ENDS_WITH
+  WILDCARD
+}
+
+scalar Any
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")

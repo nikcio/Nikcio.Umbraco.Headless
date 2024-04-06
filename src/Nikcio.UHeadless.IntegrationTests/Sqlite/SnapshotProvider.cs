@@ -51,7 +51,7 @@ public partial class SnapshotProvider
     private async Task<string> GetContentAsJsonAsync(string content)
     {
         // We want to write the JSON in a human readable format for easier debugging
-        JsonNode? jsonObject = JsonSerializer.Deserialize<JsonNode>(content);
+        JsonNode? jsonObject = GetJsonObject(content);
         if (jsonObject != null)
         {
             var jsonStream = new MemoryStream();
@@ -67,6 +67,24 @@ public partial class SnapshotProvider
             // Anything that is not JSON, we just write as is - This could be an error message or something else
             return content;
         }
+    }
+
+    private static JsonNode? GetJsonObject(string content)
+    {
+        JsonNode? jsonObject;
+
+        // We want to catch any exceptions that might occur when trying to parse the content as JSON so we compare the response rather than if it is valid JSON
+#pragma warning disable CA1031 // Do not catch general exception types
+        try
+        {
+            jsonObject = JsonSerializer.Deserialize<JsonNode>(content);
+        }
+        catch
+        {
+            jsonObject = null;
+        }
+#pragma warning restore CA1031 // Do not catch general exception types
+        return jsonObject;
     }
 
     /// <summary>
