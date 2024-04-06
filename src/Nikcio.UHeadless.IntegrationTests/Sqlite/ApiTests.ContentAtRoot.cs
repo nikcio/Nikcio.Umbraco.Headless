@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 
 namespace Nikcio.UHeadless.IntegrationTests.Sqlite;
 
@@ -18,9 +18,9 @@ public partial class ApiTests
     public async Task ContentAtRoot_Can_Get_FirstNodes_Async(int firstCount, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/FirstNodes");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetFirstNodesContentAtRoot($firstCount: Int!, $culture: String) {
@@ -41,13 +41,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAtRoot_GetFirstNodes_{firstCount}_{culture}";
+        string snapshotName = $"ContentAtRoot_GetFirstNodes_{firstCount}_{culture}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -58,9 +58,9 @@ public partial class ApiTests
     public async Task ContentAtRoot_Can_Get_General_Async(string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralContentAtRoot($culture: String) {
@@ -119,13 +119,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAtRoot_GetGeneral_{culture}";
+        string snapshotName = $"ContentAtRoot_GetGeneral_{culture}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -136,9 +136,9 @@ public partial class ApiTests
     public async Task ContentAtRoot_Can_Get_NodeId_Async(string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdContentAtRoot($culture: String) {
@@ -155,13 +155,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAtRoot_GetNodeId_{culture}";
+        string snapshotName = $"ContentAtRoot_GetNodeId_{culture}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -172,9 +172,9 @@ public partial class ApiTests
     public async Task ContentAtRoot_Can_Get_Preview_NodeId_Async(string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/PreviewNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPreviewNodeIdContentAtRoot($culture: String) {
@@ -191,13 +191,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAtRoot_PreviewNodeId_{culture}";
+        string snapshotName = $"ContentAtRoot_PreviewNodeId_{culture}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -208,9 +208,9 @@ public partial class ApiTests
     public async Task ContentAtRoot_Can_Get_Properties_Async(string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesContentAtRoot($culture: String) {
@@ -241,13 +241,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAtRoot_GetProperties_{culture}";
+        string snapshotName = $"ContentAtRoot_GetProperties_{culture}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

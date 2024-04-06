@@ -27,6 +27,7 @@ public class CreatePropertyValue : ICommand
     /// <summary>
     /// The <see cref="IPublishedProperty"/>
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "This is the standard name for a property in Umbraco and would be confusing to change.")]
     public virtual IPublishedProperty Property { get; set; }
 
     /// <summary>

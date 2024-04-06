@@ -1,4 +1,5 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using System;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Models;
 
 namespace Examples.Docs.PropertyValues;
@@ -9,7 +10,9 @@ public class MyPropertyValue : PropertyValue
 
     public MyPropertyValue(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
-        var value = createPropertyValue.Property.GetValue(createPropertyValue.Culture);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        object? value = createPropertyValue.Property.GetValue(createPropertyValue.Culture);
         if (value == null)
         {
             return;

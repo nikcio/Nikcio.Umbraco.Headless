@@ -41,9 +41,11 @@ public class ContentByTagQuery<TContent>
                                                 [GraphQLDescription("The property variation segment")] string? segment = null,
                                                 [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
+        ArgumentNullException.ThrowIfNull(contentRepository, nameof(contentRepository));
+
         return contentRepository.GetContentList(x =>
         {
-            var taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, culture);
+            IEnumerable<Umbraco.Cms.Core.Models.TaggedEntity> taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, culture);
             return taggedEntities.Select(entity => x?.GetById(entity.EntityId)).OfType<IPublishedContent>();
         }, culture, segment, fallback?.ToFallback());
     }

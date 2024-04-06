@@ -12,12 +12,12 @@ public class PropertyFactory<TProperty> : IPropertyFactory<TProperty>
     /// <summary>
     /// A factory for creating objects with DI
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <summary>
     /// The published value fallback
     /// </summary>
-    protected readonly IPublishedValueFallback publishedValueFallback;
+    protected IPublishedValueFallback publishedValueFallback { get; }
 
     /// <inheritdoc/>
     public PropertyFactory(IDependencyReflectorFactory dependencyReflectorFactory, IPublishedValueFallback publishedValueFallback)
@@ -27,17 +27,20 @@ public class PropertyFactory<TProperty> : IPropertyFactory<TProperty>
     }
 
     /// <inheritdoc/>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Property is the name given to this data by Umbraco and it would be confusing to change.")]
     public virtual TProperty? GetProperty(IPublishedProperty property, IPublishedContent publishedContent, string? culture, string? segment, Fallback? fallback)
     {
         var createPropertyCommand = new CreateProperty(property, culture, publishedContent, segment, publishedValueFallback, fallback);
 
-        var createdProperty = dependencyReflectorFactory.GetReflectedType<IProperty>(typeof(TProperty), new object[] { createPropertyCommand });
+        IProperty? createdProperty = dependencyReflectorFactory.GetReflectedType<IProperty>(typeof(TProperty), new object[] { createPropertyCommand });
         return createdProperty == null ? default : (TProperty) createdProperty;
     }
 
     /// <inheritdoc/>
     public virtual IEnumerable<TProperty?> CreateProperties(IPublishedContent publishedContent, string? culture, string? segment, Fallback? fallback)
     {
+        ArgumentNullException.ThrowIfNull(publishedContent, nameof(publishedContent));
+
         return publishedContent.Properties.Select(IPublishedProperty => GetProperty(IPublishedProperty, publishedContent, culture, segment, fallback));
     }
 }

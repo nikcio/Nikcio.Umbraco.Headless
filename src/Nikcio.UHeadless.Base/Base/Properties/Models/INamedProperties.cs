@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents the low level abstraction for properties that can be queried by the alias name
 /// </summary>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1040:Avoid empty interfaces", Justification = "Represents the low level abstraction for properties that can be queried by the alias name")]
 public interface INamedProperties
 {
 }

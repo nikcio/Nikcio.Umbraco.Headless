@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Commands;
+using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockGrid.Models;
 using Nikcio.UHeadless.Core.Reflection.Factories;
 
@@ -21,13 +21,15 @@ public class BasicBlockGridArea<TBlockGridItem> : BlockGridArea
     /// <inheritdoc/>
     public BasicBlockGridArea(CreateBlockGridArea createBlockGridArea, IDependencyReflectorFactory dependencyReflectorFactory) : base(createBlockGridArea)
     {
+        ArgumentNullException.ThrowIfNull(createBlockGridArea);
+
         Alias = createBlockGridArea.BlockGridArea.Alias;
         RowSpan = createBlockGridArea.BlockGridArea.RowSpan;
         ColumnSpan = createBlockGridArea.BlockGridArea.ColumnSpan;
 
         Blocks = createBlockGridArea.BlockGridArea?.Select(blockGridItem =>
         {
-            var type = typeof(TBlockGridItem);
+            Type type = typeof(TBlockGridItem);
             return dependencyReflectorFactory.GetReflectedType<TBlockGridItem>(type, new object[] { new CreateBlockGridItem(createBlockGridArea.Content, blockGridItem, createBlockGridArea.Culture, createBlockGridArea.Segment, createBlockGridArea.Fallback) });
         }).OfType<TBlockGridItem>().ToList();
     }
@@ -42,6 +44,7 @@ public class BasicBlockGridArea<TBlockGridItem> : BlockGridArea
     /// Gets the alias of the block grid area.
     /// </summary>
     [GraphQLDescription("Gets the alias block grid area.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Alias is a name native to the Umbraco landscape and should therefore be easy to understand.")]
     public virtual string? Alias { get; set; }
 
     /// <summary>

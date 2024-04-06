@@ -1,4 +1,4 @@
-﻿using HotChocolate.Execution.Configuration;
+using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Content.TypeModules;
@@ -21,6 +21,8 @@ public static class UHeadlessGraphQLExtensions
     /// <returns></returns>
     public static IRequestExecutorBuilder AddTracing(this IRequestExecutorBuilder requestExecutorBuilder, TracingOptions tracingOptions)
     {
+        ArgumentNullException.ThrowIfNull(tracingOptions, nameof(tracingOptions));
+
         if (tracingOptions.TracingPreference != null)
         {
             requestExecutorBuilder
@@ -37,6 +39,8 @@ public static class UHeadlessGraphQLExtensions
     /// <returns></returns>
     public static IRequestExecutorBuilder AddUHeadlessGraphQL(this IRequestExecutorBuilder requestExecutorBuilder, UHeadlessGraphQLOptions uHeadlessGraphQLOptions)
     {
+        ArgumentNullException.ThrowIfNull(uHeadlessGraphQLOptions, nameof(uHeadlessGraphQLOptions));
+
         requestExecutorBuilder
             .InitializeOnStartup()
             .AddFiltering()
@@ -44,7 +48,7 @@ public static class UHeadlessGraphQLExtensions
             .AddQueryType<Query>()
             .AddInterfaceType<PropertyValue>();
 
-        foreach (var type in uHeadlessGraphQLOptions.PropertyValueTypes)
+        foreach (Type type in uHeadlessGraphQLOptions.PropertyValueTypes)
         {
             requestExecutorBuilder.AddType(type);
         }

@@ -18,12 +18,13 @@ public partial class ApiTests
     [InlineData("4706632f-6641-4b60-a6d4-31230172b197", null)]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "en-us")]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "da")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task ContentByGuid_Can_Get_General_Async(string guid, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByGuidSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralContentByGuid($guid: UUID!, $culture: String) {
@@ -81,13 +82,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByGuid_GetGeneral_{culture}_{guid}";
+        string snapshotName = $"ContentByGuid_GetGeneral_{culture}_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -103,12 +104,13 @@ public partial class ApiTests
     [InlineData("4706632f-6641-4b60-a6d4-31230172b197", null)]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "en-us")]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "da")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task ContentByGuid_Can_Get_NodeId_Async(string guid, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByGuidSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdContentByGuid($guid: UUID!, $culture: String) {
@@ -124,13 +126,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByGuid_GetNodeId_{culture}_{guid}";
+        string snapshotName = $"ContentByGuid_GetNodeId_{culture}_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -146,12 +148,13 @@ public partial class ApiTests
     [InlineData("4706632f-6641-4b60-a6d4-31230172b197", null)]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "en-us")]
     [InlineData("3fa4a316-249b-487f-8d9e-007581f7b748", "da")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Test")]
     public async Task ContentByGuid_Can_Get_Properties_Async(string guid, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentByGuidSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesContentByGuid($guid: UUID!, $culture: String) {
@@ -181,13 +184,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentByGuid_GetProperties_{culture}_{guid}";
+        string snapshotName = $"ContentByGuid_GetProperties_{culture}_{guid}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

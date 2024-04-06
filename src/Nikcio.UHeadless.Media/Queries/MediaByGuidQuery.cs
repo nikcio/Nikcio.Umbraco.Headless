@@ -26,6 +26,8 @@ public class MediaByGuidQuery<TMedia>
                                         [GraphQLDescription("The id to fetch.")] Guid id,
                                         [GraphQLDescription("Fetch preview values. Preview will show unpublished items.")] bool preview = false)
     {
+        ArgumentNullException.ThrowIfNull(MediaRepository);
+
         return MediaRepository.GetMedia(x => x?.GetById(preview, id));
     }
 }

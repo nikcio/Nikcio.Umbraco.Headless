@@ -18,9 +18,9 @@ public partial class ApiTests
     public async Task ContentDescendantsById_Can_Get_FirstNodes_Async(int id, int firstCount, string? culture)
     {           
         var snapshotProvider = new SnapshotProvider($"{_contentAllSnapshotPath}/FirstNodes");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetFirstNodesContentDescendantsById($id: Int!, $firstCount: Int!, $culture: String) {
@@ -42,13 +42,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentAll_GetFirstNodes_{firstCount}_{culture}_{id}";
+        string snapshotName = $"ContentAll_GetFirstNodes_{firstCount}_{culture}_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -68,9 +68,9 @@ public partial class ApiTests
     public async Task ContentDescendantsById_Can_Get_General_Async(int id, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentDescendantsByIdSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralContentDescendantsById($id: Int!, $culture: String) {
@@ -130,13 +130,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentDescendantsById_GetGeneral_{culture}_{id}";
+        string snapshotName = $"ContentDescendantsById_GetGeneral_{culture}_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -155,9 +155,9 @@ public partial class ApiTests
     public async Task ContentDescendantsById_Can_Get_NodeId_Async(int id, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentDescendantsByIdSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdContentDescendantsById($id: Int!, $culture: String) {
@@ -175,13 +175,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentDescendantsById_GetNodeId_{culture}_{id}";
+        string snapshotName = $"ContentDescendantsById_GetNodeId_{culture}_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -200,9 +200,9 @@ public partial class ApiTests
     public async Task ContentDescendantsById_Can_Get_Properties_Async(int id, string? culture)
     {
         var snapshotProvider = new SnapshotProvider($"{_contentDescendantsByIdSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesContentDescendantsById($id: Int!, $culture: String) {
@@ -234,13 +234,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"ContentDescendantsById_GetProperties_{culture}_{id}";
+        string snapshotName = $"ContentDescendantsById_GetProperties_{culture}_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

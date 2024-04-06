@@ -12,6 +12,8 @@ public abstract class Element<TProperty> : IElement
     /// <inheritdoc/>
     protected Element(CreateElement createElement, IPropertyFactory<TProperty> propertyFactory)
     {
+        ArgumentNullException.ThrowIfNull(createElement, nameof(createElement));
+
         Content = createElement.Content;
         Culture = createElement.Culture;
         PropertyFactory = propertyFactory;

@@ -11,7 +11,7 @@ public class ContentRedirectRepository<TContentRedirect> : IContentRedirectRepos
     /// <summary>
     /// A factory for creating content redirects
     /// </summary>
-    protected readonly IContentRedirectFactory<TContentRedirect> contentRedirectFactory;
+    protected IContentRedirectFactory<TContentRedirect> contentRedirectFactory { get; }
 
     /// <inheritdoc/>
     public ContentRedirectRepository(IContentRedirectFactory<TContentRedirect> contentRedirectFactory)

@@ -24,6 +24,8 @@ public class MemberByUsernameQuery<TMember>
     public virtual TMember? MemberByUsername([Service] IMemberRepository<TMember> memberRepository,
                                             [GraphQLDescription("The username to fetch.")] string username)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository, nameof(memberRepository));
+
         return memberRepository.GetMember(x => x.GetByUsername(username));
     }
 }

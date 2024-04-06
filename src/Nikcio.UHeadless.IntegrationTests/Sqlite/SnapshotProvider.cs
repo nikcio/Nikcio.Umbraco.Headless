@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
@@ -22,17 +22,17 @@ public partial class SnapshotProvider
 
     public async Task AssertIsSnapshotEqualAsync(string snapshotName, string content)
     {
-        var jsonContent = await GetContentAsJsonAsync(content);
-        var snapshot = await GetSnapshotAsync(snapshotName, content);
+        string jsonContent = await GetContentAsJsonAsync(content).ConfigureAwait(true);
+        string snapshot = await GetSnapshotAsync(snapshotName, content).ConfigureAwait(true);
         Assert.Equal(snapshot, jsonContent);
     }
 
     private async Task<string> GetSnapshotAsync(string snapshotName, string content)
     {
-        var snapshotPath = Path.Combine(_snapshotFolder, snapshotName);
+        string snapshotPath = Path.Combine(_snapshotFolder, snapshotName);
         if (File.Exists(snapshotPath))
         {
-            return await File.ReadAllTextAsync(snapshotPath);
+            return await File.ReadAllTextAsync(snapshotPath).ConfigureAwait(true);
         } else
         {
             if (!Directory.Exists(_snapshotFolder))
@@ -40,23 +40,26 @@ public partial class SnapshotProvider
                 Directory.CreateDirectory(_snapshotFolder);
             }
 
-            var contentToSave = await GetContentAsJsonAsync(content);
-            await File.WriteAllTextAsync(snapshotPath, contentToSave);
+            string contentToSave = await GetContentAsJsonAsync(content).ConfigureAwait(true);
+            await File.WriteAllTextAsync(snapshotPath, contentToSave).ConfigureAwait(true);
 
-            throw new Exception($"Snapshot '{snapshotName}' not found. Created a new snapshot at {snapshotPath}");
+            throw new SnapshotNotFoundException($"Snapshot '{snapshotName}' not found. Created a new snapshot at {snapshotPath}");
         }
     }
 
     private async Task<string> GetContentAsJsonAsync(string content)
     {
         // We want to write the JSON in a human readable format for easier debugging
-        await using var jsonStream = new MemoryStream();
-        var jsonObject = JsonSerializer.Deserialize<JsonNode>(content);
+        JsonNode? jsonObject = JsonSerializer.Deserialize<JsonNode>(content);
         if (jsonObject != null)
         {
-            await JsonSerializer.SerializeAsync(jsonStream, jsonObject, _options);
-            var json = Encoding.UTF8.GetString(jsonStream.ToArray());
-            return FormatDateTimesAsUTCInJson(Encoding.UTF8.GetString(jsonStream.ToArray()));
+            var jsonStream = new MemoryStream();
+            await using (jsonStream.ConfigureAwait(true))
+            {
+                await JsonSerializer.SerializeAsync(jsonStream, jsonObject, _options).ConfigureAwait(true);
+                return FormatDateTimesAsUTCInJson(Encoding.UTF8.GetString(jsonStream.ToArray()));
+            }
+            
         } else
         {
             // Anything that is not JSON, we just write as is - This could be an error message or something else
@@ -69,11 +72,26 @@ public partial class SnapshotProvider
     /// </summary>
     /// <param name="json"></param>
     /// <returns></returns>
-    private string FormatDateTimesAsUTCInJson(string json)
+    private static string FormatDateTimesAsUTCInJson(string json)
     {
         return DateTimeRegex().Replace(json, "$1Z");
     }
 
     [GeneratedRegex("""(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3,})((\\u002B|\+)\d{2}:\d{2})""")]
     private static partial Regex DateTimeRegex();
+}
+
+public class SnapshotNotFoundException : Exception
+{
+    public SnapshotNotFoundException(string message) : base(message)
+    {
+    }
+
+    public SnapshotNotFoundException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
+
+    public SnapshotNotFoundException()
+    {
+    }
 }

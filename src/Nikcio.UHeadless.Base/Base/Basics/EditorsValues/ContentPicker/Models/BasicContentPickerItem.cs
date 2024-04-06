@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.EditorsValues.ContentPicker.Commands;
+using Nikcio.UHeadless.Base.Properties.EditorsValues.ContentPicker.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.ContentPicker.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
@@ -68,6 +68,8 @@ public class BasicContentPickerItem : ContentPickerItem
     /// <inheritdoc/>
     public BasicContentPickerItem(CreateContentPickerItem createContentPickerItem) : base(createContentPickerItem)
     {
+        ArgumentNullException.ThrowIfNull(createContentPickerItem);
+
         Content = createContentPickerItem.PublishedContent;
         VariationContextAccessor = createContentPickerItem.VariationContextAccessor;
     }

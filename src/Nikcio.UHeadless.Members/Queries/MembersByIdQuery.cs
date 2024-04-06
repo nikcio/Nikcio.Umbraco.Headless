@@ -24,6 +24,8 @@ public class MembersByIdQuery<TMember>
     public virtual IEnumerable<TMember?> MembersById([Service] IMemberRepository<TMember> memberRepository,
                                             [GraphQLDescription("The ids to fetch.")] int[] ids)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository);
+
         return memberRepository.GetMemberList(x => x.GetAllMembers(ids));
     }
 }

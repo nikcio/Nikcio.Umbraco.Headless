@@ -26,6 +26,8 @@ public class MediaAtRootQuery<TMedia>
     public virtual IEnumerable<TMedia?> MediaAtRoot([Service] IMediaRepository<TMedia> MediaRepository,
                                                     [GraphQLDescription("Fetch preview values. Preview will show unpublished items.")] bool preview = false)
     {
+        ArgumentNullException.ThrowIfNull(MediaRepository);
+
         return MediaRepository.GetMediaList(x => x?.GetAtRoot(preview));
     }
 }

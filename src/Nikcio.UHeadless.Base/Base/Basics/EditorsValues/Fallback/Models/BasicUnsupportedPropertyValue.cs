@@ -18,6 +18,8 @@ public class BasicUnsupportedPropertyValue : PropertyValue
     /// <inheritdoc/>
     public BasicUnsupportedPropertyValue(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
         Message = $"{createPropertyValue.Property.PropertyType.EditorAlias} is not supported in UHeadless by default. Create your own implementation to use this editor.";
     }
 }

@@ -1,4 +1,5 @@
-﻿using HotChocolate;
+using System;
+using HotChocolate;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
@@ -28,6 +29,8 @@ public class CustomBasicContent : BasicContent<BasicProperty, BasicContentType, 
 
     public CustomBasicContent(CreateContent createContent, IPropertyFactory<BasicProperty> propertyFactory, IContentTypeFactory<BasicContentType> contentTypeFactory, IContentFactory<CustomBasicContent> contentFactory, IVariationContextAccessor variationContextAccessor, IPublicAccessService publicAccessService, IContentService contentService, IUmbracoContextAccessor context, ILogger<CustomBasicContent> logger) : base(createContent, propertyFactory, contentTypeFactory, contentFactory, variationContextAccessor)
     {
+        ArgumentNullException.ThrowIfNull(createContent);
+
         _publicAccessService = publicAccessService;
         _contentService = contentService;
         _context = context;
@@ -43,7 +46,7 @@ public class CustomBasicContent : BasicContent<BasicProperty, BasicContentType, 
 
         if (content == null)
         {
-            _logger.LogWarning("Content from content service is null. Id: {contentId}", createContent.Content.Id);
+            _logger.LogWarning("Content from content service is null. Id: {ContentId}", createContent.Content.Id);
             return;
         }
 
@@ -51,7 +54,7 @@ public class CustomBasicContent : BasicContent<BasicProperty, BasicContentType, 
 
         if (entry != null)
         {
-            var cache = _context.GetRequiredUmbracoContext();
+            IUmbracoContext cache = _context.GetRequiredUmbracoContext();
 
             if (cache.Content == null)
             {

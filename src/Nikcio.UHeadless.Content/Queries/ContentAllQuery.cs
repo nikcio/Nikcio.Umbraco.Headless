@@ -36,6 +36,8 @@ public class ContentAllQuery<TContent>
                                                            [GraphQLDescription("The property variation segment")] string? segment = null,
                                                            [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
+        ArgumentNullException.ThrowIfNull(contentRepository);
+
         return contentRepository.GetContentList(x =>
         {
             return x?.GetAtRoot(preview, culture).SelectMany(content => content.Descendants(culture))

@@ -36,10 +36,12 @@ public class BasicMultiUrlPicker<TLink> : PropertyValue
     /// <inheritdoc/>
     public BasicMultiUrlPicker(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory) : base(createPropertyValue)
     {
-        var value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        object? value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (value is IEnumerable<Link> links)
         {
-            foreach (var link in links)
+            foreach (Link link in links)
             {
                 AddLinkPickerItem(dependencyReflectorFactory, link);
             }
@@ -56,7 +58,9 @@ public class BasicMultiUrlPicker<TLink> : PropertyValue
     /// <param name="link"></param>
     protected void AddLinkPickerItem(IDependencyReflectorFactory dependencyReflectorFactory, Link link)
     {
-        var linkItem = dependencyReflectorFactory.GetReflectedType<TLink>(typeof(TLink), new object[] { new CreateMultiUrlPickerItem(link) });
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+
+        TLink? linkItem = dependencyReflectorFactory.GetReflectedType<TLink>(typeof(TLink), new object[] { new CreateMultiUrlPickerItem(link) });
         if (linkItem != null)
         {
             Links.Add(linkItem);

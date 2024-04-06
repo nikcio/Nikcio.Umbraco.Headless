@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.ContentTypes.Commands;
+using Nikcio.UHeadless.ContentTypes.Commands;
 using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Core.Reflection.Factories;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -12,7 +12,7 @@ public class ContentTypeFactory<TContentType> : IContentTypeFactory<TContentType
     /// <summary>
     /// A factory that can create objects with DI
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <inheritdoc/>
     public ContentTypeFactory(IDependencyReflectorFactory dependencyReflectorFactory)
@@ -25,7 +25,7 @@ public class ContentTypeFactory<TContentType> : IContentTypeFactory<TContentType
     {
         var createContentTypeCommand = new CreateContentType(publishedContentType);
 
-        var createdContentType = dependencyReflectorFactory.GetReflectedType<IContentType>(typeof(TContentType), new object[] { createContentTypeCommand });
+        IContentType? createdContentType = dependencyReflectorFactory.GetReflectedType<IContentType>(typeof(TContentType), new object[] { createContentTypeCommand });
 
         return createdContentType == null ? default : (TContentType) createdContentType;
     }

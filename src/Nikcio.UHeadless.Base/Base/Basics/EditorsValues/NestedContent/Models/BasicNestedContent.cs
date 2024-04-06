@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.NestedContent.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.NestedContent.Models;
 using Nikcio.UHeadless.Base.Properties.Models;
@@ -37,15 +37,15 @@ public class BasicNestedContent<TNestedContentElement> : PropertyValue
     /// <inheritdoc/>
     public BasicNestedContent(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory) : base(createPropertyValue)
     {
-        var propertyValue = createPropertyValue.Property.Value<IEnumerable<IPublishedElement>?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        IEnumerable<IPublishedElement>? propertyValue = createPropertyValue.Property.Value<IEnumerable<IPublishedElement>?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (propertyValue == null)
         {
             return;
         }
 
-        Elements = propertyValue?.Select(element =>
+        Elements = propertyValue.Select(element =>
         {
-            var type = typeof(TNestedContentElement);
+            Type type = typeof(TNestedContentElement);
             return dependencyReflectorFactory.GetReflectedType<TNestedContentElement>(type, new object[] { new CreateNestedContentElement(createPropertyValue.Content, element, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback) });
         }).OfType<TNestedContentElement>().ToList();
     }

@@ -11,7 +11,7 @@ public class PropertyRespository<TProperty> : IPropertyRespository<TProperty>
     /// <summary>
     /// A factory for creating properties
     /// </summary>
-    protected readonly IPropertyFactory<TProperty> propertyFactory;
+    protected IPropertyFactory<TProperty> propertyFactory { get; }
 
     /// <inheritdoc/>
     public PropertyRespository(IPropertyFactory<TProperty> propertyFactory)
@@ -22,6 +22,8 @@ public class PropertyRespository<TProperty> : IPropertyRespository<TProperty>
     /// <inheritdoc/>
     public virtual IEnumerable<TProperty?> GetProperties(IPublishedContent content, string? culture, string? segment, Fallback? fallback)
     {
+        ArgumentNullException.ThrowIfNull(content, nameof(content));
+
         return content.Properties.Select(IPublishedProperty => propertyFactory.GetProperty(IPublishedProperty, content, culture, segment, fallback));
     }
 }

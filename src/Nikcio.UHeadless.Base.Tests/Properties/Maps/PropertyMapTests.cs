@@ -25,12 +25,12 @@ public class PropertyMapTests
     {
         var propertyMap = new PropertyMap();
         const string editorName = "Editor";
-        var basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
+        string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
-        var containsEditor = propertyMap.ContainsEditor(editorName);
-        var types = propertyMap.GetAllTypes();
-        var value = propertyMap.GetEditorValue(editorName);
+        bool containsEditor = propertyMap.ContainsEditor(editorName);
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        string value = propertyMap.GetEditorValue(editorName);
 
         Assert.True(containsEditor);
         Assert.Multiple(() =>
@@ -47,12 +47,12 @@ public class PropertyMapTests
         var propertyMap = new PropertyMap();
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
-        var basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
+        string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
-        var containsEditor = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
-        var types = propertyMap.GetAllTypes();
-        var value = propertyMap.GetAliasValue(contentTypeAlias, propertyTypeAlias);
+        bool containsEditor = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        string value = propertyMap.GetAliasValue(contentTypeAlias, propertyTypeAlias);
 
         Assert.True(containsEditor);
         Assert.Multiple(() =>
@@ -69,7 +69,7 @@ public class PropertyMapTests
         var propertyMap = new PropertyMap();
         const string editorName = "Editor";
 
-        var containsEditor = propertyMap.ContainsEditor(editorName);
+        bool containsEditor = propertyMap.ContainsEditor(editorName);
 
         Assert.False(containsEditor);
     }
@@ -81,7 +81,7 @@ public class PropertyMapTests
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
 
-        var containsAlias = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
+        bool containsAlias = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
 
         Assert.False(containsAlias);
     }
@@ -110,7 +110,7 @@ public class PropertyMapTests
     {
         var propertyMap = new PropertyMap();
 
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Empty(types);
     }
@@ -120,10 +120,10 @@ public class PropertyMapTests
     {
         var propertyMap = new PropertyMap();
         const string editorName = "Editor";
-        var basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
+        string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
@@ -140,11 +140,11 @@ public class PropertyMapTests
         const string editorName = "Editor";
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
-        var basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
+        string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
@@ -161,12 +161,12 @@ public class PropertyMapTests
         const string editorName = "Editor";
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
-        var basicClassAlternateAssemblyName = typeof(BasicClassAlternate).AssemblyQualifiedName;
+        string? basicClassAlternateAssemblyName = typeof(BasicClassAlternate).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClassAlternate>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
@@ -183,12 +183,12 @@ public class PropertyMapTests
         const string editorName = "Editor";
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
-        var basicClassAlternateAssemblyName = typeof(BasicClassAlternate).AssemblyQualifiedName;
+        string? basicClassAlternateAssemblyName = typeof(BasicClassAlternate).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClassAlternate>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
@@ -205,12 +205,12 @@ public class PropertyMapTests
         const string editorName = "Editor";
         const string contentTypeAlias = "contentType";
         const string propertyTypeAlias = "propertyType";
-        var basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
+        string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        var types = propertyMap.GetAllTypes();
+        IEnumerable<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {

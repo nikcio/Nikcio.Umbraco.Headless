@@ -14,13 +14,16 @@ public abstract class DictionaryMap
     /// <returns>Whether the mapping has been added</returns>
     protected virtual bool AddMapping<TType>(string key, Dictionary<string, string> map) where TType : class
     {
+        ArgumentNullException.ThrowIfNull(key, nameof(key));
+        ArgumentNullException.ThrowIfNull(map, nameof(map));
+
         if (!map.ContainsKey(key))
         {
             lock (map)
             {
                 if (!map.ContainsKey(key))
                 {
-                    var assemblyQualifiedName = typeof(TType).AssemblyQualifiedName;
+                    string? assemblyQualifiedName = typeof(TType).AssemblyQualifiedName;
                     if (assemblyQualifiedName != null)
                     {
                         map.Add(key, assemblyQualifiedName);

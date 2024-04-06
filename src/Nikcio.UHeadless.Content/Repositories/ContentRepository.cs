@@ -15,6 +15,8 @@ public class ContentRepository<TContent> : CachedElementRepository<TContent>, IC
     /// <inheritdoc/>
     public ContentRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, IUmbracoContextFactory umbracoContextFactory, IContentFactory<TContent> contentFactory, ILogger<ContentRepository<TContent>> logger) : base(publishedSnapshotAccessor, umbracoContextFactory, contentFactory, logger)
     {
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+
         umbracoContextFactory.EnsureUmbracoContext();
     }
 

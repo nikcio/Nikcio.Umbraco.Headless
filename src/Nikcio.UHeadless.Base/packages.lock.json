@@ -50,6 +50,12 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
         }
       },
+      "Microsoft.VisualStudio.Threading.Analyzers": {
+        "type": "Direct",
+        "requested": "[17.9.28, )",
+        "resolved": "17.9.28",
+        "contentHash": "hNfIadilgBXbAOmV7LCdPSmLsUILA3QZhR4Wu9VbFDaHjtU3dCFRfJMbk45galt1pfffz4yI5qT9oUJl+F8mNQ=="
+      },
       "Umbraco.Cms.Web.Common": {
         "type": "Direct",
         "requested": "[11.0.0, )",

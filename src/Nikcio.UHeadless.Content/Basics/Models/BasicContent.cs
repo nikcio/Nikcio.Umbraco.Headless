@@ -93,6 +93,8 @@ public class BasicContent<TProperty, TContentType, TContentRedirect, TContent> :
     /// <inheritdoc/>
     public BasicContent(CreateContent createContent, IPropertyFactory<TProperty> propertyFactory, IContentTypeFactory<TContentType> contentTypeFactory, IContentFactory<TContent> contentFactory, IVariationContextAccessor variationContextAccessor) : base(createContent, propertyFactory)
     {
+        ArgumentNullException.ThrowIfNull(variationContextAccessor, nameof(variationContextAccessor));
+
         ContentFactory = contentFactory;
         ContentTypeFactory = contentTypeFactory;
         variationContextAccessor.VariationContext = new VariationContext(Culture);

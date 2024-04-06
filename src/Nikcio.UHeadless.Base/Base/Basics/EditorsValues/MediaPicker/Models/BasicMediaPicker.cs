@@ -36,13 +36,13 @@ public class BasicMediaPicker<TMediaItem> : PropertyValue
     /// <inheritdoc/>
     public BasicMediaPicker(CreatePropertyValue createPropertyValue, IDependencyReflectorFactory dependencyReflectorFactory) : base(createPropertyValue)
     {
-        var value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        object? value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (value is IPublishedContent mediaItem)
         {
             AddMediaPickerItem(dependencyReflectorFactory, mediaItem, createPropertyValue.Culture);
         } else if (value is IEnumerable<IPublishedContent> mediaItems && mediaItems.Any())
         {
-            foreach (var media in mediaItems)
+            foreach (IPublishedContent media in mediaItems)
             {
                 AddMediaPickerItem(dependencyReflectorFactory, media, createPropertyValue.Culture);
             }
@@ -57,7 +57,9 @@ public class BasicMediaPicker<TMediaItem> : PropertyValue
     /// <param name="culture"></param>
     protected void AddMediaPickerItem(IDependencyReflectorFactory dependencyReflectorFactory, IPublishedContent media, string? culture)
     {
-        var mediaPickerItem = dependencyReflectorFactory.GetReflectedType<TMediaItem>(typeof(TMediaItem), new object[] { new CreateMediaPickerItem(media, culture) });
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+
+        TMediaItem? mediaPickerItem = dependencyReflectorFactory.GetReflectedType<TMediaItem>(typeof(TMediaItem), new object[] { new CreateMediaPickerItem(media, culture) });
         if (mediaPickerItem != null)
         {
             MediaItems.Add(mediaPickerItem);

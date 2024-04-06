@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Base.Composers;
 using Nikcio.UHeadless.Media.Extensions;
 using Nikcio.UHeadless.Media.NotificationHandlers;
@@ -16,6 +16,8 @@ public class MediaComposer : IUHeadlessComposer
     /// <inheritdoc/>
     public void Compose(IUmbracoBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
         if (!MediaExtensions.UsingMediaQueries)
         {
             return;

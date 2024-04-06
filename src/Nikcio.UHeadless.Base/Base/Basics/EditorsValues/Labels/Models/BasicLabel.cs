@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Extensions;
 
@@ -20,7 +20,9 @@ public class BasicLabel : PropertyValue
     /// <inheritdoc/>
     public BasicLabel(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
-        var value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        object? value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (value != null)
         {
             if (value is DateTime dateTimeValue)

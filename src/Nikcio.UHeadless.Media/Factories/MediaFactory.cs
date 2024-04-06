@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Elements.Commands;
+using Nikcio.UHeadless.Base.Elements.Commands;
 using Nikcio.UHeadless.Core.Reflection.Factories;
 using Nikcio.UHeadless.Media.Commands;
 using Nikcio.UHeadless.Media.Models;
@@ -13,7 +13,7 @@ public class MediaFactory<TMedia> : IMediaFactory<TMedia>
     /// <summary>
     /// A factory for creating object with DI
     /// </summary>
-    protected readonly IDependencyReflectorFactory dependencyReflectorFactory;
+    protected IDependencyReflectorFactory dependencyReflectorFactory { get; }
 
     /// <inheritdoc/>
     public MediaFactory(IDependencyReflectorFactory dependencyReflectorFactory)
@@ -27,7 +27,7 @@ public class MediaFactory<TMedia> : IMediaFactory<TMedia>
         var createElementCommand = new CreateElement(element, culture, segment, fallback);
         var createMediaCommand = new CreateMedia(element, createElementCommand);
 
-        var createdContent = dependencyReflectorFactory.GetReflectedType<IMedia>(typeof(TMedia), new object[] { createMediaCommand });
+        IMedia? createdContent = dependencyReflectorFactory.GetReflectedType<IMedia>(typeof(TMedia), new object[] { createMediaCommand });
         return createdContent == null ? default : (TMedia) createdContent;
     }
 

@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Basics.Models;
+using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockList.Commands;
 using Nikcio.UHeadless.Base.Properties.EditorsValues.BlockList.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
@@ -24,6 +24,9 @@ public class BasicBlockListItem<TProperty> : BlockListItem
     /// <inheritdoc/>
     public BasicBlockListItem(CreateBlockListItem createBlockListItem, IPropertyFactory<TProperty> propertyFactory) : base(createBlockListItem)
     {
+        ArgumentNullException.ThrowIfNull(createBlockListItem);
+        ArgumentNullException.ThrowIfNull(propertyFactory);
+
         if (createBlockListItem.BlockListItem == null)
         {
             return;
@@ -31,7 +34,7 @@ public class BasicBlockListItem<TProperty> : BlockListItem
         if (createBlockListItem.Content != null)
         {
             ContentAlias = createBlockListItem.BlockListItem.Content.ContentType?.Alias;
-            foreach (var property in createBlockListItem.BlockListItem.Content.Properties)
+            foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createBlockListItem.BlockListItem.Content.Properties)
             {
                 ContentProperties.Add(propertyFactory.GetProperty(property, createBlockListItem.Content, createBlockListItem.Culture, createBlockListItem.Segment, createBlockListItem.Fallback));
             }
@@ -39,7 +42,7 @@ public class BasicBlockListItem<TProperty> : BlockListItem
             if (createBlockListItem.BlockListItem.Settings != null)
             {
                 SettingsAlias = createBlockListItem.BlockListItem.Settings.ContentType?.Alias;
-                foreach (var property in createBlockListItem.BlockListItem.Settings.Properties)
+                foreach (Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty property in createBlockListItem.BlockListItem.Settings.Properties)
                 {
                     SettingsProperties.Add(propertyFactory.GetProperty(property, createBlockListItem.Content, createBlockListItem.Culture, createBlockListItem.Segment, createBlockListItem.Fallback));
                 }

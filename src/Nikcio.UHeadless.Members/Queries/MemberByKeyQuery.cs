@@ -24,6 +24,8 @@ public class MemberByKeyQuery<TMember>
     public virtual TMember? MemberByKey([Service] IMemberRepository<TMember> memberRepository,
                                             [GraphQLDescription("The key to fetch.")] Guid key)
     {
+        ArgumentNullException.ThrowIfNull(memberRepository);
+
         return memberRepository.GetMember(x => x.GetByKey(key));
     }
 }

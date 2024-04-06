@@ -15,6 +15,8 @@ public static class PropertyExtensions
     /// <returns></returns>
     public static IServiceCollection AddPropertyServices(this IServiceCollection services, PropertyServicesOptions propertyServicesOptions)
     {
+        ArgumentNullException.ThrowIfNull(propertyServicesOptions, nameof(propertyServicesOptions));
+
         services
             .AddPropertyFactories()
             .AddPropertyMaps(propertyServicesOptions.PropertyMapOptions)

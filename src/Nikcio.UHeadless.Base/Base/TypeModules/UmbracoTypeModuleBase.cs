@@ -29,7 +29,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     /// <summary>
     /// Represents the property map
     /// </summary>
-    protected readonly IPropertyMap PropertyMap;
+    protected IPropertyMap PropertyMap { get; }
 
     /// <inheritdoc/>
     public event EventHandler<EventArgs>? TypesChanged;
@@ -88,11 +88,11 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
 
         AddEmptyPropertyType(objectTypes);
 
-        var contentTypes = GetContentTypes().ToArray();
+        TContentType[] contentTypes = GetContentTypes().ToArray();
 
-        foreach (var contentType in contentTypes)
+        foreach (TContentType? contentType in contentTypes)
         {
-            var interfaceTypeDefinition = CreateInterfaceTypeDefinition(contentType);
+            InterfaceTypeDefinition interfaceTypeDefinition = CreateInterfaceTypeDefinition(contentType);
 
             if (interfaceTypeDefinition.Fields.Count == 0)
             {
@@ -101,7 +101,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
 
             types.Add(InterfaceType.CreateUnsafe(interfaceTypeDefinition));
 
-            var objectTypeDefinition = CreateObjectTypeDefinition(contentType);
+            ObjectTypeDefinition objectTypeDefinition = CreateObjectTypeDefinition(contentType);
 
             if (objectTypeDefinition.Fields.Count == 0)
             {
@@ -119,9 +119,9 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
         {
             d.ResolveAbstractType((context, result) =>
             {
-                var element = context.ScopedContextData[ElementScopedStateKey];
+                object? element = context.ScopedContextData[ElementScopedStateKey];
 
-                var elementType = element?.GetType();
+                Type? elementType = element?.GetType();
 
                 if (element == null || elementType == null || ValidateElementType(elementType))
                 {
@@ -142,7 +142,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
                 return objectTypes.Find(type => type.Name == GetObjectTypeName(content.ContentType.Alias)) ?? objectTypes[0];
             });
 
-            foreach (var objectType in objectTypes)
+            foreach (ObjectType objectType in objectTypes)
             {
                 d.Type(objectType);
             }
@@ -174,7 +174,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     {
         var typeDefinition = new ObjectTypeDefinition(GetObjectTypeName(contentType.Alias), contentType.Description);
 
-        foreach (var property in contentType.CompositionPropertyTypes)
+        foreach (IPropertyType property in contentType.CompositionPropertyTypes)
         {
             string propertyTypeName = PropertyMap.GetPropertyTypeName(contentType.Alias, property.Alias, property.PropertyEditorAlias);
 
@@ -187,11 +187,11 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
 
             typeDefinition.Fields.Add(new ObjectFieldDefinition(property.Alias, property.Description, TypeReference.Parse(propertyType.Name), pureResolver: context =>
             {
-                var propertyValueFactory = context.Service<IPropertyValueFactory>();
+                IPropertyValueFactory propertyValueFactory = context.Service<IPropertyValueFactory>();
 
-                var element = context.ScopedContextData[ElementScopedStateKey];
+                object? element = context.ScopedContextData[ElementScopedStateKey];
 
-                var elementType = element?.GetType();
+                Type? elementType = element?.GetType();
 
                 if (element == null || elementType == null || ValidateElementType(elementType))
                 {
@@ -209,13 +209,13 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
                     return default;
                 }
 
-                var culture = (string?) elementType.GetProperty(nameof(Element<BasicProperty>.Culture))?.GetValue(element);
+                string? culture = (string?) elementType.GetProperty(nameof(Element<BasicProperty>.Culture))?.GetValue(element);
 
-                var segment = (string?) elementType.GetProperty(nameof(Element<BasicProperty>.Segment))?.GetValue(element);
+                string? segment = (string?) elementType.GetProperty(nameof(Element<BasicProperty>.Segment))?.GetValue(element);
 
                 var fallback = (Fallback?) elementType.GetProperty(nameof(Element<BasicProperty>.Fallback))?.GetValue(element);
 
-                var property = content.GetProperty(context.Selection.ResponseName);
+                IPublishedProperty? property = content.GetProperty(context.Selection.ResponseName);
 
                 if (property == null)
                 {
@@ -227,7 +227,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
             }));
         }
 
-        foreach (var composite in contentType.CompositionAliases())
+        foreach (string composite in contentType.CompositionAliases())
         {
             typeDefinition.Interfaces.Add(TypeReference.Parse(GetInterfaceTypeName(composite)));
         }
@@ -241,7 +241,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     {
         var interfaceTypeDefinition = new InterfaceTypeDefinition(GetInterfaceTypeName(contentType.Alias), contentType.Description);
 
-        foreach (var property in contentType.CompositionPropertyTypes)
+        foreach (IPropertyType property in contentType.CompositionPropertyTypes)
         {
             string propertyTypeName = PropertyMap.GetPropertyTypeName(contentType.Alias, property.Alias, property.PropertyEditorAlias);
 

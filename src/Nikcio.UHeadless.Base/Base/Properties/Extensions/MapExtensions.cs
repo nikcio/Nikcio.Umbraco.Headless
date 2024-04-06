@@ -16,12 +16,14 @@ public static class MapExtensions
     /// <returns></returns>
     public static IServiceCollection AddPropertyMaps(this IServiceCollection services, PropertyMapOptions propertyMapOptions)
     {
+        ArgumentNullException.ThrowIfNull(propertyMapOptions, nameof(propertyMapOptions));
+
         services
             .AddSingleton(propertyMapOptions.PropertyMap);
 
         if (propertyMapOptions.PropertyMappings != null)
         {
-            foreach (var propertyMapping in propertyMapOptions.PropertyMappings)
+            foreach (Action<Maps.IPropertyMap> propertyMapping in propertyMapOptions.PropertyMappings)
             {
                 propertyMapping.Invoke(propertyMapOptions.PropertyMap);
             }

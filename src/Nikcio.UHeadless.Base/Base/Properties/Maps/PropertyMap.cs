@@ -10,17 +10,17 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <summary>
     /// Editor mappings
     /// </summary>
-    protected readonly Dictionary<string, string> editorPropertyMap = new();
+    protected Dictionary<string, string> editorPropertyMap { get; } = new();
 
     /// <summary>
     /// Alias mappings
     /// </summary>
-    protected readonly Dictionary<string, string> aliasPropertyMap = new();
+    protected Dictionary<string, string> aliasPropertyMap { get; } = new();
 
     /// <summary>
     /// A list of all the types used in the property mapping
     /// </summary>
-    protected readonly HashSet<Type> types = new();
+    protected HashSet<Type> types { get; } = new();
 
     /// <inheritdoc/>
     public virtual void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
@@ -73,13 +73,18 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <inheritdoc/>
     public virtual string GetEditorMappingKey(string editorName)
     {
-        return editorName.ToLowerInvariant();
+        ArgumentNullException.ThrowIfNull(editorName, nameof(editorName));
+
+        return editorName.ToUpperInvariant();
     }
 
     /// <inheritdoc/>
     public virtual string GetAliasMappingKey(string contentTypeAlias, string propertyTypeAlias)
     {
-        return $"{contentTypeAlias}&&{propertyTypeAlias}".ToLowerInvariant();
+        ArgumentNullException.ThrowIfNull(contentTypeAlias, nameof(contentTypeAlias));
+        ArgumentNullException.ThrowIfNull(propertyTypeAlias, nameof(propertyTypeAlias));
+
+        return $"{contentTypeAlias}&&{propertyTypeAlias}".ToUpperInvariant();
     }
 
     /// <inheritdoc/>

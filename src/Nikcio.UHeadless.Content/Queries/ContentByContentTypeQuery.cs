@@ -34,9 +34,11 @@ public class ContentByContentTypeQuery<TContent>
                                                            [GraphQLDescription("The property variation segment")] string? segment = null,
                                                            [GraphQLDescription("The property value fallback strategy")] IEnumerable<PropertyFallback>? fallback = null)
     {
+        ArgumentNullException.ThrowIfNull(contentRepository, nameof(contentRepository));
+
         return contentRepository.GetContentList(x =>
         {
-            var publishedContentType = x?.GetContentType(contentType);
+            Umbraco.Cms.Core.Models.PublishedContent.IPublishedContentType? publishedContentType = x?.GetContentType(contentType);
             return publishedContentType != null ? x?.GetByContentType(publishedContentType) : default;
         }, culture, segment, fallback?.ToFallback());
     }

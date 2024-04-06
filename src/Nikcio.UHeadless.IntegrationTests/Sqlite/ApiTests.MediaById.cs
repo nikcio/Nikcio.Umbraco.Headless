@@ -14,9 +14,9 @@ public partial class ApiTests
     public async Task MediaById_Can_Get_General_Async(int id)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByIdSnapshotPath}/GetGeneral");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetGeneralMediaById($id: Int!) {
@@ -67,13 +67,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaById_GetGeneral_{id}";
+        string snapshotName = $"MediaById_GetGeneral_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -85,9 +85,9 @@ public partial class ApiTests
     public async Task MediaById_Can_Get_NodeId_Async(int id)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByIdSnapshotPath}/GetNodeId");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetNodeIdMediaById($id: Int!) {
@@ -102,13 +102,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaById_GetNodeId_{id}";
+        string snapshotName = $"MediaById_GetNodeId_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 
@@ -120,9 +120,9 @@ public partial class ApiTests
     public async Task MediaById_Can_Get_Properties_Async(int id)
     {
         var snapshotProvider = new SnapshotProvider($"{_mediaByIdSnapshotPath}/GetProperties");
-        var client = _factory.CreateClient();
+        HttpClient client = _factory.CreateClient();
 
-        var request = JsonContent.Create(new
+        using var request = JsonContent.Create(new
         {
             query = """
                 query GetPropertiesMediaById($id: Int!) {
@@ -151,13 +151,13 @@ public partial class ApiTests
             }
         });
 
-        var response = await client.PostAsync("/graphql", request);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        var snapshotName = $"MediaById_GetProperties_{id}";
+        string snapshotName = $"MediaById_GetProperties_{id}";
 
-        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent);
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.ContentTypes.Commands;
+using Nikcio.UHeadless.ContentTypes.Commands;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.ContentTypes.Models;
@@ -9,6 +9,8 @@ public abstract class ContentType : IContentType
     /// <inheritdoc/>
     protected ContentType(CreateContentType createContentType)
     {
+        ArgumentNullException.ThrowIfNull(createContentType, nameof(createContentType));
+
         PublishedContentType = createContentType.PublishedContentType;
     }
 

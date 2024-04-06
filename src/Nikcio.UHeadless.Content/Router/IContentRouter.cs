@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Content.Models;
+using Nikcio.UHeadless.Content.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Routing;
 
@@ -33,6 +33,7 @@ public interface IContentRouter<TContent, TContentRedirect> //TODO: Remove TCont
     /// <param name="segment"></param>
     /// <param name="fallback"></param>
     /// <returns></returns>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "Would be breaking to change")]
     Task<TContent?> GetContentByRouting(string route, string baseUrl, string? culture, string? segment, Fallback? fallback);
 
     /// <summary>
@@ -55,6 +56,7 @@ public interface IContentRouter<TContent, TContentRedirect> //TODO: Remove TCont
     /// <param name="segment"></param>
     /// <param name="fallback"></param>
     /// <returns></returns>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "Would be breaking to change")]
     Task<IEnumerable<TContent?>> GetContentDescendantsByRouting(string route, string baseUrl, string? culture, string? segment, Fallback? fallback);
 
     /// <summary>

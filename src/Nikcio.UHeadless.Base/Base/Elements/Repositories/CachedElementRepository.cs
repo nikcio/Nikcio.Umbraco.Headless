@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Base.Elements.Factories;
 using Nikcio.UHeadless.Base.Elements.Models;
@@ -18,16 +18,18 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     /// <summary>
     /// An accessor to the published shapshot
     /// </summary>
-    protected readonly IPublishedSnapshotAccessor publishedSnapshotAccessor;
+    protected IPublishedSnapshotAccessor publishedSnapshotAccessor { get; }
 
     /// <summary>
     /// A logger
     /// </summary>
-    protected readonly ILogger logger;
+    protected ILogger logger { get; }
 
     /// <inheritdoc/>
     protected CachedElementRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, IUmbracoContextFactory umbracoContextFactory, IElementFactory<TElement> elementFactory, ILogger logger) : base(umbracoContextFactory, elementFactory)
     {
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+
         umbracoContextFactory.EnsureUmbracoContext();
         this.publishedSnapshotAccessor = publishedSnapshotAccessor;
         this.logger = logger;
@@ -45,7 +47,9 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     protected virtual TElement? GetElement<TPublishedCache>(Func<TPublishedCache?, IPublishedContent?> fetch, string? culture, string? segment, Fallback? fallback, Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
         where TPublishedCache : IPublishedCache
     {
-        var publishedCache = GetPublishedCache(cacheSelector);
+        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+
+        IPublishedCache? publishedCache = GetPublishedCache(cacheSelector);
         if (publishedCache is TPublishedCache typedPublishedCache)
         {
             return base.GetElement(fetch(typedPublishedCache), culture, segment, fallback);
@@ -65,7 +69,9 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     protected virtual IEnumerable<TElement?> GetElementList<TPublishedCache>(Func<TPublishedCache?, IEnumerable<IPublishedContent>?> fetch, string? culture, string? segment, Fallback? fallback, Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
         where TPublishedCache : IPublishedCache
     {
-        var publishedCache = GetPublishedCache(cacheSelector);
+        ArgumentNullException.ThrowIfNull(fetch, nameof(fetch));
+
+        IPublishedCache? publishedCache = GetPublishedCache(cacheSelector);
         if (publishedCache is TPublishedCache typedPublishedCache)
         {
             return base.GetElementList(fetch(typedPublishedCache), culture, segment, fallback);
@@ -80,14 +86,16 @@ public abstract class CachedElementRepository<TElement> : ElementRepository<TEle
     /// <returns></returns>
     protected virtual IPublishedCache? GetPublishedCache(Expression<Func<IPublishedSnapshot, IPublishedCache?>> cacheSelector)
     {
-        if (publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshot))
+        ArgumentNullException.ThrowIfNull(cacheSelector, nameof(cacheSelector));
+
+        if (publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot))
         {
             if (publishedSnapshot is null)
             {
                 logger.LogError("Unable to get publishedSnapShot");
                 return null;
             }
-            var compiledCacheSelector = cacheSelector.Compile();
+            Func<IPublishedSnapshot, IPublishedCache?> compiledCacheSelector = cacheSelector.Compile();
             return compiledCacheSelector(publishedSnapshot);
         }
         logger.LogError("Unable to get publishedSnapShot");

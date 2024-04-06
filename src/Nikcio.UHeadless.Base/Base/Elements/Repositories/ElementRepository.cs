@@ -15,11 +15,13 @@ public abstract class ElementRepository<TElement>
     /// <summary>
     /// A factory for creating elements
     /// </summary>
-    protected readonly IElementFactory<TElement> elementFactory;
+    protected IElementFactory<TElement> elementFactory { get; }
 
     /// <inheritdoc/>
     protected ElementRepository(IUmbracoContextFactory umbracoContextFactory, IElementFactory<TElement> elementFactory)
     {
+        ArgumentNullException.ThrowIfNull(umbracoContextFactory, nameof(umbracoContextFactory));
+
         umbracoContextFactory.EnsureUmbracoContext();
         this.elementFactory = elementFactory;
     }

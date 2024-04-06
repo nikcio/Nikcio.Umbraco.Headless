@@ -27,9 +27,7 @@ builder.CreateUmbracoBuilder()
         {
             PropertyMapOptions = new()
             {
-                PropertyMappings = new()
-                {
-                }
+                PropertyMappings = []
             },
         },
         TracingOptions = new()
@@ -81,7 +79,7 @@ builder.CreateUmbracoBuilder()
 
 WebApplication app = builder.Build();
 
-await app.BootUmbracoAsync();
+await app.BootUmbracoAsync().ConfigureAwait(false);
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -113,7 +111,7 @@ app.UseUmbraco()
         u.UseWebsiteEndpoints();
     });
 
-await app.RunAsync();
+await app.RunAsync().ConfigureAwait(false);
 
 public partial class Program
 {

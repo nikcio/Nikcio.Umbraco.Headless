@@ -26,13 +26,15 @@ public class BasicRichText : PropertyValue
     /// <inheritdoc/>
     public BasicRichText(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
-        var propertyValue = createPropertyValue.Property.Value<IHtmlEncodedString?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+        ArgumentNullException.ThrowIfNull(createPropertyValue);
+
+        IHtmlEncodedString? propertyValue = createPropertyValue.Property.Value<IHtmlEncodedString?>(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
         if (propertyValue == null)
         {
             return;
         }
 
-        Value = propertyValue?.ToHtmlString();
+        Value = propertyValue.ToHtmlString();
         SourceValue = createPropertyValue.Property.GetSourceValue(createPropertyValue.Culture)?.ToString();
     }
 }
