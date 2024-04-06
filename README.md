@@ -14,10 +14,9 @@ The Nikcio.UHeadless package is compatible with the following Umbraco versions:
 
 | Umbraco version      | Supported Versions    |
 |----------------------|-----------------------|
-| Umbraco 9            | v1.x.x & v2.x.x       |
 | Umbraco 10           | v2.x.x & v3.x.x       |
-| Umbraco 11           | v3.x.x & v4.x.x       |
 | Umbraco 12           | v4.x.x                |
+| Umbraco 13           | v4.2.x+               |
 
 For more information, please refer to the [Versioning](#versioning) section.
 
@@ -120,21 +119,15 @@ vX.Y.Z
 - Y (Minor): Signifies a feature change.
 - Z (Patch): Represents bug fixes.
 
-It is important to note that the versioning of Nikcio.UHeadless does not align with Umbraco's major versions. To manage compatibility, the following versioning tactic has been adopted:
+### Full version table
 
-### Versioning Tactic
-
-Each Umbraco LTS (Long-Term Support) version is associated with a corresponding UHeadless LTS version. Any other UHeadless majors that are not marked as LTS will cease to receive support when a new major version is released. This approach allows you, as a developer, to choose the frequency of updates for both UHeadless and Umbraco.
-
-The versioning tracks are as follows:
-
-| Track           | UHeadless Version | Supported Umbraco Version |
-| --------------- | ----------------- | ------------------------- |
-| LTS             | v3.x.x            | v10.x.x & v11.x.x         |
-| Edge            | v4.x.x            | v11.x.x & v12.x.x         |
-| Current Stable  | v3.x.x            | v10.x.x & v11.x.x         |
-
-Please note that LTS versions do not receive new features but will receive bug fixes when a newer major version is available.
+| Umbraco version      | Supported Versions    | Development                           |
+|----------------------|-----------------------|---------------------------------------|
+| Umbraco 9            | v1.x.x & v2.x.x       | No development                        |
+| Umbraco 10           | v2.x.x & v3.x.x       | Only reported issues for v3.x.x       |
+| Umbraco 11           | v3.x.x & v4.x.x       | No development                        |
+| Umbraco 12           | v4.x.x                | Only reported issues for v4.x.x       |
+| Umbraco 13           | v4.2.x+               | Active branch                         |
 
 ## Contributing
 
