@@ -41,7 +41,7 @@ public class ContentAllQuery<TContent>
         return contentRepository.GetContentList(x =>
         {
             return x?.GetAtRoot(preview, culture).SelectMany(content => content.Descendants(culture))
-                .Concat(x?.GetAtRoot(preview, culture) ?? Enumerable.Empty<IPublishedContent>());
+                .Concat(x.GetAtRoot(preview, culture) ?? Enumerable.Empty<IPublishedContent>());
         }, culture, segment, fallback?.ToFallback());
     }
 }
