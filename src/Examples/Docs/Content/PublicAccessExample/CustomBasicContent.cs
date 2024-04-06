@@ -19,46 +19,39 @@ namespace Examples.Docs.Content.PublicAccessExample;
 [GraphQLDescription("Represents an extended content item.")]
 public class CustomBasicContent : BasicContent<BasicProperty, BasicContentType, BasicContentRedirect, CustomBasicContent>
 {
-    private readonly IPublicAccessService _publicAccessService;
-    private readonly IContentService _contentService;
-    private readonly IUmbracoContextAccessor _context;
-    private readonly ILogger<CustomBasicContent> _logger;
-
     [GraphQLDescription("Gets the restrict public access settings of the content item.")]
     public PermissionsModel? Permissions { get; set; }
 
     public CustomBasicContent(CreateContent createContent, IPropertyFactory<BasicProperty> propertyFactory, IContentTypeFactory<BasicContentType> contentTypeFactory, IContentFactory<CustomBasicContent> contentFactory, IVariationContextAccessor variationContextAccessor, IPublicAccessService publicAccessService, IContentService contentService, IUmbracoContextAccessor context, ILogger<CustomBasicContent> logger) : base(createContent, propertyFactory, contentTypeFactory, contentFactory, variationContextAccessor)
     {
         ArgumentNullException.ThrowIfNull(createContent);
-
-        _publicAccessService = publicAccessService;
-        _contentService = contentService;
-        _context = context;
-        _logger = logger;
+        ArgumentNullException.ThrowIfNull(logger);
+        ArgumentNullException.ThrowIfNull(publicAccessService);
+        ArgumentNullException.ThrowIfNull(contentService);
 
         if (createContent.Content == null)
         {
-            _logger.LogWarning("Content is null");
+            logger.LogWarning("Content is null");
             return;
         }
 
-        IContent? content = _contentService.GetById(createContent.Content.Id);
+        IContent? content = contentService.GetById(createContent.Content.Id);
 
         if (content == null)
         {
-            _logger.LogWarning("Content from content service is null. Id: {ContentId}", createContent.Content.Id);
+            logger.LogWarning("Content from content service is null. Id: {ContentId}", createContent.Content.Id);
             return;
         }
 
-        PublicAccessEntry? entry = _publicAccessService.GetEntryForContent(content);
+        PublicAccessEntry? entry = publicAccessService.GetEntryForContent(content);
 
         if (entry != null)
         {
-            IUmbracoContext cache = _context.GetRequiredUmbracoContext();
+            IUmbracoContext cache = context.GetRequiredUmbracoContext();
 
             if (cache.Content == null)
             {
-                _logger.LogWarning("Content cache is null on Umbraco context");
+                logger.LogWarning("Content cache is null on Umbraco context");
                 return;
             }
 
