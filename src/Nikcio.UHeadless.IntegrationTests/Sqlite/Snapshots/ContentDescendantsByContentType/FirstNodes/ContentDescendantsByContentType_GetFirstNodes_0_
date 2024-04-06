@@ -1,0 +1,10 @@
+{
+  "data": {
+    "contentDescendantsByContentType": {
+      "nodes": [],
+      "pageInfo": {
+        "hasNextPage": true
+      }
+    }
+  }
+}

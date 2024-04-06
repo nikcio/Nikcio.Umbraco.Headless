@@ -5,20 +5,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace Nikcio.UHeadless.IntegrationTests.Sqlite;
 
-public class ApplicactionFactory : WebApplicationFactory<Program>//, IAsyncLifetime
+public class ApplicactionFactory : WebApplicationFactory<Program>
 {
-    //private readonly SqliteConnection _sqliteConnection = new(SqliteConnectionStrings.ConnectionString());
-
-    //public async Task InitializeAsync()
-    //{
-    //    await _sqliteConnection.OpenAsync().ConfigureAwait(true);
-    //}
-
-    //Task IAsyncLifetime.DisposeAsync()
-    //{
-    //    return _sqliteConnection.CloseAsync();
-    //}
-
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
@@ -27,7 +15,7 @@ public class ApplicactionFactory : WebApplicationFactory<Program>//, IAsyncLifet
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
-                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(),//_sqliteConnection.ConnectionString,
+                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(),
                 ["ConnectionStrings:umbracoDbDSN_ProviderName"] = "Microsoft.Data.Sqlite"
             });
         });
@@ -38,6 +26,5 @@ public class ApplicactionFactory : WebApplicationFactory<Program>//, IAsyncLifet
     {
         GC.SuppressFinalize(this);
         await base.DisposeAsync().ConfigureAwait(true);
-        //await _sqliteConnection.DisposeAsync().ConfigureAwait(true);
     }
 }

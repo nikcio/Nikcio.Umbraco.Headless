@@ -1,0 +1,26 @@
+{
+  "data": {
+    "contentByContentType": {
+      "nodes": [
+        {
+          "id": 1152
+        },
+        {
+          "id": 1153
+        },
+        {
+          "id": 1154
+        },
+        {
+          "id": 1159
+        },
+        {
+          "id": 1160
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": true
+      }
+    }
+  }
+}
