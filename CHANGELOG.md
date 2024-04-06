@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.0-preview002...v4.2.0) (2024-04-06)
+
+
+### Features
+
+* Convert unit test project ([457ed6a](https://github.com/nikcio/Nikcio.UHeadless/commit/457ed6a50bd7f30f097370f1232b57ae5ed19181))
+* Doc deps ([395a6b8](https://github.com/nikcio/Nikcio.UHeadless/commit/395a6b83224c07425c6b5f5f15545033e2bf3747))
+* Fix timezone diff ([83d6c0a](https://github.com/nikcio/Nikcio.UHeadless/commit/83d6c0a360faa58b8676b284083b75a72e2edf71))
+* Format date times ([07c2d57](https://github.com/nikcio/Nikcio.UHeadless/commit/07c2d57963a0617ea3f687ccf99a82d8044250f2))
+* Install sharp to docs project ([c937e64](https://github.com/nikcio/Nikcio.UHeadless/commit/c937e646d5c8c562b268a884f116fedccc1da42a))
+* Recreate snapshots ([31a38dd](https://github.com/nikcio/Nikcio.UHeadless/commit/31a38dd8dde92dc09cc65e02c24e78bb1f5168f9))
+* Reset snapshots ([3955f84](https://github.com/nikcio/Nikcio.UHeadless/commit/3955f84fb84ada7a91336d5b48be7ff155508e3e))
+* Rewrite tests ([a0deda4](https://github.com/nikcio/Nikcio.UHeadless/commit/a0deda4cf65b80bf8c6ae6665dad9a18ace67782))
+* Update deps ([78ea1a5](https://github.com/nikcio/Nikcio.UHeadless/commit/78ea1a593322f9a13414def9cb7c449f984dfffa))
+* Update snapshots ([623f77a](https://github.com/nikcio/Nikcio.UHeadless/commit/623f77af27f5bdb7a6201f27aa009d834306cf9e))
+* Update test deps ([6e4d95d](https://github.com/nikcio/Nikcio.UHeadless/commit/6e4d95de4246a4f3528e5788f487af01de8fab3e))
+
+
+### Bug Fixes
+
+* Correctly escape backslash ([f3f6a23](https://github.com/nikcio/Nikcio.UHeadless/commit/f3f6a23877bd72a2c6427d15699c2ab854b80738))
+* Fixed path for snapshots ([8ee1239](https://github.com/nikcio/Nikcio.UHeadless/commit/8ee1239ee63f7c86b2035f3189f551e829db777a))
+
+## [4.2.0-preview001](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.1.1...v4.2.0-preview001) (2024-03-06)
+
+
+### Features
+
+* update deps 3 ([efc9c6c](https://github.com/nikcio/Nikcio.UHeadless/commit/efc9c6c7ae429aeed3217184071c4809111ba730))
+* Update usync files ([b1e3d9c](https://github.com/nikcio/Nikcio.UHeadless/commit/b1e3d9c00869bc5c7293695d6f760392735eb494))
+
 ### [4.1.1](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.1.0...v4.1.1) (2023-08-02)
 
 
