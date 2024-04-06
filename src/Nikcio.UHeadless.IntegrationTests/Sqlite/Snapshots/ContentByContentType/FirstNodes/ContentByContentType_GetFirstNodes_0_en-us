@@ -1,0 +1,10 @@
+{
+  "data": {
+    "contentByContentType": {
+      "nodes": [],
+      "pageInfo": {
+        "hasNextPage": true
+      }
+    }
+  }
+}

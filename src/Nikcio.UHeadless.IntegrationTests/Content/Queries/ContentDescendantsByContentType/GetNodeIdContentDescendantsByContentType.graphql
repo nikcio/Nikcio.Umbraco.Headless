@@ -1,7 +1,0 @@
-query GetNodeIdContentDescendantsByContentType($culture: String) {
-    contentDescendantsByContentType(contentType: "default", first: 50, culture: $culture) { 
-        nodes {
-            id 
-        }
-    }
-}

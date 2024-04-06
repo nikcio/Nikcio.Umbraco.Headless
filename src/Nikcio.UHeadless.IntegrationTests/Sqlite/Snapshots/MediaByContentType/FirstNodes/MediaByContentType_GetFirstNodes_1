@@ -1,0 +1,14 @@
+{
+  "data": {
+    "mediaByContentType": {
+      "nodes": [
+        {
+          "id": 1138
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": true
+      }
+    }
+  }
+}

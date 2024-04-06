@@ -1,0 +1,29 @@
+{
+  "data": {
+    "mediaAtRoot": {
+      "nodes": [
+        {
+          "id": 1138
+        },
+        {
+          "id": 1139
+        },
+        {
+          "id": 1140
+        },
+        {
+          "id": 1141
+        },
+        {
+          "id": 1142
+        },
+        {
+          "id": 1143
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false
+      }
+    }
+  }
+}

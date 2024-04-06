@@ -76,6 +76,7 @@ public static class UHeadlessExtensions
     /// </summary>
     /// <param name="applicationBuilder">The application builder</param>
     /// <returns></returns>
+    [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app) instead")]
     public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder)
     {
         var uHeadlessEndpointOptions = new UHeadlessEndpointOptions();
@@ -88,6 +89,7 @@ public static class UHeadlessExtensions
     /// <param name="applicationBuilder">The application builder</param>
     /// <param name="uHeadlessEndpointOptions"></param>
     /// <returns></returns>
+    [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions) instead")]
     public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder, UHeadlessEndpointOptions uHeadlessEndpointOptions)
     {
         applicationBuilder.UseRouting();
@@ -103,6 +105,37 @@ public static class UHeadlessExtensions
         applicationBuilder
             .UseEndpoints(endpoints => endpoints.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions));
         return applicationBuilder;
+    }
+
+    /// <summary>
+    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
+    /// </summary>
+    /// <param name="app">The web application</param>
+    /// <returns></returns>
+    public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app)
+    {
+        var uHeadlessEndpointOptions = new UHeadlessEndpointOptions();
+        return MapUHeadlessGraphQLEndpoint(app, uHeadlessEndpointOptions);
+    }
+
+    /// <summary>
+    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
+    /// </summary>
+    /// <param name="app">The web application</param>
+    /// <param name="uHeadlessEndpointOptions"></param>
+    /// <returns></returns>
+    public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions)
+    {
+        if (uHeadlessEndpointOptions.CorsPolicy != null)
+        {
+            app.UseCors(uHeadlessEndpointOptions.CorsPolicy);
+        } else
+        {
+            app.UseCors();
+        }
+
+        app.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions);
+        return app;
     }
 
     /// <summary>

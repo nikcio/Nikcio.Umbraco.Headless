@@ -1,5 +1,0 @@
-query GetNodeIdContentByAbsoluteRoute($baseUrl: String!, $route: String!, $culture: String) {
-    contentByAbsoluteRoute(baseUrl: $baseUrl, route: $route, culture: $culture) { 
-        id
-    }
-}

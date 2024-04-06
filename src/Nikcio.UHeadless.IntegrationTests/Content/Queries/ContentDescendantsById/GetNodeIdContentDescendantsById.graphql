@@ -1,7 +1,0 @@
-query GetNodeIdContentDescendantsById($Id: Int!, $culture: String) {
-    contentDescendantsById(id: $Id, first: 50, culture: $culture) { 
-        nodes {
-            id 
-        }
-    }
-}

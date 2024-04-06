@@ -1,7 +1,0 @@
-query GetPreviewNodeIdContentAll($culture: String) {
-    contentAll(first: 50, preview: true, culture: $culture) { 
-        nodes {
-            id 
-        }
-    }
-}

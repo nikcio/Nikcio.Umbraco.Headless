@@ -1,4 +1,5 @@
-﻿using Nikcio.UHeadless.Base.Properties.Commands;
+﻿using System.Collections;
+using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Umbraco.Extensions;
 
@@ -21,5 +22,10 @@ public class BasicPropertyValue : PropertyValue
     public BasicPropertyValue(CreatePropertyValue createPropertyValue) : base(createPropertyValue)
     {
         Value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
+
+        if (Value is IEnumerable list && !list.GetEnumerator().MoveNext())
+        {
+            Value = new List<object>();
+        }
     }
 }

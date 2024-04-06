@@ -1,5 +1,0 @@
-query GetNodeIdContentById($Id: Int!, $culture: String) {
-    contentById(id: $Id, culture: $culture) { 
-        id
-    }
-}

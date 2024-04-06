@@ -1,0 +1,14 @@
+{
+  "data": {
+    "contentDescendantsById": {
+      "nodes": [
+        {
+          "id": 1152
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": true
+      }
+    }
+  }
+}
