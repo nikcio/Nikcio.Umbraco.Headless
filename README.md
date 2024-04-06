@@ -12,9 +12,9 @@ Welcome to Nikcio.UHeadless, a powerful package that enables you to create a hea
 
 The Nikcio.UHeadless package is compatible with the following Umbraco versions:
 
-| Umbraco version      | Supported Versions    |
+| Umbraco version      | Supported Version     |
 |----------------------|-----------------------|
-| Umbraco 10           | v2.x.x & v3.x.x       |
+| Umbraco 10           | v3.x.x                |
 | Umbraco 12           | v4.x.x                |
 | Umbraco 13           | v4.2.x+               |
 
