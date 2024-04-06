@@ -30,11 +30,13 @@ public class BasicLabel : PropertyValue
                 if (dateTimeValue == default)
                 {
                     Value = null;
-                } else
+                }
+                else
                 {
                     Value = dateTimeValue;
                 }
-            } else
+            }
+            else
             {
                 Value = value;
             }

@@ -33,7 +33,8 @@ public partial class SnapshotProvider
         if (File.Exists(snapshotPath))
         {
             return await File.ReadAllTextAsync(snapshotPath).ConfigureAwait(true);
-        } else
+        }
+        else
         {
             if (!Directory.Exists(_snapshotFolder))
             {
@@ -59,8 +60,9 @@ public partial class SnapshotProvider
                 await JsonSerializer.SerializeAsync(jsonStream, jsonObject, _options).ConfigureAwait(true);
                 return FormatDateTimesAsUTCInJson(Encoding.UTF8.GetString(jsonStream.ToArray()));
             }
-            
-        } else
+
+        }
+        else
         {
             // Anything that is not JSON, we just write as is - This could be an error message or something else
             return content;

@@ -26,7 +26,8 @@ public class BasicDateTimePicker : PropertyValue
         if (value == default(DateTime))
         {
             Value = null;
-        } else
+        }
+        else
         {
             Value = value;
         }

@@ -15,9 +15,9 @@ public abstract class Content<TProperty> : Element<TProperty>, IContent
     where TProperty : IProperty
 {
     /// <inheritdoc/>
-    protected Content(CreateContent createContent, IPropertyFactory<TProperty> propertyFactory) : 
+    protected Content(CreateContent createContent, IPropertyFactory<TProperty> propertyFactory) :
         base(
-            createContent?.CreateElement ?? throw new ArgumentNullException(nameof(createContent)), 
+            createContent?.CreateElement ?? throw new ArgumentNullException(nameof(createContent)),
             propertyFactory
         )
     {

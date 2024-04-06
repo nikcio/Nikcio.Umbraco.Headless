@@ -1,6 +1,5 @@
 using HotChocolate.Execution.Configuration;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Content.Basics.Queries;
 using Nikcio.UHeadless.Content.Extensions;
@@ -9,7 +8,6 @@ using Nikcio.UHeadless.Media.Basics.Queries;
 using Nikcio.UHeadless.Media.Extensions;
 using Nikcio.UHeadless.Members.Basics.Queries;
 using Nikcio.UHeadless.Members.Extensions;
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
 

@@ -217,7 +217,8 @@ public class UHeadlessComposerGraph
         try
         {
             sortedComposerTypes = graph.GetSortedItems().Select(x => x.Key).Where(x => !x.IsInterface).ToList();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             // in case of an error, force-dump everything to log
             _logger.LogInformation("Composer Report:\r\n{ComposerReport}", GetComposersReport(requirements));

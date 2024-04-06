@@ -45,7 +45,8 @@ public class BasicMultiUrlPicker<TLink> : PropertyValue
             {
                 AddLinkPickerItem(dependencyReflectorFactory, link);
             }
-        } else if (value is Link link)
+        }
+        else if (value is Link link)
         {
             AddLinkPickerItem(dependencyReflectorFactory, link);
         }

@@ -42,7 +42,8 @@ public class BasicContentPicker<TContentPickerItem> : PropertyValue
         if (objectValue is IPublishedContent content)
         {
             AddContentPickerItem(dependencyReflectorFactory, content, variationContextAccessor, createPropertyValue.Culture);
-        } else if (objectValue is IEnumerable<IPublishedContent> contentItems)
+        }
+        else if (objectValue is IEnumerable<IPublishedContent> contentItems)
         {
             foreach (IPublishedContent contentItem in contentItems)
             {

@@ -16,7 +16,7 @@ public partial class ApiTests
     [InlineData(1146, 10, "en-us")]
     [InlineData(1146, 5, "da")]
     public async Task ContentDescendantsById_Can_Get_FirstNodes_Async(int id, int firstCount, string? culture)
-    {           
+    {
         var snapshotProvider = new SnapshotProvider($"{_contentAllSnapshotPath}/FirstNodes");
         HttpClient client = _factory.CreateClient();
 

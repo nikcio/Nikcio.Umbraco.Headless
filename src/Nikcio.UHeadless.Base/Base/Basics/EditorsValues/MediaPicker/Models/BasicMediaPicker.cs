@@ -40,7 +40,8 @@ public class BasicMediaPicker<TMediaItem> : PropertyValue
         if (value is IPublishedContent mediaItem)
         {
             AddMediaPickerItem(dependencyReflectorFactory, mediaItem, createPropertyValue.Culture);
-        } else if (value is IEnumerable<IPublishedContent> mediaItems && mediaItems.Any())
+        }
+        else if (value is IEnumerable<IPublishedContent> mediaItems && mediaItems.Any())
         {
             foreach (IPublishedContent media in mediaItems)
             {

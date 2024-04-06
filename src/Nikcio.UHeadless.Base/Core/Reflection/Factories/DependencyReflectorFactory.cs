@@ -41,7 +41,8 @@ public class DependencyReflectorFactory : IDependencyReflectorFactory
                 .Select(parameter => _serviceProvider.GetService(parameter.ParameterType))
                 .OfType<object>()
                 .ToArray();
-        } else
+        }
+        else
         {
             injectedParamerters = constructorRequiredParamerters
                 .Take(parameters.Length)

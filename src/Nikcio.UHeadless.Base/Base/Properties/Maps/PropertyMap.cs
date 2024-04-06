@@ -25,7 +25,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <inheritdoc/>
     public virtual void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
     {
-        if(AddMapping<TType>(GetEditorMappingKey(editorName), editorPropertyMap))
+        if (AddMapping<TType>(GetEditorMappingKey(editorName), editorPropertyMap))
         {
             AddUsedType<TType>();
         }
@@ -34,7 +34,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// <inheritdoc/>
     public virtual void AddAliasMapping<TType>(string contentTypeAlias, string propertyTypeAlias) where TType : PropertyValue
     {
-        if(AddMapping<TType>(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias), aliasPropertyMap))
+        if (AddMapping<TType>(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias), aliasPropertyMap))
         {
             AddUsedType<TType>();
         }
@@ -94,10 +94,12 @@ public class PropertyMap : DictionaryMap, IPropertyMap
         if (ContainsAlias(contentTypeAlias, propertyTypeAlias))
         {
             propertyTypeName = GetAliasValue(contentTypeAlias, propertyTypeAlias);
-        } else if (ContainsEditor(editorAlias))
+        }
+        else if (ContainsEditor(editorAlias))
         {
             propertyTypeName = GetEditorValue(editorAlias);
-        } else
+        }
+        else
         {
             propertyTypeName = GetEditorValue(PropertyConstants.DefaultKey);
         }

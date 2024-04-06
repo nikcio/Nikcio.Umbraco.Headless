@@ -43,7 +43,8 @@ public class BasicMemberPicker<TMember> : PropertyValue
         if (objectValue is IPublishedContent memberItem)
         {
             AddMemberPickerItem(dependencyReflectorFactory, createPropertyValue, memberItem);
-        } else if (objectValue is IEnumerable<IPublishedContent> members)
+        }
+        else if (objectValue is IEnumerable<IPublishedContent> members)
         {
             foreach (IPublishedContent member in members)
             {
