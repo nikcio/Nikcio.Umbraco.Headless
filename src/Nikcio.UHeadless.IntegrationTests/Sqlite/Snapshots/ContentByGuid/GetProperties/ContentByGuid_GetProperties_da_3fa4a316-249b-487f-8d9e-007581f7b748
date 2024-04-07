@@ -37,7 +37,7 @@
         {
           "alias": "colorPicker",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.ColorPicker"
@@ -45,7 +45,7 @@
         {
           "alias": "colorPickerCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.ColorPicker"
@@ -117,7 +117,7 @@
         {
           "alias": "dropdown",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.DropDown.Flexible"
@@ -125,7 +125,7 @@
         {
           "alias": "dropdownCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.DropDown.Flexible"
@@ -133,7 +133,7 @@
         {
           "alias": "emailAddress",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.EmailAddress"
@@ -141,7 +141,7 @@
         {
           "alias": "emailAddressCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.EmailAddress"
@@ -149,7 +149,7 @@
         {
           "alias": "eyeDropperColorPicker",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.ColorPicker.EyeDropper"
@@ -157,7 +157,7 @@
         {
           "alias": "eyeDropperColorPickerCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.ColorPicker.EyeDropper"
@@ -165,7 +165,7 @@
         {
           "alias": "article",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -173,7 +173,7 @@
         {
           "alias": "audio",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -181,7 +181,7 @@
         {
           "alias": "file",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -189,7 +189,7 @@
         {
           "alias": "svg",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -197,7 +197,7 @@
         {
           "alias": "video",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -205,7 +205,7 @@
         {
           "alias": "articleCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -213,7 +213,7 @@
         {
           "alias": "audioCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -221,7 +221,7 @@
         {
           "alias": "fileCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -229,7 +229,7 @@
         {
           "alias": "svgCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -237,7 +237,7 @@
         {
           "alias": "videoCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -375,7 +375,7 @@
         {
           "alias": "memberGroupPicker",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.MemberGroupPicker"
@@ -383,7 +383,7 @@
         {
           "alias": "memberGroupPickerCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.MemberGroupPicker"
@@ -537,7 +537,7 @@
         {
           "alias": "textarea",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.TextArea"
@@ -545,7 +545,7 @@
         {
           "alias": "textareaCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.TextArea"
@@ -553,7 +553,7 @@
         {
           "alias": "textstring",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.TextBox"
@@ -561,7 +561,7 @@
         {
           "alias": "textstringCulture",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.TextBox"

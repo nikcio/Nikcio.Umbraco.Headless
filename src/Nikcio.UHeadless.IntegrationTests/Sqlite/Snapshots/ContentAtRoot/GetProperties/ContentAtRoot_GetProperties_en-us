@@ -115,35 +115,35 @@
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -207,7 +207,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -278,14 +278,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -412,35 +412,35 @@
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -504,7 +504,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -653,7 +653,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -688,56 +688,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -801,7 +801,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -874,14 +874,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -928,7 +928,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -963,56 +963,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1076,7 +1076,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1147,14 +1147,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1206,7 +1206,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1241,56 +1241,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1354,7 +1354,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1425,14 +1425,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1479,7 +1479,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1514,56 +1514,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1627,7 +1627,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1698,14 +1698,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1752,7 +1752,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1787,56 +1787,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1900,7 +1900,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -1971,14 +1971,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2025,7 +2025,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2060,56 +2060,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2173,7 +2173,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2244,14 +2244,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2303,7 +2303,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2338,56 +2338,56 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2451,7 +2451,7 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2522,14 +2522,14 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2608,14 +2608,14 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "colorPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2678,112 +2678,112 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "dropdownCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddressCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "articleCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audioCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "fileCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svgCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "videoCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -2904,14 +2904,14 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "memberGroupPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3046,21 +3046,21 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textareaCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3134,14 +3134,14 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "colorPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3204,112 +3204,112 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "dropdownCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "emailAddressCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "eyeDropperColorPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "articleCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audioCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "fileCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svgCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "videoCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3430,14 +3430,14 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "memberGroupPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3572,28 +3572,28 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textareaCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "textstringCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3689,7 +3689,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3768,7 +3768,7 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3782,7 +3782,7 @@
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3796,7 +3796,7 @@
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -3810,70 +3810,70 @@
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "articleCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audioCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "fileCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svgCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "videoCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4036,14 +4036,14 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "memberGroupPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4180,7 +4180,7 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4194,7 +4194,7 @@
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4297,7 +4297,7 @@
                 {
                   "alias": "colorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4376,7 +4376,7 @@
                 {
                   "alias": "dropdown",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4390,7 +4390,7 @@
                 {
                   "alias": "emailAddress",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4404,7 +4404,7 @@
                 {
                   "alias": "eyeDropperColorPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4418,70 +4418,70 @@
                 {
                   "alias": "article",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audio",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "file",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svg",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "video",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "articleCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "audioCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "fileCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "svgCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "videoCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4644,14 +4644,14 @@
                 {
                   "alias": "memberGroupPicker",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
                 {
                   "alias": "memberGroupPickerCulture",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4788,7 +4788,7 @@
                 {
                   "alias": "textarea",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
@@ -4802,7 +4802,7 @@
                 {
                   "alias": "textstring",
                   "value": {
-                    "basicValue": [],
+                    "basicValue": "",
                     "model": "BasicPropertyValue"
                   }
                 },
