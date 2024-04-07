@@ -1,32 +1,27 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
-        <PackageId>$(AssemblyName)</PackageId>
-        <Title>Nikcio.UHeadless</Title>
-        <Description>An easy setup solution for making Umbraco headless</Description>
-        <Product>$(AssemblyName)</Product>
-        <PackageTags>umbraco; plugin; package; nikcio; graphql; umbraco-marketplace</PackageTags>
-        <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-        <Version>4.0.0</Version>
-        <Authors>Nikcio</Authors>
-        <Copyright>MIT License</Copyright>
-        <PackageProjectUrl>https://github.com/nikcio/Nikcio.UHeadless</PackageProjectUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RepositoryUrl>https://github.com/nikcio/Nikcio.UHeadless</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <NeutralLanguage>en</NeutralLanguage>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <AppDesignerFolder>ContentProperties</AppDesignerFolder>
-		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Compile Remove="Tokens\**" />
-      <EmbeddedResource Remove="Tokens\**" />
-      <None Remove="Tokens\**" />
-    </ItemGroup>
-
+    <PropertyGroup>
+      <PackageId>$(AssemblyName)</PackageId>
+      <Title>Nikcio.UHeadless</Title>
+      <Description>An easy setup solution for making Umbraco headless</Description>
+      <Product>$(AssemblyName)</Product>
+      <PackageTags>umbraco; plugin; package; nikcio; graphql; umbraco-marketplace</PackageTags>
+      <Version>4.0.0</Version>
+      <Authors>Nikcio</Authors>
+      <Copyright>MIT License</Copyright>
+      <PackageProjectUrl>https://github.com/nikcio/Nikcio.UHeadless</PackageProjectUrl>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <RepositoryUrl>https://github.com/nikcio/Nikcio.UHeadless</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <NeutralLanguage>en</NeutralLanguage>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageIcon>logo.png</PackageIcon>
+    </PropertyGroup>
+  
     <ItemGroup>
       <None Include="..\..\logo.png">
         <Pack>True</Pack>
@@ -38,17 +33,12 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Nikcio.UHeadless.Content\Nikcio.UHeadless.Content.csproj" />
-      <ProjectReference Include="..\Nikcio.UHeadless.Media\Nikcio.UHeadless.Media.csproj" />
-    </ItemGroup>
-
-    <!-- Generate XML documentation -->
-	<PropertyGroup>
-		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<CodeAnalysisRuleSet>Nikcio.UHeadless.ruleset</CodeAnalysisRuleSet>
-		<PackageIcon>logo.png</PackageIcon>
-	</PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.0" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.0" />
+    <PackageReference Include="HotChocolate.Data" Version="13.9.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="11.0.0" />
+  </ItemGroup>
 </Project>

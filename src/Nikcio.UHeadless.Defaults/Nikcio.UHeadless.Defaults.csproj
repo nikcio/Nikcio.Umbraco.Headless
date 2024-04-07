@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ContentTargetFolders>.</ContentTargetFolders>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>Nikcio.UHeadless.Defaults</Title>
+    <Description>Default models for the Nikcio.UHeadless package</Description>
+    <Product>$(AssemblyName)</Product>
+    <PackageTags>umbraco; plugin; package; nikcio; graphql; umbraco-marketplace</PackageTags>
+    <Version>4.0.0</Version>
+    <Authors>Nikcio</Authors>
+    <Copyright>MIT License</Copyright>
+    <PackageProjectUrl>https://github.com/nikcio/Nikcio.UHeadless</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/nikcio/Nikcio.UHeadless</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nikcio.UHeadless\Nikcio.UHeadless.csproj" />
+  </ItemGroup>
+</Project>

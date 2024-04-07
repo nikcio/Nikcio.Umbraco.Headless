@@ -1,10 +1,25 @@
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 
-namespace Nikcio.UHeadless.Core.Reflection.Factories;
+namespace Nikcio.UHeadless.Shared.Reflection;
+
+/// <summary>
+/// A factory that can create objects with DI
+/// </summary>
+public interface IDependencyReflectorFactory
+{
+    /// <summary>
+    /// Gets the reflected type with DI
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="typeToReflect">The type to create</param>
+    /// <param name="constructorRequiredParamerters">The required parameters on the constructor</param>
+    /// <returns></returns>
+    T? GetReflectedType<T>(Type typeToReflect, object[] constructorRequiredParamerters) where T : class;
+}
 
 /// <inheritdoc/>
-public class DependencyReflectorFactory : IDependencyReflectorFactory
+internal class DependencyReflectorFactory : IDependencyReflectorFactory
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<DependencyReflectorFactory> _logger;

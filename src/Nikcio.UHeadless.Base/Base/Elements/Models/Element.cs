@@ -6,6 +6,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 namespace Nikcio.UHeadless.Base.Elements.Models;
 
 /// <inheritdoc/>
+[Obsolete("Use Element instead")]
 public abstract class Element<TProperty> : IElement
     where TProperty : IProperty
 {
