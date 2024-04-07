@@ -118,7 +118,7 @@
         {
           "alias": "article",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -126,7 +126,7 @@
         {
           "alias": "audio",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -134,7 +134,7 @@
         {
           "alias": "file",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -142,7 +142,7 @@
         {
           "alias": "svg",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -150,7 +150,7 @@
         {
           "alias": "video",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.UploadField"
@@ -223,7 +223,7 @@
         {
           "alias": "memberGroupPicker",
           "value": {
-            "basicValue": [],
+            "basicValue": "",
             "model": "BasicPropertyValue"
           },
           "editorAlias": "Umbraco.MemberGroupPicker"

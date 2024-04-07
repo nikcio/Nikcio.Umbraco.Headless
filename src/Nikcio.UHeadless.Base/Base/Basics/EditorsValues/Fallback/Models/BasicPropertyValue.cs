@@ -25,7 +25,7 @@ public class BasicPropertyValue : PropertyValue
 
         Value = createPropertyValue.Property.Value(createPropertyValue.PublishedValueFallback, createPropertyValue.Culture, createPropertyValue.Segment, createPropertyValue.Fallback);
 
-        if (Value is IEnumerable list && !list.GetEnumerator().MoveNext())
+        if (Value is not string && Value is IEnumerable list && !list.GetEnumerator().MoveNext())
         {
             Value = new List<object>();
         }
