@@ -23,6 +23,7 @@ public abstract partial class PropertyValue
         Culture = ResolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
         Segment = ResolverContext.GetScopedState<string?>(ContextDataKeys.Segment);
         Fallback = ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback) ?? default;
+        IsPreview = ResolverContext.GetScopedState<bool>(ContextDataKeys.IsPreview);
     }
 
     /// <summary>
@@ -54,6 +55,11 @@ public abstract partial class PropertyValue
     /// The fallback tactic
     /// </summary>
     protected Fallback Fallback { get; }
+
+    /// <summary>
+    /// Determines if the query allows fetching preview content
+    /// </summary>
+    protected bool IsPreview { get; }
 
     /// <summary>
     /// The resolver context

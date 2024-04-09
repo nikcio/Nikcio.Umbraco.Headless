@@ -2,6 +2,7 @@ using HotChocolate;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Shared;
 using Nikcio.UHeadless.Shared.Properties;
+using Nikcio.UHeadless.Shared.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
@@ -10,10 +11,23 @@ namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
 public partial class ContentItem : ContentItemBase
 {
     private readonly IVariationContextAccessor _variationContextAccessor;
+    private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public ContentItem(CreateCommand command, IVariationContextAccessor variationContextAccessor) : base(command)
+    public ContentItem(CreateCommand command, IVariationContextAccessor variationContextAccessor, IDependencyReflectorFactory dependencyReflectorFactory) : base(command)
     {
+        ArgumentNullException.ThrowIfNull(variationContextAccessor);
+        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
+        ArgumentNullException.ThrowIfNull(command);
+
         _variationContextAccessor = variationContextAccessor;
+        _dependencyReflectorFactory = dependencyReflectorFactory;
+
+        StatusCode = command.StatusCode;
+        Redirect = command.Redirect == null ? null : new RedirectInfo()
+        {
+            IsPermanent = command.Redirect.IsPermanent,
+            RedirectUrl = command.Redirect.RedirectUrl
+        };
     }
 
     /// <summary>
@@ -47,6 +61,34 @@ public partial class ContentItem : ContentItemBase
     public Guid? Key => PublishedContent?.Key;
 
     /// <summary>
+    /// Gets the identifier of the template to use to render the content item
+    /// </summary>
+    [GraphQLDescription("Gets the identifier of the template to use to render the content item.")]
+    public int? TemplateId => PublishedContent?.TemplateId;
+
+    /// <summary>
+    /// Gets the date the content item was last updated
+    /// </summary>
+    [GraphQLDescription("Gets the date the content item was last updated.")]
+    public DateTime? UpdateDate => PublishedContent?.UpdateDate;
+
+    /// <summary>
+    /// Gets the parent of the content item
+    /// </summary>
+    [GraphQLDescription("Gets the parent of the content item.")]
+    public ContentItem? Parent => PublishedContent?.Parent != null ? CreateContentItem<ContentItem>(new CreateCommand()
+    {
+        Culture = Culture,
+        Fallback = Fallback,
+        IsPreview = IsPreview,
+        PublishedContent = PublishedContent.Parent,
+        ResolverContext = ResolverContext,
+        Segment = Segment,
+        Redirect = null,
+        StatusCode = 200,
+    }, _dependencyReflectorFactory) : default;
+
+    /// <summary>
     /// Gets the properties of the content item
     /// </summary>
     [GraphQLDescription("Gets the properties of the content item.")]
@@ -54,5 +96,20 @@ public partial class ContentItem : ContentItemBase
     {
         ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
         return new TypedProperties();
+    }
+
+    public int StatusCode { get; }
+
+    /// <summary>
+    /// Gets the redirect information for the content item
+    /// </summary>
+    [GraphQLDescription("Gets the redirect information for the content item.")]
+    public RedirectInfo? Redirect { get; }
+
+    public class RedirectInfo
+    {
+        public required string? RedirectUrl { get; init; }
+
+        public required bool IsPermanent { get; init; }
     }
 }

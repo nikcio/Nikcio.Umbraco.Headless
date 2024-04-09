@@ -106,7 +106,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     protected HashSet<Type> types { get; } = new();
 
     /// <inheritdoc/>
-    public virtual void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
+    public void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
     {
         if (AddMapping<TType>(GetEditorMappingKey(editorName), editorPropertyMap))
         {
@@ -115,7 +115,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     }
 
     /// <inheritdoc/>
-    public virtual void AddAliasMapping<TType>(string contentTypeAlias, string propertyTypeAlias) where TType : PropertyValue
+    public void AddAliasMapping<TType>(string contentTypeAlias, string propertyTypeAlias) where TType : PropertyValue
     {
         if (AddMapping<TType>(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias), aliasPropertyMap))
         {
@@ -124,37 +124,37 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     }
 
     /// <inheritdoc/>
-    public virtual bool ContainsEditor(string editorName)
+    public bool ContainsEditor(string editorName)
     {
         return editorPropertyMap.ContainsKey(GetEditorMappingKey(editorName));
     }
 
     /// <inheritdoc/>
-    public virtual bool ContainsAlias(string contentTypeAlias, string propertyTypeAlias)
+    public bool ContainsAlias(string contentTypeAlias, string propertyTypeAlias)
     {
         return aliasPropertyMap.ContainsKey(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias));
     }
 
     /// <inheritdoc/>
-    public virtual string GetEditorValue(string editorName)
+    public string GetEditorValue(string editorName)
     {
         return editorPropertyMap[GetEditorMappingKey(editorName)];
     }
 
     /// <inheritdoc/>
-    public virtual string GetAliasValue(string contentTypeAlias, string propertyTypeAlias)
+    public string GetAliasValue(string contentTypeAlias, string propertyTypeAlias)
     {
         return aliasPropertyMap[GetAliasMappingKey(contentTypeAlias, propertyTypeAlias)];
     }
 
     /// <inheritdoc/>
-    public virtual IEnumerable<Type> GetAllTypes()
+    public IEnumerable<Type> GetAllTypes()
     {
         return types;
     }
 
     /// <inheritdoc/>
-    public virtual string GetEditorMappingKey(string editorName)
+    public string GetEditorMappingKey(string editorName)
     {
         ArgumentNullException.ThrowIfNull(editorName);
 
@@ -162,7 +162,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     }
 
     /// <inheritdoc/>
-    public virtual string GetAliasMappingKey(string contentTypeAlias, string propertyTypeAlias)
+    public string GetAliasMappingKey(string contentTypeAlias, string propertyTypeAlias)
     {
         ArgumentNullException.ThrowIfNull(contentTypeAlias);
         ArgumentNullException.ThrowIfNull(propertyTypeAlias);
@@ -171,7 +171,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     }
 
     /// <inheritdoc/>
-    public virtual string GetPropertyTypeName(string contentTypeAlias, string propertyTypeAlias, string editorAlias)
+    public string GetPropertyTypeName(string contentTypeAlias, string propertyTypeAlias, string editorAlias)
     {
         string propertyTypeName;
         if (ContainsAlias(contentTypeAlias, propertyTypeAlias))
@@ -193,7 +193,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// Adds a type to the types list if it's not already present
     /// </summary>
     /// <typeparam name="TType"></typeparam>
-    protected virtual void AddUsedType<TType>() where TType : PropertyValue
+    protected void AddUsedType<TType>() where TType : PropertyValue
     {
         if (!types.Contains(typeof(TType)))
         {
@@ -214,7 +214,7 @@ public abstract class DictionaryMap
     /// <param name="key"></param>
     /// <param name="map"></param>
     /// <returns>Whether the mapping has been added</returns>
-    protected virtual bool AddMapping<TType>(string key, Dictionary<string, string> map) where TType : class
+    protected bool AddMapping<TType>(string key, Dictionary<string, string> map) where TType : class
     {
         ArgumentNullException.ThrowIfNull(key);
         ArgumentNullException.ThrowIfNull(map);

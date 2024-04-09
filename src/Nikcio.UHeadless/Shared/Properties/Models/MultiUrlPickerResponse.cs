@@ -1,23 +1,51 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HotChocolate.Resolvers;
+using Microsoft.Extensions.Logging;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Shared.Properties.Models;
 
 /// <summary>
-/// Represents a content picker value
+/// Represents a multi url picker
 /// </summary>
-[GraphQLDescription("Represents a content picker value.")]
-public class ContentPickerResponse : PropertyValue
+[GraphQLDescription("Represents a multi url picker.")]
+public class MultiUrlPickerResponse : PropertyValue
 {
-    private readonly IEnumerable<IPublishedContent> _publishedContentItems;
+    private readonly IEnumerable<Link> _publishedContentItemsLinks;
     private readonly bool _isMultiple;
     private readonly IVariationContextAccessor _variationContextAccessor;
+    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
+
+    /// <summary>
+    /// Gets the content items of a picker
+    /// </summary>
+    [GraphQLDescription("Gets the content items of a picker.")]
+    public List<MultiUrlPickerItem> ContentItems => _publishedContentItemsLinks.Select(link =>
+    {
+        if (!_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
+        {
+            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogError("Could not get published snapshot.");
+            return null;
+        }
+
+        if (link.Udi == null)
+        {
+            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogWarning("Could not get Udi in multi url link.");
+            return null;
+        }
+
+        IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(IsPreview, link.Udi);
+
+        if (publishedContent == null)
+        {
+            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogWarning("Could not get published content.");
+            return null;
+        }
+
+        return new MultiUrlPickerItem(publishedContent, Culture, _variationContextAccessor, ResolverContext);
+    }).OfType<MultiUrlPickerItem>().ToList();
 
     /// <summary>
     /// Whether the picker has multiple items
@@ -25,32 +53,25 @@ public class ContentPickerResponse : PropertyValue
     [GraphQLDescription("Whether the picker has multiple items.")]
     public bool IsMultiple => _isMultiple;
 
-    /// <summary>
-    /// Gets the content items of a picker
-    /// </summary>
-    [GraphQLDescription("Gets the content items of a picker.")]
-    public List<ContentPickerItemResponse>? Items => _publishedContentItems.Select(publishedContent =>
+    public MultiUrlPickerResponse(CreateCommand command, IVariationContextAccessor variationContextAccessor, IPublishedSnapshotAccessor publishedSnapshotAccessor) : base(command)
     {
-        return new ContentPickerItemResponse(publishedContent, Culture, _variationContextAccessor, ResolverContext);
-    }).ToList();
-
-    public ContentPickerResponse(CreateCommand command, IVariationContextAccessor variationContextAccessor) : base(command)
-    {
+        _variationContextAccessor = variationContextAccessor;
+        _publishedSnapshotAccessor = publishedSnapshotAccessor;
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
-        if(publishedContentItemsAsObject is IPublishedContent publishedContent)
+        if (publishedContentItemsAsObject is Link publishedContent)
         {
-            _publishedContentItems = new List<IPublishedContent> { publishedContent };
+            _publishedContentItemsLinks = new List<Link> { publishedContent };
             _isMultiple = false;
         }
-        else if(publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
+        else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
         {
-            _publishedContentItems = publishedContentItems;
+            _publishedContentItemsLinks = publishedContentItems;
             _isMultiple = true;
         }
         else
         {
-            _publishedContentItems = new List<IPublishedContent>();
+            _publishedContentItemsLinks = new List<Link>();
             _isMultiple = false;
         }
         _variationContextAccessor = variationContextAccessor;
@@ -58,10 +79,10 @@ public class ContentPickerResponse : PropertyValue
 }
 
 /// <summary>
-/// Represents a content picker item
+/// Represents a content item
 /// </summary>
-[GraphQLDescription("Represents a content picker item.")]
-public class ContentPickerItemResponse
+[GraphQLDescription("Represents a content item.")]
+public class MultiUrlPickerItem
 {
     private readonly IPublishedContent _publishedContent;
     private readonly string? _culture;
@@ -111,7 +132,7 @@ public class ContentPickerItemResponse
         return new TypedProperties();
     }
 
-    public ContentPickerItemResponse(IPublishedContent publishedContent, string? culture, IVariationContextAccessor variationContextAccessor, IResolverContext resolverContext)
+    public MultiUrlPickerItem(IPublishedContent publishedContent, string? culture, IVariationContextAccessor variationContextAccessor, IResolverContext resolverContext)
     {
         _publishedContent = publishedContent;
         _culture = culture;

@@ -10,6 +10,8 @@ public static class ContextDataKeys
 
     public const string Fallback = "__Fallback";
 
+    public const string IsPreview = "__IsPreview";
+
     public const string BlockListItemContent = "__BlockListItem_Content";
 
     public const string BlockListItemContentPropertyName = "__BlockListItem_Content_PropertyName";
@@ -25,4 +27,8 @@ public static class ContextDataKeys
     public const string BlockGridItemSettings = "__BlockGridItem_Settings";
 
     public const string BlockGridItemSettingsPropertyName = "__BlockGridItem_Settings_PropertyName";
+
+    public const string NestedContent = "__NestedContent";
+
+    public const string NestedContentPropertyName = "__NestedContent_PropertyName";
 }

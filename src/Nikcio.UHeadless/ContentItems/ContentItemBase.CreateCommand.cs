@@ -31,6 +31,11 @@ public partial class ContentItemBase
         public required Fallback? Fallback { get; init; }
 
         /// <summary>
+        /// Determines if the query allows fetching preview content
+        /// </summary>
+        public required bool IsPreview { get; init; }
+
+        /// <summary>
         /// The resolver context
         /// </summary>
         /// <remarks>

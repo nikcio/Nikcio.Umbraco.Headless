@@ -1,3 +1,4 @@
+using System.Drawing.Text;
 using HotChocolate.Execution.Configuration;
 using HotChocolate.Resolvers;
 using HotChocolate.Types.Descriptors;
@@ -240,15 +241,16 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
 
     private static async ValueTask<object?> ResolvePropertyValueAsync(IResolverContext context)
     {
+        const string parentPathEmptyValue = "$$";
         object? resolver;
 
-        string pathParent = ((NamePathSegment?) context.Path.Parent)?.Name ?? "$$"; // Make sure we don't match null when looking for the correct resolver
-        if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockListItemContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
+        string pathParent = ((NamePathSegment?) context.Path.Parent)?.Name ?? parentPathEmptyValue; // Make sure we don't match null when looking for the correct resolver
+        if ( string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockListItemContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
                 context: context,
                 scopedDataKey: ContextDataKeys.BlockListItemContent,
-                getProperty: (blockItem, propertyAlias) => blockItem.Content.GetProperty(propertyAlias),
+                getProperty: (blockItem, propertyAlias) => blockItem?.Content?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
         }
         else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockListItemSettingsPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
@@ -256,7 +258,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
                 context: context,
                 scopedDataKey: ContextDataKeys.BlockListItemSettings,
-                getProperty: (blockItem, propertyAlias) => blockItem.Settings.GetProperty(propertyAlias),
+                getProperty: (blockItem, propertyAlias) => blockItem?.Settings?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
         }
         else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockGridItemContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
@@ -264,7 +266,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
                 context: context,
                 scopedDataKey: ContextDataKeys.BlockGridItemContent,
-                getProperty: (blockItem, propertyAlias) => blockItem.Content.GetProperty(propertyAlias),
+                getProperty: (blockItem, propertyAlias) => blockItem?.Content?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
         }
         else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockGridItemSettingsPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
@@ -272,8 +274,16 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
                 context: context,
                 scopedDataKey: ContextDataKeys.BlockGridItemSettings,
-                getProperty: (blockItem, propertyAlias) => blockItem.Settings.GetProperty(propertyAlias),
+                getProperty: (blockItem, propertyAlias) => blockItem?.Settings?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
+        }
+        else if(string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.NestedContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
+        {
+            resolver = await ResolveScopedValueAsPropertyValueAsync<IPublishedElement>(
+                context: context,
+                scopedDataKey: ContextDataKeys.NestedContent,
+                getProperty: (nestedContent, propertyAlias) => nestedContent?.GetProperty(propertyAlias),
+                getContentTypeAlias: nestedContent => nestedContent?.ContentType?.Alias).ConfigureAwait(false);
         }
         else
         {

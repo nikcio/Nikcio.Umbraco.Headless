@@ -32,7 +32,7 @@ internal class DependencyReflectorFactory : IDependencyReflectorFactory
     }
 
     /// <inheritdoc/>
-    public virtual T? GetReflectedType<T>(Type typeToReflect, object[] constructorRequiredParamerters)
+    public T? GetReflectedType<T>(Type typeToReflect, object[] constructorRequiredParamerters)
         where T : class
     {
         ArgumentNullException.ThrowIfNull(typeToReflect);

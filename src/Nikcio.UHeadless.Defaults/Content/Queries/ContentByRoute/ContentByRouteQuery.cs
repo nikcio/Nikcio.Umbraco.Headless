@@ -72,6 +72,7 @@ public class ContentByRouteQuery
                     ResolverContext = resolverContext,
                     Redirect = null,
                     StatusCode = StatusCodes.Status200OK,
+                    IsPreview = preview,
                 });
                 break;
 
@@ -90,6 +91,7 @@ public class ContentByRouteQuery
                         RedirectUrl = contentRequest.RedirectUrl,
                     },
                     StatusCode = isRedirectPermanent ? StatusCodes.Status308PermanentRedirect : StatusCodes.Status307TemporaryRedirect,
+                    IsPreview = preview,
                 });
                 break;
 
@@ -103,6 +105,7 @@ public class ContentByRouteQuery
                     ResolverContext = resolverContext,
                     Redirect = null,
                     StatusCode = StatusCodes.Status404NotFound,
+                    IsPreview = preview,
                 });
                 break;
 
@@ -132,6 +135,7 @@ public class ContentByRouteQuery
             ResolverContext = resolverContext,
             Redirect = null,
             StatusCode = StatusCodes.Status200OK,
+            IsPreview = preview,
         });
 
         return contentItem;

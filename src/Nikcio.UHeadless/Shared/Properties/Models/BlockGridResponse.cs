@@ -128,7 +128,7 @@ public class BlockGridAreaResponse
     /// Gets the blocks of the block grid area
     /// </summary>
     [GraphQLDescription("Gets the blocks of the block grid area.")]
-    public virtual List<BlockGridItemResponse>? Blocks => _blockGridArea.Select(blockGridItem =>
+    public List<BlockGridItemResponse>? Blocks => _blockGridArea.Select(blockGridItem =>
     {
         return new BlockGridItemResponse(blockGridItem, _resolverContext);
     }).ToList();
@@ -137,19 +137,19 @@ public class BlockGridAreaResponse
     /// Gets the alias of the block grid area.
     /// </summary>
     [GraphQLDescription("Gets the alias of the block grid area.")]
-    public virtual string AreaAlias => _blockGridArea.Alias;
+    public string AreaAlias => _blockGridArea.Alias;
 
     /// <summary>
     /// Gets the row dimensions of the block.
     /// </summary>
     [GraphQLDescription("Gets the row dimensions of the block.")]
-    public virtual int RowSpan => _blockGridArea.RowSpan;
+    public int RowSpan => _blockGridArea.RowSpan;
 
     /// <summary>
     /// Gets the column dimensions of the block.
     /// </summary>
     [GraphQLDescription("Gets the column dimensions of the block.")]
-    public virtual int ColumnSpan => _blockGridArea.ColumnSpan;
+    public int ColumnSpan => _blockGridArea.ColumnSpan;
 
     public BlockGridAreaResponse(BlockGridArea blockGridArea, IResolverContext resolverContext)
     {
