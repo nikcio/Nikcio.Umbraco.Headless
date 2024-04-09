@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.1](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.0...v4.2.1) (2024-04-09)
+
+
+### Features
+
+* Add analyzers and correct warnings ([9503de8](https://github.com/nikcio/Nikcio.UHeadless/commit/9503de8fe6f30bffd84335f257b0242bc89f3dce))
+* Align ArgumentNullException ([0cf4fc2](https://github.com/nikcio/Nikcio.UHeadless/commit/0cf4fc2df4abc39ad9e3f95eae8f348db2ff9dd1))
+* Minor clean up ([cc80dfb](https://github.com/nikcio/Nikcio.UHeadless/commit/cc80dfbb09c0dd4017b612f4fa30ea7e392c5f46))
+
+
+### Bug Fixes
+
+* Empty string being returned as array ([d8cc412](https://github.com/nikcio/Nikcio.UHeadless/commit/d8cc412540267895f1b01504995df7d99a8b6a5b))
+
 ## [4.2.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.0-preview002...v4.2.0) (2024-04-06)
 
 
