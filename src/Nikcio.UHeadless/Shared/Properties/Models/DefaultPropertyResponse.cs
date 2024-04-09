@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Shared.Properties.Models;
 /// A catch all property value that simply returns the value of the property. This is all that is needed for simple properties that doesn't need any special handling or formatting.
 /// </summary>
 [GraphQLDescription("A catch all property value that simply returns the value of the property. This is all that is needed for simple properties that doesn't need any special handling or formatting.")]
-public class DefaultPropertyValue : PropertyValue
+public class DefaultPropertyResponse : PropertyValue
 {
     /// <summary>
     /// Gets the value of the property
@@ -28,7 +28,7 @@ public class DefaultPropertyValue : PropertyValue
     }
 
     /// <inheritdoc/>
-    public DefaultPropertyValue(CreateCommand command) : base(command)
+    public DefaultPropertyResponse(CreateCommand command) : base(command)
     {
     }
 }

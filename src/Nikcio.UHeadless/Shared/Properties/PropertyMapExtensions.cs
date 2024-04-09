@@ -29,17 +29,17 @@ public static class PropertyMapExtensions
     {
         ArgumentNullException.ThrowIfNull(propertyMap);
 
-        propertyMap.AddEditorMapping<DefaultPropertyValue>(PropertyConstants.DefaultKey);
-        //propertyMap.AddEditorMapping<BasicBlockListModel>(Constants.PropertyEditors.Aliases.BlockList);
+        propertyMap.AddEditorMapping<DefaultPropertyResponse>(PropertyConstants.DefaultKey);
+        propertyMap.AddEditorMapping<BlockListResponse>(Constants.PropertyEditors.Aliases.BlockList);
         propertyMap.AddEditorMapping<BlockGridResponse>(Constants.PropertyEditors.Aliases.BlockGrid);
+        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.ContentPicker);
+        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
+        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
         //propertyMap.AddEditorMapping<BasicNestedContent>(Constants.PropertyEditors.Aliases.NestedContent);
         //propertyMap.AddEditorMapping<BasicRichText>(Constants.PropertyEditors.Aliases.TinyMce);
         //propertyMap.AddEditorMapping<BasicRichText>(Constants.PropertyEditors.Aliases.MarkdownEditor);
         //propertyMap.AddEditorMapping<BasicMemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
-        //propertyMap.AddEditorMapping<BasicContentPicker>(Constants.PropertyEditors.Aliases.ContentPicker);
         //propertyMap.AddEditorMapping<BasicMultiUrlPicker>(Constants.PropertyEditors.Aliases.MultiUrlPicker);
-        //propertyMap.AddEditorMapping<BasicContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
-        //propertyMap.AddEditorMapping<BasicContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
         //propertyMap.AddEditorMapping<BasicMediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
         //propertyMap.AddEditorMapping<BasicMediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker3);
         //propertyMap.AddEditorMapping<BasicMediaPicker>(Constants.PropertyEditors.Aliases.MultipleMediaPicker);

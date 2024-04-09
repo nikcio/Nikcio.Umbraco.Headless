@@ -7,7 +7,6 @@ namespace Nikcio.UHeadless.Shared.Properties.Models;
 /// <summary>
 /// Represents a block grid property value
 /// </summary>
-//[GraphQLName("BlockGrid")]
 [GraphQLDescription("Represents a block grid property value.")]
 public class BlockGridResponse : PropertyValue
 {
@@ -37,7 +36,6 @@ public class BlockGridResponse : PropertyValue
 /// <summary>
 /// Represents a block grid item
 /// </summary>
-[GraphQLName("BlockGridItem")]
 [GraphQLDescription("Represents a block grid item.")]
 public class BlockGridItemResponse
 {
@@ -50,7 +48,8 @@ public class BlockGridItemResponse
     [GraphQLDescription("Gets the content properties of the block grid item.")]
     public TypedBlockGridContentProperties ContentProperties()
     {
-        _resolverContext.SetScopedState(ContextDataKeys.BlockGridItem, _blockGridItem);
+        _resolverContext.SetScopedState(ContextDataKeys.BlockGridItemContent, _blockGridItem);
+        _resolverContext.SetScopedState(ContextDataKeys.BlockGridItemContentPropertyName, nameof(ContentProperties));
         return new TypedBlockGridContentProperties();
     }
 
@@ -58,7 +57,12 @@ public class BlockGridItemResponse
     /// Gets the setting properties of the block grid item
     /// </summary>
     [GraphQLDescription("Gets the setting properties of the block grid item.")]
-    public TypedBlockGridSettingsProperties SettingsProperties => new();
+    public TypedBlockGridSettingsProperties SettingsProperties()
+    {
+        _resolverContext.SetScopedState(ContextDataKeys.BlockGridItemSettings, _blockGridItem);
+        _resolverContext.SetScopedState(ContextDataKeys.BlockGridItemSettingsPropertyName, nameof(SettingsProperties));
+        return new TypedBlockGridSettingsProperties();
+    }
 
     /// <summary>
     /// Gets the alias of the content block grid item.
@@ -114,7 +118,6 @@ public class BlockGridItemResponse
 /// <summary>
 /// Represents a block grid area
 /// </summary>
-[GraphQLName("BlockGridArea")]
 [GraphQLDescription("Represents a block grid area.")]
 public class BlockGridAreaResponse
 {

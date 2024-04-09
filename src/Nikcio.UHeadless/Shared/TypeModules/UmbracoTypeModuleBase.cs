@@ -69,10 +69,40 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
     /// <inheritdoc/>
     public ValueTask<IReadOnlyCollection<ITypeSystemMember>> CreateTypesAsync(IDescriptorContext context, CancellationToken cancellationToken)
     {
-        var types = new List<ITypeSystemMember>();
+        GenerateTypes(out List<ITypeSystemMember> types, out List<ObjectType> objectTypes);
 
-        var objectTypes = new List<ObjectType>();
+        AddTypedPropertyUnion<TypedProperties>(types, objectTypes, ResolveScopedValueAsObjectType<IPublishedContent>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.PublishedContent,
+            getContentTypeAlias: publishedContent => publishedContent?.ContentType?.Alias));
 
+        AddTypedPropertyUnion<TypedBlockListContentProperties>(types, objectTypes, ResolveScopedValueAsObjectType<BlockListItem>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.BlockListItemContent,
+            getContentTypeAlias: blockListItem => blockListItem?.Content?.ContentType?.Alias));
+
+        AddTypedPropertyUnion<TypedBlockListSettingsProperties>(types, objectTypes, ResolveScopedValueAsObjectType<BlockListItem>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.BlockListItemSettings,
+            getContentTypeAlias: blockListItem => blockListItem?.Settings?.ContentType?.Alias));
+
+        AddTypedPropertyUnion<TypedBlockGridContentProperties>(types, objectTypes, ResolveScopedValueAsObjectType<BlockGridItem>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.BlockGridItemContent,
+            getContentTypeAlias: blockGridItem => blockGridItem?.Content?.ContentType?.Alias));
+
+        AddTypedPropertyUnion<TypedBlockGridSettingsProperties>(types, objectTypes, ResolveScopedValueAsObjectType<BlockGridItem>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.BlockGridItemSettings,
+            getContentTypeAlias: blockGridItem => blockGridItem?.Settings?.ContentType?.Alias));
+
+        return new ValueTask<IReadOnlyCollection<ITypeSystemMember>>(types);
+    }
+
+    private void GenerateTypes(out List<ITypeSystemMember> types, out List<ObjectType> objectTypes)
+    {
+        types = new List<ITypeSystemMember>();
+        objectTypes = new List<ObjectType>();
         AddEmptyPropertyType(objectTypes);
 
         var contentTypes = GetContentTypes().ToList();
@@ -101,16 +131,6 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
 
             types.Add(objectType);
         }
-
-        AddTypedPropertyUnion<TypedProperties>(types, objectTypes, ResolveContentTypeAsObjectType(objectTypes));
-
-        AddTypedPropertyUnion<TypedBlockListContentProperties>(types, objectTypes, ResolveBlockListContentAsObjectType(objectTypes));
-        AddTypedPropertyUnion<TypedBlockListSettingsProperties>(types, objectTypes, ResolveBlockListSettingsAsObjectType(objectTypes));
-
-        AddTypedPropertyUnion<TypedBlockGridContentProperties>(types, objectTypes, ResolveBlockGridContentAsObjectType(objectTypes));
-        AddTypedPropertyUnion<TypedBlockGridSettingsProperties>(types, objectTypes, ResolveBlockGridSettingsAsObjectType(objectTypes));
-
-        return new ValueTask<IReadOnlyCollection<ITypeSystemMember>>(types);
     }
 
     private static void AddTypedPropertyUnion<TTypedPropertyUnion>(List<ITypeSystemMember> types, List<ObjectType> objectTypes, ResolveAbstractType resolver)
@@ -127,6 +147,35 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         });
 
         types.Add(typedPropertiesUnion);
+    }
+
+    private static ResolveAbstractType ResolveScopedValueAsObjectType<TScopedValue>(List<ObjectType> objectTypes, string scopedValueKey, Func<TScopedValue, string?> getContentTypeAlias)
+    {
+        return (context, result) =>
+        {
+            TScopedValue? scopeValue = context.GetScopedState<TScopedValue?>(scopedValueKey);
+
+            if (scopeValue == null)
+            {
+                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
+                logger.LogWarning("Scope value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
+                return default;
+            }
+
+            if (scopeValue == null)
+            {
+                return default;
+            }
+
+            string? contentTypeAlias = getContentTypeAlias.Invoke(scopeValue);
+
+            if (string.IsNullOrWhiteSpace(contentTypeAlias))
+            {
+                return objectTypes[0];
+            }
+
+            return objectTypes.Find(type => type.Name == GetObjectTypeName(contentTypeAlias)) ?? objectTypes[0];
+        };
     }
 
     /// <summary>
@@ -189,35 +238,74 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         return typeDefinition;
     }
 
-    private static ValueTask<object?> ResolvePropertyValueAsync(IResolverContext context)
+    private static async ValueTask<object?> ResolvePropertyValueAsync(IResolverContext context)
     {
-        BlockGridItem? blockGridItem = context.GetScopedStateOrDefault<BlockGridItem>(ContextDataKeys.BlockGridItem);
+        object? resolver;
 
-        if(blockGridItem != null)
+        string pathParent = ((NamePathSegment?) context.Path.Parent)?.Name ?? "$$"; // Make sure we don't match null when looking for the correct resolver
+        if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockListItemContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
         {
-            return ResolveBlockGridPropertyValueAsync(context, blockGridItem);
+            resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
+                context: context,
+                scopedDataKey: ContextDataKeys.BlockListItemContent,
+                getProperty: (blockItem, propertyAlias) => blockItem.Content.GetProperty(propertyAlias),
+                getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
+        }
+        else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockListItemSettingsPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
+        {
+            resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
+                context: context,
+                scopedDataKey: ContextDataKeys.BlockListItemSettings,
+                getProperty: (blockItem, propertyAlias) => blockItem.Settings.GetProperty(propertyAlias),
+                getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
+        }
+        else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockGridItemContentPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
+        {
+            resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
+                context: context,
+                scopedDataKey: ContextDataKeys.BlockGridItemContent,
+                getProperty: (blockItem, propertyAlias) => blockItem.Content.GetProperty(propertyAlias),
+                getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
+        }
+        else if (string.Equals(context.GetScopedStateOrDefault<string>(ContextDataKeys.BlockGridItemSettingsPropertyName), pathParent, StringComparison.OrdinalIgnoreCase))
+        {
+            resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
+                context: context,
+                scopedDataKey: ContextDataKeys.BlockGridItemSettings,
+                getProperty: (blockItem, propertyAlias) => blockItem.Settings.GetProperty(propertyAlias),
+                getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
+        }
+        else
+        {
+            resolver = await ResolveScopedValueAsPropertyValueAsync<IPublishedContent>(
+                context: context,
+                scopedDataKey: ContextDataKeys.PublishedContent,
+                getProperty: (publishedContent, propertyAlias) => publishedContent.GetProperty(propertyAlias),
+                getContentTypeAlias: publishedContent => publishedContent?.ContentType?.Alias).ConfigureAwait(false);
         }
 
-        BlockListItem? blockListItem = context.GetScopedStateOrDefault<BlockListItem>(ContextDataKeys.BlockListItem);
+        return resolver;
+    }
 
-        if (blockListItem != null)
-        {
-            return ResolveBlockListPropertyValueAsync(context, blockListItem);
-        }
+    private static ValueTask<object?> ResolveScopedValueAsPropertyValueAsync<TScopedValue>(
+        IResolverContext context,
+        string scopedDataKey,
+        Func<TScopedValue, string, IPublishedProperty?> getProperty,
+        Func<TScopedValue, string?> getContentTypeAlias)
+    {
+        TScopedValue? scopedData = context.GetScopedStateOrDefault<TScopedValue>(scopedDataKey);
 
-        IPublishedContent? publishedContent = context.GetScopedState<IPublishedContent>(ContextDataKeys.PublishedContent);
-
-        if (publishedContent == null)
+        if (scopedData == null)
         {
             return default;
         }
 
-        IPublishedProperty? publishedProperty = publishedContent.GetProperty(context.Selection.ResponseName);
+        IPublishedProperty? publishedProperty = getProperty(scopedData, context.Selection.ResponseName);
 
         if (publishedProperty == null)
         {
             ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, publishedContent.ContentType.Alias);
+            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, getContentTypeAlias(scopedData));
             return default;
         }
 
@@ -229,157 +317,5 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         };
 
         return ValueTask.FromResult((object?) PropertyValue.CreatePropertyValue(command, context.Service<IPropertyMap>(), context.Service<IDependencyReflectorFactory>()));
-    }
-
-    private static ValueTask<object?> ResolveBlockListPropertyValueAsync(IResolverContext context, BlockListItem blockListItem)
-    {
-        IPublishedProperty? publishedProperty = blockListItem.Content.GetProperty(context.Selection.ResponseName) ?? blockListItem.Settings.GetProperty(context.Selection.ResponseName);
-
-        if (publishedProperty == null)
-        {
-            ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, blockListItem.Content.ContentType.Alias);
-            return default;
-        }
-
-        var command = new PropertyValue.CreateCommand()
-        {
-            PublishedProperty = publishedProperty,
-            PublishedValueFallback = context.Service<IPublishedValueFallback>(),
-            ResolverContext = context
-        };
-
-        return ValueTask.FromResult((object?) PropertyValue.CreatePropertyValue(command, context.Service<IPropertyMap>(), context.Service<IDependencyReflectorFactory>()));
-    }
-
-    private static ValueTask<object?> ResolveBlockGridPropertyValueAsync(IResolverContext context, BlockGridItem blockGridItem)
-    {
-        IPublishedProperty? publishedProperty = blockGridItem.Content.GetProperty(context.Selection.ResponseName) ?? blockGridItem.Settings.GetProperty(context.Selection.ResponseName);
-
-        if (publishedProperty == null)
-        {
-            ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, blockGridItem.Content.ContentType.Alias);
-            return default;
-        }
-
-        var command = new PropertyValue.CreateCommand()
-        {
-            PublishedProperty = publishedProperty,
-            PublishedValueFallback = context.Service<IPublishedValueFallback>(),
-            ResolverContext = context
-        };
-
-        return ValueTask.FromResult((object?) PropertyValue.CreatePropertyValue(command, context.Service<IPropertyMap>(), context.Service<IDependencyReflectorFactory>()));
-    }
-
-    private static ResolveAbstractType ResolveContentTypeAsObjectType(List<ObjectType> objectTypes)
-    {
-        return (context, result) =>
-        {
-            IPublishedContent? publishedContent = context.GetScopedState<IPublishedContent>(ContextDataKeys.PublishedContent);
-
-            if (publishedContent == null)
-            {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-                logger.LogWarning("Published content is not available in scoped data.");
-                return default;
-            }
-
-            if (publishedContent == null)
-            {
-                return default;
-            }
-
-            return objectTypes.Find(type => type.Name == GetObjectTypeName(publishedContent.ContentType.Alias)) ?? objectTypes[0];
-        };
-    }
-
-    private static ResolveAbstractType ResolveBlockListContentAsObjectType(List<ObjectType> objectTypes)
-    {
-        return (context, result) =>
-        {
-            BlockListItem? blockListItem = context.GetScopedState<BlockListItem>(ContextDataKeys.BlockListItem);
-
-            if (blockListItem == null)
-            {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-                logger.LogWarning("Block list item is not available in scoped data.");
-                return default;
-            }
-
-            if (blockListItem == null)
-            {
-                return default;
-            }
-
-            return objectTypes.Find(type => type.Name == GetObjectTypeName(blockListItem.Content.ContentType.Alias)) ?? objectTypes[0];
-        };
-    }
-
-    private static ResolveAbstractType ResolveBlockListSettingsAsObjectType(List<ObjectType> objectTypes)
-    {
-        return (context, result) =>
-        {
-            BlockListItem? blockListItem = context.GetScopedState<BlockListItem>(ContextDataKeys.BlockListItem);
-
-            if (blockListItem == null)
-            {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-                logger.LogWarning("Block list item is not available in scoped data.");
-                return default;
-            }
-
-            if (blockListItem == null)
-            {
-                return default;
-            }
-
-            return objectTypes.Find(type => type.Name == GetObjectTypeName(blockListItem.Settings.ContentType.Alias)) ?? objectTypes[0];
-        };
-    }
-
-    private static ResolveAbstractType ResolveBlockGridContentAsObjectType(List<ObjectType> objectTypes)
-    {
-        return (context, result) =>
-        {
-            BlockGridItem? blockGridItem = context.GetScopedState<BlockGridItem>(ContextDataKeys.BlockGridItem);
-
-            if (blockGridItem == null)
-            {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-                logger.LogWarning("Block grid item is not available in scoped data.");
-                return default;
-            }
-
-            if (blockGridItem == null)
-            {
-                return default;
-            }
-
-            return objectTypes.Find(type => type.Name == GetObjectTypeName(blockGridItem.Content.ContentType.Alias)) ?? objectTypes[0];
-        };
-    }
-
-    private static ResolveAbstractType ResolveBlockGridSettingsAsObjectType(List<ObjectType> objectTypes)
-    {
-        return (context, result) =>
-        {
-            BlockGridItem? blockGridItem = context.GetScopedState<BlockGridItem>(ContextDataKeys.BlockGridItem);
-
-            if (blockGridItem == null)
-            {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
-                logger.LogWarning("Block grid item is not available in scoped data.");
-                return default;
-            }
-
-            if (blockGridItem == null)
-            {
-                return default;
-            }
-
-            return objectTypes.Find(type => type.Name == GetObjectTypeName(blockGridItem.Settings.ContentType.Alias)) ?? objectTypes[0];
-        };
     }
 }
