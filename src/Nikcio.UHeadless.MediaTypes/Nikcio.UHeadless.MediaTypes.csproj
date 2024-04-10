@@ -32,8 +32,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Nikcio.UHeadless.Base\Nikcio.UHeadless.Base.csproj" />
-  </ItemGroup>
-
 </Project>

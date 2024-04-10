@@ -2,6 +2,7 @@ using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Extensions.Options;
+using Nikcio.UHeadless.Shared.Directives;
 using Nikcio.UHeadless.Shared.Properties;
 
 namespace Nikcio.UHeadless.Extensions;
@@ -45,7 +46,8 @@ public static class UHeadlessGraphQLExtensions
             .AddSorting()
             .AddQueryType<GraphQLQuery>()
             .AddInterfaceType<PropertyValue>()
-            .AddTypeModule<ContentTypeModule>();
+            .AddTypeModule<ContentTypeModule>()
+            .AddDirectiveType<ContextDirective>();
 
         foreach (Type type in uHeadlessGraphQLOptions.PropertyValueTypes)
         {

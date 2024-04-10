@@ -41,4 +41,8 @@
     <PackageReference Include="HotChocolate.Data" Version="13.9.0" />
     <PackageReference Include="Umbraco.Cms.Web.Common" Version="11.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
+  </ItemGroup>
 </Project>

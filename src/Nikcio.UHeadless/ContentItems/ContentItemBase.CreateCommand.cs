@@ -16,11 +16,6 @@ public partial class ContentItemBase
         public required IPublishedContent? PublishedContent { get; init; }
 
         /// <summary>
-        /// The culture
-        /// </summary>
-        public required string? Culture { get; init; }
-
-        /// <summary>
         /// The segment
         /// </summary>
         public required string? Segment { get; init; }
@@ -29,11 +24,6 @@ public partial class ContentItemBase
         /// The fallback tactic
         /// </summary>
         public required Fallback? Fallback { get; init; }
-
-        /// <summary>
-        /// Determines if the query allows fetching preview content
-        /// </summary>
-        public required bool IsPreview { get; init; }
 
         /// <summary>
         /// The resolver context

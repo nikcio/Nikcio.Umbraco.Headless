@@ -97,6 +97,11 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
             scopedValueKey: ContextDataKeys.BlockGridItemSettings,
             getContentTypeAlias: blockGridItem => blockGridItem?.Settings?.ContentType?.Alias));
 
+        AddTypedPropertyUnion<TypedNestedContentProperties>(types, objectTypes, ResolveScopedValueAsObjectType<IPublishedElement>(
+            objectTypes: objectTypes,
+            scopedValueKey: ContextDataKeys.NestedContent,
+            getContentTypeAlias: nestedContent => nestedContent?.ContentType?.Alias));
+
         return new ValueTask<IReadOnlyCollection<ITypeSystemMember>>(types);
     }
 

@@ -1,4 +1,7 @@
 using HotChocolate.Execution.Configuration;
+using Nikcio.UHeadless.Defaults.Content.Queries.ContentAll;
+using Nikcio.UHeadless.Defaults.Content.Queries.ContentAtRoot;
+using Nikcio.UHeadless.Defaults.Content.Queries.ContentByContentType;
 using Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
 
 //using Nikcio.UHeadless.Content.Basics.Queries;
@@ -41,6 +44,9 @@ builder.CreateUmbracoBuilder()
             GraphQLExtensions = (IRequestExecutorBuilder builder) =>
             {
                 builder.AddTypeExtension<ContentByRouteQuery>();
+                builder.AddTypeExtension<ContentByContentTypeQuery>();
+                builder.AddTypeExtension<ContentAtRootQuery>();
+                builder.AddTypeExtension<ContentAllQuery>();
 
                 //builder.AddAuthorization();
 

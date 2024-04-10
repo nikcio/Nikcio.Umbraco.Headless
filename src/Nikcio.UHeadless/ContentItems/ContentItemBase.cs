@@ -11,17 +11,14 @@ public abstract partial class ContentItemBase
         ArgumentNullException.ThrowIfNull(command);
 
         PublishedContent = command.PublishedContent;
-        Culture = command.Culture;
-        Segment = command.Segment;
-        Fallback = command.Fallback;
-        IsPreview = command.IsPreview;
         ResolverContext = command.ResolverContext;
 
+        Culture = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Culture, _ => null);
+        Segment = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Segment, _ => null);
+        Fallback = ResolverContext.GetOrSetScopedState<Fallback?>(ContextDataKeys.Fallback, _ => null);
+        IsPreview = ResolverContext.GetOrSetScopedState(ContextDataKeys.IsPreview, _ => false);
+
         ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
-        ResolverContext.SetScopedState(ContextDataKeys.Culture, Culture);
-        ResolverContext.SetScopedState(ContextDataKeys.Segment, Segment);
-        ResolverContext.SetScopedState(ContextDataKeys.Fallback, Fallback);
-        ResolverContext.SetScopedState(ContextDataKeys.IsPreview, IsPreview);
     }
 
     /// <summary>

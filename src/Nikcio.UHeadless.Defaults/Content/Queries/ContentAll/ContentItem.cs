@@ -6,10 +6,10 @@ using Nikcio.UHeadless.Shared.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
+namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentAll;
 
-[GraphQLName("ContentByRouteContentItem")]
-public partial class ContentItem : ContentItemBase
+[GraphQLName("ContentAllContentItem")]
+public class ContentItem : ContentItemBase
 {
     private readonly IVariationContextAccessor _variationContextAccessor;
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
@@ -22,13 +22,6 @@ public partial class ContentItem : ContentItemBase
 
         _variationContextAccessor = variationContextAccessor;
         _dependencyReflectorFactory = dependencyReflectorFactory;
-
-        StatusCode = command.StatusCode;
-        Redirect = command.Redirect == null ? null : new RedirectInfo()
-        {
-            IsPermanent = command.Redirect.IsPermanent,
-            RedirectUrl = command.Redirect.RedirectUrl
-        };
     }
 
     /// <summary>
@@ -88,8 +81,6 @@ public partial class ContentItem : ContentItemBase
         PublishedContent = PublishedContent.Parent,
         ResolverContext = ResolverContext,
         Segment = Segment,
-        Redirect = null,
-        StatusCode = 200,
     }, _dependencyReflectorFactory) : default;
 
     /// <summary>
@@ -100,20 +91,5 @@ public partial class ContentItem : ContentItemBase
     {
         ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
         return new TypedProperties();
-    }
-
-    public int StatusCode { get; }
-
-    /// <summary>
-    /// Gets the redirect information for the content item
-    /// </summary>
-    [GraphQLDescription("Gets the redirect information for the content item.")]
-    public RedirectInfo? Redirect { get; }
-
-    public class RedirectInfo
-    {
-        public required string? RedirectUrl { get; init; }
-
-        public required bool IsPermanent { get; init; }
     }
 }

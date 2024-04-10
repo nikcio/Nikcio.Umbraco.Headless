@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SonarQube - Nikcio.UHeadless Sonar way" ToolsVersion="17.0">
-  <Include Path="..\.sonarlint\nikcio_nikcio.uheadlesscsharp.ruleset" Action="Default" />
-  <Include Path="..\.sonarlint\nikcio_nikcio.uheadlesscsharp.ruleset" Action="Default" />
-</RuleSet>
