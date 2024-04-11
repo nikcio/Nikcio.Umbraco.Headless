@@ -16,16 +16,6 @@ public partial class ContentItemBase
         public required IPublishedContent? PublishedContent { get; init; }
 
         /// <summary>
-        /// The segment
-        /// </summary>
-        public required string? Segment { get; init; }
-
-        /// <summary>
-        /// The fallback tactic
-        /// </summary>
-        public required Fallback? Fallback { get; init; }
-
-        /// <summary>
         /// The resolver context
         /// </summary>
         /// <remarks>

@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Shared.Reflection;
+using Nikcio.UHeadless.Common.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.ContentItems;

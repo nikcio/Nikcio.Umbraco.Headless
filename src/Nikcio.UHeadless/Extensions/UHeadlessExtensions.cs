@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Content.NotificationHandlers;
+using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults;
+using Nikcio.UHeadless.ContentItems.NotificationHandlers;
 using Nikcio.UHeadless.Extensions.Options;
-using Nikcio.UHeadless.Shared.Properties;
-using Nikcio.UHeadless.Shared.Reflection;
-using NPoco.FluentMappings;
-using Umbraco.Cms.Core.Composing;
+using Nikcio.UHeadless.MediaItems;
+using Nikcio.UHeadless.MediaItems.NotficationHandlers;
+using Nikcio.UHeadless.Members;
+using Nikcio.UHeadless.Members.NotificationHandlers;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
-using Umbraco.Cms.Core.Persistence.Repositories;
-using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Extensions;
 
@@ -45,6 +43,8 @@ public static class UHeadlessExtensions
 
         builder.Services.AddScoped<IDependencyReflectorFactory, DependencyReflectorFactory>();
         builder.Services.AddScoped(typeof(IContentItemRepository<>), typeof(ContentItemRepository<>));
+        builder.Services.AddScoped(typeof(IMediaItemRepository<>), typeof(MediaItemRepository<>));
+        builder.Services.AddScoped(typeof(IMemberRepository<>), typeof(MemberRepository<>));
         builder.Services.AddSingleton(uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap);
 
         if (uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMappings != null)
@@ -57,6 +57,10 @@ public static class UHeadlessExtensions
 
         builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeChangedHandler>();
         builder.Services.AddSingleton<ContentTypeModule>();
+        builder.Services.AddSingleton<MediaTypeModule>();
+        builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeChangedHandler>();
+        builder.Services.AddSingleton<MemberTypeModule>();
+        builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeChangedHandler>();
         //builder.Services
         //    .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)
         //    .AddContentTypeServices();
@@ -157,20 +161,4 @@ public static class UHeadlessExtensions
         app.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions);
         return app;
     }
-
-    /// <summary>
-    /// Adds UHeadless composers
-    /// </summary>
-    //public static IUmbracoBuilder AddUHeadlessComposers(this IUmbracoBuilder builder)
-    //{
-    //    ArgumentNullException.ThrowIfNull(builder);
-
-    //    IEnumerable<Type> composerTypes = builder.TypeLoader.GetTypes<IUHeadlessComposer>();
-    //    IEnumerable<Attribute> enableDisable =
-    //        builder.TypeLoader.GetAssemblyAttributes(typeof(EnableComposerAttribute), typeof(DisableComposerAttribute));
-
-    //    new UHeadlessComposerGraph(builder, composerTypes, enableDisable, builder.BuilderLoggerFactory.CreateLogger<UHeadlessComposerGraph>()).Compose();
-
-    //    return builder;
-    //}
 }

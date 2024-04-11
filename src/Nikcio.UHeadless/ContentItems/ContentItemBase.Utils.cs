@@ -1,11 +1,11 @@
-using Nikcio.UHeadless.Shared.Reflection;
+using Nikcio.UHeadless.Common.Reflection;
 
 namespace Nikcio.UHeadless.ContentItems;
 
 public partial class ContentItemBase
 {
     public static TContentItem? CreateContentItem<TContentItem>(CreateCommand command, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TContentItem : class
+        where TContentItem : ContentItemBase
     {
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
@@ -23,7 +23,7 @@ public partial class ContentItemBase
     }
 
     public static IEnumerable<TContentItem?> CreateContentItems<TContentItem>(IEnumerable<CreateCommand> commands, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TContentItem : class
+        where TContentItem : ContentItemBase
     {
         ArgumentNullException.ThrowIfNull(commands);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);

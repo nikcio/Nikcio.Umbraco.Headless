@@ -1,9 +1,11 @@
 using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nikcio.UHeadless.Common.Directives;
+using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Extensions.Options;
-using Nikcio.UHeadless.Shared.Directives;
-using Nikcio.UHeadless.Shared.Properties;
+using Nikcio.UHeadless.MediaItems;
+using Nikcio.UHeadless.Members;
 
 namespace Nikcio.UHeadless.Extensions;
 
@@ -47,7 +49,11 @@ public static class UHeadlessGraphQLExtensions
             .AddQueryType<GraphQLQuery>()
             .AddInterfaceType<PropertyValue>()
             .AddTypeModule<ContentTypeModule>()
-            .AddDirectiveType<ContextDirective>();
+            .AddTypeModule<MediaTypeModule>()
+            .AddTypeModule<MemberTypeModule>()
+            .AddDirectiveType<ContextDirective>()
+            .AddDirectiveType<FallbackDirective>()
+            .AddDirectiveType<SegmentDirective>();
 
         foreach (Type type in uHeadlessGraphQLOptions.PropertyValueTypes)
         {

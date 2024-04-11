@@ -1,18 +1,8 @@
 using HotChocolate.Execution.Configuration;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentAll;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentAtRoot;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentByContentType;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
-
-//using Nikcio.UHeadless.Content.Basics.Queries;
-//using Nikcio.UHeadless.Content.Extensions;
-//using Nikcio.UHeadless.ContentItems;
+using Nikcio.UHeadless.Defaults.ContentItems;
+using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Extensions;
 using Nikcio.UHeadless.IntegrationTests.TestProject;
-//using Nikcio.UHeadless.Media.Basics.Queries;
-//using Nikcio.UHeadless.Media.Extensions;
-//using Nikcio.UHeadless.Members.Basics.Queries;
-//using Nikcio.UHeadless.Members.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -46,40 +36,15 @@ builder.CreateUmbracoBuilder()
                 builder.AddTypeExtension<ContentByRouteQuery>();
                 builder.AddTypeExtension<ContentByContentTypeQuery>();
                 builder.AddTypeExtension<ContentAtRootQuery>();
-                builder.AddTypeExtension<ContentAllQuery>();
+                builder.AddTypeExtension<ContentByIdQuery>();
+                builder.AddTypeExtension<ContentByGuidQuery>();
+                builder.AddTypeExtension<ContentByTagQuery>();
 
-                //builder.AddAuthorization();
+                builder.AddTypeExtension<MediaByContentTypeQuery>();
+                builder.AddTypeExtension<MediaAtRootQuery>();
+                builder.AddTypeExtension<MediaByIdQuery>();
+                builder.AddTypeExtension<MediaByGuidQuery>();
 
-                //builder.UseContentQueries();
-                //builder.AddTypeExtension<BasicContentAllQuery>();
-                //builder.AddTypeExtension<BasicContentAtRootQuery>();
-                //builder.AddTypeExtension<BasicContentByAbsoluteRouteQuery>();
-                //builder.AddTypeExtension<BasicContentByContentTypeQuery>();
-                //builder.AddTypeExtension<BasicContentByGuidQuery>();
-                //builder.AddTypeExtension<BasicContentByIdQuery>();
-                //builder.AddTypeExtension<BasicContentByTagQuery>();
-                //builder.AddTypeExtension<BasicContentDescendantsByAbsoluteRouteQuery>();
-                //builder.AddTypeExtension<BasicContentDescendantsByContentTypeQuery>();
-                //builder.AddTypeExtension<BasicContentDescendantsByGuidQuery>();
-                //builder.AddTypeExtension<BasicContentDescendantsByIdQuery>();
-
-                //builder.UseMediaQueries();
-                //builder.AddTypeExtension<BasicMediaAtRootQuery>();
-                //builder.AddTypeExtension<BasicMediaByContentTypeQuery>();
-                //builder.AddTypeExtension<BasicMediaByGuidQuery>();
-                //builder.AddTypeExtension<BasicMediaByIdQuery>();
-
-                //builder.UseMemberQueries();
-                //builder.AddTypeExtension<BasicMembersAllQuery>();
-                //builder.AddTypeExtension<BasicFindMembersByDisplayNameQuery>();
-                //builder.AddTypeExtension<BasicFindMembersByEmailQuery>();
-                //builder.AddTypeExtension<BasicFindMembersByRoleQuery>();
-                //builder.AddTypeExtension<BasicFindMembersByUsernameQuery>();
-                //builder.AddTypeExtension<BasicMemberByEmailQuery>();
-                //builder.AddTypeExtension<BasicMemberByIdQuery>();
-                //builder.AddTypeExtension<BasicMemberByKeyQuery>();
-                //builder.AddTypeExtension<BasicMemberByUsernameQuery>();
-                //builder.AddTypeExtension<BasicMembersByIdQuery>();
                 return builder;
             },
         },

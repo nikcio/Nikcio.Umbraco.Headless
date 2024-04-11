@@ -1,8 +1,7 @@
-using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
 
-namespace Nikcio.UHeadless.Content.NotificationHandlers;
+namespace Nikcio.UHeadless.ContentItems.NotificationHandlers;
 
 /// <summary>
 /// Triggers GraphQL schema rebuild when content types changes
@@ -11,13 +10,11 @@ internal class ContentTypeChangedHandler : INotificationAsyncHandler<ContentType
 {
     private readonly ContentTypeModule _contentTypeModule;
 
-    /// <inheritdoc/>
     public ContentTypeChangedHandler(ContentTypeModule contentTypeModule)
     {
         _contentTypeModule = contentTypeModule;
     }
 
-    /// <inheritdoc/>
     public Task HandleAsync(ContentTypeChangedNotification notification, CancellationToken cancellationToken)
     {
         _contentTypeModule.OnTypesChanged(EventArgs.Empty);

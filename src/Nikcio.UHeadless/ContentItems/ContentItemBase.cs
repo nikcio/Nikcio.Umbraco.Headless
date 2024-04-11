@@ -1,5 +1,5 @@
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Shared;
+using Nikcio.UHeadless.Common;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.ContentItems;
@@ -16,7 +16,7 @@ public abstract partial class ContentItemBase
         Culture = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Culture, _ => null);
         Segment = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Segment, _ => null);
         Fallback = ResolverContext.GetOrSetScopedState<Fallback?>(ContextDataKeys.Fallback, _ => null);
-        IsPreview = ResolverContext.GetOrSetScopedState(ContextDataKeys.IsPreview, _ => false);
+        IncludePreview = ResolverContext.GetOrSetScopedState(ContextDataKeys.IncludePreview, _ => false);
 
         ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
     }
@@ -41,7 +41,10 @@ public abstract partial class ContentItemBase
     /// </summary>
     protected Fallback? Fallback { get; }
 
-    protected bool IsPreview { get; }
+    /// <summary>
+    /// Whether to include preview content
+    /// </summary>
+    protected bool IncludePreview { get; }
 
     /// <summary>
     /// The resolver context
