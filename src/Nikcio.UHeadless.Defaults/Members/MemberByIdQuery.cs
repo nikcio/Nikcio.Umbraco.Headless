@@ -14,46 +14,49 @@ using Umbraco.Cms.Core.Services;
 namespace Nikcio.UHeadless.Defaults.Members;
 
 /// <summary>
-/// Implements the <see cref="FindMembersByDisplayName"/> query
+/// Implements the <see cref="MemberById"/> query
 /// </summary>
 [ExtendObjectType(typeof(GraphQLQuery))]
-public class FindMembersByDisplayNameQuery
+public class MemberByIdQuery
 {
     /// <summary>
-    /// Finds members by display name
+    /// Gets a member by id
     /// </summary>
-    [GraphQLDescription("Finds members by display name.")]
+    [GraphQLDescription("Gets a member by id.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MemberItem?> FindMembersByDisplayName(
+    public MemberItem? MemberById(
         IResolverContext resolverContext,
-        [Service] ILogger<FindMembersByDisplayNameQuery> logger,
+        [Service] ILogger<MemberByIdQuery> logger,
         [Service] IMemberRepository<MemberItem> memberItemRepository,
         [Service] IMemberService memberService,
-        [GraphQLDescription("The display name (may be partial).")] string displayName,
-        [GraphQLDescription("The page index.")] long pageIndex,
-        [GraphQLDescription("The page size.")] int pageSize,
-        [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
+        [GraphQLDescription("The id to fetch.")] int id)
     {
         ArgumentNullException.ThrowIfNull(memberItemRepository);
         ArgumentNullException.ThrowIfNull(memberService);
-        ArgumentException.ThrowIfNullOrEmpty(displayName);
+        ArgumentNullException.ThrowIfNull(id);
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
         if (memberCache == null)
         {
             logger.LogError("Member cache is null");
-            return Enumerable.Empty<MemberItem>();
+            return default;
         }
 
-        IEnumerable<IMember> members = memberService.FindMembersByDisplayName(displayName, pageIndex, pageSize, out long totalRecords, matchType);
+        IMember? member = memberService.GetById(id);
 
-        IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
-
-        return memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberBase.CreateCommand()
+        if (member == null)
         {
-            PublishedContent = member,
+            logger.LogWarning("Member not found. {Id}", id);
+            return default;
+        }
+
+        IPublishedContent? memberItem = memberCache.Get(member);
+
+        return memberItemRepository.GetMemberItem(new MemberBase.CreateCommand()
+        {
+            PublishedContent = memberItem,
             ResolverContext = resolverContext,
-        }));
+        });
     }
 }

@@ -1,6 +1,7 @@
 using HotChocolate.Execution.Configuration;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
+using Nikcio.UHeadless.Defaults.Members;
 using Nikcio.UHeadless.Extensions;
 using Nikcio.UHeadless.IntegrationTests.TestProject;
 
@@ -44,6 +45,15 @@ builder.CreateUmbracoBuilder()
                 builder.AddTypeExtension<MediaAtRootQuery>();
                 builder.AddTypeExtension<MediaByIdQuery>();
                 builder.AddTypeExtension<MediaByGuidQuery>();
+
+                builder.AddTypeExtension<FindMembersByDisplayNameQuery>();
+                builder.AddTypeExtension<FindMembersByEmailQuery>();
+                builder.AddTypeExtension<FindMembersByRoleQuery>();
+                builder.AddTypeExtension<FindMembersByUsernameQuery>();
+                builder.AddTypeExtension<MemberByEmailQuery>();
+                builder.AddTypeExtension<MemberByGuidQuery>(); 
+                builder.AddTypeExtension<MemberByIdQuery>();
+                builder.AddTypeExtension<MemberByUsernameQuery>();
 
                 return builder;
             },

@@ -8,34 +8,54 @@ using Nikcio.UHeadless.Common.Reflection;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Common.TypeModules;
 
 /// <summary>
 /// Represents the base for creating type modules for the Umbraco types like ContentType and MediaType
 /// </summary>
-internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
-    where TContentType : IContentTypeComposition
+internal class UmbracoTypeModule : ITypeModule
 {
     /// <summary>
     /// Represents the property map
     /// </summary>
     private readonly IPropertyMap _propertyMap;
 
+    private readonly IContentTypeService _contentTypeService;
+
+    private readonly IMediaTypeService _mediaTypeService;
+
+    private readonly IMemberTypeService _memberTypeService;
+
     /// <inheritdoc/>
     public event EventHandler<EventArgs>? TypesChanged;
 
     /// <inheritdoc/>
-    protected UmbracoTypeModuleBase(IPropertyMap propertyMap)
+    public UmbracoTypeModule(
+        IPropertyMap propertyMap,
+        IContentTypeService contentTypeService,
+        IMediaTypeService mediaTypeService,
+        IMemberTypeService memberTypeService)
     {
         _propertyMap = propertyMap;
+        _contentTypeService = contentTypeService;
+        _mediaTypeService = mediaTypeService;
+        _memberTypeService = memberTypeService;
     }
 
     /// <summary>
     /// Gets the content types to register in the GraphQL schema
     /// </summary>
     /// <returns></returns>
-    protected abstract IEnumerable<TContentType> GetContentTypes();
+    private List<IContentTypeComposition> GetContentTypes()
+    {
+        return _contentTypeService.GetAll()
+            .Cast<IContentTypeComposition>()
+            .Concat(_mediaTypeService.GetAll())
+            .Concat(_memberTypeService.GetAll())
+            .ToList();
+    }
 
     /// <summary>
     /// Call this when the types have changed
@@ -110,9 +130,9 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         objectTypes = new List<ObjectType>();
         AddEmptyPropertyType(objectTypes);
 
-        var contentTypes = GetContentTypes().ToList();
+        List<IContentTypeComposition> contentTypes = GetContentTypes();
 
-        foreach (TContentType? contentType in contentTypes)
+        foreach (IContentTypeComposition? contentType in contentTypes)
         {
             InterfaceTypeDefinition interfaceTypeDefinition = CreateInterfaceTypeDefinition(contentType);
 
@@ -162,7 +182,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
 
             if (scopeValue == null)
             {
-                ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
+                ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
                 logger.LogWarning("Scope value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
                 return default;
             }
@@ -194,7 +214,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         objectTypes.Add(ObjectType.CreateUnsafe(emptyNamedProperty));
     }
 
-    private InterfaceTypeDefinition CreateInterfaceTypeDefinition(TContentType contentType)
+    private InterfaceTypeDefinition CreateInterfaceTypeDefinition(IContentTypeComposition contentType)
     {
         var interfaceTypeDefinition = new InterfaceTypeDefinition(GetInterfaceTypeName(contentType.Alias), contentType.Description);
 
@@ -215,7 +235,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
         return interfaceTypeDefinition;
     }
 
-    private ObjectTypeDefinition CreateObjectTypeDefinition(TContentType contentType)
+    private ObjectTypeDefinition CreateObjectTypeDefinition(IContentTypeComposition contentType)
     {
         var typeDefinition = new ObjectTypeDefinition(GetObjectTypeName(contentType.Alias), contentType.Description);
 
@@ -318,7 +338,7 @@ internal abstract class UmbracoTypeModuleBase<TContentType> : ITypeModule
 
         if (publishedProperty == null)
         {
-            ILogger<UmbracoTypeModuleBase<TContentType>> logger = context.Service<ILogger<UmbracoTypeModuleBase<TContentType>>>();
+            ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
             logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, getContentTypeAlias(scopedData));
             return default;
         }

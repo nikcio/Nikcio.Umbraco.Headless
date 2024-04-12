@@ -1,3 +1,4 @@
+using Nikcio.UHeadless.Common.TypeModules;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
 
@@ -8,10 +9,10 @@ namespace Nikcio.UHeadless.Members.NotificationHandlers;
 /// </summary>
 internal class MemberTypeChangedHandler : INotificationAsyncHandler<MemberTypeChangedNotification>
 {
-    private readonly MemberTypeModule _memberTypeModule;
+    private readonly UmbracoTypeModule _memberTypeModule;
 
     /// <inheritdoc/>
-    public MemberTypeChangedHandler(MemberTypeModule memberTypeModule)
+    public MemberTypeChangedHandler(UmbracoTypeModule memberTypeModule)
     {
         _memberTypeModule = memberTypeModule;
     }

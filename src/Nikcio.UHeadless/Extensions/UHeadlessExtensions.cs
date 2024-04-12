@@ -2,11 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Common.TypeModules;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.ContentItems.NotificationHandlers;
 using Nikcio.UHeadless.Extensions.Options;
 using Nikcio.UHeadless.MediaItems;
-using Nikcio.UHeadless.MediaItems.NotficationHandlers;
 using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Members.NotificationHandlers;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -56,10 +55,8 @@ public static class UHeadlessExtensions
         }
 
         builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeChangedHandler>();
-        builder.Services.AddSingleton<ContentTypeModule>();
-        builder.Services.AddSingleton<MediaTypeModule>();
+        builder.Services.AddSingleton<UmbracoTypeModule>();
         builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeChangedHandler>();
-        builder.Services.AddSingleton<MemberTypeModule>();
         builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeChangedHandler>();
         //builder.Services
         //    .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)

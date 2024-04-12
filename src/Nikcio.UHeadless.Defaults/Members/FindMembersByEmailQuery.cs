@@ -14,29 +14,29 @@ using Umbraco.Cms.Core.Services;
 namespace Nikcio.UHeadless.Defaults.Members;
 
 /// <summary>
-/// Implements the <see cref="FindMembersByDisplayName"/> query
+/// Implements the <see cref="FindMembersByEmail"/> query
 /// </summary>
 [ExtendObjectType(typeof(GraphQLQuery))]
-public class FindMembersByDisplayNameQuery
+public class FindMembersByEmailQuery
 {
     /// <summary>
-    /// Finds members by display name
+    /// Finds members by email
     /// </summary>
-    [GraphQLDescription("Finds members by display name.")]
+    [GraphQLDescription("Finds members by email.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MemberItem?> FindMembersByDisplayName(
+    public IEnumerable<MemberItem?> FindMembersByEmail(
         IResolverContext resolverContext,
-        [Service] ILogger<FindMembersByDisplayNameQuery> logger,
+        [Service] ILogger<FindMembersByEmailQuery> logger,
         [Service] IMemberRepository<MemberItem> memberItemRepository,
         [Service] IMemberService memberService,
-        [GraphQLDescription("The display name (may be partial).")] string displayName,
+        [GraphQLDescription("The email (may be partial).")] string email,
         [GraphQLDescription("The page index.")] long pageIndex,
         [GraphQLDescription("The page size.")] int pageSize,
         [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
     {
         ArgumentNullException.ThrowIfNull(memberItemRepository);
         ArgumentNullException.ThrowIfNull(memberService);
-        ArgumentException.ThrowIfNullOrEmpty(displayName);
+        ArgumentException.ThrowIfNullOrEmpty(email);
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
@@ -46,7 +46,7 @@ public class FindMembersByDisplayNameQuery
             return Enumerable.Empty<MemberItem>();
         }
 
-        IEnumerable<IMember> members = memberService.FindMembersByDisplayName(displayName, pageIndex, pageSize, out long totalRecords, matchType);
+        IEnumerable<IMember> members = memberService.FindByEmail(email, pageIndex, pageSize, out long totalRecords, matchType);
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 

@@ -2,6 +2,7 @@ using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Common.TypeModules;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Extensions.Options;
 using Nikcio.UHeadless.MediaItems;
@@ -48,9 +49,7 @@ public static class UHeadlessGraphQLExtensions
             .AddSorting()
             .AddQueryType<GraphQLQuery>()
             .AddInterfaceType<PropertyValue>()
-            .AddTypeModule<ContentTypeModule>()
-            .AddTypeModule<MediaTypeModule>()
-            .AddTypeModule<MemberTypeModule>()
+            .AddTypeModule<UmbracoTypeModule>()
             .AddDirectiveType<ContextDirective>()
             .AddDirectiveType<FallbackDirective>()
             .AddDirectiveType<SegmentDirective>();
