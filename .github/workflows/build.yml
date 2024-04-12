@@ -2,12 +2,12 @@ name: Build UHeadless
 
 on:
   push:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/build.yml'
   pull_request:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/build.yml'

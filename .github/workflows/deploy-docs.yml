@@ -2,7 +2,7 @@ name: Deploy docs to GitHub Pages
 
 on:
   push:
-    branches: [ v4/contrib ]
+    branches: [ contrib ]
     paths:
       - 'docs/**'
       - '.github/workflows/deploy-docs.yml'

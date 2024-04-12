@@ -1,12 +1,12 @@
 name: SonarCloud
 on:
   push:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/sonar.yml'
   pull_request_target:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/sonar.yml'
