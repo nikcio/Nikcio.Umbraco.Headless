@@ -2,7 +2,7 @@ using System;
 using Nikcio.UHeadless.Base.Properties.Commands;
 using Nikcio.UHeadless.Base.Properties.Models;
 
-namespace Examples.Docs.PropertyValues;
+namespace Examples.Docs.CustomEditors;
 
 public class MyPropertyValue : PropertyValue
 {

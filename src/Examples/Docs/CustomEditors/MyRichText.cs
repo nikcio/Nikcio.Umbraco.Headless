@@ -1,7 +1,7 @@
 ﻿using Nikcio.UHeadless.Base.Basics.EditorsValues.RichTextEditor.Models;
 using Nikcio.UHeadless.Base.Properties.Commands;
 
-namespace Examples.Docs.PropertyValues;
+namespace Examples.Docs.CustomEditors;
 
 public class MyRichText : BasicRichText
 {

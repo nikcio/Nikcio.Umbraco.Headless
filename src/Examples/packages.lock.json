@@ -3099,8 +3099,11 @@
           "Umbraco.Cms.Web.Common": "[11.0.0, )"
         }
       },
-      "nikcio.uheadless.members": {
-        "type": "Project"
+      "nikcio.uheadless.defaults": {
+        "type": "Project",
+        "dependencies": {
+          "Nikcio.UHeadless": "[4.0.0, )"
+        }
       }
     }
   }
