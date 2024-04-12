@@ -2,11 +2,77 @@
   "version": 1,
   "dependencies": {
     "net7.0": {
+      "HotChocolate.AspNetCore": {
+        "type": "Direct",
+        "requested": "[13.9.0, )",
+        "resolved": "13.9.0",
+        "contentHash": "RnxUdKEYOmsjzNPss473CYOug/9GIt8qlS9j8HxtZrW5TASM/9S7pDb7FthcDj4ag/D7wAwme3YxsqxH+iw5Bg==",
+        "dependencies": {
+          "BananaCakePop.Middleware": "13.0.0",
+          "HotChocolate": "13.9.0",
+          "HotChocolate.Subscriptions.InMemory": "13.9.0",
+          "HotChocolate.Transport.Sockets": "13.9.0",
+          "HotChocolate.Types.Scalars.Upload": "13.9.0",
+          "HotChocolate.Utilities.DependencyInjection": "13.9.0"
+        }
+      },
+      "HotChocolate.AspNetCore.Authorization": {
+        "type": "Direct",
+        "requested": "[13.9.0, )",
+        "resolved": "13.9.0",
+        "contentHash": "z5eLUN9Uai7qLuyq6bwH6UrjYhd38f0tB9WRPjezY+/2Y8Fw2UVk2hz5FAKCr/jWC18njqTNuNateJ95IvwC6Q==",
+        "dependencies": {
+          "HotChocolate": "13.9.0"
+        }
+      },
+      "HotChocolate.Data": {
+        "type": "Direct",
+        "requested": "[13.9.0, )",
+        "resolved": "13.9.0",
+        "contentHash": "eZI9pIipsJsqdacj55krmxx24cUTCearQ/q9wT4aa6vQ/5GwuwWJ0ZIqdcp1qPjd+BsmJixrQBbi6/OgnFXIGw==",
+        "dependencies": {
+          "HotChocolate.Execution": "13.9.0",
+          "HotChocolate.Types.CursorPagination": "13.9.0"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Direct",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA=="
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "Direct",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "RIFgaqoaINxkM2KTOw72dmilDmTrYA0ns2KW4lDz4gZ2+o6IQ894CzmdL3StM2oh7QQq44nCWiqKqc4qUI9Jmg==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
+        }
+      },
       "Microsoft.VisualStudio.Threading.Analyzers": {
         "type": "Direct",
         "requested": "[17.9.28, )",
         "resolved": "17.9.28",
         "contentHash": "hNfIadilgBXbAOmV7LCdPSmLsUILA3QZhR4Wu9VbFDaHjtU3dCFRfJMbk45galt1pfffz4yI5qT9oUJl+F8mNQ=="
+      },
+      "Umbraco.Cms.Web.Common": {
+        "type": "Direct",
+        "requested": "[11.0.0, )",
+        "resolved": "11.0.0",
+        "contentHash": "EVEu4yNMQ8/cFzmZo39wCopFQVY/If+SLburUIZL7ibuQpEXaNa/E9Lz4INdqaddtnz0jdcgokB9jvt2tBms5w==",
+        "dependencies": {
+          "Dazinator.Extensions.FileProviders": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.0",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "7.0.0",
+          "MiniProfiler.AspNetCore.Mvc": "4.2.22",
+          "Smidge.InMemory": "4.2.0",
+          "Smidge.Nuglify": "4.2.0",
+          "Umbraco.Cms.Core": "11.0.0",
+          "Umbraco.Cms.Examine.Lucene": "11.0.0",
+          "Umbraco.Cms.Infrastructure": "11.0.0",
+          "Umbraco.Cms.PublishedCache.NuCache": "11.0.0"
+        }
       },
       "BananaCakePop.Middleware": {
         "type": "Transitive",
@@ -104,42 +170,12 @@
           "System.Collections.Immutable": "7.0.0"
         }
       },
-      "HotChocolate.AspNetCore": {
-        "type": "Transitive",
-        "resolved": "13.9.0",
-        "contentHash": "RnxUdKEYOmsjzNPss473CYOug/9GIt8qlS9j8HxtZrW5TASM/9S7pDb7FthcDj4ag/D7wAwme3YxsqxH+iw5Bg==",
-        "dependencies": {
-          "BananaCakePop.Middleware": "13.0.0",
-          "HotChocolate": "13.9.0",
-          "HotChocolate.Subscriptions.InMemory": "13.9.0",
-          "HotChocolate.Transport.Sockets": "13.9.0",
-          "HotChocolate.Types.Scalars.Upload": "13.9.0",
-          "HotChocolate.Utilities.DependencyInjection": "13.9.0"
-        }
-      },
-      "HotChocolate.AspNetCore.Authorization": {
-        "type": "Transitive",
-        "resolved": "13.9.0",
-        "contentHash": "z5eLUN9Uai7qLuyq6bwH6UrjYhd38f0tB9WRPjezY+/2Y8Fw2UVk2hz5FAKCr/jWC18njqTNuNateJ95IvwC6Q==",
-        "dependencies": {
-          "HotChocolate": "13.9.0"
-        }
-      },
       "HotChocolate.Authorization": {
         "type": "Transitive",
         "resolved": "13.9.0",
         "contentHash": "6CPA39zObNuMUmkmQ6J3zqmalukhjCiJS/klSEDPpwTtrn9HS/3edsh/7oiKzmUh6PNVKGed0lwkSdDP+DGZDQ==",
         "dependencies": {
           "HotChocolate.Execution": "13.9.0"
-        }
-      },
-      "HotChocolate.Data": {
-        "type": "Transitive",
-        "resolved": "13.9.0",
-        "contentHash": "eZI9pIipsJsqdacj55krmxx24cUTCearQ/q9wT4aa6vQ/5GwuwWJ0ZIqdcp1qPjd+BsmJixrQBbi6/OgnFXIGw==",
-        "dependencies": {
-          "HotChocolate.Execution": "13.9.0",
-          "HotChocolate.Types.CursorPagination": "13.9.0"
         }
       },
       "HotChocolate.Execution": {
@@ -684,11 +720,6 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "8.0.1",
-        "contentHash": "fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA=="
-      },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
         "resolved": "7.0.0",
@@ -788,14 +819,6 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
           "Microsoft.Extensions.Options": "7.0.0"
-        }
-      },
-      "Microsoft.Extensions.Logging.Abstractions": {
-        "type": "Transitive",
-        "resolved": "8.0.1",
-        "contentHash": "RIFgaqoaINxkM2KTOw72dmilDmTrYA0ns2KW4lDz4gZ2+o6IQ894CzmdL3StM2oh7QQq44nCWiqKqc4qUI9Jmg==",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
         }
       },
       "Microsoft.Extensions.ObjectPool": {
@@ -2312,58 +2335,12 @@
           "Umbraco.Cms.Infrastructure": "11.0.0"
         }
       },
-      "Umbraco.Cms.Web.Common": {
-        "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "EVEu4yNMQ8/cFzmZo39wCopFQVY/If+SLburUIZL7ibuQpEXaNa/E9Lz4INdqaddtnz0jdcgokB9jvt2tBms5w==",
-        "dependencies": {
-          "Dazinator.Extensions.FileProviders": "2.0.0",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.0",
-          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "7.0.0",
-          "MiniProfiler.AspNetCore.Mvc": "4.2.22",
-          "Smidge.InMemory": "4.2.0",
-          "Smidge.Nuglify": "4.2.0",
-          "Umbraco.Cms.Core": "11.0.0",
-          "Umbraco.Cms.Examine.Lucene": "11.0.0",
-          "Umbraco.Cms.Infrastructure": "11.0.0",
-          "Umbraco.Cms.PublishedCache.NuCache": "11.0.0"
-        }
-      },
       "Yarp.ReverseProxy": {
         "type": "Transitive",
         "resolved": "2.0.1",
         "contentHash": "op7vBwONPFeR1PYxeLw+RLqSodODDX8RWd0OinLGMVIq6yi1q9mv1j56ImuyZgiAToksiC0Dc7jbRUZ9I+jvFA==",
         "dependencies": {
           "System.IO.Hashing": "7.0.0"
-        }
-      },
-      "nikcio.uheadless.base": {
-        "type": "Project",
-        "dependencies": {
-          "HotChocolate.AspNetCore": "[13.9.0, )",
-          "HotChocolate.AspNetCore.Authorization": "[13.9.0, )",
-          "HotChocolate.Data": "[13.9.0, )",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
-          "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
-          "Umbraco.Cms.Web.Common": "[11.0.0, )"
-        }
-      },
-      "nikcio.uheadless.content": {
-        "type": "Project",
-        "dependencies": {
-          "Nikcio.UHeadless.ContentTypes": "[4.0.0, )"
-        }
-      },
-      "nikcio.uheadless.contenttypes": {
-        "type": "Project",
-        "dependencies": {
-          "Nikcio.UHeadless.Base": "[4.0.0, )"
-        }
-      },
-      "nikcio.uheadless.media": {
-        "type": "Project",
-        "dependencies": {
-          "Nikcio.UHeadless.ContentTypes": "[4.0.0, )"
         }
       }
     }

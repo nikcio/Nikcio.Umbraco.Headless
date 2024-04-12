@@ -13,12 +13,12 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/codeql-analysis.yml'
   pull_request:
-    branches: [ v**/contrib ]
+    branches: [ contrib ]
     paths:
       - 'src/**'
       - '.github/workflows/codeql-analysis.yml'

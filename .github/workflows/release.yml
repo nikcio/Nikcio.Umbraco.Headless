@@ -50,56 +50,7 @@ jobs:
       run: dotnet nuget push "Nikcio.UHeadless.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
       working-directory: ./src/releases
       
-    - name: Push (Nikcio.UHeadless.Base) to NuGet
-      run: dotnet nuget push "Nikcio.UHeadless.Base.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
+    - name: Push (Nikcio.UHeadless.Defaults) to NuGet
+      run: dotnet nuget push "Nikcio.UHeadless.Defaults.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
       working-directory: ./src/releases
       
-    - name: Push (Nikcio.UHeadless.Content) to NuGet
-      run: dotnet nuget push "Nikcio.UHeadless.Content.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-      working-directory: ./src/releases
-      
-    - name: Push (Nikcio.UHeadless.Media) to NuGet
-      run: dotnet nuget push "Nikcio.UHeadless.Media.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-      working-directory: ./src/releases
-      
-    - name: Push (Nikcio.UHeadless.Members) to NuGet
-      run: dotnet nuget push "Nikcio.UHeadless.Members.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-      working-directory: ./src/releases
-      
-    - name: Push (Nikcio.UHeadless.ContentTypes) to NuGet
-      run: dotnet nuget push "Nikcio.UHeadless.ContentTypes.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-      working-directory: ./src/releases
-
-    # Not ready
-      
-    # - name: Push (Nikcio.UHeadless.Cache) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.Cache.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.Cache.InMemory) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.Cache.InMemory.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.Cache.Redis) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.Cache.Redis.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.Cache.TextFiles) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.Cache.TextFiles.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.DataTypes) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.DataTypes.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.Dictionary) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.Dictionary.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.MediaTypes) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.MediaTypes.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases
-      
-    # - name: Push (Nikcio.UHeadless.MemberTypes) to NuGet
-    #   run: dotnet nuget push "Nikcio.UHeadless.MemberTypes.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-    #   working-directory: ./src/releases

@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Base.Basics.Maps.Extensions;
-using Nikcio.UHeadless.Base.Composers;
-using Nikcio.UHeadless.Base.Properties.Extensions;
-using Nikcio.UHeadless.Content.Basics.Queries;
-using Nikcio.UHeadless.Content.Extensions;
-using Nikcio.UHeadless.ContentTypes.Extensions;
-using Nikcio.UHeadless.Core.Reflection.Extensions;
+using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Common.TypeModules;
+using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Extensions.Options;
-using Umbraco.Cms.Core.Composing;
+using Nikcio.UHeadless.MediaItems;
+using Nikcio.UHeadless.Members;
+using Nikcio.UHeadless.Members.NotificationHandlers;
 using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Cms.Core.Notifications;
 
 namespace Nikcio.UHeadless.Extensions;
 
@@ -41,18 +40,35 @@ public static class UHeadlessExtensions
         ArgumentNullException.ThrowIfNull(builder);
         ArgumentNullException.ThrowIfNull(uHeadlessOptions);
 
-        builder.Services
-            .AddReflectionServices()
-            .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)
-            .AddContentTypeServices();
+        builder.Services.AddScoped<IDependencyReflectorFactory, DependencyReflectorFactory>();
+        builder.Services.AddScoped(typeof(IContentItemRepository<>), typeof(ContentItemRepository<>));
+        builder.Services.AddScoped(typeof(IMediaItemRepository<>), typeof(MediaItemRepository<>));
+        builder.Services.AddScoped(typeof(IMemberRepository<>), typeof(MemberRepository<>));
+        builder.Services.AddSingleton(uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap);
 
-        if (uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions == null)
+        if (uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMappings != null)
         {
-            uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions = (builder) =>
-                builder
-                    .UseContentQueries()
-                    .AddTypeExtension<BasicContentAtRootQuery>();
+            foreach (Action<IPropertyMap> propertyMapping in uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMappings)
+            {
+                propertyMapping.Invoke(uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap);
+            }
         }
+
+        builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeChangedHandler>();
+        builder.Services.AddSingleton<UmbracoTypeModule>();
+        builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeChangedHandler>();
+        builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeChangedHandler>();
+        //builder.Services
+        //    .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)
+        //    .AddContentTypeServices();
+
+        //if (uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions == null)
+        //{
+        //    uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions = (builder) =>
+        //        builder
+        //            .UseContentQueries()
+        //            .AddTypeExtension<BasicContentAtRootQuery>();
+        //}
 
         uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.AddPropertyMapDefaults();
         IEnumerable<Type> propertyValueTypes = uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.GetAllTypes();
@@ -64,7 +80,7 @@ public static class UHeadlessExtensions
             .AddUHeadlessGraphQL(uHeadlessOptions.UHeadlessGraphQLOptions)
             .AddTracing(uHeadlessOptions.TracingOptions);
 
-        builder.AddUHeadlessComposers();
+        //builder.AddUHeadlessComposers();
 
         return builder;
     }
@@ -141,21 +157,5 @@ public static class UHeadlessExtensions
 
         app.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions);
         return app;
-    }
-
-    /// <summary>
-    /// Adds UHeadless composers
-    /// </summary>
-    public static IUmbracoBuilder AddUHeadlessComposers(this IUmbracoBuilder builder)
-    {
-        ArgumentNullException.ThrowIfNull(builder);
-
-        IEnumerable<Type> composerTypes = builder.TypeLoader.GetTypes<IUHeadlessComposer>();
-        IEnumerable<Attribute> enableDisable =
-            builder.TypeLoader.GetAssemblyAttributes(typeof(EnableComposerAttribute), typeof(DisableComposerAttribute));
-
-        new UHeadlessComposerGraph(builder, composerTypes, enableDisable, builder.BuilderLoggerFactory.CreateLogger<UHeadlessComposerGraph>()).Compose();
-
-        return builder;
     }
 }

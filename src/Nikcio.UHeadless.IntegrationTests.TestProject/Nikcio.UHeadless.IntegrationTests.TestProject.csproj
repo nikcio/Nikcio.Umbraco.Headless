@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nikcio.UHeadless.Defaults\Nikcio.UHeadless.Defaults.csproj" />
     <ProjectReference Include="..\Nikcio.UHeadless\Nikcio.UHeadless.csproj" />
-    <ProjectReference Include="..\Nikcio.UHeadless.Members\Nikcio.UHeadless.Members.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

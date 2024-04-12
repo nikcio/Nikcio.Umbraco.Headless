@@ -1,5 +1,4 @@
-﻿using HotChocolate.Execution.Configuration;
-using Nikcio.UHeadless.Base.Properties.Models;
+using HotChocolate.Execution.Configuration;
 
 namespace Nikcio.UHeadless.Extensions.Options;
 
