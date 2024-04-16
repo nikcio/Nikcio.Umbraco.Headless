@@ -12,7 +12,6 @@ public class MemberPickerResponse : PropertyValue
 {
     private readonly IEnumerable<IPublishedContent> _publishedMembers;
     private readonly bool _isMultiple;
-    private readonly IVariationContextAccessor _variationContextAccessor;
 
     /// <summary>
     /// Gets the member items of a picker
@@ -20,7 +19,7 @@ public class MemberPickerResponse : PropertyValue
     [GraphQLDescription("Gets the member items of a picker.")]
     public List<MemberPickerItemResponse> Members => _publishedMembers.Select(publishedMember =>
     {
-        return new MemberPickerItemResponse(publishedMember, Culture, _variationContextAccessor, ResolverContext);
+        return new MemberPickerItemResponse(publishedMember, Culture, ResolverContext);
     }).ToList();
 
     /// <summary>
@@ -29,10 +28,8 @@ public class MemberPickerResponse : PropertyValue
     [GraphQLDescription("Whether the picker has multiple items.")]
     public bool IsMultiple => _isMultiple;
 
-    public MemberPickerResponse(CreateCommand command, IVariationContextAccessor variationContextAccessor) : base(command)
+    public MemberPickerResponse(CreateCommand command) : base(command)
     {
-        _variationContextAccessor = variationContextAccessor;
-
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
@@ -50,7 +47,6 @@ public class MemberPickerResponse : PropertyValue
             _publishedMembers = new List<IPublishedContent>();
             _isMultiple = false;
         }
-        _variationContextAccessor = variationContextAccessor;
     }
 }
 
@@ -93,11 +89,13 @@ public class MemberPickerItemResponse
         return new TypedProperties();
     }
 
-    public MemberPickerItemResponse(IPublishedContent publishedContent, string? culture, IVariationContextAccessor variationContextAccessor, IResolverContext resolverContext)
+    public MemberPickerItemResponse(IPublishedContent publishedContent, string? culture, IResolverContext resolverContext)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
         _publishedContent = publishedContent;
         _culture = culture;
-        _variationContextAccessor = variationContextAccessor;
+        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
         _resolverContext = resolverContext;
     }
 }

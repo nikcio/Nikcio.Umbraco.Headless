@@ -15,7 +15,6 @@ public class MultiUrlPickerResponse : PropertyValue
 {
     private readonly IEnumerable<Link> _publishedContentItemsLinks;
     private readonly bool _isMultiple;
-    private readonly IVariationContextAccessor _variationContextAccessor;
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 
     /// <summary>
@@ -44,7 +43,7 @@ public class MultiUrlPickerResponse : PropertyValue
             return null;
         }
 
-        return new MultiUrlPickerItem(publishedContent, Culture, _variationContextAccessor, ResolverContext);
+        return new MultiUrlPickerItem(publishedContent, Culture, ResolverContext);
     }).OfType<MultiUrlPickerItem>().ToList();
 
     /// <summary>
@@ -53,10 +52,10 @@ public class MultiUrlPickerResponse : PropertyValue
     [GraphQLDescription("Whether the picker has multiple items.")]
     public bool IsMultiple => _isMultiple;
 
-    public MultiUrlPickerResponse(CreateCommand command, IVariationContextAccessor variationContextAccessor, IPublishedSnapshotAccessor publishedSnapshotAccessor) : base(command)
+    public MultiUrlPickerResponse(CreateCommand command) : base(command)
     {
-        _variationContextAccessor = variationContextAccessor;
-        _publishedSnapshotAccessor = publishedSnapshotAccessor;
+        _publishedSnapshotAccessor = ResolverContext.Service<IPublishedSnapshotAccessor>();
+
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
         if (publishedContentItemsAsObject is Link publishedContent)
@@ -74,7 +73,6 @@ public class MultiUrlPickerResponse : PropertyValue
             _publishedContentItemsLinks = new List<Link>();
             _isMultiple = false;
         }
-        _variationContextAccessor = variationContextAccessor;
     }
 }
 
@@ -132,11 +130,13 @@ public class MultiUrlPickerItem
         return new TypedProperties();
     }
 
-    public MultiUrlPickerItem(IPublishedContent publishedContent, string? culture, IVariationContextAccessor variationContextAccessor, IResolverContext resolverContext)
+    public MultiUrlPickerItem(IPublishedContent publishedContent, string? culture, IResolverContext resolverContext)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
         _publishedContent = publishedContent;
         _culture = culture;
-        _variationContextAccessor = variationContextAccessor;
+        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
         _resolverContext = resolverContext;
     }
 }

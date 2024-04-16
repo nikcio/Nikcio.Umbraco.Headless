@@ -12,7 +12,6 @@ public class ContentPickerResponse : PropertyValue
 {
     private readonly IEnumerable<IPublishedContent> _publishedContentItems;
     private readonly bool _isMultiple;
-    private readonly IVariationContextAccessor _variationContextAccessor;
 
     /// <summary>
     /// Whether the picker has multiple items
@@ -26,10 +25,10 @@ public class ContentPickerResponse : PropertyValue
     [GraphQLDescription("Gets the content items of a picker.")]
     public List<ContentPickerItemResponse>? Items => _publishedContentItems.Select(publishedContent =>
     {
-        return new ContentPickerItemResponse(publishedContent, Culture, _variationContextAccessor, ResolverContext);
+        return new ContentPickerItemResponse(publishedContent, Culture, ResolverContext);
     }).ToList();
 
-    public ContentPickerResponse(CreateCommand command, IVariationContextAccessor variationContextAccessor) : base(command)
+    public ContentPickerResponse(CreateCommand command) : base(command)
     {
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
@@ -48,7 +47,6 @@ public class ContentPickerResponse : PropertyValue
             _publishedContentItems = new List<IPublishedContent>();
             _isMultiple = false;
         }
-        _variationContextAccessor = variationContextAccessor;
     }
 }
 
@@ -106,11 +104,13 @@ public class ContentPickerItemResponse
         return new TypedProperties();
     }
 
-    public ContentPickerItemResponse(IPublishedContent publishedContent, string? culture, IVariationContextAccessor variationContextAccessor, IResolverContext resolverContext)
+    public ContentPickerItemResponse(IPublishedContent publishedContent, string? culture, IResolverContext resolverContext)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
         _publishedContent = publishedContent;
         _culture = culture;
-        _variationContextAccessor = variationContextAccessor;
+        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
         _resolverContext = resolverContext;
     }
 }
