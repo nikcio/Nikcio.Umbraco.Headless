@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Builder;
+using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.Common.TypeModules;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Extensions.Options;
 using Nikcio.UHeadless.MediaItems;
 using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Members.NotificationHandlers;
@@ -22,140 +22,58 @@ public static class UHeadlessExtensions
     /// Adds all services the UHeadless package needs
     /// </summary>
     /// <param name="builder">The Umbraco builder</param>
+    /// <param name="configure">Configures the options used by UHeadless.</param>
     /// <returns></returns>
-    public static IUmbracoBuilder AddUHeadless(this IUmbracoBuilder builder)
-    {
-        var uHeadlessOptions = new UHeadlessOptions();
-        return AddUHeadless(builder, uHeadlessOptions);
-    }
-
-    /// <summary>
-    /// Adds all services the UHeadless package needs
-    /// </summary>
-    /// <param name="builder">The Umbraco builder</param>
-    /// <param name="uHeadlessOptions"></param>
-    /// <returns></returns>
-    public static IUmbracoBuilder AddUHeadless(this IUmbracoBuilder builder, UHeadlessOptions uHeadlessOptions)
+    public static IUmbracoBuilder AddUHeadless(this IUmbracoBuilder builder, Action<UHeadlessOptions>? configure = null)
     {
         ArgumentNullException.ThrowIfNull(builder);
-        ArgumentNullException.ThrowIfNull(uHeadlessOptions);
+
+        IRequestExecutorBuilder requestExecutorBuilder = builder.Services.AddGraphQLServer();
+
+        var options = new UHeadlessOptions()
+        {
+            RequestExecutorBuilder = requestExecutorBuilder
+        };
+        configure?.Invoke(options);
 
         builder.Services.AddScoped<IDependencyReflectorFactory, DependencyReflectorFactory>();
-        builder.Services.AddScoped(typeof(IContentItemRepository<>), typeof(ContentItemRepository<>));
-        builder.Services.AddScoped(typeof(IMediaItemRepository<>), typeof(MediaItemRepository<>));
-        builder.Services.AddScoped(typeof(IMemberRepository<>), typeof(MemberRepository<>));
-        builder.Services.AddSingleton(uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap);
-
-        if (uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMappings != null)
-        {
-            foreach (Action<IPropertyMap> propertyMapping in uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMappings)
-            {
-                propertyMapping.Invoke(uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap);
-            }
-        }
-
-        builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeChangedHandler>();
         builder.Services.AddSingleton<UmbracoTypeModule>();
+        builder.Services.AddSingleton(options.PropertyMap);
+
+        builder.Services.AddScoped(typeof(IContentItemRepository<>), typeof(ContentItemRepository<>));
+        builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeChangedHandler>();
+
+        builder.Services.AddScoped(typeof(IMediaItemRepository<>), typeof(MediaItemRepository<>));
         builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeChangedHandler>();
+
+        builder.Services.AddScoped(typeof(IMemberRepository<>), typeof(MemberRepository<>));
         builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeChangedHandler>();
-        //builder.Services
-        //    .AddPropertyServices(uHeadlessOptions.PropertyServicesOptions)
-        //    .AddContentTypeServices();
 
-        //if (uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions == null)
-        //{
-        //    uHeadlessOptions.UHeadlessGraphQLOptions.GraphQLExtensions = (builder) =>
-        //        builder
-        //            .UseContentQueries()
-        //            .AddTypeExtension<BasicContentAtRootQuery>();
-        //}
+        requestExecutorBuilder
+            .InitializeOnStartup()
+            .AddFiltering()
+            .AddSorting()
+            .AddQueryType<GraphQLQuery>()
+            .AddInterfaceType<PropertyValue>()
+            .AddTypeModule<UmbracoTypeModule>()
+            .AddDirectiveType<ContextDirective>()
+            .AddDirectiveType<FallbackDirective>()
+            .AddDirectiveType<SegmentDirective>();
 
-        uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.AddPropertyMapDefaults();
-        IEnumerable<Type> propertyValueTypes = uHeadlessOptions.PropertyServicesOptions.PropertyMapOptions.PropertyMap.GetAllTypes();
-
-        uHeadlessOptions.UHeadlessGraphQLOptions.PropertyValueTypes.AddRange(propertyValueTypes);
-
-        builder.Services
-            .AddGraphQLServer()
-            .AddUHeadlessGraphQL(uHeadlessOptions.UHeadlessGraphQLOptions)
-            .AddTracing(uHeadlessOptions.TracingOptions);
-
-        //builder.AddUHeadlessComposers();
+        foreach (Type type in options.PropertyMap.GetAllTypes())
+        {
+            requestExecutorBuilder.AddType(type);
+        }
 
         return builder;
     }
 
     /// <summary>
-    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
+    /// Adds default property mappings to the property map
     /// </summary>
-    /// <param name="applicationBuilder">The application builder</param>
-    /// <returns></returns>
-    [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app) instead")]
-    public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder)
+    /// <param name="propertyMap"></param>
+    public static void AddDefaults(this IPropertyMap propertyMap)
     {
-        var uHeadlessEndpointOptions = new UHeadlessEndpointOptions();
-        return UseUHeadlessGraphQLEndpoint(applicationBuilder, uHeadlessEndpointOptions);
-    }
-
-    /// <summary>
-    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
-    /// </summary>
-    /// <param name="applicationBuilder">The application builder</param>
-    /// <param name="uHeadlessEndpointOptions"></param>
-    /// <returns></returns>
-    [Obsolete("[From Umbraco v13] Use MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions) instead")]
-    public static IApplicationBuilder UseUHeadlessGraphQLEndpoint(this IApplicationBuilder applicationBuilder, UHeadlessEndpointOptions uHeadlessEndpointOptions)
-    {
-        ArgumentNullException.ThrowIfNull(applicationBuilder);
-        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions);
-
-        applicationBuilder.UseRouting();
-
-        if (uHeadlessEndpointOptions.CorsPolicy != null)
-        {
-            applicationBuilder.UseCors(uHeadlessEndpointOptions.CorsPolicy);
-        }
-        else
-        {
-            applicationBuilder.UseCors();
-        }
-
-        applicationBuilder
-            .UseEndpoints(endpoints => endpoints.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions));
-        return applicationBuilder;
-    }
-
-    /// <summary>
-    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
-    /// </summary>
-    /// <param name="app">The web application</param>
-    /// <returns></returns>
-    public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app)
-    {
-        var uHeadlessEndpointOptions = new UHeadlessEndpointOptions();
-        return MapUHeadlessGraphQLEndpoint(app, uHeadlessEndpointOptions);
-    }
-
-    /// <summary>
-    /// Creates a GraphQL endpoint at the graphQlPath or "/graphql" by default
-    /// </summary>
-    /// <param name="app">The web application</param>
-    /// <param name="uHeadlessEndpointOptions"></param>
-    /// <returns></returns>
-    public static WebApplication MapUHeadlessGraphQLEndpoint(this WebApplication app, UHeadlessEndpointOptions uHeadlessEndpointOptions)
-    {
-        ArgumentNullException.ThrowIfNull(uHeadlessEndpointOptions);
-
-        if (uHeadlessEndpointOptions.CorsPolicy != null)
-        {
-            app.UseCors(uHeadlessEndpointOptions.CorsPolicy);
-        }
-        else
-        {
-            app.UseCors();
-        }
-
-        app.MapGraphQL(uHeadlessEndpointOptions.GraphQLPath).WithOptions(uHeadlessEndpointOptions.GraphQLServerOptions);
-        return app;
+        propertyMap.AddPropertyMapDefaults();
     }
 }

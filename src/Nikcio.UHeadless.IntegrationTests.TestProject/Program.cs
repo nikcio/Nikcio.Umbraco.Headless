@@ -1,4 +1,3 @@
-using HotChocolate.Execution.Configuration;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
@@ -16,48 +15,33 @@ builder.CreateUmbracoBuilder()
     .AddWebsite()
     .AddDeliveryApi()
     .AddComposers()
-    .AddUHeadless(new()
+    .AddUHeadless(options =>
     {
-        PropertyServicesOptions = new()
-        {
-            PropertyMapOptions = new()
-            {
-                PropertyMappings = []
-            },
-        },
-        TracingOptions = new()
-        {
-            TimestampProvider = null,
-            TracingPreference = HotChocolate.Execution.Options.TracingPreference.Never,
-        },
-        UHeadlessGraphQLOptions = new()
-        {
-            GraphQLExtensions = (IRequestExecutorBuilder builder) =>
-            {
-                builder.AddTypeExtension<ContentByRouteQuery>();
-                builder.AddTypeExtension<ContentByContentTypeQuery>();
-                builder.AddTypeExtension<ContentAtRootQuery>();
-                builder.AddTypeExtension<ContentByIdQuery>();
-                builder.AddTypeExtension<ContentByGuidQuery>();
-                builder.AddTypeExtension<ContentByTagQuery>();
+        options.PropertyMap.AddDefaults();
 
-                builder.AddTypeExtension<MediaByContentTypeQuery>();
-                builder.AddTypeExtension<MediaAtRootQuery>();
-                builder.AddTypeExtension<MediaByIdQuery>();
-                builder.AddTypeExtension<MediaByGuidQuery>();
+        options.RequestExecutorBuilder
+            .AddTypeExtension<ContentByRouteQuery>()
+            .AddTypeExtension<ContentByContentTypeQuery>()
+            .AddTypeExtension<ContentAtRootQuery>()
+            .AddTypeExtension<ContentByIdQuery>()
+            .AddTypeExtension<ContentByGuidQuery>()
+            .AddTypeExtension<ContentByTagQuery>();
 
-                builder.AddTypeExtension<FindMembersByDisplayNameQuery>();
-                builder.AddTypeExtension<FindMembersByEmailQuery>();
-                builder.AddTypeExtension<FindMembersByRoleQuery>();
-                builder.AddTypeExtension<FindMembersByUsernameQuery>();
-                builder.AddTypeExtension<MemberByEmailQuery>();
-                builder.AddTypeExtension<MemberByGuidQuery>(); 
-                builder.AddTypeExtension<MemberByIdQuery>();
-                builder.AddTypeExtension<MemberByUsernameQuery>();
+        options.RequestExecutorBuilder
+            .AddTypeExtension<MediaByContentTypeQuery>()
+            .AddTypeExtension<MediaAtRootQuery>()
+            .AddTypeExtension<MediaByIdQuery>()
+            .AddTypeExtension<MediaByGuidQuery>();
 
-                return builder;
-            },
-        },
+        options.RequestExecutorBuilder
+            .AddTypeExtension<FindMembersByDisplayNameQuery>()
+            .AddTypeExtension<FindMembersByEmailQuery>()
+            .AddTypeExtension<FindMembersByRoleQuery>()
+            .AddTypeExtension<FindMembersByUsernameQuery>()
+            .AddTypeExtension<MemberByEmailQuery>()
+            .AddTypeExtension<MemberByGuidQuery>()
+            .AddTypeExtension<MemberByIdQuery>()
+            .AddTypeExtension<MemberByUsernameQuery>();
     })
     .Build();
 
@@ -68,19 +52,7 @@ await app.BootUmbracoAsync().ConfigureAwait(false);
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-app.MapUHeadlessGraphQLEndpoint(new()
-{
-    CorsPolicy = null,
-    GraphQLPath = "/graphql",
-    GraphQLServerOptions = new()
-    {
-        Tool =
-        {
-            Enable = true
-        }
-    }
-});
+app.MapGraphQL();
 
 app.UseUmbraco()
     .WithMiddleware(u =>

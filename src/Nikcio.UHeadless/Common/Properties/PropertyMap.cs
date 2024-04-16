@@ -26,6 +26,23 @@ public interface IPropertyMap
     void AddEditorMapping<TType>(string editorName) where TType : PropertyValue;
 
     /// <summary>
+    /// Removes a alias mapping
+    /// </summary>
+    /// <param name="contentTypeAlias"></param>
+    /// <param name="propertyTypeAlias"></param>
+    /// <example>
+    /// ContentTypeAlias: MyDocType
+    /// PropertyTypeAlias: MyProperty
+    /// </example>
+    void RemoveAliasMapping(string contentTypeAlias, string propertyTypeAlias);
+
+    /// <summary>
+    /// Removes a editor mapping
+    /// </summary>
+    /// <param name="editorName"></param>
+    void RemoveEditorMapping(string editorName);
+
+    /// <summary>
     /// Checks if a alias is already in the map
     /// </summary>
     /// <param name="contentTypeAlias"></param>
@@ -87,8 +104,7 @@ public interface IPropertyMap
     string GetPropertyTypeName(string contentTypeAlias, string propertyTypeAlias, string editorAlias);
 }
 
-/// <inheritdoc/>
-public class PropertyMap : DictionaryMap, IPropertyMap
+internal class PropertyMap : DictionaryMap, IPropertyMap
 {
     /// <summary>
     /// Editor mappings
@@ -105,7 +121,6 @@ public class PropertyMap : DictionaryMap, IPropertyMap
     /// </summary>
     protected HashSet<Type> types { get; } = new();
 
-    /// <inheritdoc/>
     public void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
     {
         if (AddMapping<TType>(GetEditorMappingKey(editorName), editorPropertyMap))
@@ -114,7 +129,6 @@ public class PropertyMap : DictionaryMap, IPropertyMap
         }
     }
 
-    /// <inheritdoc/>
     public void AddAliasMapping<TType>(string contentTypeAlias, string propertyTypeAlias) where TType : PropertyValue
     {
         if (AddMapping<TType>(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias), aliasPropertyMap))
@@ -123,37 +137,41 @@ public class PropertyMap : DictionaryMap, IPropertyMap
         }
     }
 
-    /// <inheritdoc/>
+    public void RemoveAliasMapping(string contentTypeAlias, string propertyTypeAlias)
+    {
+        aliasPropertyMap.Remove(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias));
+    }
+
+    public void RemoveEditorMapping(string editorName)
+    {
+        editorPropertyMap.Remove(GetEditorMappingKey(editorName));
+    }   
+
     public bool ContainsEditor(string editorName)
     {
         return editorPropertyMap.ContainsKey(GetEditorMappingKey(editorName));
     }
 
-    /// <inheritdoc/>
     public bool ContainsAlias(string contentTypeAlias, string propertyTypeAlias)
     {
         return aliasPropertyMap.ContainsKey(GetAliasMappingKey(contentTypeAlias, propertyTypeAlias));
     }
 
-    /// <inheritdoc/>
     public string GetEditorValue(string editorName)
     {
         return editorPropertyMap[GetEditorMappingKey(editorName)];
     }
 
-    /// <inheritdoc/>
     public string GetAliasValue(string contentTypeAlias, string propertyTypeAlias)
     {
         return aliasPropertyMap[GetAliasMappingKey(contentTypeAlias, propertyTypeAlias)];
     }
 
-    /// <inheritdoc/>
     public IEnumerable<Type> GetAllTypes()
     {
         return types;
     }
 
-    /// <inheritdoc/>
     public string GetEditorMappingKey(string editorName)
     {
         ArgumentNullException.ThrowIfNull(editorName);
@@ -161,7 +179,6 @@ public class PropertyMap : DictionaryMap, IPropertyMap
         return editorName.ToUpperInvariant();
     }
 
-    /// <inheritdoc/>
     public string GetAliasMappingKey(string contentTypeAlias, string propertyTypeAlias)
     {
         ArgumentNullException.ThrowIfNull(contentTypeAlias);
@@ -170,7 +187,6 @@ public class PropertyMap : DictionaryMap, IPropertyMap
         return $"{contentTypeAlias}&&{propertyTypeAlias}".ToUpperInvariant();
     }
 
-    /// <inheritdoc/>
     public string GetPropertyTypeName(string contentTypeAlias, string propertyTypeAlias, string editorAlias)
     {
         string propertyTypeName;
@@ -205,7 +221,7 @@ public class PropertyMap : DictionaryMap, IPropertyMap
 /// <summary>
 /// The base for maps
 /// </summary>
-public abstract class DictionaryMap
+internal abstract class DictionaryMap
 {
     /// <summary>
     /// Adds a mapping to a dictionary map

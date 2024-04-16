@@ -6,7 +6,7 @@ namespace Nikcio.UHeadless.Common.Properties;
 /// <summary>
 /// Extensions
 /// </summary>
-public static class PropertyMapExtensions
+internal static class PropertyMapExtensions
 {
     /// <summary>
     /// Adds the default mappings to the property map
