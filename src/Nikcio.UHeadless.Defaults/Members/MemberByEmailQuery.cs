@@ -47,7 +47,7 @@ public class MemberByEmailQuery
 
         if (member == null)
         {
-            logger.LogWarning("Member not found. {Email}", email);
+            logger.LogWarning("Member not found.");
             return default;
         }
 
