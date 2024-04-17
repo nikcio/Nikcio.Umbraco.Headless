@@ -1,6 +1,8 @@
+using HotChocolate;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// Represents a date time property value

@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.MediaItems;
 /// <summary>
 /// A repository to get media from Umbraco
 /// </summary>
-public interface IMediaItemRepository<TMediaItem>
+public interface IMediaItemRepository<out TMediaItem>
     where TMediaItem : MemberItem
 {
     /// <summary>

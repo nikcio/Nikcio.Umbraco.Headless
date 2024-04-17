@@ -7,7 +7,7 @@ namespace Nikcio.UHeadless.Members;
 /// <summary>
 /// A repository to get member from Umbraco
 /// </summary>
-public interface IMemberRepository<TMember>
+public interface IMemberRepository<out TMember>
     where TMember : MemberBase
 {
     /// <summary>

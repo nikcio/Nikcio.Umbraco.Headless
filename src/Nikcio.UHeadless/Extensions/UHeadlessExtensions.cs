@@ -67,13 +67,4 @@ public static class UHeadlessExtensions
 
         return builder;
     }
-
-    /// <summary>
-    /// Adds default property mappings to the property map
-    /// </summary>
-    /// <param name="propertyMap"></param>
-    public static void AddDefaults(this IPropertyMap propertyMap)
-    {
-        propertyMap.AddPropertyMapDefaults();
-    }
 }

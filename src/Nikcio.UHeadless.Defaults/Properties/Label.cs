@@ -1,6 +1,9 @@
+using HotChocolate;
+using HotChocolate.Types;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 public class Label : PropertyValue
 {

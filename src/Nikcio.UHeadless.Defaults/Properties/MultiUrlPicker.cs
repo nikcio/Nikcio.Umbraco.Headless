@@ -1,11 +1,14 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
+using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// Represents a multi url picker

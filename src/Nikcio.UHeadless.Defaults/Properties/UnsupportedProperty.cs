@@ -1,4 +1,7 @@
-namespace Nikcio.UHeadless.Common.Properties.Models;
+using HotChocolate;
+using Nikcio.UHeadless.Common.Properties;
+
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// Represents an unsupported property value

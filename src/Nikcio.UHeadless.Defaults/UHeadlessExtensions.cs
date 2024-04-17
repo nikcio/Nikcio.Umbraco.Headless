@@ -1,17 +1,16 @@
-using Nikcio.UHeadless.Common.Properties.Models;
+using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Defaults.Properties;
 using Umbraco.Cms.Core;
 
-namespace Nikcio.UHeadless.Common.Properties;
+namespace Nikcio.UHeadless.Defaults;
 
-/// <summary>
-/// Extensions
-/// </summary>
-internal static class PropertyMapExtensions
+public static class UHeadlessExtensions
 {
     /// <summary>
-    /// Adds the default mappings to the property map
+    /// Adds default property mappings to the property map
     /// </summary>
-    public static void AddPropertyMapDefaults(this IPropertyMap propertyMap)
+    /// <param name="propertyMap"></param>
+    public static void AddDefaults(this IPropertyMap propertyMap)
     {
         ArgumentNullException.ThrowIfNull(propertyMap);
 

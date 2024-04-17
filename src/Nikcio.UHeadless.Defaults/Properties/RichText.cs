@@ -1,7 +1,9 @@
+using HotChocolate;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Strings;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// Represents a rich text editor

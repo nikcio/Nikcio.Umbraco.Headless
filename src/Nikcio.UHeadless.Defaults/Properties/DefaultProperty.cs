@@ -1,7 +1,10 @@
 using System.Collections;
+using HotChocolate;
+using HotChocolate.Types;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// A catch all property value that simply returns the value of the property. This is all that is needed for simple properties that doesn't need any special handling or formatting.

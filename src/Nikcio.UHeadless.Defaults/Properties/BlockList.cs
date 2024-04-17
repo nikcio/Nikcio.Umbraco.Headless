@@ -1,8 +1,11 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
+using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
 /// Represents a block list model

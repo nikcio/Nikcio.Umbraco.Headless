@@ -37,7 +37,6 @@ public class ContentByTagQuery
         ArgumentNullException.ThrowIfNull(contentItemRepository);
         ArgumentNullException.ThrowIfNull(tagService);
 
-        bool includePreview = resolverContext.GetOrSetGlobalState(ContextDataKeys.IncludePreview, _ => false);
         string? culture = resolverContext.GetOrSetGlobalState<string?>(ContextDataKeys.Culture, _ => null);
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();

@@ -7,7 +7,7 @@ namespace Nikcio.UHeadless.ContentItems;
 /// <summary>
 /// A repository to get content from Umbraco
 /// </summary>
-public interface IContentItemRepository<TContentItem>
+public interface IContentItemRepository<out TContentItem>
     where TContentItem : ContentItemBase
 {
     /// <summary>

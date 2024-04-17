@@ -1,50 +1,53 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
+using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Common.Properties.Models;
+namespace Nikcio.UHeadless.Defaults.Properties;
 
 /// <summary>
-/// Represents a content picker value
+/// Represents a media picker item
 /// </summary>
-[GraphQLDescription("Represents a content picker value.")]
-public class ContentPicker : PropertyValue
+[GraphQLDescription("Represents a media picker item.")]
+public class MediaPicker : PropertyValue
 {
-    private readonly IEnumerable<IPublishedContent> _publishedContentItems;
+    private readonly IEnumerable<IPublishedContent> _publishedMediaItems;
 
     /// <summary>
-    /// Gets the content items of a picker
+    /// Gets the media items of a picker
     /// </summary>
-    [GraphQLDescription("Gets the content items of a picker.")]
-    public List<ContentPickerItem>? Items => _publishedContentItems.Select(publishedContent =>
+    [GraphQLDescription("Gets the media items of a picker.")]
+    public List<MediaPickerItem> MediaItems => _publishedMediaItems.Select(publishedMedia =>
     {
-        return new ContentPickerItem(publishedContent, ResolverContext);
+        return new MediaPickerItem(publishedMedia, ResolverContext);
     }).ToList();
 
-    public ContentPicker(CreateCommand command) : base(command)
+    public MediaPicker(CreateCommand command) : base(command)
     {
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
-            _publishedContentItems = new List<IPublishedContent> { publishedContent };
+            _publishedMediaItems = new List<IPublishedContent> { publishedContent };
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
-            _publishedContentItems = publishedContentItems;
+            _publishedMediaItems = publishedContentItems;
         }
         else
         {
-            _publishedContentItems = new List<IPublishedContent>();
+            _publishedMediaItems = new List<IPublishedContent>();
         }
     }
 }
 
 /// <summary>
-/// Represents a content picker item
+/// Represents a media item
 /// </summary>
-[GraphQLDescription("Represents a content picker item.")]
-public class ContentPickerItem
+[GraphQLDescription("Represents a media item.")]
+public class MediaPickerItem
 {
     private readonly IPublishedContent _publishedContent;
     private readonly string? _culture;
@@ -52,49 +55,49 @@ public class ContentPickerItem
     private readonly IResolverContext _resolverContext;
 
     /// <summary>
-    /// Gets the url segment of the content item
+    /// Gets the url segment of the media item
     /// </summary>
-    [GraphQLDescription("Gets the url segment of the content item.")]
+    [GraphQLDescription("Gets the url segment of the media item.")]
     public string? UrlSegment => _publishedContent?.UrlSegment(_variationContextAccessor, _culture);
 
     /// <summary>
-    /// Gets the url of a content item
+    /// Gets the url of a media item
     /// </summary>
-    [GraphQLDescription("Gets the url of a content item.")]
+    [GraphQLDescription("Gets the url of a media item.")]
     public string Url(UrlMode urlMode)
     {
-        return _publishedContent.Url(_culture, urlMode);
+        return _publishedContent.MediaUrl(_culture, urlMode);
     }
 
     /// <summary>
-    /// Gets the name of a content item
+    /// Gets the name of a media item
     /// </summary>
-    [GraphQLDescription("Gets the name of a content item.")]
+    [GraphQLDescription("Gets the name of a media item.")]
     public string? Name => _publishedContent?.Name(_variationContextAccessor, _culture);
 
     /// <summary>
-    /// Gets the id of a content item
+    /// Gets the id of a media item
     /// </summary>
-    [GraphQLDescription("Gets the id of a content item.")]
+    [GraphQLDescription("Gets the id of a media item.")]
     public int Id => _publishedContent.Id;
 
     /// <summary>
-    /// Gets the key of a content item
+    /// Gets the key of a media item
     /// </summary>
-    [GraphQLDescription("Gets the key of a content item.")]
+    [GraphQLDescription("Gets the key of a media item.")]
     public Guid Key => _publishedContent.Key;
 
     /// <summary>
-    /// Gets the properties of the content item
+    /// Gets the properties of the media item
     /// </summary>
-    [GraphQLDescription("Gets the properties of the content item.")]
+    [GraphQLDescription("Gets the properties of the media item.")]
     public TypedProperties Properties()
     {
         _resolverContext.SetScopedState(ContextDataKeys.PublishedContent, _publishedContent);
         return new TypedProperties();
     }
 
-    public ContentPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
+    public MediaPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
