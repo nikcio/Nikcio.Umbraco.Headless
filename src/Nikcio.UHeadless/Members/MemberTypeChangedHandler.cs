@@ -2,7 +2,7 @@ using Nikcio.UHeadless.Common.TypeModules;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
 
-namespace Nikcio.UHeadless.Members.NotificationHandlers;
+namespace Nikcio.UHeadless.Members;
 
 /// <summary>
 /// Triggers GraphQL schema rebuild when member types changes

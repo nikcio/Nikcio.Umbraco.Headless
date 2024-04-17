@@ -178,21 +178,16 @@ internal class UmbracoTypeModule : ITypeModule
     {
         return (context, result) =>
         {
-            TScopedValue? scopeValue = context.GetScopedState<TScopedValue?>(scopedValueKey);
+            TScopedValue? scopedValue = context.GetScopedState<TScopedValue?>(scopedValueKey);
 
-            if (scopeValue == null)
+            if (scopedValue == null)
             {
                 ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
-                logger.LogWarning("Scope value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
+                logger.LogWarning("Scoped value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
                 return default;
             }
 
-            if (scopeValue == null)
-            {
-                return default;
-            }
-
-            string? contentTypeAlias = getContentTypeAlias.Invoke(scopeValue);
+            string? contentTypeAlias = getContentTypeAlias.Invoke(scopedValue);
 
             if (string.IsNullOrWhiteSpace(contentTypeAlias))
             {
@@ -273,7 +268,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
                 context: context,
-                scopedDataKey: ContextDataKeys.BlockListItemContent,
+                scopedValueKey: ContextDataKeys.BlockListItemContent,
                 getProperty: (blockItem, propertyAlias) => blockItem?.Content?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -281,7 +276,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockListItem>(
                 context: context,
-                scopedDataKey: ContextDataKeys.BlockListItemSettings,
+                scopedValueKey: ContextDataKeys.BlockListItemSettings,
                 getProperty: (blockItem, propertyAlias) => blockItem?.Settings?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -289,7 +284,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
                 context: context,
-                scopedDataKey: ContextDataKeys.BlockGridItemContent,
+                scopedValueKey: ContextDataKeys.BlockGridItemContent,
                 getProperty: (blockItem, propertyAlias) => blockItem?.Content?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Content?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -297,7 +292,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<BlockGridItem>(
                 context: context,
-                scopedDataKey: ContextDataKeys.BlockGridItemSettings,
+                scopedValueKey: ContextDataKeys.BlockGridItemSettings,
                 getProperty: (blockItem, propertyAlias) => blockItem?.Settings?.GetProperty(propertyAlias),
                 getContentTypeAlias: (blockItem) => blockItem?.Settings?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -305,7 +300,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<IPublishedElement>(
                 context: context,
-                scopedDataKey: ContextDataKeys.NestedContent,
+                scopedValueKey: ContextDataKeys.NestedContent,
                 getProperty: (nestedContent, propertyAlias) => nestedContent?.GetProperty(propertyAlias),
                 getContentTypeAlias: nestedContent => nestedContent?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -313,7 +308,7 @@ internal class UmbracoTypeModule : ITypeModule
         {
             resolver = await ResolveScopedValueAsPropertyValueAsync<IPublishedContent>(
                 context: context,
-                scopedDataKey: ContextDataKeys.PublishedContent,
+                scopedValueKey: ContextDataKeys.PublishedContent,
                 getProperty: (publishedContent, propertyAlias) => publishedContent.GetProperty(propertyAlias),
                 getContentTypeAlias: publishedContent => publishedContent?.ContentType?.Alias).ConfigureAwait(false);
         }
@@ -323,23 +318,25 @@ internal class UmbracoTypeModule : ITypeModule
 
     private static ValueTask<object?> ResolveScopedValueAsPropertyValueAsync<TScopedValue>(
         IResolverContext context,
-        string scopedDataKey,
+        string scopedValueKey,
         Func<TScopedValue, string, IPublishedProperty?> getProperty,
         Func<TScopedValue, string?> getContentTypeAlias)
     {
-        TScopedValue? scopedData = context.GetScopedStateOrDefault<TScopedValue>(scopedDataKey);
+        TScopedValue? scopedValue = context.GetScopedStateOrDefault<TScopedValue>(scopedValueKey);
 
-        if (scopedData == null)
+        if (scopedValue == null)
         {
+            ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
+            logger.LogWarning("Scoped value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
             return default;
         }
 
-        IPublishedProperty? publishedProperty = getProperty(scopedData, context.Selection.ResponseName);
+        IPublishedProperty? publishedProperty = getProperty(scopedValue, context.Selection.ResponseName);
 
         if (publishedProperty == null)
         {
             ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
-            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, getContentTypeAlias(scopedData));
+            logger.LogWarning("Property {PropertyName} not found on content type {ContentTypeAlias}.", context.Selection.ResponseName, getContentTypeAlias(scopedValue));
             return default;
         }
 

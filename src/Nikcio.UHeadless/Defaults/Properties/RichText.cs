@@ -15,13 +15,13 @@ public class RichText : PropertyValue
     /// Gets the HTML value of the rich text editor or markdown editor
     /// </summary>
     [GraphQLDescription("Gets the HTML value of the rich text editor or markdown editor.")]
-    public virtual string? Value => PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, Culture, Segment, Fallback)?.ToHtmlString();
+    public string? Value => PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, Culture, Segment, Fallback)?.ToHtmlString();
 
     /// <summary>
     /// Gets the original value of the rich text editor or markdown editor
     /// </summary>
     [GraphQLDescription("Gets the original value of the rich text editor or markdown editor.")]
-    public virtual string? SourceValue => PublishedProperty.GetSourceValue(Culture, Segment)?.ToString();
+    public string? SourceValue => PublishedProperty.GetSourceValue(Culture, Segment)?.ToString();
 
     public RichText(CreateCommand command) : base(command)
     {
