@@ -11,13 +11,6 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 public class NestedContentResponse : PropertyValue
 {
     private readonly IEnumerable<IPublishedElement> _publishedElements;
-    private readonly bool _isMultiple;
-
-    /// <summary>
-    /// Whether the nested content has multiple elements
-    /// </summary>
-    [GraphQLDescription("Whether the nested content has multiple elements.")]
-    public bool IsMultiple => _isMultiple;
 
     /// <summary>
     /// Gets the elements of a nested content
@@ -38,17 +31,14 @@ public class NestedContentResponse : PropertyValue
         if (publishedElementsAsObject is IPublishedElement publishedElement)
         {
             _publishedElements = new List<IPublishedElement> { publishedElement };
-            _isMultiple = false;
         }
         else if (publishedElementsAsObject is IEnumerable<IPublishedElement> publishedElements)
         {
             _publishedElements = publishedElements;
-            _isMultiple = true;
         }
         else
         {
             _publishedElements = new List<IPublishedElement>();
-            _isMultiple = false;
         }
     }
 }

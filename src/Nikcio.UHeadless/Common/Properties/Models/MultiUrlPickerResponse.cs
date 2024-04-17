@@ -14,7 +14,6 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 public class MultiUrlPickerResponse : PropertyValue
 {
     private readonly IEnumerable<Link> _publishedContentItemsLinks;
-    private readonly bool _isMultiple;
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 
     /// <summary>
@@ -43,14 +42,8 @@ public class MultiUrlPickerResponse : PropertyValue
             return null;
         }
 
-        return new MultiUrlPickerItem(publishedContent, Culture, ResolverContext);
+        return new MultiUrlPickerItem(publishedContent, ResolverContext);
     }).OfType<MultiUrlPickerItem>().ToList();
-
-    /// <summary>
-    /// Whether the picker has multiple items
-    /// </summary>
-    [GraphQLDescription("Whether the picker has multiple items.")]
-    public bool IsMultiple => _isMultiple;
 
     public MultiUrlPickerResponse(CreateCommand command) : base(command)
     {
@@ -61,17 +54,14 @@ public class MultiUrlPickerResponse : PropertyValue
         if (publishedContentItemsAsObject is Link publishedContent)
         {
             _publishedContentItemsLinks = new List<Link> { publishedContent };
-            _isMultiple = false;
         }
         else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
         {
             _publishedContentItemsLinks = publishedContentItems;
-            _isMultiple = true;
         }
         else
         {
             _publishedContentItemsLinks = new List<Link>();
-            _isMultiple = false;
         }
     }
 }
@@ -130,13 +120,13 @@ public class MultiUrlPickerItem
         return new TypedProperties();
     }
 
-    public MultiUrlPickerItem(IPublishedContent publishedContent, string? culture, IResolverContext resolverContext)
+    public MultiUrlPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
         _publishedContent = publishedContent;
-        _culture = culture;
-        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
         _resolverContext = resolverContext;
+        _culture = resolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
+        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
     }
 }

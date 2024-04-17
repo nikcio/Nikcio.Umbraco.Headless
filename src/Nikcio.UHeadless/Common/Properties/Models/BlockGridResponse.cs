@@ -103,15 +103,6 @@ public class BlockGridItemResponse
 
         _blockGridItem = blockGridItem;
         _resolverContext = resolverContext;
-
-    }
-
-    public class CreateCommand
-    {
-        /// <summary>
-        /// The block grid item
-        /// </summary>
-        public required BlockGridItem BlockGridItem { get; init; }
     }
 }
 

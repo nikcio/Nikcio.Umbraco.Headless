@@ -11,13 +11,6 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 public class ContentPickerResponse : PropertyValue
 {
     private readonly IEnumerable<IPublishedContent> _publishedContentItems;
-    private readonly bool _isMultiple;
-
-    /// <summary>
-    /// Whether the picker has multiple items
-    /// </summary>
-    [GraphQLDescription("Whether the picker has multiple items.")]
-    public bool IsMultiple => _isMultiple;
 
     /// <summary>
     /// Gets the content items of a picker
@@ -25,7 +18,7 @@ public class ContentPickerResponse : PropertyValue
     [GraphQLDescription("Gets the content items of a picker.")]
     public List<ContentPickerItemResponse>? Items => _publishedContentItems.Select(publishedContent =>
     {
-        return new ContentPickerItemResponse(publishedContent, Culture, ResolverContext);
+        return new ContentPickerItemResponse(publishedContent, ResolverContext);
     }).ToList();
 
     public ContentPickerResponse(CreateCommand command) : base(command)
@@ -35,17 +28,14 @@ public class ContentPickerResponse : PropertyValue
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
             _publishedContentItems = new List<IPublishedContent> { publishedContent };
-            _isMultiple = false;
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
             _publishedContentItems = publishedContentItems;
-            _isMultiple = true;
         }
         else
         {
             _publishedContentItems = new List<IPublishedContent>();
-            _isMultiple = false;
         }
     }
 }
@@ -104,13 +94,13 @@ public class ContentPickerItemResponse
         return new TypedProperties();
     }
 
-    public ContentPickerItemResponse(IPublishedContent publishedContent, string? culture, IResolverContext resolverContext)
+    public ContentPickerItemResponse(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
         _publishedContent = publishedContent;
-        _culture = culture;
-        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
         _resolverContext = resolverContext;
+        _culture = resolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
+        _variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
     }
 }
