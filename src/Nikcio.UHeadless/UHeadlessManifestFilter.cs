@@ -9,7 +9,7 @@ namespace Nikcio.UHeadless;
 /// <summary>
 /// Composes the manifest information
 /// </summary>
-public class ManifestComposer : IComposer
+internal class ManifestComposer : IComposer
 {
     /// <inheritdoc/>
     public void Compose(IUmbracoBuilder builder)
