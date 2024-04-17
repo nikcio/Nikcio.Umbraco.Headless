@@ -6,7 +6,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a date time property value
 /// </summary>
 [GraphQLDescription("Represents a date time property value.")]
-public class DateTimePickerResponse : PropertyValue
+public class DateTimePicker : PropertyValue
 {
     /// <summary>
     /// Gets the value of the property
@@ -18,7 +18,7 @@ public class DateTimePickerResponse : PropertyValue
         return dateTimeValue == default(DateTime) ? null : dateTimeValue;
     }
 
-    public DateTimePickerResponse(CreateCommand command) : base(command)
+    public DateTimePicker(CreateCommand command) : base(command)
     {
     }
 }

@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a member picker
 /// </summary>
 [GraphQLDescription("Represents a member picker.")]
-public class MemberPickerResponse : PropertyValue
+public class MemberPicker : PropertyValue
 {
     private readonly IEnumerable<IPublishedContent> _publishedMembers;
 
@@ -16,12 +16,12 @@ public class MemberPickerResponse : PropertyValue
     /// Gets the member items of a picker
     /// </summary>
     [GraphQLDescription("Gets the member items of a picker.")]
-    public List<MemberPickerItemResponse> Members => _publishedMembers.Select(publishedMember =>
+    public List<MemberPickerItem> Members => _publishedMembers.Select(publishedMember =>
     {
-        return new MemberPickerItemResponse(publishedMember, ResolverContext);
+        return new MemberPickerItem(publishedMember, ResolverContext);
     }).ToList();
 
-    public MemberPickerResponse(CreateCommand command) : base(command)
+    public MemberPicker(CreateCommand command) : base(command)
     {
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
@@ -44,7 +44,7 @@ public class MemberPickerResponse : PropertyValue
 /// Represents a member item
 /// </summary>
 [GraphQLDescription("Represents a member item.")]
-public class MemberPickerItemResponse
+public class MemberPickerItem
 {
     private readonly IPublishedContent _publishedContent;
     private readonly string? _culture;
@@ -79,7 +79,7 @@ public class MemberPickerItemResponse
         return new TypedProperties();
     }
 
-    public MemberPickerItemResponse(IPublishedContent publishedContent, IResolverContext resolverContext)
+    public MemberPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 

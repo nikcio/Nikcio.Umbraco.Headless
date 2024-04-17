@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents nested content
 /// </summary>
 [GraphQLDescription("Represents nested content.")]
-public class NestedContentResponse : PropertyValue
+public class NestedContent : PropertyValue
 {
     private readonly IEnumerable<IPublishedElement> _publishedElements;
 
@@ -16,15 +16,15 @@ public class NestedContentResponse : PropertyValue
     /// Gets the elements of a nested content
     /// </summary>
     [GraphQLDescription("Gets the elements of a nested content.")]
-    public List<NestedContentItemResponse> Elements()
+    public List<NestedContentItem> Elements()
     {
         return _publishedElements.Select(publishedElement =>
         {
-            return new NestedContentItemResponse(publishedElement, ResolverContext);
+            return new NestedContentItem(publishedElement, ResolverContext);
         }).ToList();
     }
 
-    public NestedContentResponse(CreateCommand command) : base(command)
+    public NestedContent(CreateCommand command) : base(command)
     {
         object? publishedElementsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
@@ -43,7 +43,7 @@ public class NestedContentResponse : PropertyValue
     }
 }
 
-public class NestedContentItemResponse
+public class NestedContentItem
 {
     private readonly IPublishedElement _publishedElement;
     private readonly IResolverContext _resolverContext;
@@ -59,7 +59,7 @@ public class NestedContentItemResponse
         return new TypedNestedContentProperties();
     }
 
-    public NestedContentItemResponse(IPublishedElement publishedElement, IResolverContext resolverContext)
+    public NestedContentItem(IPublishedElement publishedElement, IResolverContext resolverContext)
     {
         _publishedElement = publishedElement;
         _resolverContext = resolverContext;

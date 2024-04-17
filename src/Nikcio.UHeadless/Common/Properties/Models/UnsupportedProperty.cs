@@ -4,7 +4,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents an unsupported property value
 /// </summary>
 [GraphQLDescription("Represents an unsupported property value.")]
-public class UnsupportedResponse : PropertyValue
+public class UnsupportedProperty : PropertyValue
 {
     /// <summary>
     /// Gets the message of the property
@@ -12,7 +12,7 @@ public class UnsupportedResponse : PropertyValue
     [GraphQLDescription("Gets the message of the property.")]
     public string Message => $"{PublishedProperty.PropertyType.EditorAlias} is not supported in UHeadless by default. Create your own implementation to use this editor.";
 
-    public UnsupportedResponse(CreateCommand command) : base(command)
+    public UnsupportedProperty(CreateCommand command) : base(command)
     {
     }
 }

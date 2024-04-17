@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a block list model
 /// </summary>
 [GraphQLDescription("Represents a block list model.")]
-public class BlockListResponse : PropertyValue
+public class BlockList : PropertyValue
 {
     private readonly BlockListModel? _blockListModel;
 
@@ -16,12 +16,12 @@ public class BlockListResponse : PropertyValue
     /// Gets the blocks of a block list model
     /// </summary>
     [GraphQLDescription("Gets the blocks of a block list model.")]
-    public List<BlockListItemResponse>? Blocks => _blockListModel?.Select(blockListItem =>
+    public List<BlockListItem>? Blocks => _blockListModel?.Select(blockListItem =>
     {
-        return new BlockListItemResponse(blockListItem, ResolverContext);
+        return new BlockListItem(blockListItem, ResolverContext);
     }).ToList();
 
-    public BlockListResponse(CreateCommand command) : base(command)
+    public BlockList(CreateCommand command) : base(command)
     {
         _blockListModel = PublishedProperty.Value<BlockListModel>(PublishedValueFallback, Culture, Segment, Fallback);
     }
@@ -30,9 +30,9 @@ public class BlockListResponse : PropertyValue
 
 /// <inheritdoc/>
 [GraphQLDescription("Represents a block list item.")]
-public class BlockListItemResponse
+public class BlockListItem
 {
-    private readonly BlockListItem _blockListItem;
+    private readonly Umbraco.Cms.Core.Models.Blocks.BlockListItem _blockListItem;
     private readonly IResolverContext _resolverContext;
 
     /// <inheritdoc/>
@@ -65,7 +65,7 @@ public class BlockListItemResponse
     [GraphQLDescription("Gets the alias of the settings block list item.")]
     public string? SettingsAlias => _blockListItem.Settings?.ContentType?.Alias;
 
-    public BlockListItemResponse(BlockListItem blockListItem, IResolverContext resolverContext)
+    public BlockListItem(Umbraco.Cms.Core.Models.Blocks.BlockListItem blockListItem, IResolverContext resolverContext)
     {
         _blockListItem = blockListItem;
         _resolverContext = resolverContext;

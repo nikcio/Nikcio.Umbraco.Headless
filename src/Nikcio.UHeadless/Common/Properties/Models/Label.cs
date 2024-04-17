@@ -2,7 +2,7 @@ using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Common.Properties.Models;
 
-public class LabelResponse : PropertyValue
+public class Label : PropertyValue
 {
     /// <summary>
     /// Gets the value of the property
@@ -23,7 +23,7 @@ public class LabelResponse : PropertyValue
         }
     }
 
-    public LabelResponse(CreateCommand command) : base(command)
+    public Label(CreateCommand command) : base(command)
     {
     }
 }

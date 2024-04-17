@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a media picker item
 /// </summary>
 [GraphQLDescription("Represents a media picker item.")]
-public class MediaPickerResponse : PropertyValue
+public class MediaPicker : PropertyValue
 {
     private readonly IEnumerable<IPublishedContent> _publishedMediaItems;
 
@@ -16,12 +16,12 @@ public class MediaPickerResponse : PropertyValue
     /// Gets the media items of a picker
     /// </summary>
     [GraphQLDescription("Gets the media items of a picker.")]
-    public List<MediaPickerItemResponse> MediaItems => _publishedMediaItems.Select(publishedMedia =>
+    public List<MediaPickerItem> MediaItems => _publishedMediaItems.Select(publishedMedia =>
     {
-        return new MediaPickerItemResponse(publishedMedia, ResolverContext);
+        return new MediaPickerItem(publishedMedia, ResolverContext);
     }).ToList();
 
-    public MediaPickerResponse(CreateCommand command) : base(command)
+    public MediaPicker(CreateCommand command) : base(command)
     {
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
@@ -44,7 +44,7 @@ public class MediaPickerResponse : PropertyValue
 /// Represents a media item
 /// </summary>
 [GraphQLDescription("Represents a media item.")]
-public class MediaPickerItemResponse
+public class MediaPickerItem
 {
     private readonly IPublishedContent _publishedContent;
     private readonly string? _culture;
@@ -94,7 +94,7 @@ public class MediaPickerItemResponse
         return new TypedProperties();
     }
 
-    public MediaPickerItemResponse(IPublishedContent publishedContent, IResolverContext resolverContext)
+    public MediaPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 

@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a block grid property value
 /// </summary>
 [GraphQLDescription("Represents a block grid property value.")]
-public class BlockGridResponse : PropertyValue
+public class BlockGrid : PropertyValue
 {
     private readonly BlockGridModel? _propertyValue;
 
@@ -16,9 +16,9 @@ public class BlockGridResponse : PropertyValue
     /// Gets the blocks of a block grid model
     /// </summary>
     [GraphQLDescription("Gets the blocks of a block grid model.")]
-    public List<BlockGridItemResponse>? Blocks => _propertyValue?.Select(blockGridItem =>
+    public List<BlockGridItem>? Blocks => _propertyValue?.Select(blockGridItem =>
     {
-        return new BlockGridItemResponse(blockGridItem, ResolverContext);
+        return new BlockGridItem(blockGridItem, ResolverContext);
     }).ToList();
 
     /// <summary>
@@ -27,7 +27,7 @@ public class BlockGridResponse : PropertyValue
     [GraphQLDescription("Gets the number of columns defined for the grid.")]
     public int? GridColumns => _propertyValue?.GridColumns;
 
-    public BlockGridResponse(CreateCommand command) : base(command)
+    public BlockGrid(CreateCommand command) : base(command)
     {
         _propertyValue = PublishedProperty.Value<BlockGridModel>(PublishedValueFallback, Culture, Segment, Fallback);
     }
@@ -37,9 +37,9 @@ public class BlockGridResponse : PropertyValue
 /// Represents a block grid item
 /// </summary>
 [GraphQLDescription("Represents a block grid item.")]
-public class BlockGridItemResponse
+public class BlockGridItem
 {
-    private readonly BlockGridItem _blockGridItem;
+    private readonly Umbraco.Cms.Core.Models.Blocks.BlockGridItem _blockGridItem;
     private readonly IResolverContext _resolverContext;
 
     /// <summary>
@@ -80,9 +80,9 @@ public class BlockGridItemResponse
     /// Gets the areas of the block grid item.
     /// </summary>
     [GraphQLDescription("Gets the areas of the block grid item.")]
-    public List<BlockGridAreaResponse> Areas => _blockGridItem.Areas.Select(blockGridArea =>
+    public List<BlockGridArea> Areas => _blockGridItem.Areas.Select(blockGridArea =>
     {
-        return new BlockGridAreaResponse(blockGridArea, _resolverContext);
+        return new BlockGridArea(blockGridArea, _resolverContext);
     }).ToList();
 
     /// <summary>
@@ -97,7 +97,7 @@ public class BlockGridItemResponse
     [GraphQLDescription("Gets the column dimensions of the block.")]
     public int ColumnSpan => _blockGridItem.ColumnSpan;
 
-    public BlockGridItemResponse(BlockGridItem blockGridItem, IResolverContext resolverContext)
+    public BlockGridItem(Umbraco.Cms.Core.Models.Blocks.BlockGridItem blockGridItem, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(blockGridItem);
 
@@ -110,18 +110,18 @@ public class BlockGridItemResponse
 /// Represents a block grid area
 /// </summary>
 [GraphQLDescription("Represents a block grid area.")]
-public class BlockGridAreaResponse
+public class BlockGridArea
 {
-    private readonly BlockGridArea _blockGridArea;
+    private readonly Umbraco.Cms.Core.Models.Blocks.BlockGridArea _blockGridArea;
     private readonly IResolverContext _resolverContext;
 
     /// <summary>
     /// Gets the blocks of the block grid area
     /// </summary>
     [GraphQLDescription("Gets the blocks of the block grid area.")]
-    public List<BlockGridItemResponse>? Blocks => _blockGridArea.Select(blockGridItem =>
+    public List<BlockGridItem>? Blocks => _blockGridArea.Select(blockGridItem =>
     {
-        return new BlockGridItemResponse(blockGridItem, _resolverContext);
+        return new BlockGridItem(blockGridItem, _resolverContext);
     }).ToList();
 
     /// <summary>
@@ -142,7 +142,7 @@ public class BlockGridAreaResponse
     [GraphQLDescription("Gets the column dimensions of the block.")]
     public int ColumnSpan => _blockGridArea.ColumnSpan;
 
-    public BlockGridAreaResponse(BlockGridArea blockGridArea, IResolverContext resolverContext)
+    public BlockGridArea(Umbraco.Cms.Core.Models.Blocks.BlockGridArea blockGridArea, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(blockGridArea);
 

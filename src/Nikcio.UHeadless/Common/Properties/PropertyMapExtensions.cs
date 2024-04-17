@@ -15,22 +15,22 @@ internal static class PropertyMapExtensions
     {
         ArgumentNullException.ThrowIfNull(propertyMap);
 
-        propertyMap.AddEditorMapping<DefaultPropertyResponse>(PropertyConstants.DefaultKey);
-        propertyMap.AddEditorMapping<BlockListResponse>(Constants.PropertyEditors.Aliases.BlockList);
-        propertyMap.AddEditorMapping<BlockGridResponse>(Constants.PropertyEditors.Aliases.BlockGrid);
-        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.ContentPicker);
-        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
-        propertyMap.AddEditorMapping<ContentPickerResponse>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
-        propertyMap.AddEditorMapping<NestedContentResponse>(Constants.PropertyEditors.Aliases.NestedContent);
-        propertyMap.AddEditorMapping<RichTextResponse>(Constants.PropertyEditors.Aliases.TinyMce);
-        propertyMap.AddEditorMapping<RichTextResponse>(Constants.PropertyEditors.Aliases.MarkdownEditor);
-        propertyMap.AddEditorMapping<MemberPickerResponse>(Constants.PropertyEditors.Aliases.MemberPicker);
-        propertyMap.AddEditorMapping<MultiUrlPickerResponse>(Constants.PropertyEditors.Aliases.MultiUrlPicker);
-        propertyMap.AddEditorMapping<MediaPickerResponse>(Constants.PropertyEditors.Aliases.MediaPicker);
-        propertyMap.AddEditorMapping<MediaPickerResponse>(Constants.PropertyEditors.Aliases.MediaPicker3);
-        propertyMap.AddEditorMapping<MediaPickerResponse>(Constants.PropertyEditors.Aliases.MultipleMediaPicker);
-        propertyMap.AddEditorMapping<DateTimePickerResponse>(Constants.PropertyEditors.Aliases.DateTime);
-        propertyMap.AddEditorMapping<LabelResponse>(Constants.PropertyEditors.Aliases.Label);
-        propertyMap.AddEditorMapping<UnsupportedResponse>(Constants.PropertyEditors.Aliases.Grid);
+        propertyMap.AddEditorMapping<DefaultProperty>(PropertyConstants.DefaultKey);
+        propertyMap.AddEditorMapping<BlockList>(Constants.PropertyEditors.Aliases.BlockList);
+        propertyMap.AddEditorMapping<BlockGrid>(Constants.PropertyEditors.Aliases.BlockGrid);
+        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.ContentPicker);
+        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
+        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
+        propertyMap.AddEditorMapping<NestedContent>(Constants.PropertyEditors.Aliases.NestedContent);
+        propertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.TinyMce);
+        propertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.MarkdownEditor);
+        propertyMap.AddEditorMapping<MemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
+        propertyMap.AddEditorMapping<MultiUrlPicker>(Constants.PropertyEditors.Aliases.MultiUrlPicker);
+        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
+        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker3);
+        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MultipleMediaPicker);
+        propertyMap.AddEditorMapping<DateTimePicker>(Constants.PropertyEditors.Aliases.DateTime);
+        propertyMap.AddEditorMapping<Label>(Constants.PropertyEditors.Aliases.Label);
+        propertyMap.AddEditorMapping<UnsupportedProperty>(Constants.PropertyEditors.Aliases.Grid);
     }
 }

@@ -7,7 +7,7 @@ namespace Nikcio.UHeadless.Common.Properties.Models;
 /// Represents a rich text editor
 /// </summary>
 [GraphQLDescription("Represents a rich text editor.")]
-public class RichTextResponse : PropertyValue
+public class RichText : PropertyValue
 {
     /// <summary>
     /// Gets the HTML value of the rich text editor or markdown editor
@@ -21,7 +21,7 @@ public class RichTextResponse : PropertyValue
     [GraphQLDescription("Gets the original value of the rich text editor or markdown editor.")]
     public virtual string? SourceValue => PublishedProperty.GetSourceValue(Culture, Segment)?.ToString();
 
-    public RichTextResponse(CreateCommand command) : base(command)
+    public RichText(CreateCommand command) : base(command)
     {
     }
 }

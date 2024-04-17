@@ -1,76 +1,50 @@
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.Logging;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Common.Properties.Models;
 
 /// <summary>
-/// Represents a multi url picker
+/// Represents a content picker value
 /// </summary>
-[GraphQLDescription("Represents a multi url picker.")]
-public class MultiUrlPickerResponse : PropertyValue
+[GraphQLDescription("Represents a content picker value.")]
+public class ContentPicker : PropertyValue
 {
-    private readonly IEnumerable<Link> _publishedContentItemsLinks;
-    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
+    private readonly IEnumerable<IPublishedContent> _publishedContentItems;
 
     /// <summary>
     /// Gets the content items of a picker
     /// </summary>
     [GraphQLDescription("Gets the content items of a picker.")]
-    public List<MultiUrlPickerItem> ContentItems => _publishedContentItemsLinks.Select(link =>
+    public List<ContentPickerItem>? Items => _publishedContentItems.Select(publishedContent =>
     {
-        if (!_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
-        {
-            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogError("Could not get published snapshot.");
-            return null;
-        }
+        return new ContentPickerItem(publishedContent, ResolverContext);
+    }).ToList();
 
-        if (link.Udi == null)
-        {
-            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogWarning("Could not get Udi in multi url link.");
-            return null;
-        }
-
-        IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(IsPreview, link.Udi);
-
-        if (publishedContent == null)
-        {
-            ResolverContext.Service<ILogger<MultiUrlPickerResponse>>().LogWarning("Could not get published content.");
-            return null;
-        }
-
-        return new MultiUrlPickerItem(publishedContent, ResolverContext);
-    }).OfType<MultiUrlPickerItem>().ToList();
-
-    public MultiUrlPickerResponse(CreateCommand command) : base(command)
+    public ContentPicker(CreateCommand command) : base(command)
     {
-        _publishedSnapshotAccessor = ResolverContext.Service<IPublishedSnapshotAccessor>();
-
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
 
-        if (publishedContentItemsAsObject is Link publishedContent)
+        if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
-            _publishedContentItemsLinks = new List<Link> { publishedContent };
+            _publishedContentItems = new List<IPublishedContent> { publishedContent };
         }
-        else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
+        else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
-            _publishedContentItemsLinks = publishedContentItems;
+            _publishedContentItems = publishedContentItems;
         }
         else
         {
-            _publishedContentItemsLinks = new List<Link>();
+            _publishedContentItems = new List<IPublishedContent>();
         }
     }
 }
 
 /// <summary>
-/// Represents a content item
+/// Represents a content picker item
 /// </summary>
-[GraphQLDescription("Represents a content item.")]
-public class MultiUrlPickerItem
+[GraphQLDescription("Represents a content picker item.")]
+public class ContentPickerItem
 {
     private readonly IPublishedContent _publishedContent;
     private readonly string? _culture;
@@ -120,7 +94,7 @@ public class MultiUrlPickerItem
         return new TypedProperties();
     }
 
-    public MultiUrlPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
+    public ContentPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
