@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
@@ -44,5 +44,6 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
 </Project>
