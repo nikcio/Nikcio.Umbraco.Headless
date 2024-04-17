@@ -175,6 +175,7 @@ internal class UmbracoTypeModule : ITypeModule
     }
 
     private static ResolveAbstractType ResolveScopedValueAsObjectType<TScopedValue>(List<ObjectType> objectTypes, string scopedValueKey, Func<TScopedValue, string?> getContentTypeAlias)
+        where TScopedValue : class
     {
         return (context, result) =>
         {
@@ -321,6 +322,7 @@ internal class UmbracoTypeModule : ITypeModule
         string scopedValueKey,
         Func<TScopedValue, string, IPublishedProperty?> getProperty,
         Func<TScopedValue, string?> getContentTypeAlias)
+        where TScopedValue : class
     {
         TScopedValue? scopedValue = context.GetScopedStateOrDefault<TScopedValue>(scopedValueKey);
 

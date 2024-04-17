@@ -12,10 +12,10 @@ using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
 
-namespace Nikcio.UHeadless.Extensions;
+namespace Nikcio.UHeadless;
 
 /// <summary>
-/// The default UHeadless extensions used for the default setup
+/// The UHeadless extensions
 /// </summary>
 public static class UHeadlessExtensions
 {

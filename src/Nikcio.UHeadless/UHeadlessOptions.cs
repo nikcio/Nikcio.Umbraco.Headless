@@ -3,7 +3,7 @@ using HotChocolate.Execution.Instrumentation;
 using HotChocolate.Execution.Options;
 using Nikcio.UHeadless.Common.Properties;
 
-namespace Nikcio.UHeadless.Extensions;
+namespace Nikcio.UHeadless;
 
 /// <summary>
 /// Options for UHeadless

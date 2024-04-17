@@ -1,8 +1,8 @@
+using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
-using Nikcio.UHeadless.Extensions;
 using Nikcio.UHeadless.IntegrationTests.TestProject;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
