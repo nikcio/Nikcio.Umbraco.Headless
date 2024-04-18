@@ -1,6 +1,6 @@
 using Nikcio.UHeadless.Common.Properties;
 
-namespace Nikcio.UHeadless.Base.Tests.Properties.Maps;
+namespace Nikcio.UHeadless.UnitTests;
 
 public class PropertyMapTests
 {

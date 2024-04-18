@@ -3,7 +3,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Members;
 
-public partial class MemberBase
+public partial class MemberItemBase
 {
     /// <summary>
     /// A command to create a content item

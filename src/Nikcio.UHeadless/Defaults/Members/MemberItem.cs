@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
@@ -6,16 +5,15 @@ using Nikcio.UHeadless.Members;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
-public class MemberItem : MemberBase
+public class MemberItem : MemberItemBase
 {
-    private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
+    protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
-    public MemberItem(CreateCommand command, IDependencyReflectorFactory dependencyReflectorFactory) : base(command)
+    public MemberItem(CreateCommand command) : base(command)
     {
-        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
         ArgumentNullException.ThrowIfNull(command);
 
-        _dependencyReflectorFactory = dependencyReflectorFactory;
+        DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
     }
 
     /// <summary>
@@ -56,7 +54,7 @@ public class MemberItem : MemberBase
     {
         PublishedContent = PublishedContent.Parent,
         ResolverContext = ResolverContext,
-    }, _dependencyReflectorFactory) : default;
+    }, DependencyReflectorFactory) : default;
 
     /// <summary>
     /// Gets the properties of the member item

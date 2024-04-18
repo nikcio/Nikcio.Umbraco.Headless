@@ -2,10 +2,10 @@ using Nikcio.UHeadless.Common.Reflection;
 
 namespace Nikcio.UHeadless.Media;
 
-public partial class MemberItem
+public partial class MediaItemBase
 {
     public static TMediaItem? CreateMediaItem<TMediaItem>(CreateCommand command, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TMediaItem : MemberItem
+        where TMediaItem : MediaItemBase
     {
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
@@ -23,7 +23,7 @@ public partial class MemberItem
     }
 
     public static IEnumerable<TMediaItem?> CreateMediaItems<TMediaItem>(IEnumerable<CreateCommand> commands, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TMediaItem : MemberItem
+        where TMediaItem : MediaItemBase
     {
         ArgumentNullException.ThrowIfNull(commands);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);

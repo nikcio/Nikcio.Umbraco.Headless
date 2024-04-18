@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
@@ -10,17 +9,16 @@ namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
 
 public partial class ContentItem : ContentItemBase
 {
-    private readonly IVariationContextAccessor _variationContextAccessor;
-    private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
+    protected IVariationContextAccessor VariationContextAccessor { get; }
 
-    public ContentItem(CreateCommand command, IVariationContextAccessor variationContextAccessor, IDependencyReflectorFactory dependencyReflectorFactory) : base(command)
+    protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
+
+    public ContentItem(CreateCommand command) : base(command)
     {
-        ArgumentNullException.ThrowIfNull(variationContextAccessor);
-        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
         ArgumentNullException.ThrowIfNull(command);
 
-        _variationContextAccessor = variationContextAccessor;
-        _dependencyReflectorFactory = dependencyReflectorFactory;
+        VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
+        DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
 
         StatusCode = command.StatusCode;
         Redirect = command.Redirect == null ? null : new RedirectInfo()
@@ -34,7 +32,7 @@ public partial class ContentItem : ContentItemBase
     /// Gets the url segment of the content item
     /// </summary>
     [GraphQLDescription("Gets the url segment of the content item.")]
-    public string? UrlSegment => PublishedContent?.UrlSegment(_variationContextAccessor, Culture);
+    public string? UrlSegment => PublishedContent?.UrlSegment(VariationContextAccessor, Culture);
 
     /// <summary>
     /// Gets the url of a content item
@@ -49,7 +47,7 @@ public partial class ContentItem : ContentItemBase
     /// Gets the name of a content item
     /// </summary>
     [GraphQLDescription("Gets the name of a content item.")]
-    public string? Name => PublishedContent?.Name(_variationContextAccessor, Culture);
+    public string? Name => PublishedContent?.Name(VariationContextAccessor, Culture);
 
     /// <summary>
     /// Gets the id of a content item
@@ -85,7 +83,7 @@ public partial class ContentItem : ContentItemBase
         ResolverContext = ResolverContext,
         Redirect = null,
         StatusCode = 200,
-    }, _dependencyReflectorFactory) : default;
+    }, DependencyReflectorFactory) : default;
 
     /// <summary>
     /// Gets the properties of the content item

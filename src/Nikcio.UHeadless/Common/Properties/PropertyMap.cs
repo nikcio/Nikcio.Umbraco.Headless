@@ -145,7 +145,7 @@ internal class PropertyMap : DictionaryMap, IPropertyMap
     public void RemoveEditorMapping(string editorName)
     {
         editorPropertyMap.Remove(GetEditorMappingKey(editorName));
-    }   
+    }
 
     public bool ContainsEditor(string editorName)
     {

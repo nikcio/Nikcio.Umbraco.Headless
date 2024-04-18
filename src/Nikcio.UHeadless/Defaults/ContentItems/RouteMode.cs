@@ -1,5 +1,3 @@
-using HotChocolate;
-
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
 /// <summary>

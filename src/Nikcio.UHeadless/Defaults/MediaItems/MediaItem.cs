@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
@@ -8,16 +7,15 @@ using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
-public class MediaItem : MemberItem
+public class MediaItem : MediaItemBase
 {
-    private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
+    protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
-    public MediaItem(CreateCommand command, IDependencyReflectorFactory dependencyReflectorFactory) : base(command)
+    public MediaItem(CreateCommand command) : base(command)
     {
-        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
         ArgumentNullException.ThrowIfNull(command);
 
-        _dependencyReflectorFactory = dependencyReflectorFactory;
+        DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
     }
 
     /// <summary>
@@ -73,7 +71,7 @@ public class MediaItem : MemberItem
     {
         PublishedContent = PublishedContent.Parent,
         ResolverContext = ResolverContext,
-    }, _dependencyReflectorFactory) : default;
+    }, DependencyReflectorFactory) : default;
 
     /// <summary>
     /// Gets the properties of the media item

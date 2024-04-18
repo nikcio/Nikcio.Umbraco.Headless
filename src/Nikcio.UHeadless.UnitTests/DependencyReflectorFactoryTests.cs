@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Reflection;
 using NSubstitute;
 
-namespace Nikcio.UHeadless.Base.Tests.Reflection;
+namespace Nikcio.UHeadless.UnitTests;
 
 public class DependencyReflectorFactoryTests
 {

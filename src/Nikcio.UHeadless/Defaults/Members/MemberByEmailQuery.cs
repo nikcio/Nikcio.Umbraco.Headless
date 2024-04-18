@@ -1,13 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Defaults.MediaItems;
+using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Core.Persistence.Querying;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Services;
 
@@ -53,7 +50,7 @@ public class MemberByEmailQuery
 
         IPublishedContent? memberItem = memberCache.Get(member);
 
-        return memberItemRepository.GetMemberItem(new MemberBase.CreateCommand()
+        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
         {
             PublishedContent = memberItem,
             ResolverContext = resolverContext,

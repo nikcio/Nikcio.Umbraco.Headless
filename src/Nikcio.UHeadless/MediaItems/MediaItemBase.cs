@@ -4,9 +4,9 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Media;
 
-public abstract partial class MemberItem
+public abstract partial class MediaItemBase
 {
-    protected MemberItem(CreateCommand command)
+    protected MediaItemBase(CreateCommand command)
     {
         ArgumentNullException.ThrowIfNull(command);
 

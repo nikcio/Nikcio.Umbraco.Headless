@@ -1,5 +1,3 @@
-using HotChocolate;
-using HotChocolate.Types;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 

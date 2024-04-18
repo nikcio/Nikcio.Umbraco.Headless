@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Strings;
 using Umbraco.Extensions;

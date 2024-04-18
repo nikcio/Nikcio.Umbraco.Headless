@@ -2,10 +2,10 @@ using Nikcio.UHeadless.Common.Reflection;
 
 namespace Nikcio.UHeadless.Members;
 
-public partial class MemberBase
+public partial class MemberItemBase
 {
     public static TMember? CreateMember<TMember>(CreateCommand command, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TMember : MemberBase
+        where TMember : MemberItemBase
     {
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
@@ -23,7 +23,7 @@ public partial class MemberBase
     }
 
     public static IEnumerable<TMember?> CreateMembers<TMember>(IEnumerable<CreateCommand> commands, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TMember : MemberBase
+        where TMember : MemberItemBase
     {
         ArgumentNullException.ThrowIfNull(commands);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);

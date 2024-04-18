@@ -4,9 +4,9 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Members;
 
-public abstract partial class MemberBase
+public abstract partial class MemberItemBase
 {
-    protected MemberBase(CreateCommand command)
+    protected MemberItemBase(CreateCommand command)
     {
         ArgumentNullException.ThrowIfNull(command);
 

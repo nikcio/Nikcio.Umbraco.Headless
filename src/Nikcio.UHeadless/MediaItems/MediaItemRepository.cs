@@ -9,14 +9,14 @@ namespace Nikcio.UHeadless.MediaItems;
 /// A repository to get media from Umbraco
 /// </summary>
 public interface IMediaItemRepository<out TMediaItem>
-    where TMediaItem : MemberItem
+    where TMediaItem : MediaItemBase
 {
     /// <summary>
     /// Gets the media model based on the media item from Umbraco
     /// </summary>
     /// <param name="command">The create command for a media item.</param>
     /// <returns></returns>
-    TMediaItem? GetMediaItem(MemberItem.CreateCommand command);
+    TMediaItem? GetMediaItem(MediaItemBase.CreateCommand command);
 
     /// <summary>
     /// Gets the media cache.
@@ -26,7 +26,7 @@ public interface IMediaItemRepository<out TMediaItem>
 }
 
 internal class MediaItemRepository<TMediaItem> : IMediaItemRepository<TMediaItem>
-    where TMediaItem : MemberItem
+    where TMediaItem : MediaItemBase
 {
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 
@@ -41,11 +41,11 @@ internal class MediaItemRepository<TMediaItem> : IMediaItemRepository<TMediaItem
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
-    public TMediaItem? GetMediaItem(MemberItem.CreateCommand command)
+    public TMediaItem? GetMediaItem(MediaItemBase.CreateCommand command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        return MemberItem.CreateMediaItem<TMediaItem>(command, _dependencyReflectorFactory);
+        return MediaItemBase.CreateMediaItem<TMediaItem>(command, _dependencyReflectorFactory);
     }
 
     public IPublishedMediaCache? GetCache()

@@ -7,7 +7,7 @@ using Nikcio.UHeadless.Common.TypeModules;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
 using Nikcio.UHeadless.MediaItems;
-using Nikcio.UHeadless.Members;
+using Nikcio.UHeadless.MemberItems;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;

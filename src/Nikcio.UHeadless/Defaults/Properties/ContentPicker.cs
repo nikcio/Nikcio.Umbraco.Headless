@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
@@ -43,7 +42,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
     public List<TContentPickerItem>? Items()
     {
         return PublishedContentItems.Select(publishedContent =>
-        {   
+        {
             return CreateContentPickerItem(publishedContent, ResolverContext);
         }).ToList();
     }
@@ -86,13 +85,13 @@ public class ContentPickerItem
     /// </summary>
     /// <value></value>
     protected IPublishedContent PublishedContent { get; }
-    
+
     /// <summary>
     /// The culture of the query
     /// </summary>
     /// <value></value>
     protected string? Culture { get; }
-    
+
     /// <summary>
     /// The variation context accessor
     /// </summary>

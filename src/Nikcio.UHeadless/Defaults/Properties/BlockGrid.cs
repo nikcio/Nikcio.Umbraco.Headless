@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
@@ -138,7 +137,7 @@ public abstract class BlockGridItem<TBlockGridArea>
     /// Gets the areas of the block grid item.
     /// </summary>
     [GraphQLDescription("Gets the areas of the block grid item.")]
-    public List<TBlockGridArea> Areas() 
+    public List<TBlockGridArea> Areas()
     {
         return Item.Areas.Select(blockGridArea =>
         {
@@ -212,7 +211,7 @@ public abstract class BlockGridArea<TBlockGridItem>
     /// Gets the blocks of the block grid area
     /// </summary>
     [GraphQLDescription("Gets the blocks of the block grid area.")]
-    public List<BlockGridItem>? Blocks() 
+    public List<BlockGridItem>? Blocks()
     {
         return Area.Select(blockGridItem =>
         {

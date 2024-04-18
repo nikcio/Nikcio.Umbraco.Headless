@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Defaults.MediaItems;
+using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -50,7 +48,7 @@ public class FindMembersByUsernameQuery
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 
-        return memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberBase.CreateCommand()
+        return memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
         {
             PublishedContent = member,
             ResolverContext = resolverContext,

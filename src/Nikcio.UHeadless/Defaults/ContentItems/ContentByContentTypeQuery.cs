@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.ContentItems;

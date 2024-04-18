@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Common.Properties;
 
 namespace Nikcio.UHeadless.Defaults.Properties;

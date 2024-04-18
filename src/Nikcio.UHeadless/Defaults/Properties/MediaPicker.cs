@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
@@ -88,13 +87,13 @@ public class MediaPickerItem
     /// </summary>
     /// <value></value>
     protected string? Culture { get; }
-    
+
     /// <summary>
     /// The variation context accessor
     /// </summary>
     /// <value></value>
     protected IVariationContextAccessor VariationContextAccessor { get; }
-    
+
     /// <summary>
     /// The resolver context
     /// </summary>

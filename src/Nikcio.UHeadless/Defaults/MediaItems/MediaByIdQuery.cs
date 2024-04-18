@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
@@ -39,7 +37,7 @@ public class MediaByIdQuery
 
         IPublishedContent? mediaItem = mediaCache.GetById(id);
 
-        return mediaItemRepository.GetMediaItem(new MemberItem.CreateCommand()
+        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
         {
             PublishedContent = mediaItem,
             ResolverContext = resolverContext,

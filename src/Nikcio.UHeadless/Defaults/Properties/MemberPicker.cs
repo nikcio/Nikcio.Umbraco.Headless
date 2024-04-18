@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
@@ -86,19 +85,19 @@ public class MemberPickerItem
     /// </summary>
     /// <value></value>
     protected IPublishedContent PublishedContent { get; }
-    
+
     /// <summary>
     /// The culture of the query
     /// </summary>
     /// <value></value>
     protected string? Culture { get; }
-    
+
     /// <summary>
     /// The variation context accessor
     /// </summary>
     /// <value></value>
     protected IVariationContextAccessor VariationContextAccessor { get; }
-    
+
     /// <summary>
     /// The resolver context
     /// </summary>

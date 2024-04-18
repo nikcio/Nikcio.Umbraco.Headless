@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
@@ -48,7 +46,7 @@ public class MediaByContentTypeQuery
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);
 
-        return mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MemberItem.CreateCommand()
+        return mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
         {
             PublishedContent = mediaItem,
             ResolverContext = resolverContext,

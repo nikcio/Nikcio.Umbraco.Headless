@@ -1,21 +1,22 @@
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.PublishedCache;
 
-namespace Nikcio.UHeadless.Members;
+namespace Nikcio.UHeadless.MemberItems;
 
 /// <summary>
 /// A repository to get member from Umbraco
 /// </summary>
 public interface IMemberRepository<out TMember>
-    where TMember : MemberBase
+    where TMember : MemberItemBase
 {
     /// <summary>
     /// Gets the member model based on the member item from Umbraco
     /// </summary>
     /// <param name="command">The create command for a member item.</param>
     /// <returns></returns>
-    TMember? GetMemberItem(MemberBase.CreateCommand command);
+    TMember? GetMemberItem(MemberItemBase.CreateCommand command);
 
     /// <summary>
     /// Gets the member cache.
@@ -25,7 +26,7 @@ public interface IMemberRepository<out TMember>
 }
 
 internal class MemberRepository<TMember> : IMemberRepository<TMember>
-    where TMember : MemberBase
+    where TMember : MemberItemBase
 {
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 
@@ -40,11 +41,11 @@ internal class MemberRepository<TMember> : IMemberRepository<TMember>
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
-    public TMember? GetMemberItem(MemberBase.CreateCommand command)
+    public TMember? GetMemberItem(MemberItemBase.CreateCommand command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        return MemberBase.CreateMember<TMember>(command, _dependencyReflectorFactory);
+        return MemberItemBase.CreateMember<TMember>(command, _dependencyReflectorFactory);
     }
 
     public IPublishedMemberCache? GetCache()

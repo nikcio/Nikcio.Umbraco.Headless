@@ -1,6 +1,4 @@
 using HotChocolate.Execution.Configuration;
-using HotChocolate.Execution.Instrumentation;
-using HotChocolate.Execution.Options;
 using Nikcio.UHeadless.Common.Properties;
 
 namespace Nikcio.UHeadless;
