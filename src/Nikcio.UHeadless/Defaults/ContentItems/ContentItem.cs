@@ -4,7 +4,6 @@ using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Routing;
-using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
@@ -45,15 +44,7 @@ public partial class ContentItem : ContentItemBase
     [GraphQLDescription("Gets the url of a content item.")]
     public string? Url(UrlMode urlMode)
     {
-        string? url;
-        IScopeProvider scopeProvider = ResolverContext.Service<IScopeProvider>();
-        using (scopeProvider.CreateScope())
-        {
-            url = PublishedContent?.Url(PublishedUrlProvider, Culture, urlMode);
-        }
-
-
-        return url;
+        return PublishedContent?.Url(PublishedUrlProvider, Culture, urlMode);
     }
 
     /// <summary>

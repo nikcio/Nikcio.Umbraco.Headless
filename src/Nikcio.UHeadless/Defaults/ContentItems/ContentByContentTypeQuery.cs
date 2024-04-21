@@ -19,14 +19,15 @@ public class ContentByContentTypeQuery
     /// Gets all the content items by content type
     /// </summary>
     [GraphQLDescription("Gets all the content items by content type.")]
-    [UsePaging]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<ContentItem?> ContentByContentType(
+    public Pagination<ContentItem?> ContentByContentType(
         IResolverContext resolverContext,
         [Service] ILogger<ContentByContentTypeQuery> logger,
         [Service] IContentItemRepository<ContentItem> contentItemRepository,
         [Service] IVariationContextAccessor variationContextAccessor,
-        [GraphQLDescription("The contentType to fetch.")] string contentType)
+        [GraphQLDescription("The contentType to fetch.")] string contentType,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentException.ThrowIfNullOrEmpty(contentType);
         ArgumentNullException.ThrowIfNull(contentItemRepository);
@@ -39,26 +40,28 @@ public class ContentByContentTypeQuery
         if (contentCache == null)
         {
             logger.LogError("Content cache is null");
-            return Enumerable.Empty<ContentItem?>();
+            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IPublishedContentType? publishedContentType = contentCache.GetContentType(contentType);
         if (publishedContentType == null)
         {
             logger.LogError("Content type not found");
-            return Enumerable.Empty<ContentItem?>();
+            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(includePreview, culture)
                     .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, culture))
                     .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        return contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        IEnumerable<ContentItem?> resultItems =  contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
         {
             PublishedContent = contentItem,
             ResolverContext = resolverContext,
             Redirect = null,
             StatusCode = 200
         }));
+
+        return new Pagination<ContentItem?>(resultItems, page, pageSize);
     }
 }

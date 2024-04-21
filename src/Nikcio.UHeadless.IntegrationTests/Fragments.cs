@@ -3210,6 +3210,5 @@ public static class Fragments
           }
           __typename
         }
-        
         """;
 }

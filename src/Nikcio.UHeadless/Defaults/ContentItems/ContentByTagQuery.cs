@@ -20,15 +20,16 @@ public class ContentByTagQuery
     /// Gets content items by tag
     /// </summary>
     [GraphQLDescription("Gets content items by tag.")]
-    [UsePaging]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<ContentItem?> ContentByTag(
+    public Pagination<ContentItem?> ContentByTag(
         IResolverContext resolverContext,
         [Service] ILogger<ContentByTagQuery> logger,
         [Service] IContentItemRepository<ContentItem> contentItemRepository,
         [Service] ITagService tagService,
         [GraphQLDescription("The tag to fetch.")] string tag,
-        [GraphQLDescription("The tag group to fetch.")] string? tagGroup = null)
+        [GraphQLDescription("The tag group to fetch.")] string? tagGroup = null,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentException.ThrowIfNullOrEmpty(tag);
         ArgumentNullException.ThrowIfNull(contentItemRepository);
@@ -41,18 +42,20 @@ public class ContentByTagQuery
         if (contentCache == null)
         {
             logger.LogError("Content cache is null");
-            return Enumerable.Empty<ContentItem?>();
+            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IEnumerable<TaggedEntity> taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, culture);
         IEnumerable<IPublishedContent> contentItems = taggedEntities.Select(entity => contentCache?.GetById(entity.EntityId)).OfType<IPublishedContent>();
 
-        return contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        IEnumerable<ContentItem?> resultItems = contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
         {
             PublishedContent = contentItem,
             ResolverContext = resolverContext,
             Redirect = null,
             StatusCode = 200
         }));
+
+        return new Pagination<ContentItem?>(resultItems, page, pageSize);
     }
 }

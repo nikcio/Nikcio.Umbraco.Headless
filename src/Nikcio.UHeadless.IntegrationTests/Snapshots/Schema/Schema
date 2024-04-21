@@ -593,60 +593,6 @@ type ColorPickerEditorCulture implements IColorPickerEditorCulture {
   colorPickerCulture: DefaultProperty
 }
 
-"A connection to a list of items."
-type ContentAtRootConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [ContentAtRootEdge!]
-  "A flattened list of the nodes."
-  nodes: [ContentItem]
-}
-
-"An edge in a connection."
-type ContentAtRootEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: ContentItem
-}
-
-"A connection to a list of items."
-type ContentByContentTypeConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [ContentByContentTypeEdge!]
-  "A flattened list of the nodes."
-  nodes: [ContentItem]
-}
-
-"An edge in a connection."
-type ContentByContentTypeEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: ContentItem
-}
-
-"A connection to a list of items."
-type ContentByTagConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [ContentByTagEdge!]
-  "A flattened list of the nodes."
-  nodes: [ContentItem]
-}
-
-"An edge in a connection."
-type ContentByTagEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: ContentItem
-}
-
 type ContentItem {
   "Gets the url of a content item."
   url(urlMode: UrlMode!): String
@@ -944,24 +890,6 @@ type FileUploadCulture implements IFileUploadCulture {
   videoCulture: DefaultProperty
 }
 
-"A connection to a list of items."
-type FindMembersByRoleConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [FindMembersByRoleEdge!]
-  "A flattened list of the nodes."
-  nodes: [MemberItem]
-}
-
-"An edge in a connection."
-type FindMembersByRoleEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: MemberItem
-}
-
 type Image implements IImage {
   umbracoFile: DefaultProperty
   "in pixels"
@@ -1014,45 +942,9 @@ type MarkdownEditorCulture implements IMarkdownEditorCulture {
   markdownCulture: RichText
 }
 
-"A connection to a list of items."
-type MediaAtRootConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [MediaAtRootEdge!]
-  "A flattened list of the nodes."
-  nodes: [MediaItem]
-}
-
-"An edge in a connection."
-type MediaAtRootEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: MediaItem
-}
-
-"A connection to a list of items."
-type MediaByContentTypeConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [MediaByContentTypeEdge!]
-  "A flattened list of the nodes."
-  nodes: [MediaItem]
-}
-
-"An edge in a connection."
-type MediaByContentTypeEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: MediaItem
-}
-
 type MediaItem {
   "Gets the url of a media item."
-  url(urlMode: UrlMode!): String
+  url(urlMode: UrlMode! propertyAlias: String! = "umbracoFile"): String
   "Gets the properties of the media item."
   properties: TypedProperties!
   "Gets the url segment of the media item."
@@ -1247,16 +1139,46 @@ type NumericEditorCulture implements INumericEditorCulture {
   numericCulture: DefaultProperty
 }
 
-"Information about pagination in a connection."
-type PageInfo {
-  "Indicates whether more edges exist following the set defined by the clients arguments."
+"Represents a paginated list of items."
+type PaginationOfContentItem {
+  "The items in the paginated list."
+  items: [ContentItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
   hasNextPage: Boolean!
-  "Indicates whether more edges exist prior the set defined by the clients arguments."
-  hasPreviousPage: Boolean!
-  "When paginating backwards, the cursor to continue."
-  startCursor: String
-  "When paginating forwards, the cursor to continue."
-  endCursor: String
+}
+
+"Represents a paginated list of items."
+type PaginationOfMediaItem {
+  "The items in the paginated list."
+  items: [MediaItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
+  hasNextPage: Boolean!
+}
+
+"Represents a paginated list of items."
+type PaginationOfMemberItem {
+  "The items in the paginated list."
+  items: [MemberItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
+  hasNextPage: Boolean!
 }
 
 "Implements the String) query"
@@ -1264,31 +1186,31 @@ type Query {
   "Gets a content item by a route."
   contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = ""): ContentItem
   "Gets all the content items by content type."
-  contentByContentType("The contentType to fetch." contentType: String! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ContentByContentTypeConnection
+  contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
   "Gets all the content items at root level."
-  contentAtRoot("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ContentAtRootConnection
+  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
   "Gets a content item by id."
   contentById("The id to fetch." id: Int!): ContentItem
   "Gets a content item by Guid."
   contentByGuid("The id to fetch." id: UUID!): ContentItem
   "Gets content items by tag."
-  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ContentByTagConnection
+  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
   "Gets all the media items by content type."
-  mediaByContentType("The content type to fetch." contentType: String! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): MediaByContentTypeConnection
+  mediaByContentType("The content type to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
   "Gets all the media items at root level."
-  mediaAtRoot("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): MediaAtRootConnection
+  mediaAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
   "Gets a Media item by id."
   mediaById("The id to fetch." id: Int!): MediaItem
   "Gets a Media item by Guid."
   mediaByGuid("The Guid to fetch." id: UUID!): MediaItem
   "Finds members by display name."
-  findMembersByDisplayName("The display name (may be partial)." displayName: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType!): [MemberItem]!
+  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
   "Finds members by email."
-  findMembersByEmail("The email (may be partial)." email: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType!): [MemberItem]!
+  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
   "Finds members by role."
-  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): FindMembersByRoleConnection
+  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMemberItem!
   "Finds members by username."
-  findMembersByUsername("The username (may be partial)." username: String! "The page index." pageIndex: Long! "The page size." pageSize: Int! "Determines how to match a string property value." matchType: StringPropertyMatchType!): [MemberItem]!
+  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
   "Gets a member by email."
   memberByEmail("The email to fetch." email: String!): MemberItem
   "Gets a member by Guid."
