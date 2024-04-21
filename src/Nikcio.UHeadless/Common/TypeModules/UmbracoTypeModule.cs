@@ -192,6 +192,8 @@ internal class UmbracoTypeModule : ITypeModule
 
             if (string.IsNullOrWhiteSpace(contentTypeAlias))
             {
+                ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
+                logger.LogWarning("Content type alias is not available. Scoped value key: {ScopedValueKey}", scopedValueKey);
                 return objectTypes[0];
             }
 
