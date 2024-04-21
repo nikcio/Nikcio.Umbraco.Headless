@@ -25,16 +25,6 @@
           "HotChocolate": "13.9.0"
         }
       },
-      "HotChocolate.Data": {
-        "type": "Direct",
-        "requested": "[13.9.0, )",
-        "resolved": "13.9.0",
-        "contentHash": "eZI9pIipsJsqdacj55krmxx24cUTCearQ/q9wT4aa6vQ/5GwuwWJ0ZIqdcp1qPjd+BsmJixrQBbi6/OgnFXIGw==",
-        "dependencies": {
-          "HotChocolate.Execution": "13.9.0",
-          "HotChocolate.Types.CursorPagination": "13.9.0"
-        }
-      },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "Direct",
         "requested": "[8.0.1, )",

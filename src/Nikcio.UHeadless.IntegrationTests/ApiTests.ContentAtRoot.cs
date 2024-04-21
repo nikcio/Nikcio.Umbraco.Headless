@@ -1,10 +1,41 @@
 using System.Net.Http.Json;
 
-namespace Nikcio.UHeadless.IntegrationTests.Sqlite;
+namespace Nikcio.UHeadless.IntegrationTests.Defaults;
 
 public partial class ApiTests
 {
     private const string _contentAtRootSnapshotPath = $"{SnapshotConstants.BasePath}/ContentAtRoot";
+
+    [Theory]
+    [InlineData(0, 5, "en-us", false)]
+    [InlineData(1, 5, "en-us", false)]
+    [InlineData(0, 5, "en-us", true)]
+    public async Task ContentAtRootQuery_Can_Get_Items_Async(int page, int pageSize, string culture, bool includePreview)
+    {
+        var snapshotProvider = new SnapshotProvider($"{_contentAtRootSnapshotPath}/CanGetItems");
+        HttpClient client = _factory.CreateClient();
+
+        using var request = JsonContent.Create(new
+        {
+            query = ContentAtRootQueries.GetItems,
+            variables = new
+            {
+                page,
+                pageSize,
+                culture,
+                includePreview
+            }
+        });
+
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+
+        string snapshotName = $"ContentAtRoot_GetItems_{page}_{pageSize}_{culture}_{includePreview}";
+
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
+        Assert.True(response.IsSuccessStatusCode);
+    }
 
     [Theory]
     [InlineData(0, null)]
@@ -250,4 +281,56 @@ public partial class ApiTests
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);
     }
+}
+
+public static class ContentAtRootQueries
+{
+    public const string GetItems = """
+        query ContentAtRootQuery(
+          $page: Int!
+          $pageSize: Int!
+          $culture: String!
+          $includePreview: Boolean!
+        ) {
+          contentAtRoot(page: $page, pageSize: $pageSize)
+            @inContext(culture: $culture, includePreview: $includePreview) {
+            items {
+              url(urlMode: ABSOLUTE)
+              redirect {
+                redirectUrl
+                isPermanent
+              }
+              statusCode
+              properties {
+                ...typedProperties
+                __typename
+              }
+              urlSegment
+              name
+              id
+              key
+              templateId
+              updateDate
+              parent {
+                url(urlMode: ABSOLUTE)
+                properties {
+                  ...typedProperties
+                  __typename
+                }
+                urlSegment
+                name
+                id
+                key
+                templateId
+                updateDate
+              }
+              __typename
+            }
+            page
+            pageSize
+            totalItems
+            hasNextPage
+          }
+        }
+        """ + Fragments.TypedProperties;
 }

@@ -133,15 +133,6 @@
           "HotChocolate.Execution": "13.9.0"
         }
       },
-      "HotChocolate.Data": {
-        "type": "Transitive",
-        "resolved": "13.9.0",
-        "contentHash": "eZI9pIipsJsqdacj55krmxx24cUTCearQ/q9wT4aa6vQ/5GwuwWJ0ZIqdcp1qPjd+BsmJixrQBbi6/OgnFXIGw==",
-        "dependencies": {
-          "HotChocolate.Execution": "13.9.0",
-          "HotChocolate.Types.CursorPagination": "13.9.0"
-        }
-      },
       "HotChocolate.Execution": {
         "type": "Transitive",
         "resolved": "13.9.0",
@@ -2342,7 +2333,6 @@
         "dependencies": {
           "HotChocolate.AspNetCore": "[13.9.0, )",
           "HotChocolate.AspNetCore.Authorization": "[13.9.0, )",
-          "HotChocolate.Data": "[13.9.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
           "Umbraco.Cms.Web.Common": "[11.0.0, )"

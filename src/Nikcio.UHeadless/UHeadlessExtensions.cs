@@ -52,8 +52,6 @@ public static class UHeadlessExtensions
 
         requestExecutorBuilder
             .InitializeOnStartup()
-            .AddFiltering()
-            .AddSorting()
             .AddQueryType<GraphQLQuery>()
             .AddInterfaceType<PropertyValue>()
             .AddTypeModule<UmbracoTypeModule>()
