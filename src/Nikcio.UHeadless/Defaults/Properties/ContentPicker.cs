@@ -33,7 +33,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
     /// The content items of the property
     /// </summary>
     /// <value></value>
-    protected IEnumerable<IPublishedContent> PublishedContentItems { get; }
+    protected List<IPublishedContent> PublishedContentItems { get; }
 
     /// <summary>
     /// Gets the content items of a picker
@@ -57,7 +57,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
-            PublishedContentItems = publishedContentItems;
+            PublishedContentItems = publishedContentItems.ToList();
         }
         else
         {

@@ -33,7 +33,7 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
     /// The published elements
     /// </summary>
     /// <value></value>
-    protected IEnumerable<IPublishedElement> PublishedElements { get; }
+    protected List<IPublishedElement> PublishedElements { get; }
 
     /// <summary>
     /// Gets the elements of a nested content
@@ -57,7 +57,7 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
         }
         else if (publishedElementsAsObject is IEnumerable<IPublishedElement> publishedElements)
         {
-            PublishedElements = publishedElements;
+            PublishedElements = publishedElements.ToList();
         }
         else
         {

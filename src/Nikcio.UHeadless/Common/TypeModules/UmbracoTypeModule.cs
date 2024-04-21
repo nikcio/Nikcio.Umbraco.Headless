@@ -185,13 +185,15 @@ internal class UmbracoTypeModule : ITypeModule
             {
                 ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
                 logger.LogWarning("Scoped value is not available in scoped data. Scoped value key: {ScopedValueKey}", scopedValueKey);
-                return default;
+                return objectTypes[0];
             }
 
             string? contentTypeAlias = getContentTypeAlias.Invoke(scopedValue);
 
             if (string.IsNullOrWhiteSpace(contentTypeAlias))
             {
+                ILogger<UmbracoTypeModule> logger = context.Service<ILogger<UmbracoTypeModule>>();
+                logger.LogWarning("Content type alias is not available. Scoped value key: {ScopedValueKey}", scopedValueKey);
                 return objectTypes[0];
             }
 

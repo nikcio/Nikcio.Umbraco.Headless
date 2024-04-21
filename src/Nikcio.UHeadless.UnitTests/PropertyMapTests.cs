@@ -27,7 +27,7 @@ public class PropertyMapTests
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
         bool containsEditor = propertyMap.ContainsEditor(editorName);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
         string value = propertyMap.GetEditorValue(editorName);
 
         Assert.True(containsEditor);
@@ -49,7 +49,7 @@ public class PropertyMapTests
 
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         bool containsEditor = propertyMap.ContainsAlias(contentTypeAlias, propertyTypeAlias);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
         string value = propertyMap.GetAliasValue(contentTypeAlias, propertyTypeAlias);
 
         Assert.True(containsEditor);
@@ -108,7 +108,7 @@ public class PropertyMapTests
     {
         var propertyMap = new PropertyMap();
 
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Empty(types);
     }
@@ -121,7 +121,7 @@ public class PropertyMapTests
         string? basicClassAssemblyName = typeof(BasicClass).AssemblyQualifiedName;
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
@@ -142,11 +142,11 @@ public class PropertyMapTests
 
         propertyMap.AddEditorMapping<BasicClass>(editorName);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAssemblyName, types.First().AssemblyQualifiedName);
         });
@@ -164,11 +164,11 @@ public class PropertyMapTests
         propertyMap.AddEditorMapping<BasicClassAlternate>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });
@@ -186,11 +186,11 @@ public class PropertyMapTests
         propertyMap.AddEditorMapping<BasicClassAlternate>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });
@@ -208,7 +208,7 @@ public class PropertyMapTests
         propertyMap.AddEditorMapping<BasicClass>(editorName);
         propertyMap.AddAliasMapping<BasicClass>(contentTypeAlias, propertyTypeAlias);
         propertyMap.AddAliasMapping<BasicClassAlternate>(contentTypeAlias, propertyTypeAlias);
-        IEnumerable<Type> types = propertyMap.GetAllTypes();
+        HashSet<Type> types = propertyMap.GetAllTypes();
 
         Assert.Multiple(() =>
         {

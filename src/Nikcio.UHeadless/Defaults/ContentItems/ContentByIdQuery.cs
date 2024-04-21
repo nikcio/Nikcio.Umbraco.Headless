@@ -3,7 +3,6 @@ using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 

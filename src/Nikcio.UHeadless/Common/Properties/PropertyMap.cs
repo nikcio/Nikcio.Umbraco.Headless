@@ -69,7 +69,7 @@ public interface IPropertyMap
     /// Gets all types used in the property map
     /// </summary>
     /// <returns></returns>
-    IEnumerable<Type> GetAllTypes();
+    HashSet<Type> GetAllTypes();
 
     /// <summary>
     /// Get a editor value
@@ -167,7 +167,7 @@ internal class PropertyMap : DictionaryMap, IPropertyMap
         return aliasPropertyMap[GetAliasMappingKey(contentTypeAlias, propertyTypeAlias)];
     }
 
-    public IEnumerable<Type> GetAllTypes()
+    public HashSet<Type> GetAllTypes()
     {
         return types;
     }

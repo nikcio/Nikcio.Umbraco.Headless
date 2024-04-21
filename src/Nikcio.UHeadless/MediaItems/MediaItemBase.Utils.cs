@@ -21,13 +21,4 @@ public partial class MediaItemBase
             return createdMediaItem;
         }
     }
-
-    public static IEnumerable<TMediaItem?> CreateMediaItems<TMediaItem>(IEnumerable<CreateCommand> commands, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TMediaItem : MediaItemBase
-    {
-        ArgumentNullException.ThrowIfNull(commands);
-        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
-
-        return commands.Select(command => CreateMediaItem<TMediaItem>(command, dependencyReflectorFactory));
-    }
 }

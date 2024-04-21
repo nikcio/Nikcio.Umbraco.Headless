@@ -11,8 +11,11 @@
 
   <ItemGroup>
     <Compile Remove="Old\**" />
+    <Compile Remove="Sqlite\**" />
     <EmbeddedResource Remove="Old\**" />
+    <EmbeddedResource Remove="Sqlite\**" />
     <None Remove="Old\**" />
+    <None Remove="Sqlite\**" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -35,5 +38,9 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\Nikcio.UHeadless.IntegrationTests.TestProject\Nikcio.UHeadless.IntegrationTests.TestProject.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Snapshots\" />
   </ItemGroup>
 </Project>

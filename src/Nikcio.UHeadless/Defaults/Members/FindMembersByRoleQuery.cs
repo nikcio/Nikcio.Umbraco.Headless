@@ -21,16 +21,17 @@ public class FindMembersByRoleQuery
     /// Finds members by role
     /// </summary>
     [GraphQLDescription("Finds members by role.")]
-    [UsePaging]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MemberItem?> FindMembersByRole(
+    public PaginationResult<MemberItem?> FindMembersByRole(
         IResolverContext resolverContext,
         [Service] ILogger<FindMembersByRoleQuery> logger,
         [Service] IMemberRepository<MemberItem> memberItemRepository,
         [Service] IMemberService memberService,
         [GraphQLDescription("The role name.")] string roleName,
         [GraphQLDescription("The username to match.")] string usernameToMatch,
-        [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
+        [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentNullException.ThrowIfNull(memberItemRepository);
         ArgumentNullException.ThrowIfNull(memberService);
@@ -41,17 +42,19 @@ public class FindMembersByRoleQuery
         if (memberCache == null)
         {
             logger.LogError("Member cache is null");
-            return Enumerable.Empty<MemberItem>();
+            return new PaginationResult<MemberItem?>(Enumerable.Empty<MemberItem>(), page, pageSize);
         }
 
         IEnumerable<IMember> members = memberService.FindMembersInRole(roleName, usernameToMatch, matchType);
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 
-        return memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
+        IEnumerable<MemberItem?> resultItems = memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
         {
             PublishedContent = member,
             ResolverContext = resolverContext,
         }));
+
+        return new PaginationResult<MemberItem?>(resultItems, page, pageSize);
     }
 }

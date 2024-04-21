@@ -18,13 +18,14 @@ public class MediaByContentTypeQuery
     /// Gets all the media items by content type
     /// </summary>
     [GraphQLDescription("Gets all the media items by content type.")]
-    [UsePaging]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MediaItem?> MediaByContentType(
+    public PaginationResult<MediaItem?> MediaByContentType(
         IResolverContext resolverContext,
         [Service] ILogger<MediaByContentTypeQuery> logger,
         [Service] IMediaItemRepository<MediaItem> mediaItemRepository,
-        [GraphQLDescription("The content type to fetch.")] string contentType)
+        [GraphQLDescription("The content type to fetch.")] string contentType,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentNullException.ThrowIfNull(mediaItemRepository);
 
@@ -33,7 +34,7 @@ public class MediaByContentTypeQuery
         if (mediaCache == null)
         {
             logger.LogError("Media cache is null");
-            return Enumerable.Empty<MediaItem?>();
+            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }
 
         IPublishedContentType? mediaContentType = mediaCache.GetContentType(contentType);
@@ -41,15 +42,17 @@ public class MediaByContentTypeQuery
         if (mediaContentType == null)
         {
             logger.LogError("Media type not found. {ContentType}", contentType);
-            return Enumerable.Empty<MediaItem?>();
+            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);
 
-        return mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        IEnumerable<MediaItem?> resultItems = mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
         {
             PublishedContent = mediaItem,
             ResolverContext = resolverContext,
         }));
+
+        return new PaginationResult<MediaItem?>(resultItems, page, pageSize);
     }
 }

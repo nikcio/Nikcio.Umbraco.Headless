@@ -36,7 +36,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     /// The published content items
     /// </summary>
     /// <value></value>
-    protected IEnumerable<Link> PublishedContentItemsLinks { get; }
+    protected List<Link> PublishedContentItemsLinks { get; }
 
     /// <summary>
     /// The published snapshot accessor
@@ -81,7 +81,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
         }
         else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
         {
-            PublishedContentItemsLinks = publishedContentItems;
+            PublishedContentItemsLinks = publishedContentItems.ToList();
         }
         else
         {

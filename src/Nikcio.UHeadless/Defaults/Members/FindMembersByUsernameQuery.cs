@@ -28,9 +28,9 @@ public class FindMembersByUsernameQuery
         [Service] IMemberRepository<MemberItem> memberItemRepository,
         [Service] IMemberService memberService,
         [GraphQLDescription("The username (may be partial).")] string username,
-        [GraphQLDescription("The page index.")] long pageIndex,
-        [GraphQLDescription("The page size.")] int pageSize,
-        [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType)
+        [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] long page = 1,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10)
     {
         ArgumentNullException.ThrowIfNull(memberItemRepository);
         ArgumentNullException.ThrowIfNull(memberService);
@@ -44,7 +44,7 @@ public class FindMembersByUsernameQuery
             return Enumerable.Empty<MemberItem>();
         }
 
-        IEnumerable<IMember> members = memberService.FindByUsername(username, pageIndex, pageSize, out long totalRecords, matchType);
+        IEnumerable<IMember> members = memberService.FindByUsername(username, page, pageSize, out long totalRecords, matchType);
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 

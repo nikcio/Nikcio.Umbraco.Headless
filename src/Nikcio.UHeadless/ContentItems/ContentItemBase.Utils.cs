@@ -21,13 +21,4 @@ public partial class ContentItemBase
             return createdContent;
         }
     }
-
-    public static IEnumerable<TContentItem?> CreateContentItems<TContentItem>(IEnumerable<CreateCommand> commands, IDependencyReflectorFactory dependencyReflectorFactory)
-        where TContentItem : ContentItemBase
-    {
-        ArgumentNullException.ThrowIfNull(commands);
-        ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
-
-        return commands.Select(command => CreateContentItem<TContentItem>(command, dependencyReflectorFactory));
-    }
 }

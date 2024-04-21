@@ -1,0 +1,1435 @@
+schema {
+  query: Query
+}
+
+interface IBlockGridEditor {
+  blockGrid: BlockGrid
+}
+
+interface IBlockListEditor {
+  blockList: BlockList
+}
+
+interface IBlockListEditorCulture {
+  blockListCulture: BlockList
+}
+
+interface ICheckboxListEditor {
+  checkboxList: DefaultProperty
+}
+
+interface ICheckboxListEditorCulture {
+  checkboxListCulture: DefaultProperty
+}
+
+interface IColorPickerEditor {
+  colorPicker: DefaultProperty
+}
+
+interface IColorPickerEditorCulture {
+  colorPickerCulture: DefaultProperty
+}
+
+interface IContentPickerEditor {
+  contentPicker: ContentPicker
+}
+
+interface IContentPickerEditorCulture {
+  contentPickerCulture: ContentPicker
+}
+
+interface ICustomMediaType {
+  approvedColorEditor: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  blockList: BlockList
+  checkboxList: DefaultProperty
+  contentPicker: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  decimal: DefaultProperty
+  dropDown: DefaultProperty
+  dropdownMultiple: DefaultProperty
+  emailAddress: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  file: DefaultProperty
+  imageCropper: DefaultProperty
+  imageMediaPicker: MediaPicker
+  markdownEditor: RichText
+  memberGroupPicker: DefaultProperty
+  memberPicker: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  numeric: DefaultProperty
+  radiobox: DefaultProperty
+  repeatableTextStrings: DefaultProperty
+  richText: RichText
+  slider: DefaultProperty
+  sVG: DefaultProperty
+  tags: DefaultProperty
+  textarea: DefaultProperty
+  textstring: DefaultProperty
+  toggle: DefaultProperty
+  userPicker: DefaultProperty
+  video: DefaultProperty
+}
+
+interface IDatePickerEditor {
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+}
+
+interface IDatePickerEditorCulture {
+  datePickerCulture: DateTimePicker
+  datePickerWithTimeCulture: DateTimePicker
+}
+
+interface IDecimalEditor {
+  decimal: DefaultProperty
+}
+
+interface IDecimalEditorCulture {
+  decimalCulture: DefaultProperty
+}
+
+interface IDefault {
+  blockGrid: BlockGrid
+  blockList: BlockList
+  checkboxList: DefaultProperty
+  colorPicker: DefaultProperty
+  contentPicker: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  decimal: DefaultProperty
+  dropdown: DefaultProperty
+  emailAddress: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+  imageCropper: DefaultProperty
+  markdown: RichText
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+  memberGroupPicker: DefaultProperty
+  memberPicker: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  numeric: DefaultProperty
+  radiobox: DefaultProperty
+  repeatableTextstrings: DefaultProperty
+  richtext: RichText
+  slider: DefaultProperty
+  tags: DefaultProperty
+  textarea: DefaultProperty
+  textstring: DefaultProperty
+  trueOrFalse: DefaultProperty
+  userPicker: DefaultProperty
+}
+
+interface IDefaultCulture {
+  blockList: BlockList
+  blockListCulture: BlockList
+  checkboxList: DefaultProperty
+  checkboxListCulture: DefaultProperty
+  colorPicker: DefaultProperty
+  colorPickerCulture: DefaultProperty
+  contentPicker: ContentPicker
+  contentPickerCulture: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  datePickerCulture: DateTimePicker
+  datePickerWithTimeCulture: DateTimePicker
+  decimal: DefaultProperty
+  decimalCulture: DefaultProperty
+  dropdown: DefaultProperty
+  dropdownCulture: DefaultProperty
+  emailAddress: DefaultProperty
+  emailAddressCulture: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  eyeDropperColorPickerCulture: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+  articleCulture: DefaultProperty
+  audioCulture: DefaultProperty
+  fileCulture: DefaultProperty
+  svgCulture: DefaultProperty
+  videoCulture: DefaultProperty
+  imageCropper: DefaultProperty
+  imageCropperCulture: DefaultProperty
+  markdown: RichText
+  markdownCulture: RichText
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+  imageMediaPickerCulture: MediaPicker
+  mediaPickerCulture: MediaPicker
+  multipleImageMediaPickerCulture: MediaPicker
+  multipleMediaPickerCulture: MediaPicker
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacyCulture: MediaPicker
+  multipleMediaPickerLegacyCulture: MediaPicker
+  memberGroupPicker: DefaultProperty
+  memberGroupPickerCulture: DefaultProperty
+  memberPicker: MemberPicker
+  memberPickerCulture: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multinodeTreepickerCulture: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  multiUrlPickerCulture: MultiUrlPicker
+  numeric: DefaultProperty
+  numericCulture: DefaultProperty
+  radiobox: DefaultProperty
+  radioboxCulture: DefaultProperty
+  repeatableTextstrings: DefaultProperty
+  repeatableTextstringsCulture: DefaultProperty
+  richtext: RichText
+  richtextCulture: RichText
+  slider: DefaultProperty
+  sliderCulture: DefaultProperty
+  tags: DefaultProperty
+  tagsCulture: DefaultProperty
+  textarea: DefaultProperty
+  textareaCulture: DefaultProperty
+  textstring: DefaultProperty
+  textstringCulture: DefaultProperty
+  trueOrFalse: DefaultProperty
+  trueOrFalseCulture: DefaultProperty
+  userPicker: DefaultProperty
+  userPickerCulture: DefaultProperty
+}
+
+interface IDropdownEditor {
+  dropdown: DefaultProperty
+}
+
+interface IDropdownEditorCulture {
+  dropdownCulture: DefaultProperty
+}
+
+interface IEmailAddressEditor {
+  emailAddress: DefaultProperty
+}
+
+interface IEmailAddressEditorCulture {
+  emailAddressCulture: DefaultProperty
+}
+
+interface IEyeDropperColorPickerEditor {
+  eyeDropperColorPicker: DefaultProperty
+}
+
+interface IEyeDropperColorPickerEditorCulture {
+  eyeDropperColorPickerCulture: DefaultProperty
+}
+
+interface IFile {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+interface IFileUpload {
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+}
+
+interface IFileUploadCulture {
+  articleCulture: DefaultProperty
+  audioCulture: DefaultProperty
+  fileCulture: DefaultProperty
+  svgCulture: DefaultProperty
+  videoCulture: DefaultProperty
+}
+
+interface IImage {
+  umbracoFile: DefaultProperty
+  "in pixels"
+  umbracoWidth: Label
+  "in pixels"
+  umbracoHeight: Label
+  "in bytes"
+  umbracoBytes: Label
+  umbracoExtension: Label
+}
+
+interface IImageCropperEditor {
+  imageCropper: DefaultProperty
+}
+
+interface IImageCropperEditorCulture {
+  imageCropperCulture: DefaultProperty
+}
+
+interface ILabelEditor {
+  bigint: Label
+  datetime: Label
+  decimal: Label
+  integer: Label
+  string: Label
+  time: Label
+}
+
+interface ILabelEditorCulture {
+  bigintCulture: Label
+  datetimeCulture: Label
+  decimalCulture: Label
+  integerCulture: Label
+  stringCulture: Label
+  timeCulture: Label
+}
+
+interface IMarkdownEditor {
+  markdown: RichText
+}
+
+interface IMarkdownEditorCulture {
+  markdownCulture: RichText
+}
+
+interface IMediaPickerEditor {
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+}
+
+interface IMediaPickerEditorCulture {
+  imageMediaPickerCulture: MediaPicker
+  mediaPickerCulture: MediaPicker
+  multipleImageMediaPickerCulture: MediaPicker
+  multipleMediaPickerCulture: MediaPicker
+}
+
+interface IMediaPickerLegacyEditor {
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+}
+
+interface IMediaPickerLegacyEditorCulture {
+  mediaPickerLegacyCulture: MediaPicker
+  multipleMediaPickerLegacyCulture: MediaPicker
+}
+
+interface IMember {
+  umbracoMemberComments: DefaultProperty
+  umbracoMemberFailedPasswordAttempts: Label
+  umbracoMemberApproved: DefaultProperty
+  umbracoMemberLockedOut: DefaultProperty
+  umbracoMemberLastLockoutDate: Label
+  umbracoMemberLastLogin: Label
+  umbracoMemberLastPasswordChangeDate: Label
+}
+
+interface IMemberGroupPickerEditor {
+  memberGroupPicker: DefaultProperty
+}
+
+interface IMemberGroupPickerEditorCulture {
+  memberGroupPickerCulture: DefaultProperty
+}
+
+interface IMemberPickerEditor {
+  memberPicker: MemberPicker
+}
+
+interface IMemberPickerEditorCulture {
+  memberPickerCulture: MemberPicker
+}
+
+interface IMultiUrlPickerEditor {
+  multiUrlPicker: MultiUrlPicker
+}
+
+interface IMultiUrlPickerEditorCulture {
+  multiUrlPickerCulture: MultiUrlPicker
+}
+
+interface IMultinodeTreepickerEditor {
+  multinodeTreepicker: ContentPicker
+}
+
+interface IMultinodeTreepickerEditorCulture {
+  multinodeTreepickerCulture: ContentPicker
+}
+
+interface INumericEditor {
+  numeric: DefaultProperty
+}
+
+interface INumericEditorCulture {
+  numericCulture: DefaultProperty
+}
+
+interface IRadioboxEditor {
+  radiobox: DefaultProperty
+}
+
+interface IRadioboxEditorCulture {
+  radioboxCulture: DefaultProperty
+}
+
+interface IRepeatableTextstringsEditor {
+  repeatableTextstrings: DefaultProperty
+}
+
+interface IRepeatableTextstringsEditorCulture {
+  repeatableTextstringsCulture: DefaultProperty
+}
+
+interface IRichtextEditor {
+  richtext: RichText
+}
+
+interface IRichtextEditorCulture {
+  richtextCulture: RichText
+}
+
+interface ISiteWithCulture {
+  textstring: DefaultProperty
+  textstringCulture: DefaultProperty
+}
+
+interface ISliderEditor {
+  slider: DefaultProperty
+}
+
+interface ISliderEditorCulture {
+  sliderCulture: DefaultProperty
+}
+
+interface ITagsEditor {
+  tags: DefaultProperty
+}
+
+interface ITagsEditorCulture {
+  tagsCulture: DefaultProperty
+}
+
+interface ITestMember {
+  blockList: BlockList
+  nestedContent: MemberPicker
+  umbracoMemberComments: DefaultProperty
+}
+
+interface ITextareaEditor {
+  textarea: DefaultProperty
+}
+
+interface ITextareaEditorCulture {
+  textareaCulture: DefaultProperty
+}
+
+interface ITextboxEditor {
+  textstring: DefaultProperty
+}
+
+interface ITextboxEditorCulture {
+  textstringCulture: DefaultProperty
+}
+
+interface IToggleEditor {
+  trueOrFalse: DefaultProperty
+}
+
+interface IToggleEditorCulture {
+  trueOrFalseCulture: DefaultProperty
+}
+
+interface IUmbBlockGridDemoHeadlineBlock {
+  headline: DefaultProperty
+}
+
+interface IUmbBlockGridDemoImageBlock {
+  image: MediaPicker
+}
+
+interface IUmbBlockGridDemoRichTextBlock {
+  richText: RichText
+}
+
+interface IUmbracoMediaArticle {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+interface IUmbracoMediaAudio {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+interface IUmbracoMediaVectorGraphics {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+interface IUmbracoMediaVideo {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+interface IUserPickerEditor {
+  userPicker: DefaultProperty
+}
+
+interface IUserPickerEditorCulture {
+  userPickerCulture: DefaultProperty
+}
+
+"A base for property values"
+interface PropertyValue {
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a block grid property value."
+type BlockGrid implements PropertyValue {
+  "Gets the blocks of a block grid model."
+  blocks: [BlockGridItem!]
+  "Gets the number of columns defined for the grid."
+  gridColumns: Int
+  "The model of the property value"
+  model: String!
+}
+
+"Represents a block grid area."
+type BlockGridArea {
+  "Gets the blocks of the block grid area."
+  blocks: [BlockGridItem!]
+  "Gets the alias of the block grid area."
+  alias: String!
+  "Gets the row dimensions of the block."
+  rowSpan: Int!
+  "Gets the column dimensions of the block."
+  columnSpan: Int!
+}
+
+type BlockGridEditor implements IBlockGridEditor {
+  blockGrid: BlockGrid
+}
+
+"Represents a block grid item."
+type BlockGridItem {
+  "Gets the content properties of the block grid item."
+  contentProperties: TypedBlockGridContentProperties!
+  "Gets the setting properties of the block grid item."
+  settingsProperties: TypedBlockGridSettingsProperties!
+  "Gets the areas of the block grid item."
+  areas: [BlockGridArea!]!
+  "Gets the alias of the content block grid item."
+  contentAlias: String
+  "Gets the alias of the settings block grid item."
+  settingsAlias: String
+  "Gets the row dimensions of the block."
+  rowSpan: Int!
+  "Gets the column dimensions of the block."
+  columnSpan: Int!
+}
+
+"Represents a block list model."
+type BlockList implements PropertyValue {
+  "Gets the blocks of a block list model."
+  blocks: [BlockListItem!]
+  "The model of the property value"
+  model: String!
+}
+
+type BlockListEditor implements IBlockListEditor {
+  blockList: BlockList
+}
+
+type BlockListEditorCulture implements IBlockListEditorCulture {
+  blockListCulture: BlockList
+}
+
+"Represents a block list item."
+type BlockListItem {
+  "Gets the content properties of the block list item."
+  contentProperties: TypedBlockListContentProperties!
+  "Gets the setting properties of the block list item."
+  settingsProperties: TypedBlockListSettingsProperties!
+  "Gets the alias of the content block list item."
+  contentAlias: String
+  "Gets the alias of the settings block list item."
+  settingsAlias: String
+}
+
+type CheckboxListEditor implements ICheckboxListEditor {
+  checkboxList: DefaultProperty
+}
+
+type CheckboxListEditorCulture implements ICheckboxListEditorCulture {
+  checkboxListCulture: DefaultProperty
+}
+
+type ColorPickerEditor implements IColorPickerEditor {
+  colorPicker: DefaultProperty
+}
+
+type ColorPickerEditorCulture implements IColorPickerEditorCulture {
+  colorPickerCulture: DefaultProperty
+}
+
+type ContentItem {
+  "Gets the url of a content item."
+  url(urlMode: UrlMode!): String
+  "Gets the properties of the content item."
+  properties: TypedProperties!
+  "Gets the url segment of the content item."
+  urlSegment: String
+  "Gets the name of a content item."
+  name: String
+  "Gets the id of a content item."
+  id: Int
+  "Gets the key of a content item."
+  key: UUID
+  "Gets the identifier of the template to use to render the content item."
+  templateId: Int
+  "Gets the date the content item was last updated."
+  updateDate: DateTime
+  "Gets the parent of the content item."
+  parent: ContentItem
+  statusCode: Int!
+  "Gets the redirect information for the content item."
+  redirect: RedirectInfo
+}
+
+"Represents a content picker value."
+type ContentPicker implements PropertyValue {
+  "Gets the content items of a picker."
+  items: [ContentPickerItem!]
+  "The model of the property value"
+  model: String!
+}
+
+type ContentPickerEditor implements IContentPickerEditor {
+  contentPicker: ContentPicker
+}
+
+type ContentPickerEditorCulture implements IContentPickerEditorCulture {
+  contentPickerCulture: ContentPicker
+}
+
+"Represents a content picker item."
+type ContentPickerItem {
+  "Gets the url of a content item."
+  url(urlMode: UrlMode!): String!
+  "Gets the properties of the content item."
+  properties: TypedProperties!
+  "Gets the url segment of the content item."
+  urlSegment: String
+  "Gets the name of a content item."
+  name: String
+  "Gets the id of a content item."
+  id: Int!
+  "Gets the key of a content item."
+  key: UUID!
+}
+
+type CustomMediaType implements ICustomMediaType {
+  approvedColorEditor: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  blockList: BlockList
+  checkboxList: DefaultProperty
+  contentPicker: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  decimal: DefaultProperty
+  dropDown: DefaultProperty
+  dropdownMultiple: DefaultProperty
+  emailAddress: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  file: DefaultProperty
+  imageCropper: DefaultProperty
+  imageMediaPicker: MediaPicker
+  markdownEditor: RichText
+  memberGroupPicker: DefaultProperty
+  memberPicker: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  numeric: DefaultProperty
+  radiobox: DefaultProperty
+  repeatableTextStrings: DefaultProperty
+  richText: RichText
+  slider: DefaultProperty
+  sVG: DefaultProperty
+  tags: DefaultProperty
+  textarea: DefaultProperty
+  textstring: DefaultProperty
+  toggle: DefaultProperty
+  userPicker: DefaultProperty
+  video: DefaultProperty
+}
+
+type DatePickerEditor implements IDatePickerEditor {
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+}
+
+type DatePickerEditorCulture implements IDatePickerEditorCulture {
+  datePickerCulture: DateTimePicker
+  datePickerWithTimeCulture: DateTimePicker
+}
+
+"Represents a date time property value."
+type DateTimePicker implements PropertyValue {
+  "Gets the value of the property."
+  value: DateTime
+  "The model of the property value"
+  model: String!
+}
+
+type DecimalEditor implements IDecimalEditor {
+  decimal: DefaultProperty
+}
+
+type DecimalEditorCulture implements IDecimalEditorCulture {
+  decimalCulture: DefaultProperty
+}
+
+type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMediaPickerLegacyEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
+  blockGrid: BlockGrid
+  blockList: BlockList
+  checkboxList: DefaultProperty
+  colorPicker: DefaultProperty
+  contentPicker: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  decimal: DefaultProperty
+  dropdown: DefaultProperty
+  emailAddress: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+  imageCropper: DefaultProperty
+  markdown: RichText
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+  memberGroupPicker: DefaultProperty
+  memberPicker: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  numeric: DefaultProperty
+  radiobox: DefaultProperty
+  repeatableTextstrings: DefaultProperty
+  richtext: RichText
+  slider: DefaultProperty
+  tags: DefaultProperty
+  textarea: DefaultProperty
+  textstring: DefaultProperty
+  trueOrFalse: DefaultProperty
+  userPicker: DefaultProperty
+}
+
+type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMediaPickerLegacyEditor & IMediaPickerLegacyEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
+  blockList: BlockList
+  blockListCulture: BlockList
+  checkboxList: DefaultProperty
+  checkboxListCulture: DefaultProperty
+  colorPicker: DefaultProperty
+  colorPickerCulture: DefaultProperty
+  contentPicker: ContentPicker
+  contentPickerCulture: ContentPicker
+  datePicker: DateTimePicker
+  datePickerWithTime: DateTimePicker
+  datePickerCulture: DateTimePicker
+  datePickerWithTimeCulture: DateTimePicker
+  decimal: DefaultProperty
+  decimalCulture: DefaultProperty
+  dropdown: DefaultProperty
+  dropdownCulture: DefaultProperty
+  emailAddress: DefaultProperty
+  emailAddressCulture: DefaultProperty
+  eyeDropperColorPicker: DefaultProperty
+  eyeDropperColorPickerCulture: DefaultProperty
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+  articleCulture: DefaultProperty
+  audioCulture: DefaultProperty
+  fileCulture: DefaultProperty
+  svgCulture: DefaultProperty
+  videoCulture: DefaultProperty
+  imageCropper: DefaultProperty
+  imageCropperCulture: DefaultProperty
+  markdown: RichText
+  markdownCulture: RichText
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+  imageMediaPickerCulture: MediaPicker
+  mediaPickerCulture: MediaPicker
+  multipleImageMediaPickerCulture: MediaPicker
+  multipleMediaPickerCulture: MediaPicker
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacyCulture: MediaPicker
+  multipleMediaPickerLegacyCulture: MediaPicker
+  memberGroupPicker: DefaultProperty
+  memberGroupPickerCulture: DefaultProperty
+  memberPicker: MemberPicker
+  memberPickerCulture: MemberPicker
+  multinodeTreepicker: ContentPicker
+  multinodeTreepickerCulture: ContentPicker
+  multiUrlPicker: MultiUrlPicker
+  multiUrlPickerCulture: MultiUrlPicker
+  numeric: DefaultProperty
+  numericCulture: DefaultProperty
+  radiobox: DefaultProperty
+  radioboxCulture: DefaultProperty
+  repeatableTextstrings: DefaultProperty
+  repeatableTextstringsCulture: DefaultProperty
+  richtext: RichText
+  richtextCulture: RichText
+  slider: DefaultProperty
+  sliderCulture: DefaultProperty
+  tags: DefaultProperty
+  tagsCulture: DefaultProperty
+  textarea: DefaultProperty
+  textareaCulture: DefaultProperty
+  textstring: DefaultProperty
+  textstringCulture: DefaultProperty
+  trueOrFalse: DefaultProperty
+  trueOrFalseCulture: DefaultProperty
+  userPicker: DefaultProperty
+  userPickerCulture: DefaultProperty
+}
+
+"A catch all property value that simply returns the value of the property. This is all that is needed for simple properties that doesn't need any special handling or formatting."
+type DefaultProperty implements PropertyValue {
+  "Gets the value of the property."
+  value: Any
+  "The model of the property value"
+  model: String!
+}
+
+type DropdownEditor implements IDropdownEditor {
+  dropdown: DefaultProperty
+}
+
+type DropdownEditorCulture implements IDropdownEditorCulture {
+  dropdownCulture: DefaultProperty
+}
+
+type EmailAddressEditor implements IEmailAddressEditor {
+  emailAddress: DefaultProperty
+}
+
+type EmailAddressEditorCulture implements IEmailAddressEditorCulture {
+  emailAddressCulture: DefaultProperty
+}
+
+"Represents a content type that doesn't have any properties and therefore needs a placeholder"
+type EmptyPropertyType {
+  "Placeholder field. Will never hold a value."
+  Empty_Field: String!
+}
+
+type EyeDropperColorPickerEditor implements IEyeDropperColorPickerEditor {
+  eyeDropperColorPicker: DefaultProperty
+}
+
+type EyeDropperColorPickerEditorCulture implements IEyeDropperColorPickerEditorCulture {
+  eyeDropperColorPickerCulture: DefaultProperty
+}
+
+type File implements IFile {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+type FileUpload implements IFileUpload {
+  article: DefaultProperty
+  audio: DefaultProperty
+  file: DefaultProperty
+  svg: DefaultProperty
+  video: DefaultProperty
+}
+
+type FileUploadCulture implements IFileUploadCulture {
+  articleCulture: DefaultProperty
+  audioCulture: DefaultProperty
+  fileCulture: DefaultProperty
+  svgCulture: DefaultProperty
+  videoCulture: DefaultProperty
+}
+
+type Image implements IImage {
+  umbracoFile: DefaultProperty
+  "in pixels"
+  umbracoWidth: Label
+  "in pixels"
+  umbracoHeight: Label
+  "in bytes"
+  umbracoBytes: Label
+  umbracoExtension: Label
+}
+
+type ImageCropperEditor implements IImageCropperEditor {
+  imageCropper: DefaultProperty
+}
+
+type ImageCropperEditorCulture implements IImageCropperEditorCulture {
+  imageCropperCulture: DefaultProperty
+}
+
+type Label implements PropertyValue {
+  "Gets the value of the property."
+  value: Any
+  "The model of the property value"
+  model: String!
+}
+
+type LabelEditor implements ILabelEditor {
+  bigint: Label
+  datetime: Label
+  decimal: Label
+  integer: Label
+  string: Label
+  time: Label
+}
+
+type LabelEditorCulture implements ILabelEditorCulture {
+  bigintCulture: Label
+  datetimeCulture: Label
+  decimalCulture: Label
+  integerCulture: Label
+  stringCulture: Label
+  timeCulture: Label
+}
+
+type MarkdownEditor implements IMarkdownEditor {
+  markdown: RichText
+}
+
+type MarkdownEditorCulture implements IMarkdownEditorCulture {
+  markdownCulture: RichText
+}
+
+type MediaItem {
+  "Gets the url of a media item."
+  url(urlMode: UrlMode! propertyAlias: String! = "umbracoFile"): String
+  "Gets the properties of the media item."
+  properties: TypedProperties!
+  "Gets the url segment of the media item."
+  urlSegment: String
+  "Gets the name of a media item."
+  name: String
+  "Gets the id of a media item."
+  id: Int
+  "Gets the key of a media item."
+  key: UUID
+  "Gets the identifier of the template to use to render the media item."
+  templateId: Int
+  "Gets the date the media item was last updated."
+  updateDate: DateTime
+  "Gets the parent of the media item."
+  parent: MediaItem
+}
+
+"Represents a media picker item."
+type MediaPicker implements PropertyValue {
+  "Gets the media items of a picker."
+  mediaItems: [MediaPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+type MediaPickerEditor implements IMediaPickerEditor {
+  imageMediaPicker: MediaPicker
+  mediaPicker: MediaPicker
+  multipleImageMediaPicker: MediaPicker
+  multipleMediaPicker: MediaPicker
+}
+
+type MediaPickerEditorCulture implements IMediaPickerEditorCulture {
+  imageMediaPickerCulture: MediaPicker
+  mediaPickerCulture: MediaPicker
+  multipleImageMediaPickerCulture: MediaPicker
+  multipleMediaPickerCulture: MediaPicker
+}
+
+"Represents a media item."
+type MediaPickerItem {
+  "Gets the url of a media item."
+  url(urlMode: UrlMode!): String!
+  "Gets the properties of the media item."
+  properties: TypedProperties!
+  "Gets the url segment of the media item."
+  urlSegment: String
+  "Gets the name of a media item."
+  name: String
+  "Gets the id of a media item."
+  id: Int!
+  "Gets the key of a media item."
+  key: UUID!
+}
+
+type MediaPickerLegacyEditor implements IMediaPickerLegacyEditor {
+  mediaPickerLegacy: MediaPicker
+  multipleMediaPickerLegacy: MediaPicker
+}
+
+type MediaPickerLegacyEditorCulture implements IMediaPickerLegacyEditorCulture {
+  mediaPickerLegacyCulture: MediaPicker
+  multipleMediaPickerLegacyCulture: MediaPicker
+}
+
+type Member implements IMember {
+  umbracoMemberComments: DefaultProperty
+  umbracoMemberFailedPasswordAttempts: Label
+  umbracoMemberApproved: DefaultProperty
+  umbracoMemberLockedOut: DefaultProperty
+  umbracoMemberLastLockoutDate: Label
+  umbracoMemberLastLogin: Label
+  umbracoMemberLastPasswordChangeDate: Label
+}
+
+type MemberGroupPickerEditor implements IMemberGroupPickerEditor {
+  memberGroupPicker: DefaultProperty
+}
+
+type MemberGroupPickerEditorCulture implements IMemberGroupPickerEditorCulture {
+  memberGroupPickerCulture: DefaultProperty
+}
+
+type MemberItem {
+  "Gets the properties of the member item."
+  properties: TypedProperties!
+  "Gets the name of a member item."
+  name: String
+  "Gets the id of a member item."
+  id: Int
+  "Gets the key of a member item."
+  key: UUID
+  "Gets the identifier of the template to use to render the member item."
+  templateId: Int
+  "Gets the date the member item was last updated."
+  updateDate: DateTime
+  "Gets the parent of the member item."
+  parent: MemberItem
+}
+
+"Represents a member picker."
+type MemberPicker implements PropertyValue {
+  "Gets the member items of a picker."
+  members: [MemberPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+type MemberPickerEditor implements IMemberPickerEditor {
+  memberPicker: MemberPicker
+}
+
+type MemberPickerEditorCulture implements IMemberPickerEditorCulture {
+  memberPickerCulture: MemberPicker
+}
+
+"Represents a member item."
+type MemberPickerItem {
+  "Gets the properties of the member item."
+  properties: TypedProperties!
+  "Gets the name of a member item."
+  name: String
+  "Gets the id of a member item."
+  id: Int!
+  "Gets the key of a member item."
+  key: UUID!
+}
+
+"Represents a multi url picker."
+type MultiUrlPicker implements PropertyValue {
+  "Gets the links of the picker."
+  links: [MultiUrlPickerItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+type MultiUrlPickerEditor implements IMultiUrlPickerEditor {
+  multiUrlPicker: MultiUrlPicker
+}
+
+type MultiUrlPickerEditorCulture implements IMultiUrlPickerEditorCulture {
+  multiUrlPickerCulture: MultiUrlPicker
+}
+
+"Represents a content item."
+type MultiUrlPickerItem {
+  "Gets the url of a content item. If the link isn't to a content item or media item then the UrlMode doesn't affect the url."
+  url(urlMode: UrlMode!): String!
+  "Gets the properties of the content item."
+  properties: TypedProperties!
+  "Gets the url segment of the content item."
+  urlSegment: String
+  "Gets the target of the link."
+  target: String
+  "Gets the type of the link."
+  type: LinkType!
+  "Gets the name of a content item."
+  name: String
+  "Gets the id of a content item."
+  id: Int
+  "Gets the key of a content item."
+  key: UUID
+}
+
+type MultinodeTreepickerEditor implements IMultinodeTreepickerEditor {
+  multinodeTreepicker: ContentPicker
+}
+
+type MultinodeTreepickerEditorCulture implements IMultinodeTreepickerEditorCulture {
+  multinodeTreepickerCulture: ContentPicker
+}
+
+"Represents nested content."
+type NestedContent implements PropertyValue {
+  "Gets the elements of a nested content."
+  elements: [NestedContentItem!]!
+  "The model of the property value"
+  model: String!
+}
+
+type NestedContentItem {
+  "Gets the properties of the nested content."
+  properties: TypedNestedContentProperties!
+}
+
+type NumericEditor implements INumericEditor {
+  numeric: DefaultProperty
+}
+
+type NumericEditorCulture implements INumericEditorCulture {
+  numericCulture: DefaultProperty
+}
+
+"Represents a paginated list of items."
+type PaginationOfContentItem {
+  "The items in the paginated list."
+  items: [ContentItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
+  hasNextPage: Boolean!
+}
+
+"Represents a paginated list of items."
+type PaginationOfMediaItem {
+  "The items in the paginated list."
+  items: [MediaItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
+  hasNextPage: Boolean!
+}
+
+"Represents a paginated list of items."
+type PaginationOfMemberItem {
+  "The items in the paginated list."
+  items: [MemberItem!]!
+  "The page number."
+  page: Int!
+  "The page size"
+  pageSize: Int!
+  "The total number of items."
+  totalItems: Int!
+  "Whether there is a next page."
+  hasNextPage: Boolean!
+}
+
+"Implements the String) query"
+type Query {
+  "Gets a content item by a route."
+  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = ""): ContentItem
+  "Gets all the content items by content type."
+  contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  "Gets all the content items at root level."
+  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  "Gets a content item by id."
+  contentById("The id to fetch." id: Int!): ContentItem
+  "Gets a content item by Guid."
+  contentByGuid("The id to fetch." id: UUID!): ContentItem
+  "Gets content items by tag."
+  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  "Gets all the media items by content type."
+  mediaByContentType("The content type to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
+  "Gets all the media items at root level."
+  mediaAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
+  "Gets a Media item by id."
+  mediaById("The id to fetch." id: Int!): MediaItem
+  "Gets a Media item by Guid."
+  mediaByGuid("The Guid to fetch." id: UUID!): MediaItem
+  "Finds members by display name."
+  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  "Finds members by email."
+  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  "Finds members by role."
+  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMemberItem!
+  "Finds members by username."
+  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  "Gets a member by email."
+  memberByEmail("The email to fetch." email: String!): MemberItem
+  "Gets a member by Guid."
+  memberByGuid("The id to fetch." id: UUID!): MemberItem
+  "Gets a member by id."
+  memberById("The id to fetch." id: Int!): MemberItem
+  "Gets a member by username."
+  memberByUsername("The username to fetch." username: String!): MemberItem
+}
+
+type RadioboxEditor implements IRadioboxEditor {
+  radiobox: DefaultProperty
+}
+
+type RadioboxEditorCulture implements IRadioboxEditorCulture {
+  radioboxCulture: DefaultProperty
+}
+
+type RedirectInfo {
+  redirectUrl: String
+  isPermanent: Boolean!
+}
+
+type RepeatableTextstringsEditor implements IRepeatableTextstringsEditor {
+  repeatableTextstrings: DefaultProperty
+}
+
+type RepeatableTextstringsEditorCulture implements IRepeatableTextstringsEditorCulture {
+  repeatableTextstringsCulture: DefaultProperty
+}
+
+"Represents a rich text editor."
+type RichText implements PropertyValue {
+  "Gets the HTML value of the rich text editor or markdown editor."
+  value: String
+  "Gets the original value of the rich text editor or markdown editor."
+  sourceValue: String
+  "The model of the property value"
+  model: String!
+}
+
+type RichtextEditor implements IRichtextEditor {
+  richtext: RichText
+}
+
+type RichtextEditorCulture implements IRichtextEditorCulture {
+  richtextCulture: RichText
+}
+
+type SiteWithCulture implements ITextboxEditor & ITextboxEditorCulture & ISiteWithCulture {
+  textstring: DefaultProperty
+  textstringCulture: DefaultProperty
+}
+
+type SliderEditor implements ISliderEditor {
+  slider: DefaultProperty
+}
+
+type SliderEditorCulture implements ISliderEditorCulture {
+  sliderCulture: DefaultProperty
+}
+
+type TagsEditor implements ITagsEditor {
+  tags: DefaultProperty
+}
+
+type TagsEditorCulture implements ITagsEditorCulture {
+  tagsCulture: DefaultProperty
+}
+
+type TestMember implements ITestMember {
+  blockList: BlockList
+  nestedContent: MemberPicker
+  umbracoMemberComments: DefaultProperty
+}
+
+type TextareaEditor implements ITextareaEditor {
+  textarea: DefaultProperty
+}
+
+type TextareaEditorCulture implements ITextareaEditorCulture {
+  textareaCulture: DefaultProperty
+}
+
+type TextboxEditor implements ITextboxEditor {
+  textstring: DefaultProperty
+}
+
+type TextboxEditorCulture implements ITextboxEditorCulture {
+  textstringCulture: DefaultProperty
+}
+
+type ToggleEditor implements IToggleEditor {
+  trueOrFalse: DefaultProperty
+}
+
+type ToggleEditorCulture implements IToggleEditorCulture {
+  trueOrFalseCulture: DefaultProperty
+}
+
+type UmbBlockGridDemoHeadlineBlock implements IUmbBlockGridDemoHeadlineBlock {
+  headline: DefaultProperty
+}
+
+type UmbBlockGridDemoImageBlock implements IUmbBlockGridDemoImageBlock {
+  image: MediaPicker
+}
+
+type UmbBlockGridDemoRichTextBlock implements IUmbBlockGridDemoRichTextBlock {
+  richText: RichText
+}
+
+type UmbracoMediaArticle implements IUmbracoMediaArticle {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+type UmbracoMediaAudio implements IUmbracoMediaAudio {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+type UmbracoMediaVectorGraphics implements IUmbracoMediaVectorGraphics {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+type UmbracoMediaVideo implements IUmbracoMediaVideo {
+  umbracoFile: DefaultProperty
+  umbracoExtension: Label
+  "in bytes"
+  umbracoBytes: Label
+}
+
+"Represents an unsupported property value."
+type UnsupportedProperty implements PropertyValue {
+  "Gets the message of the property."
+  message: String!
+  "The model of the property value"
+  model: String!
+}
+
+type UserPickerEditor implements IUserPickerEditor {
+  userPicker: DefaultProperty
+}
+
+type UserPickerEditorCulture implements IUserPickerEditorCulture {
+  userPickerCulture: DefaultProperty
+}
+
+"Used to get typed properties on a block grid property for the content property"
+union TypedBlockGridContentProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+"Used to get typed properties on a block grid property for the settings property"
+union TypedBlockGridSettingsProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+"Used to get typed properties on a block list property for the content property"
+union TypedBlockListContentProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+"Used to get typed properties on a block list property for the settings property"
+union TypedBlockListSettingsProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+"Used to get typed properties on a nested content property"
+union TypedNestedContentProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+"Used to get typed properties on a model - For nested properties use TypedBlockListContentProperties, TypedBlockListSettingsProperties"
+union TypedProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
+
+enum LinkType {
+  CONTENT
+  MEDIA
+  EXTERNAL
+}
+
+"Represents a property fallback strategy"
+enum PropertyFallback {
+  "Do not fallback"
+  NONE
+  "Fallback to default value"
+  DEFAULT_VALUE
+  "Fallback to other languages"
+  LANGUAGE
+  "Fallback to tree ancestors"
+  ANCESTORS
+}
+
+enum StringPropertyMatchType {
+  EXACT
+  CONTAINS
+  STARTS_WITH
+  ENDS_WITH
+  WILDCARD
+}
+
+enum UrlMode {
+  DEFAULT
+  RELATIVE
+  ABSOLUTE
+  AUTO
+}
+
+directive @hasFallback(fallbacks: [PropertyFallback]!) on FIELD
+
+directive @inContext(culture: String includePreview: Boolean!) on FIELD
+
+directive @useSegment(segment: String) on FIELD
+
+scalar Any
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")

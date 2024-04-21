@@ -1,6 +1,6 @@
 using Nikcio.UHeadless.ContentItems;
 
-namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
+namespace Nikcio.UHeadless.Defaults.ContentItems;
 
 public partial class ContentItem
 {

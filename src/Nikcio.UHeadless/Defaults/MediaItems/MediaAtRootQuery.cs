@@ -18,12 +18,13 @@ public class MediaAtRootQuery
     /// Gets all the media items at root level
     /// </summary>
     [GraphQLDescription("Gets all the media items at root level.")]
-    [UsePaging]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MediaItem?> MediaAtRoot(
+    public PaginationResult<MediaItem?> MediaAtRoot(
         IResolverContext resolverContext,
         [Service] ILogger<MediaAtRootQuery> logger,
-        [Service] IMediaItemRepository<MediaItem> mediaItemRepository)
+        [Service] IMediaItemRepository<MediaItem> mediaItemRepository,
+        [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentNullException.ThrowIfNull(mediaItemRepository);
 
@@ -32,15 +33,17 @@ public class MediaAtRootQuery
         if (mediaCache == null)
         {
             logger.LogError("Media cache is null");
-            return Enumerable.Empty<MediaItem?>();
+            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetAtRoot();
 
-        return mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        IEnumerable<MediaItem?> resultItems = mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
         {
             PublishedContent = mediaItem,
             ResolverContext = resolverContext,
         }));
+
+        return new PaginationResult<MediaItem?>(resultItems, page, pageSize);
     }
 }
