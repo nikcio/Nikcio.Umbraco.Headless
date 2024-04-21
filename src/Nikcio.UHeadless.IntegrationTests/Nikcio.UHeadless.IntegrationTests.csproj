@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -11,8 +11,11 @@
 
   <ItemGroup>
     <Compile Remove="Old\**" />
+    <Compile Remove="Sqlite\**" />
     <EmbeddedResource Remove="Old\**" />
+    <EmbeddedResource Remove="Sqlite\**" />
     <None Remove="Old\**" />
+    <None Remove="Sqlite\**" />
   </ItemGroup>
 
 	<ItemGroup>

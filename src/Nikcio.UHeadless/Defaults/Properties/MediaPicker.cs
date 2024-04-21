@@ -29,7 +29,7 @@ public class MediaPicker : MediaPicker<MediaPickerItem>
 public abstract class MediaPicker<TMediaPickerItem> : PropertyValue
     where TMediaPickerItem : class
 {
-    protected IEnumerable<IPublishedContent> PublishedMediaItems { get; }
+    protected List<IPublishedContent> PublishedMediaItems { get; }
 
     /// <summary>
     /// Gets the media items of a picker
@@ -53,7 +53,7 @@ public abstract class MediaPicker<TMediaPickerItem> : PropertyValue
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
-            PublishedMediaItems = publishedContentItems;
+            PublishedMediaItems = publishedContentItems.ToList();
         }
         else
         {

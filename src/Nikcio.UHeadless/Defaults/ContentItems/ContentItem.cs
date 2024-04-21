@@ -3,9 +3,11 @@ using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Extensions;
 
-namespace Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
+namespace Nikcio.UHeadless.Defaults.ContentItems;
 
 public partial class ContentItem : ContentItemBase
 {
@@ -13,12 +15,15 @@ public partial class ContentItem : ContentItemBase
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
+    protected IPublishedUrlProvider PublishedUrlProvider { get; }
+
     public ContentItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
+        PublishedUrlProvider = ResolverContext.Service<IPublishedUrlProvider>();
 
         StatusCode = command.StatusCode;
         Redirect = command.Redirect == null ? null : new RedirectInfo()
@@ -40,7 +45,15 @@ public partial class ContentItem : ContentItemBase
     [GraphQLDescription("Gets the url of a content item.")]
     public string? Url(UrlMode urlMode)
     {
-        return PublishedContent?.Url(Culture, urlMode);
+        string? url;
+        IScopeProvider scopeProvider = ResolverContext.Service<IScopeProvider>();
+        using (scopeProvider.CreateScope())
+        {
+            url = PublishedContent?.Url(PublishedUrlProvider, Culture, urlMode);
+        }
+
+
+        return url;
     }
 
     /// <summary>

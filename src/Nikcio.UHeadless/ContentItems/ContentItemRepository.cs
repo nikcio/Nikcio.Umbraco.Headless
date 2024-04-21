@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
 
@@ -27,16 +26,13 @@ public interface IContentItemRepository<out TContentItem>
 internal class ContentItemRepository<TContentItem> : IContentItemRepository<TContentItem>
     where TContentItem : ContentItemBase
 {
-    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
-
-    private readonly ILogger<ContentItemRepository<TContentItem>> _logger;
+    private readonly IPublishedSnapshotService _publishedSnapshotService;
 
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public ContentItemRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, ILogger<ContentItemRepository<TContentItem>> logger, IDependencyReflectorFactory dependencyReflectorFactory)
+    public ContentItemRepository(IPublishedSnapshotService publishedSnapshotService, IDependencyReflectorFactory dependencyReflectorFactory)
     {
-        _publishedSnapshotAccessor = publishedSnapshotAccessor;
-        _logger = logger;
+        _publishedSnapshotService = publishedSnapshotService;
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
@@ -49,11 +45,7 @@ internal class ContentItemRepository<TContentItem> : IContentItemRepository<TCon
 
     public IPublishedContentCache? GetCache()
     {
-        if (!_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
-        {
-            _logger.LogError("Unable to get publishedSnapShot");
-            return default;
-        }
+        IPublishedSnapshot publishedSnapshot = _publishedSnapshotService.CreatePublishedSnapshot("IncludePreview");
 
         return publishedSnapshot.Content;
     }

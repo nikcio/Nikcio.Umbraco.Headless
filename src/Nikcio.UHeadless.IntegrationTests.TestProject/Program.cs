@@ -42,6 +42,12 @@ builder.CreateUmbracoBuilder()
             .AddTypeExtension<MemberByGuidQuery>()
             .AddTypeExtension<MemberByIdQuery>()
             .AddTypeExtension<MemberByUsernameQuery>();
+
+        // This is to allow the long queries we build for getting all the fields for tests.
+        options.RequestExecutorBuilder.ModifyParserOptions(parserOptions =>
+        {
+            parserOptions.MaxAllowedFields = 10000;
+        });
     })
     .Build();
 

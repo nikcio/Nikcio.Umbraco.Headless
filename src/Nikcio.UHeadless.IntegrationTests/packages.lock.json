@@ -3446,37 +3446,13 @@
           "Umbraco.Cms.Web.Common": "[11.0.0, )"
         }
       },
-      "nikcio.uheadless.base": {
-        "type": "Project",
-        "dependencies": {
-          "HotChocolate.AspNetCore": "[13.9.0, )",
-          "HotChocolate.AspNetCore.Authorization": "[13.9.0, )",
-          "HotChocolate.Data": "[13.9.0, )",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
-          "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
-          "Umbraco.Cms.Web.Common": "[11.0.0, )"
-        }
-      },
-      "nikcio.uheadless.defaults": {
-        "type": "Project",
-        "dependencies": {
-          "Nikcio.UHeadless": "[4.0.0, )"
-        }
-      },
       "nikcio.uheadless.integrationtests.testproject": {
         "type": "Project",
         "dependencies": {
           "Microsoft.ICU.ICU4C.Runtime": "[72.1.0.3, )",
-          "Nikcio.UHeadless": "[4.0.0, )",
-          "Nikcio.UHeadless.Defaults": "[4.0.0, )",
+          "Nikcio.UHeadless": "[5.0.0, )",
           "Umbraco.Cms": "[13.2.2, )",
           "usync": "[13.1.3, )"
-        }
-      },
-      "nikcio.uheadless.members": {
-        "type": "Project",
-        "dependencies": {
-          "Nikcio.UHeadless.Base": "[4.0.0, )"
         }
       }
     }

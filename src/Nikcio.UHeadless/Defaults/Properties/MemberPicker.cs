@@ -33,7 +33,7 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// The published members
     /// </summary>
     /// <value></value>
-    protected IEnumerable<IPublishedContent> PublishedMembers { get; }
+    protected List<IPublishedContent> PublishedMembers { get; }
 
     /// <summary>
     /// Gets the member items of a picker
@@ -57,7 +57,7 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
-            PublishedMembers = publishedContentItems;
+            PublishedMembers = publishedContentItems.ToList();
         }
         else
         {

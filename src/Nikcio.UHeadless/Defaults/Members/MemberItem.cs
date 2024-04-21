@@ -2,17 +2,22 @@ using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.Members;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
 public class MemberItem : MemberItemBase
 {
+    protected IVariationContextAccessor VariationContextAccessor { get; }
+
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
     public MemberItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
+        VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
     }
 
@@ -20,7 +25,7 @@ public class MemberItem : MemberItemBase
     /// Gets the name of a member item
     /// </summary>
     [GraphQLDescription("Gets the name of a member item.")]
-    public string? Name => PublishedContent?.Name;
+    public string? Name => PublishedContent?.Name(VariationContextAccessor, Culture);
 
     /// <summary>
     /// Gets the id of a member item
