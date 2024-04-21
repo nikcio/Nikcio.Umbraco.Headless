@@ -20,7 +20,7 @@ public class ContentAtRootQuery
     /// </summary>
     [GraphQLDescription("Gets all the content items at root level.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public Pagination<ContentItem?> ContentAtRoot(
+    public PaginationResult<ContentItem?> ContentAtRoot(
         IResolverContext resolverContext,
         [Service] ILogger<ContentAtRootQuery> logger,
         [Service] IContentItemRepository<ContentItem> contentItemRepository,
@@ -37,7 +37,7 @@ public class ContentAtRootQuery
         if (contentCache == null)
         {
             logger.LogError("Content cache is null");
-            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(includePreview, culture);
@@ -50,6 +50,6 @@ public class ContentAtRootQuery
             StatusCode = 200
         }));
 
-        return new Pagination<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
     }
 }

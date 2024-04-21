@@ -8,7 +8,7 @@ using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.ContentTypes.Basics.Models;
 using Nikcio.UHeadless.ContentTypes.Models;
-using Nikcio.UHeadless.Defaults.Content.Queries.ContentByRoute;
+using Nikcio.UHeadless.Defaults.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 

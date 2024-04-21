@@ -19,7 +19,7 @@ public class MediaByContentTypeQuery
     /// </summary>
     [GraphQLDescription("Gets all the media items by content type.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public Pagination<MediaItem?> MediaByContentType(
+    public PaginationResult<MediaItem?> MediaByContentType(
         IResolverContext resolverContext,
         [Service] ILogger<MediaByContentTypeQuery> logger,
         [Service] IMediaItemRepository<MediaItem> mediaItemRepository,
@@ -34,7 +34,7 @@ public class MediaByContentTypeQuery
         if (mediaCache == null)
         {
             logger.LogError("Media cache is null");
-            return new Pagination<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
+            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }
 
         IPublishedContentType? mediaContentType = mediaCache.GetContentType(contentType);
@@ -42,7 +42,7 @@ public class MediaByContentTypeQuery
         if (mediaContentType == null)
         {
             logger.LogError("Media type not found. {ContentType}", contentType);
-            return new Pagination<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
+            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);
@@ -53,6 +53,6 @@ public class MediaByContentTypeQuery
             ResolverContext = resolverContext,
         }));
 
-        return new Pagination<MediaItem?>(resultItems, page, pageSize);
+        return new PaginationResult<MediaItem?>(resultItems, page, pageSize);
     }
 }

@@ -21,7 +21,7 @@ public class ContentByTagQuery
     /// </summary>
     [GraphQLDescription("Gets content items by tag.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public Pagination<ContentItem?> ContentByTag(
+    public PaginationResult<ContentItem?> ContentByTag(
         IResolverContext resolverContext,
         [Service] ILogger<ContentByTagQuery> logger,
         [Service] IContentItemRepository<ContentItem> contentItemRepository,
@@ -42,7 +42,7 @@ public class ContentByTagQuery
         if (contentCache == null)
         {
             logger.LogError("Content cache is null");
-            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IEnumerable<TaggedEntity> taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, culture);
@@ -56,6 +56,6 @@ public class ContentByTagQuery
             StatusCode = 200
         }));
 
-        return new Pagination<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
     }
 }

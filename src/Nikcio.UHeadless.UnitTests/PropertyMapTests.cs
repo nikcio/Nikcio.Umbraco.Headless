@@ -146,7 +146,7 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAssemblyName, types.First().AssemblyQualifiedName);
         });
@@ -168,7 +168,7 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });
@@ -190,7 +190,7 @@ public class PropertyMapTests
 
         Assert.Multiple(() =>
         {
-            Assert.Equal(2, types.Count());
+            Assert.Equal(2, types.Count);
             Assert.IsAssignableFrom<IEnumerable<Type>>(types);
             Assert.Equal(basicClassAlternateAssemblyName, types.First().AssemblyQualifiedName);
         });

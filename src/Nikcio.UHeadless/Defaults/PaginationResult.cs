@@ -3,12 +3,13 @@ namespace Nikcio.UHeadless.Defaults;
 /// <summary>
 /// Represents a paginated list of items
 /// </summary>
+[GraphQLName("Pagination")]
 [GraphQLDescription("Represents a paginated list of items.")]
-public class Pagination<T>
+public class PaginationResult<T>
 {
     protected IEnumerable<T> SourceItems { get; }
 
-    public Pagination(IEnumerable<T> items, int page, int pageSize)
+    public PaginationResult(IEnumerable<T> items, int page, int pageSize)
     {
         if (page < 1)
         {

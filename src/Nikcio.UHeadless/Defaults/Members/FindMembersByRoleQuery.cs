@@ -22,7 +22,7 @@ public class FindMembersByRoleQuery
     /// </summary>
     [GraphQLDescription("Finds members by role.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public Pagination<MemberItem?> FindMembersByRole(
+    public PaginationResult<MemberItem?> FindMembersByRole(
         IResolverContext resolverContext,
         [Service] ILogger<FindMembersByRoleQuery> logger,
         [Service] IMemberRepository<MemberItem> memberItemRepository,
@@ -42,7 +42,7 @@ public class FindMembersByRoleQuery
         if (memberCache == null)
         {
             logger.LogError("Member cache is null");
-            return new Pagination<MemberItem?>(Enumerable.Empty<MemberItem>(), page, pageSize);
+            return new PaginationResult<MemberItem?>(Enumerable.Empty<MemberItem>(), page, pageSize);
         }
 
         IEnumerable<IMember> members = memberService.FindMembersInRole(roleName, usernameToMatch, matchType);
@@ -55,6 +55,6 @@ public class FindMembersByRoleQuery
             ResolverContext = resolverContext,
         }));
 
-        return new Pagination<MemberItem?>(resultItems, page, pageSize);
+        return new PaginationResult<MemberItem?>(resultItems, page, pageSize);
     }
 }

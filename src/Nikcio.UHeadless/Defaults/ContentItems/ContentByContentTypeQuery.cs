@@ -20,7 +20,7 @@ public class ContentByContentTypeQuery
     /// </summary>
     [GraphQLDescription("Gets all the content items by content type.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public Pagination<ContentItem?> ContentByContentType(
+    public PaginationResult<ContentItem?> ContentByContentType(
         IResolverContext resolverContext,
         [Service] ILogger<ContentByContentTypeQuery> logger,
         [Service] IContentItemRepository<ContentItem> contentItemRepository,
@@ -40,14 +40,14 @@ public class ContentByContentTypeQuery
         if (contentCache == null)
         {
             logger.LogError("Content cache is null");
-            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IPublishedContentType? publishedContentType = contentCache.GetContentType(contentType);
         if (publishedContentType == null)
         {
             logger.LogError("Content type not found");
-            return new Pagination<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(includePreview, culture)
@@ -62,6 +62,6 @@ public class ContentByContentTypeQuery
             StatusCode = 200
         }));
 
-        return new Pagination<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
     }
 }
