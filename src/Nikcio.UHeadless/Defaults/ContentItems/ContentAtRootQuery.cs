@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -20,6 +21,7 @@ public class ContentAtRootQuery
     /// </summary>
     [GraphQLDescription("Gets all the content items at root level.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
+    [UseDirectives]
     public PaginationResult<ContentItem?> ContentAtRoot(
         IResolverContext resolverContext,
         [Service] ILogger<ContentAtRootQuery> logger,

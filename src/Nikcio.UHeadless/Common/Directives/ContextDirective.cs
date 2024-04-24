@@ -1,47 +1,33 @@
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
-using static System.Net.Mime.MediaTypeNames;
+using static Nikcio.UHeadless.Common.Directives.DirectiveUtils;
 
 namespace Nikcio.UHeadless.Common.Directives;
 
-public class ContextDirective : DirectiveType
+internal class ContextDirective : DirectiveType
 {
+    public const string DirectiveName = "inContext";
+
     protected override void Configure(IDirectiveTypeDescriptor descriptor)
     {
         ArgumentNullException.ThrowIfNull(descriptor);
 
-        descriptor.Name("inContext");
+        descriptor.Name(DirectiveName);
         descriptor.Location(DirectiveLocation.Field);
 
-        descriptor.Argument("culture").Type<StringType>();
-        descriptor.Argument("includePreview").Type<NonNullType<BooleanType>>();
-
-        descriptor.Use<DirectiveMiddleware>();
-
-        //descriptor.Use((next, directive) => context =>
-        //{
-        //    context.SetScopedState(ContextDataKeys.Culture, directive.GetArgumentValue<string?>("culture"));
-        //    context.SetScopedState(ContextDataKeys.IncludePreview, directive.GetArgumentValue<bool>("includePreview"));
-        //    return next.Invoke(context);
-        //});
+        descriptor.Argument(ArgumentName(nameof(InvokeArguments.Culture))).Type<StringType>();
+        descriptor.Argument(ArgumentName(nameof(InvokeArguments.IncludePreview))).Type<BooleanType>();
     }
 
-    public class DirectiveMiddleware
+    public static void Invoke(IResolverContext context, InvokeArguments arguments)
     {
-        private readonly FieldDelegate _next;
-        private readonly Directive _directive;
+        context.SetScopedState(ContextDataKeys.Culture, arguments.Culture);
+        context.SetScopedState(ContextDataKeys.IncludePreview, arguments.IncludePreview ?? false);
+    }
 
-        public DirectiveMiddleware(FieldDelegate next, Directive directive)
-        {
-            _next = next;
-            _directive = directive;
-        }
+    public sealed class InvokeArguments
+    {
+        public required string? Culture { get; init; }
 
-        public ValueTask InvokeAsync(IMiddlewareContext context)
-        {
-            context.SetScopedState(ContextDataKeys.Culture, _directive.GetArgumentValue<string?>("culture"));
-            context.SetScopedState(ContextDataKeys.IncludePreview, _directive.GetArgumentValue<bool>("includePreview"));
-            return _next.Invoke(context);
-        }
+        public required bool? IncludePreview { get; init; }
     }
 }

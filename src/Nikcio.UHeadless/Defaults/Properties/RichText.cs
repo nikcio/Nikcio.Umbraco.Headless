@@ -1,3 +1,4 @@
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Cms.Core.Strings;
 using Umbraco.Extensions;
@@ -14,13 +15,19 @@ public class RichText : PropertyValue
     /// Gets the HTML value of the rich text editor or markdown editor
     /// </summary>
     [GraphQLDescription("Gets the HTML value of the rich text editor or markdown editor.")]
-    public string? Value => PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, Culture, Segment, Fallback)?.ToHtmlString();
+    public string? Value(IResolverContext resolverContext)
+    {
+        return PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext))?.ToHtmlString();
+    }
 
     /// <summary>
     /// Gets the original value of the rich text editor or markdown editor
     /// </summary>
     [GraphQLDescription("Gets the original value of the rich text editor or markdown editor.")]
-    public string? SourceValue => PublishedProperty.GetSourceValue(Culture, Segment)?.ToString();
+    public string? SourceValue(IResolverContext resolverContext)
+    {
+        return PublishedProperty.GetSourceValue(Culture(resolverContext), Segment(resolverContext))?.ToString();
+    }
 
     public RichText(CreateCommand command) : base(command)
     {

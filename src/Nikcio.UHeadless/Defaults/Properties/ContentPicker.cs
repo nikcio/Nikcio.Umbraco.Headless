@@ -39,17 +39,18 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
     /// Gets the content items of a picker
     /// </summary>
     [GraphQLDescription("Gets the content items of a picker.")]
-    public List<TContentPickerItem>? Items()
+    public List<TContentPickerItem>? Items(IResolverContext resolverContext)
     {
         return PublishedContentItems.Select(publishedContent =>
         {
-            return CreateContentPickerItem(publishedContent, ResolverContext);
+            return CreateContentPickerItem(publishedContent, resolverContext);
         }).ToList();
     }
 
     protected ContentPicker(CreateCommand command) : base(command)
     {
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {

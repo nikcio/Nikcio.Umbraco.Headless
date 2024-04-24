@@ -1,5 +1,6 @@
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Directives;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.ContentItems;
@@ -13,11 +14,6 @@ public abstract partial class ContentItemBase
         PublishedContent = command.PublishedContent;
         ResolverContext = command.ResolverContext;
 
-        Culture = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Culture, _ => null);
-        Segment = ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Segment, _ => null);
-        Fallback = ResolverContext.GetOrSetScopedState<Fallback?>(ContextDataKeys.Fallback, _ => null);
-        IncludePreview = ResolverContext.GetOrSetScopedState(ContextDataKeys.IncludePreview, _ => false);
-
         ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
     }
 
@@ -29,22 +25,22 @@ public abstract partial class ContentItemBase
     /// <summary>
     /// The culture
     /// </summary>
-    protected string? Culture { get; }
+    protected string? Culture => ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Culture, _ => null);
 
     /// <summary>
     /// The segment
     /// </summary>
-    protected string? Segment { get; }
+    protected string? Segment => ResolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Segment, _ => null);
 
     /// <summary>
     /// The fallback tactic
     /// </summary>
-    protected Fallback? Fallback { get; }
+    protected Fallback? Fallback => ResolverContext.GetOrSetScopedState<Fallback?>(ContextDataKeys.Fallback, _ => null);
 
     /// <summary>
     /// Whether to include preview content
     /// </summary>
-    protected bool IncludePreview { get; }
+    protected bool IncludePreview => ResolverContext.GetOrSetScopedState(ContextDataKeys.IncludePreview, _ => false);
 
     /// <summary>
     /// The resolver context

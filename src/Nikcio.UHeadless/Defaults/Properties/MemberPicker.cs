@@ -39,17 +39,18 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// Gets the member items of a picker
     /// </summary>
     [GraphQLDescription("Gets the member items of a picker.")]
-    public List<TMemberPickerItem> Members()
+    public List<TMemberPickerItem> Members(IResolverContext resolverContext)
     {
         return PublishedMembers.Select(publishedMember =>
         {
-            return CreateMemberPickerItem(publishedMember, ResolverContext);
+            return CreateMemberPickerItem(publishedMember, resolverContext);
         }).ToList();
     }
 
     protected MemberPicker(CreateCommand command) : base(command)
     {
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {

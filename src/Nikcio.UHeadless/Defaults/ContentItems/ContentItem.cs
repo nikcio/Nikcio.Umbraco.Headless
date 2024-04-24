@@ -1,4 +1,6 @@
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
+using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.ContentItems;

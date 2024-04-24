@@ -1,4 +1,5 @@
 using System.Collections;
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
@@ -15,9 +16,9 @@ public class DefaultProperty : PropertyValue
     /// </summary>
     [GraphQLType(typeof(AnyType))]
     [GraphQLDescription("Gets the value of the property.")]
-    public object? Value()
+    public object? Value(IResolverContext resolverContext)
     {
-        object? value = PublishedProperty.Value(PublishedValueFallback, Culture, Segment, Fallback);
+        object? value = PublishedProperty.Value(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
 
         if (value is not string && value is IEnumerable list && !list.GetEnumerator().MoveNext())
         {

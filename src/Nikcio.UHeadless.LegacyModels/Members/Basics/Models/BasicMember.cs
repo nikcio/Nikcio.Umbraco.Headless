@@ -1,5 +1,4 @@
 using HotChocolate;
-using HotChocolate.Data;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
@@ -96,7 +95,6 @@ public class BasicMember<TProperty> : MemberItem
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the properties of the element.")]
-    [UseFiltering]
     [Obsolete("Use typed properties instead.")]
     public new IEnumerable<TProperty?>? Properties => PublishedContent != null ? ResolverContext.Service<IPropertyFactory<TProperty>>().CreateProperties(PublishedContent, Culture, Segment, ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback)) : default;
 

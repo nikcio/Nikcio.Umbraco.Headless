@@ -35,17 +35,18 @@ public abstract class MediaPicker<TMediaPickerItem> : PropertyValue
     /// Gets the media items of a picker
     /// </summary>
     [GraphQLDescription("Gets the media items of a picker.")]
-    public List<TMediaPickerItem> MediaItems()
+    public List<TMediaPickerItem> MediaItems(IResolverContext resolverContext)
     {
         return PublishedMediaItems.Select(publishedMedia =>
         {
-            return CreateMediaPickerItem(publishedMedia, ResolverContext);
+            return CreateMediaPickerItem(publishedMedia, resolverContext);
         }).ToList();
     }
 
     protected MediaPicker(CreateCommand command) : base(command)
     {
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {

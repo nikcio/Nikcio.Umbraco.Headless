@@ -1,4 +1,5 @@
 using HotChocolate.Resolvers;
+using Nikcio.UHeadless.Common.Directives;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Common.Properties;
@@ -16,14 +17,9 @@ public abstract partial class PropertyValue
 
         PublishedProperty = command.PublishedProperty;
         PublishedValueFallback = command.PublishedValueFallback;
-        ResolverContext = command.ResolverContext;
 
-        PublishedContent = ResolverContext.GetScopedState<IPublishedContent?>(ContextDataKeys.PublishedContent)
+        PublishedContent = command.ResolverContext.GetScopedState<IPublishedContent?>(ContextDataKeys.PublishedContent)
             ?? throw new InvalidOperationException("The published content is not available in scoped data.");
-        Culture = ResolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
-        Segment = ResolverContext.GetScopedState<string?>(ContextDataKeys.Segment);
-        Fallback = ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback) ?? default;
-        IsPreview = ResolverContext.GetScopedState<bool>(ContextDataKeys.IncludePreview);
     }
 
     /// <summary>
@@ -44,27 +40,42 @@ public abstract partial class PropertyValue
     /// <summary>
     /// The culture
     /// </summary>
-    protected string? Culture { get; }
+    protected static string? Culture(IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+        UseDirectivesAttribute.Middleware.InvokeDirectives(resolverContext);
+        return resolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Culture, _ => null);
+    }
 
     /// <summary>
     /// The segment
     /// </summary>
-    protected string? Segment { get; }
+    protected static string? Segment(IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+        UseDirectivesAttribute.Middleware.InvokeDirectives(resolverContext);
+        return resolverContext.GetOrSetScopedState<string?>(ContextDataKeys.Segment, _ => null);
+    }
 
     /// <summary>
     /// The fallback tactic
     /// </summary>
-    protected Fallback Fallback { get; }
+    protected static Fallback Fallback(IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+        UseDirectivesAttribute.Middleware.InvokeDirectives(resolverContext);
+        return resolverContext.GetOrSetScopedState<Fallback>(ContextDataKeys.Fallback, _ => default);
+    }
 
     /// <summary>
-    /// Determines if the query allows fetching preview content
+    /// Whether to include preview content
     /// </summary>
-    protected bool IsPreview { get; }
-
-    /// <summary>
-    /// The resolver context
-    /// </summary>
-    protected IResolverContext ResolverContext { get; }
+    protected static bool IncludePreview(IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+        UseDirectivesAttribute.Middleware.InvokeDirectives(resolverContext);
+        return resolverContext.GetOrSetScopedState(ContextDataKeys.IncludePreview, _ => false);
+    }
 
     /// <summary>
     /// The model of the property value

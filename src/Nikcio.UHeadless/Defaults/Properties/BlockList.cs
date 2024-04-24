@@ -38,17 +38,18 @@ public abstract class BlockList<TBlockListItem> : PropertyValue
     /// Gets the blocks of a block list model
     /// </summary>
     [GraphQLDescription("Gets the blocks of a block list model.")]
-    public List<TBlockListItem>? Blocks()
+    public List<TBlockListItem>? Blocks(IResolverContext resolverContext)
     {
         return BlockListModel?.Select(blockListItem =>
         {
-            return CreateBlock(blockListItem, ResolverContext);
+            return CreateBlock(blockListItem, resolverContext);
         }).ToList();
     }
 
     protected BlockList(CreateCommand command) : base(command)
     {
-        BlockListModel = PublishedProperty.Value<BlockListModel>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        BlockListModel = PublishedProperty.Value<BlockListModel>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
     }
 
     /// <summary>
