@@ -55,7 +55,7 @@ public abstract class BlockGrid<TBlockGridItem> : PropertyValue
     protected BlockGrid(CreateCommand command) : base(command)
     {
         IResolverContext resolverContext = command.ResolverContext;
-        PropertyValue = PublishedProperty.Value<BlockGridModel>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        PropertyValue = PublishedProperty.Value<BlockGridModel>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
     }
 
     /// <summary>

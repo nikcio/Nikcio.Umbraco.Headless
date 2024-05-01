@@ -50,7 +50,7 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
     protected NestedContent(CreateCommand command) : base(command)
     {
         IResolverContext resolverContext = command.ResolverContext;
-        object? publishedElementsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        object? publishedElementsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedElementsAsObject is IPublishedElement publishedElement)
         {

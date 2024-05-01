@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -22,39 +21,39 @@ public class ContentByContentTypeQuery
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public PaginationResult<ContentItem?> ContentByContentType(
         IResolverContext resolverContext,
-        [Service] ILogger<ContentByContentTypeQuery> logger,
-        [Service] IContentItemRepository<ContentItem> contentItemRepository,
-        [Service] IVariationContextAccessor variationContextAccessor,
         [GraphQLDescription("The contentType to fetch.")] string contentType,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(contentType);
-        ArgumentNullException.ThrowIfNull(contentItemRepository);
 
-        bool includePreview = resolverContext.GetOrSetGlobalState(ContextDataKeys.IncludePreview, _ => false);
-        string? culture = resolverContext.GetOrSetGlobalState<string?>(ContextDataKeys.Culture, _ => null);
+        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        IVariationContextAccessor variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
         if (contentCache == null)
         {
-            logger.LogError("Content cache is null");
-            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
 
         IPublishedContentType? publishedContentType = contentCache.GetContentType(contentType);
         if (publishedContentType == null)
         {
-            logger.LogError("Content type not found");
+            ILogger<ContentByContentTypeQuery> logger = resolverContext.Service<ILogger<ContentByContentTypeQuery>>();
+            logger.LogInformation("Content type not found");
             return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
         }
+
+        bool includePreview = resolverContext.IncludePreview();
+        string? culture = resolverContext.Culture();
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(includePreview, culture)
                     .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, culture))
                     .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        IEnumerable<ContentItem?> resultItems =  contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        IEnumerable<ContentItem?> resultItems = contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
         {
             PublishedContent = contentItem,
             ResolverContext = resolverContext,

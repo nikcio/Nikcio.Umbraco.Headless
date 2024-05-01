@@ -1,6 +1,6 @@
+using HotChocolate.Language;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
-using static Nikcio.UHeadless.Common.Directives.DirectiveUtils;
 
 namespace Nikcio.UHeadless.Common.Directives;
 
@@ -13,18 +13,34 @@ internal class FallbackDirective : DirectiveType
         ArgumentNullException.ThrowIfNull(descriptor);
 
         descriptor.Name(DirectiveName);
-        descriptor.Location(DirectiveLocation.Field);
+        descriptor.Location(HotChocolate.Types.DirectiveLocation.Field);
 
-        descriptor.Argument(ArgumentName(nameof(InvokeArguments.Fallbacks))).Type<NonNullType<ListType<EnumType<PropertyFallback>>>>();
+        descriptor.Argument(DirectiveArguments.Fallbacks).Type<NonNullType<ListType<EnumType<PropertyFallback>>>>();
     }
 
-    public static void Invoke(IResolverContext context, InvokeArguments arguments)
+    public class DirectiveMiddleware
     {
-        context.SetScopedState(ContextDataKeys.Fallback, arguments.Fallbacks);
+        private readonly FieldDelegate _next;
+        private readonly DirectiveNode _directive;
+
+        public DirectiveMiddleware(FieldDelegate next, DirectiveNode directive)
+        {
+            _next = next;
+            _directive = directive;
+        }
+
+        public ValueTask InvokeAsync(IMiddlewareContext context)
+        {
+            List<PropertyFallback>? fallbacks = _directive.ArgumentValue<List<PropertyFallback>?>(DirectiveArguments.Fallbacks, context.Variables);
+
+            context.SetScopedState(ContextDataKeys.Fallback, fallbacks?.ToFallback() ?? default);
+
+            return _next.Invoke(context);
+        }
     }
 
-    public sealed class InvokeArguments
+    private static class DirectiveArguments
     {
-        public required List<PropertyFallback>? Fallbacks { get; init; }
+        public const string Fallbacks = "fallbacks";
     }
 }

@@ -50,7 +50,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
     protected ContentPicker(CreateCommand command) : base(command)
     {
         IResolverContext resolverContext = command.ResolverContext;
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {

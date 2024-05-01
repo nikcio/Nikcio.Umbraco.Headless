@@ -16,7 +16,7 @@ public class DateTimePicker : PropertyValue
     [GraphQLDescription("Gets the value of the property.")]
     public DateTime? Value(IResolverContext resolverContext)
     {
-        DateTime? dateTimeValue = PublishedProperty.Value<DateTime?>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        DateTime? dateTimeValue = PublishedProperty.Value<DateTime?>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
         return dateTimeValue == default(DateTime) ? null : dateTimeValue;
     }
 

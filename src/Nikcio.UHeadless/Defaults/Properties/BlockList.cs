@@ -49,7 +49,7 @@ public abstract class BlockList<TBlockListItem> : PropertyValue
     protected BlockList(CreateCommand command) : base(command)
     {
         IResolverContext resolverContext = command.ResolverContext;
-        BlockListModel = PublishedProperty.Value<BlockListModel>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        BlockListModel = PublishedProperty.Value<BlockListModel>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
     }
 
     /// <summary>

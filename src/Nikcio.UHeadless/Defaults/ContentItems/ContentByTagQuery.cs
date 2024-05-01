@@ -23,27 +23,25 @@ public class ContentByTagQuery
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public PaginationResult<ContentItem?> ContentByTag(
         IResolverContext resolverContext,
-        [Service] ILogger<ContentByTagQuery> logger,
-        [Service] IContentItemRepository<ContentItem> contentItemRepository,
-        [Service] ITagService tagService,
         [GraphQLDescription("The tag to fetch.")] string tag,
         [GraphQLDescription("The tag group to fetch.")] string? tagGroup = null,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(tag);
-        ArgumentNullException.ThrowIfNull(contentItemRepository);
-        ArgumentNullException.ThrowIfNull(tagService);
 
-        string? culture = resolverContext.GetOrSetGlobalState<string?>(ContextDataKeys.Culture, _ => null);
+        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        ITagService tagService = resolverContext.Service<ITagService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
         if (contentCache == null)
         {
-            logger.LogError("Content cache is null");
-            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
+
+        string? culture = resolverContext.Culture();
 
         IEnumerable<TaggedEntity> taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, culture);
         IEnumerable<IPublishedContent> contentItems = taggedEntities.Select(entity => contentCache?.GetById(entity.EntityId)).OfType<IPublishedContent>();

@@ -63,7 +63,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
                 return CreateMultiUrlPickerItem(null, link, resolverContext);
             }
 
-            IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(IncludePreview(resolverContext), link.Udi);
+            IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(resolverContext.IncludePreview(), link.Udi);
 
             return CreateMultiUrlPickerItem(publishedContent, link, resolverContext);
         }).OfType<TMultiUrlPickerItem>().ToList();
@@ -74,7 +74,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
         PublishedSnapshotAccessor = command.ResolverContext.Service<IPublishedSnapshotAccessor>();
 
         IResolverContext resolverContext = command.ResolverContext;
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedContentItemsAsObject is Link publishedContent)
         {

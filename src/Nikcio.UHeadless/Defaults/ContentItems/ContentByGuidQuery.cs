@@ -21,22 +21,21 @@ public class ContentByGuidQuery
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public ContentItem? ContentByGuid(
         IResolverContext resolverContext,
-        [Service] ILogger<ContentByGuidQuery> logger,
-        [Service] IContentItemRepository<ContentItem> contentItemRepository,
         [GraphQLDescription("The id to fetch.")] Guid id)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentNullException.ThrowIfNull(id);
-        ArgumentNullException.ThrowIfNull(contentItemRepository);
 
-        bool includePreview = resolverContext.GetOrSetGlobalState(ContextDataKeys.IncludePreview, _ => false);
+        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
         if (contentCache == null)
         {
-            logger.LogError("Content cache is null");
-            return default;
+            throw new InvalidOperationException("The content cache is not available");
         }
+
+        bool includePreview = resolverContext.IncludePreview();
 
         IPublishedContent? contentItem = contentCache.GetById(includePreview, id);
 

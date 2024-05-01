@@ -1,5 +1,5 @@
+using HotChocolate.Language;
 using HotChocolate.Resolvers;
-using static Nikcio.UHeadless.Common.Directives.DirectiveUtils;
 
 namespace Nikcio.UHeadless.Common.Directives;
 
@@ -12,18 +12,34 @@ internal class SegmentDirective : DirectiveType
         ArgumentNullException.ThrowIfNull(descriptor);
 
         descriptor.Name(DirectiveName);
-        descriptor.Location(DirectiveLocation.Field);
+        descriptor.Location(HotChocolate.Types.DirectiveLocation.Field);
 
-        descriptor.Argument(ArgumentName(nameof(InvokeArguments.Segment))).Type<StringType>();
+        descriptor.Argument(DirectiveArguments.Segment).Type<StringType>();
     }
 
-    public static void Invoke(IResolverContext context, InvokeArguments arguments)
+    public class DirectiveMiddleware
     {
-        context.SetScopedState(ContextDataKeys.Segment, arguments.Segment);
+        private readonly FieldDelegate _next;
+        private readonly DirectiveNode _directive;
+
+        public DirectiveMiddleware(FieldDelegate next, DirectiveNode directive)
+        {
+            _next = next;
+            _directive = directive;
+        }
+
+        public ValueTask InvokeAsync(IMiddlewareContext context)
+        {
+            string? segment = _directive.ArgumentValue<string?>(DirectiveArguments.Segment, context.Variables);
+
+            context.SetScopedState(ContextDataKeys.Segment, segment);
+
+            return _next.Invoke(context);
+        }
     }
 
-    public sealed class InvokeArguments
+    private static class DirectiveArguments
     {
-        public string? Segment { get; init; }
+        public const string Segment = "segment";
     }
 }

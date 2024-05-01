@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -21,26 +20,24 @@ public class ContentAtRootQuery
     /// </summary>
     [GraphQLDescription("Gets all the content items at root level.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    [UseDirectives]
     public PaginationResult<ContentItem?> ContentAtRoot(
         IResolverContext resolverContext,
-        [Service] ILogger<ContentAtRootQuery> logger,
-        [Service] IContentItemRepository<ContentItem> contentItemRepository,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
-        ArgumentNullException.ThrowIfNull(contentItemRepository);
+        ArgumentNullException.ThrowIfNull(resolverContext);
 
-        bool includePreview = resolverContext.GetOrSetGlobalState(ContextDataKeys.IncludePreview, _ => false);
-        string? culture = resolverContext.GetOrSetGlobalState<string?>(ContextDataKeys.Culture, _ => null);
+        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
         if (contentCache == null)
         {
-            logger.LogError("Content cache is null");
-            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
+
+        bool includePreview = resolverContext.IncludePreview();
+        string? culture = resolverContext.Culture();
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(includePreview, culture);
 

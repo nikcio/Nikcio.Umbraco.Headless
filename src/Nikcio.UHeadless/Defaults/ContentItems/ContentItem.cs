@@ -1,6 +1,5 @@
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.ContentItems;
@@ -22,9 +21,9 @@ public partial class ContentItem : ContentItemBase
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
-        DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
-        PublishedUrlProvider = ResolverContext.Service<IPublishedUrlProvider>();
+        VariationContextAccessor = command.ResolverContext.Service<IVariationContextAccessor>();
+        DependencyReflectorFactory = command.ResolverContext.Service<IDependencyReflectorFactory>();
+        PublishedUrlProvider = command.ResolverContext.Service<IPublishedUrlProvider>();
 
         StatusCode = command.StatusCode;
         Redirect = command.Redirect == null ? null : new RedirectInfo()
@@ -38,22 +37,28 @@ public partial class ContentItem : ContentItemBase
     /// Gets the url segment of the content item
     /// </summary>
     [GraphQLDescription("Gets the url segment of the content item.")]
-    public string? UrlSegment => PublishedContent?.UrlSegment(VariationContextAccessor, Culture);
+    public string? UrlSegment(IResolverContext resolverContext)
+    {
+        return PublishedContent?.UrlSegment(VariationContextAccessor, resolverContext.Culture());
+    }
 
     /// <summary>
     /// Gets the url of a content item
     /// </summary>
     [GraphQLDescription("Gets the url of a content item.")]
-    public string? Url(UrlMode urlMode)
+    public string? Url(IResolverContext resolverContext, UrlMode urlMode)
     {
-        return PublishedContent?.Url(PublishedUrlProvider, Culture, urlMode);
+        return PublishedContent?.Url(PublishedUrlProvider, resolverContext.Culture(), urlMode);
     }
 
     /// <summary>
     /// Gets the name of a content item
     /// </summary>
     [GraphQLDescription("Gets the name of a content item.")]
-    public string? Name => PublishedContent?.Name(VariationContextAccessor, Culture);
+    public string? Name(IResolverContext resolverContext)
+    {
+        return PublishedContent?.Name(VariationContextAccessor, resolverContext.Culture());
+    }
 
     /// <summary>
     /// Gets the id of a content item
@@ -83,21 +88,24 @@ public partial class ContentItem : ContentItemBase
     /// Gets the parent of the content item
     /// </summary>
     [GraphQLDescription("Gets the parent of the content item.")]
-    public ContentItem? Parent => PublishedContent?.Parent != null ? CreateContentItem<ContentItem>(new CreateCommand()
+    public ContentItem? Parent(IResolverContext resolverContext)
     {
-        PublishedContent = PublishedContent.Parent,
-        ResolverContext = ResolverContext,
-        Redirect = null,
-        StatusCode = 200,
-    }, DependencyReflectorFactory) : default;
+        return PublishedContent?.Parent != null ? CreateContentItem<ContentItem>(new CreateCommand()
+        {
+            PublishedContent = PublishedContent.Parent,
+            ResolverContext = resolverContext,
+            Redirect = null,
+            StatusCode = 200,
+        }, DependencyReflectorFactory) : default;
+    }
 
     /// <summary>
     /// Gets the properties of the content item
     /// </summary>
     [GraphQLDescription("Gets the properties of the content item.")]
-    public TypedProperties Properties()
+    public TypedProperties Properties(IResolverContext resolverContext)
     {
-        ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
+        resolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
         return new TypedProperties();
     }
 

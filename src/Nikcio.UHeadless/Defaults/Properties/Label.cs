@@ -13,7 +13,7 @@ public class Label : PropertyValue
     [GraphQLDescription("Gets the value of the property.")]
     public object? Value(IResolverContext resolverContext)
     {
-        object? value = PublishedProperty.Value(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext));
+        object? value = PublishedProperty.Value(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (value is DateTime dateTimeValue)
         {

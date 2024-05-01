@@ -17,7 +17,7 @@ public class RichText : PropertyValue
     [GraphQLDescription("Gets the HTML value of the rich text editor or markdown editor.")]
     public string? Value(IResolverContext resolverContext)
     {
-        return PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, Culture(resolverContext), Segment(resolverContext), Fallback(resolverContext))?.ToHtmlString();
+        return PublishedProperty.Value<IHtmlEncodedString?>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback())?.ToHtmlString();
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class RichText : PropertyValue
     [GraphQLDescription("Gets the original value of the rich text editor or markdown editor.")]
     public string? SourceValue(IResolverContext resolverContext)
     {
-        return PublishedProperty.GetSourceValue(Culture(resolverContext), Segment(resolverContext))?.ToString();
+        return PublishedProperty.GetSourceValue(resolverContext.Culture(), resolverContext.Segment())?.ToString();
     }
 
     public RichText(CreateCommand command) : base(command)
