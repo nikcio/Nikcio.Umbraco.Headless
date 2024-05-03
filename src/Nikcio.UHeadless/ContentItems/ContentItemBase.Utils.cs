@@ -1,4 +1,4 @@
-using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Reflection;
 
 namespace Nikcio.UHeadless.ContentItems;
 

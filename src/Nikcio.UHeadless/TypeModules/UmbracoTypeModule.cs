@@ -4,13 +4,14 @@ using HotChocolate.Types.Descriptors;
 using HotChocolate.Types.Descriptors.Definitions;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Properties;
-using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Properties;
+using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
 
-namespace Nikcio.UHeadless.Common.TypeModules;
+namespace Nikcio.UHeadless.TypeModules;
 
 /// <summary>
 /// Represents the base for creating type modules for the Umbraco types like ContentType and MediaType

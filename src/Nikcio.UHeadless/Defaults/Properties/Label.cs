@@ -1,3 +1,4 @@
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
@@ -10,9 +11,9 @@ public class Label : PropertyValue
     /// </summary>
     [GraphQLType(typeof(AnyType))]
     [GraphQLDescription("Gets the value of the property.")]
-    public object? Value()
+    public object? Value(IResolverContext resolverContext)
     {
-        object? value = PublishedProperty.Value(PublishedValueFallback, Culture, Segment, Fallback);
+        object? value = PublishedProperty.Value(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (value is DateTime dateTimeValue)
         {

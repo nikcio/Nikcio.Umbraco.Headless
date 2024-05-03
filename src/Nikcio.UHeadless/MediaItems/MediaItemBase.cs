@@ -1,5 +1,4 @@
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Common;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Media;

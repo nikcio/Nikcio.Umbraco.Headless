@@ -1,6 +1,10 @@
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Common;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Defaults.Members;
+using Nikcio.UHeadless.Properties;
+using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
@@ -29,6 +33,10 @@ public class MemberPicker : MemberPicker<MemberPickerItem>
 public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     where TMemberPickerItem : class
 {
+    public const string PolicyName = "PropertyValuesMemberPicker";
+
+    public const string ClaimValue = "property.values.member.picker";
+
     /// <summary>
     /// The published members
     /// </summary>
@@ -38,18 +46,20 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// <summary>
     /// Gets the member items of a picker
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets the member items of a picker.")]
-    public List<TMemberPickerItem> Members()
+    public List<TMemberPickerItem> Members(IResolverContext resolverContext)
     {
         return PublishedMembers.Select(publishedMember =>
         {
-            return CreateMemberPickerItem(publishedMember, ResolverContext);
+            return CreateMemberPickerItem(publishedMember, resolverContext);
         }).ToList();
     }
 
     protected MemberPicker(CreateCommand command) : base(command)
     {
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
@@ -72,6 +82,21 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// <param name="resolverContext"></param>
     /// <returns></returns>
     protected abstract TMemberPickerItem CreateMemberPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext);
+
+    internal static IUmbracoBuilder ApplyConfiguration(IUmbracoBuilder builder)
+    {
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy(PolicyName, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
+            });
+        });
+
+        return builder;
+    }
 }
 
 /// <summary>

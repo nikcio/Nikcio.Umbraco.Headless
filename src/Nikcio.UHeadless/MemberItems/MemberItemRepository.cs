@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.Members;
+using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.MemberItems;
@@ -8,7 +8,7 @@ namespace Nikcio.UHeadless.MemberItems;
 /// <summary>
 /// A repository to get member from Umbraco
 /// </summary>
-public interface IMemberRepository<out TMember>
+public interface IMemberItemRepository<out TMember>
     where TMember : MemberItemBase
 {
     /// <summary>
@@ -25,16 +25,16 @@ public interface IMemberRepository<out TMember>
     IPublishedMemberCache? GetCache();
 }
 
-internal class MemberRepository<TMember> : IMemberRepository<TMember>
+internal class MemberItemRepository<TMember> : IMemberItemRepository<TMember>
     where TMember : MemberItemBase
 {
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 
-    private readonly ILogger<MemberRepository<TMember>> _logger;
+    private readonly ILogger<MemberItemRepository<TMember>> _logger;
 
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public MemberRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, ILogger<MemberRepository<TMember>> logger, IDependencyReflectorFactory dependencyReflectorFactory)
+    public MemberItemRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, ILogger<MemberItemRepository<TMember>> logger, IDependencyReflectorFactory dependencyReflectorFactory)
     {
         _publishedSnapshotAccessor = publishedSnapshotAccessor;
         _logger = logger;

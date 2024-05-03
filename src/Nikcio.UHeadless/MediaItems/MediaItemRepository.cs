@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.Media;
+using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.MediaItems;

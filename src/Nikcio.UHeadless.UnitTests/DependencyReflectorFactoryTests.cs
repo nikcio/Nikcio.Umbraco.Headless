@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Reflection;
 using NSubstitute;
 
 namespace Nikcio.UHeadless.UnitTests;

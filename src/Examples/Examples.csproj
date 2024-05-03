@@ -32,7 +32,6 @@
     <PropertyGroup>
         <RazorCompileOnBuild>false</RazorCompileOnBuild>
         <RazorCompileOnPublish>false</RazorCompileOnPublish>
-        <CodeAnalysisRuleSet>Examples.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
 </Project>

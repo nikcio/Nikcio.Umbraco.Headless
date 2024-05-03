@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.Models;
@@ -14,35 +15,60 @@ namespace Nikcio.UHeadless.Defaults.Members;
 /// <summary>
 /// Implements the <see cref="FindMembersByEmail"/> query
 /// </summary>
-[ExtendObjectType(typeof(GraphQLQuery))]
-public class FindMembersByEmailQuery
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class FindMembersByEmailQuery : IGraphQLQuery
 {
+    public const string PolicyName = "FindMembersByEmailQuery";
+
+    public const string ClaimValue = "find.members.by.email.query";
+
+    public virtual void ApplyConfiguration(UHeadlessOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        {
+            configure.AddPolicy(PolicyName, policy =>
+            {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
+            });
+        });
+    }
+
     /// <summary>
     /// Finds members by email
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Finds members by email.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public IEnumerable<MemberItem?> FindMembersByEmail(
         IResolverContext resolverContext,
-        [Service] ILogger<FindMembersByEmailQuery> logger,
-        [Service] IMemberRepository<MemberItem> memberItemRepository,
-        [Service] IMemberService memberService,
         [GraphQLDescription("The email (may be partial).")] string email,
         [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] long page = 1,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10)
     {
-        ArgumentNullException.ThrowIfNull(memberItemRepository);
-        ArgumentNullException.ThrowIfNull(memberService);
+        ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(email);
+
+        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
         if (memberCache == null)
         {
-            logger.LogError("Member cache is null");
-            return Enumerable.Empty<MemberItem>();
+            throw new InvalidOperationException("The content cache is not available");
         }
+
+        IMemberService memberService = resolverContext.Service<IMemberService>();
 
         IEnumerable<IMember> members = memberService.FindByEmail(email, page, pageSize, out long totalRecords, matchType);
 

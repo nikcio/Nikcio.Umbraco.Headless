@@ -1,7 +1,7 @@
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -48,32 +48,33 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     /// Gets the links of the picker
     /// </summary>
     [GraphQLDescription("Gets the links of the picker.")]
-    public List<TMultiUrlPickerItem> Links()
+    public List<TMultiUrlPickerItem> Links(IResolverContext resolverContext)
     {
         return PublishedContentItemsLinks.Select(link =>
         {
             if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
             {
-                ResolverContext.Service<ILogger<MultiUrlPicker>>().LogError("Could not get published snapshot.");
+                resolverContext.Service<ILogger<MultiUrlPicker>>().LogError("Could not get published snapshot.");
                 return null;
             }
 
             if (link.Udi == null)
             {
-                return CreateMultiUrlPickerItem(null, link, ResolverContext);
+                return CreateMultiUrlPickerItem(null, link, resolverContext);
             }
 
-            IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(IsPreview, link.Udi);
+            IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(resolverContext.IncludePreview(), link.Udi);
 
-            return CreateMultiUrlPickerItem(publishedContent, link, ResolverContext);
+            return CreateMultiUrlPickerItem(publishedContent, link, resolverContext);
         }).OfType<TMultiUrlPickerItem>().ToList();
     }
 
     protected MultiUrlPicker(CreateCommand command) : base(command)
     {
-        PublishedSnapshotAccessor = ResolverContext.Service<IPublishedSnapshotAccessor>();
+        PublishedSnapshotAccessor = command.ResolverContext.Service<IPublishedSnapshotAccessor>();
 
-        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedContentItemsAsObject is Link publishedContent)
         {

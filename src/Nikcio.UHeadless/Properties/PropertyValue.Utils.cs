@@ -1,4 +1,5 @@
-using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Properties;
+using Nikcio.UHeadless.Reflection;
 
 namespace Nikcio.UHeadless.Common.Properties;
 

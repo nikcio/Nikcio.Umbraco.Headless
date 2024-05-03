@@ -1,4 +1,6 @@
-namespace Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Common.Properties;
+
+namespace Nikcio.UHeadless.Properties;
 
 /// <summary>
 /// A map of all property types

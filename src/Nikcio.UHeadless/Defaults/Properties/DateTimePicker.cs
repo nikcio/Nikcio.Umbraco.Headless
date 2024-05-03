@@ -1,3 +1,4 @@
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Umbraco.Extensions;
 
@@ -13,9 +14,9 @@ public class DateTimePicker : PropertyValue
     /// Gets the value of the property
     /// </summary>
     [GraphQLDescription("Gets the value of the property.")]
-    public DateTime? Value()
+    public DateTime? Value(IResolverContext resolverContext)
     {
-        DateTime? dateTimeValue = PublishedProperty.Value<DateTime?>(PublishedValueFallback, Culture, Segment, Fallback);
+        DateTime? dateTimeValue = PublishedProperty.Value<DateTime?>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
         return dateTimeValue == default(DateTime) ? null : dateTimeValue;
     }
 

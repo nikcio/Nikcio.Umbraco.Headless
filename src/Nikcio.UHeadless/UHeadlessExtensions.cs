@@ -1,14 +1,12 @@
 using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Common.Directives;
 using Nikcio.UHeadless.Common.Properties;
-using Nikcio.UHeadless.Common.Reflection;
-using Nikcio.UHeadless.Common.TypeModules;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Properties;
+using Nikcio.UHeadless.Defaults;
 using Nikcio.UHeadless.MediaItems;
 using Nikcio.UHeadless.MemberItems;
-using Umbraco.Cms.Core;
+using Nikcio.UHeadless.Reflection;
+using Nikcio.UHeadless.TypeModules;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
 
@@ -33,7 +31,8 @@ public static class UHeadlessExtensions
 
         var options = new UHeadlessOptions()
         {
-            RequestExecutorBuilder = requestExecutorBuilder
+            RequestExecutorBuilder = requestExecutorBuilder,
+            UmbracoBuilder = builder
         };
         configure?.Invoke(options);
 
@@ -47,17 +46,15 @@ public static class UHeadlessExtensions
         builder.Services.AddScoped(typeof(IMediaItemRepository<>), typeof(MediaItemRepository<>));
         builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeChangedHandler>();
 
-        builder.Services.AddScoped(typeof(IMemberRepository<>), typeof(MemberRepository<>));
+        builder.Services.AddScoped(typeof(IMemberItemRepository<>), typeof(MemberItemRepository<>));
         builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeChangedHandler>();
 
         requestExecutorBuilder
             .InitializeOnStartup()
-            .AddQueryType<GraphQLQuery>()
+            .AddAuthorization()
+            .AddQueryType<HotChocolateQueryObject>()
             .AddInterfaceType<PropertyValue>()
-            .AddTypeModule<UmbracoTypeModule>()
-            .AddDirectiveType<ContextDirective>()
-            .AddDirectiveType<FallbackDirective>()
-            .AddDirectiveType<SegmentDirective>();
+            .AddTypeModule<UmbracoTypeModule>();
 
         foreach (Type type in options.PropertyMap.GetAllTypes())
         {
@@ -68,29 +65,92 @@ public static class UHeadlessExtensions
     }
 
     /// <summary>
-    /// Adds default property mappings to the property map
+    /// Adds default property mappings and services to be used for the default queries.
     /// </summary>
-    /// <param name="propertyMap"></param>
-    public static void AddDefaults(this IPropertyMap propertyMap)
+    public static void AddDefaults(this UHeadlessOptions options)
     {
-        ArgumentNullException.ThrowIfNull(propertyMap);
+        ArgumentNullException.ThrowIfNull(options);
 
-        propertyMap.AddEditorMapping<DefaultProperty>(PropertyConstants.DefaultKey);
-        propertyMap.AddEditorMapping<BlockList>(Constants.PropertyEditors.Aliases.BlockList);
-        propertyMap.AddEditorMapping<BlockGrid>(Constants.PropertyEditors.Aliases.BlockGrid);
-        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.ContentPicker);
-        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
-        propertyMap.AddEditorMapping<ContentPicker>(Constants.PropertyEditors.Aliases.MultiNodeTreePicker);
-        propertyMap.AddEditorMapping<NestedContent>(Constants.PropertyEditors.Aliases.NestedContent);
-        propertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.TinyMce);
-        propertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.MarkdownEditor);
-        propertyMap.AddEditorMapping<MemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
-        propertyMap.AddEditorMapping<MultiUrlPicker>(Constants.PropertyEditors.Aliases.MultiUrlPicker);
-        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
-        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker3);
-        propertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MultipleMediaPicker);
-        propertyMap.AddEditorMapping<DateTimePicker>(Constants.PropertyEditors.Aliases.DateTime);
-        propertyMap.AddEditorMapping<Label>(Constants.PropertyEditors.Aliases.Label);
-        propertyMap.AddEditorMapping<UnsupportedProperty>(Constants.PropertyEditors.Aliases.Grid);
+        options.AddDefaultsInternal();
+    }
+
+    /// <summary>
+    /// Adds a query to the GraphQL schema
+    /// </summary>
+    /// <typeparam name="TQuery"></typeparam>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    public static UHeadlessOptions AddQuery<TQuery>(this UHeadlessOptions options)
+        where TQuery : class, IGraphQLQuery, new()
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.RequestExecutorBuilder.AddTypeExtension<TQuery>();
+
+        var query = new TQuery();
+        query.ApplyConfiguration(options);
+
+        return options;
+    }
+
+    /// <summary>
+    /// Adds a mapping of a type to a editor alias.
+    /// </summary>
+    /// <typeparam name="TType">The type that should be used for this property</typeparam>
+    public static UHeadlessOptions AddEditorMapping<TType>(this UHeadlessOptions options, string editorName)
+        where TType : PropertyValue
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.PropertyMap.AddEditorMapping<TType>(editorName);
+
+        return options;
+    }
+
+    /// <summary>
+    /// Adds a mapping of a type to a content type alias combined with a property type alias.
+    /// </summary>
+    /// <typeparam name="TType">The type that should be used for this property</typeparam>
+    /// <example>
+    /// ContentTypeAlias: MyDocType
+    /// PropertyTypeAlias: MyProperty
+    /// </example>
+    /// <remarks>This takes precedence over editor mappings</remarks>
+    public static UHeadlessOptions AddAliasMapping<TType>(this UHeadlessOptions options, string contentTypeAlias, string propertyTypeAlias)
+        where TType : PropertyValue
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.PropertyMap.AddAliasMapping<TType>(contentTypeAlias, propertyTypeAlias);
+
+        return options;
+    }
+
+    /// <summary>
+    /// Removes a alias mapping
+    /// </summary>
+    /// <example>
+    /// ContentTypeAlias: MyDocType
+    /// PropertyTypeAlias: MyProperty
+    /// </example>
+    public static UHeadlessOptions RemoveAliasMapping(this UHeadlessOptions options, string contentTypeAlias, string propertyTypeAlias)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.PropertyMap.RemoveAliasMapping(contentTypeAlias, propertyTypeAlias);
+
+        return options;
+    }
+
+    /// <summary>
+    /// Removes a editor mapping
+    /// </summary>
+    public static UHeadlessOptions RemoveEditorMapping(this UHeadlessOptions options, string editorName)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.PropertyMap.RemoveEditorMapping(editorName);
+
+        return options;
     }
 }

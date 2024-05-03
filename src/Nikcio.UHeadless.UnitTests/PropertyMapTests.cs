@@ -1,4 +1,5 @@
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 
 namespace Nikcio.UHeadless.UnitTests;
 

@@ -1,12 +1,10 @@
 using HotChocolate;
-using HotChocolate.Data;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
-using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentTypes.Basics.Models;
 using Nikcio.UHeadless.Defaults.Members;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Nikcio.UHeadless.Members.Basics.Models;
@@ -96,7 +94,6 @@ public class BasicMember<TProperty> : MemberItem
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the properties of the element.")]
-    [UseFiltering]
     [Obsolete("Use typed properties instead.")]
     public new IEnumerable<TProperty?>? Properties => PublishedContent != null ? ResolverContext.Service<IPropertyFactory<TProperty>>().CreateProperties(PublishedContent, Culture, Segment, ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback)) : default;
 

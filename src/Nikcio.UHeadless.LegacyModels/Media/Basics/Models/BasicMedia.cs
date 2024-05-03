@@ -1,13 +1,11 @@
 using HotChocolate;
-using HotChocolate.Data;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
-using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentTypes.Basics.Models;
 using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Defaults.MediaItems;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
@@ -111,8 +109,6 @@ public class BasicMedia<TProperty, TContentType, TMedia> : MediaItem
     /// Gets all the children of the content item, regardless of whether they are available for the current culture
     /// </summary>
     [GraphQLDescription("Gets all the children of the content item, regardless of whether they are available for the current culture.")]
-    [UseFiltering]
-    [UseSorting]
     [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
     public virtual IEnumerable<TMedia?>? ChildrenForAllCultures => PublishedContent?.ChildrenForAllCultures?.Select(child => CreateMediaItem<TMedia>(new CreateCommand()
     {
@@ -159,8 +155,6 @@ public class BasicMedia<TProperty, TContentType, TMedia> : MediaItem
     /// Gets the children of the content item that are available for the current cultur
     /// </summary>
     [GraphQLDescription("Gets the children of the content item that are available for the current culture.")]
-    [UseFiltering]
-    [UseSorting]
     [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
     public virtual IEnumerable<TMedia?>? Children => PublishedContent?.Children(Culture)?.Select(child => CreateMediaItem<TMedia>(new CreateCommand()
     {
@@ -175,7 +169,6 @@ public class BasicMedia<TProperty, TContentType, TMedia> : MediaItem
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the properties of the element.")]
-    [UseFiltering]
     [Obsolete("Use typed properties instead.")]
     public new IEnumerable<TProperty?>? Properties => PublishedContent != null ? ResolverContext.Service<IPropertyFactory<TProperty>>().CreateProperties(PublishedContent, Culture, Segment, ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback)) : default;
 

@@ -1,13 +1,13 @@
 using HotChocolate;
+using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
-using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.ContentTypes.Basics.Models;
 using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Defaults.ContentItems;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
@@ -96,13 +96,16 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     /// </summary>
     [GraphQLDescription("Gets all the children of the content item, regardless of whether they are available for the current culture.")]
     [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
-    public virtual IEnumerable<TContent?>? ChildrenForAllCultures => PublishedContent?.ChildrenForAllCultures?.Select(child => CreateContentItem<TContent>(new CreateCommand()
+    public virtual IEnumerable<TContent?>? ChildrenForAllCultures(IResolverContext resolverContext)
     {
-        PublishedContent = child,
-        ResolverContext = ResolverContext,
-        Redirect = null,
-        StatusCode = 200,
-    }, DependencyReflectorFactory));
+        return PublishedContent?.ChildrenForAllCultures?.Select(child => CreateContentItem<TContent>(new CreateCommand()
+        {
+            PublishedContent = child,
+            ResolverContext = resolverContext,
+            Redirect = null,
+            StatusCode = 200,
+        }, DependencyReflectorFactory));
+    }
 
     /// <summary>
     /// Gets the tree path of the content item
@@ -130,27 +133,36 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     /// </summary>
     [GraphQLDescription("Gets the url of the content item.")]
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
-    public new string? Url => PublishedContent?.Url(Culture, UrlMode.Default);
+    public string? Url(IResolverContext resolverContext)
+    {
+        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Default);
+    }
 
     /// <summary>
     /// Gets the absolute url of the content item
     /// </summary>
     [GraphQLDescription("Gets the absolute url of the content item.")]
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
-    public virtual string? AbsoluteUrl => PublishedContent?.Url(Culture, UrlMode.Absolute);
+    public virtual string? AbsoluteUrl(IResolverContext resolverContext)
+    {
+        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Absolute);
+    }
 
     /// <summary>
     /// Gets the children of the content item that are available for the current cultur
     /// </summary>
     [GraphQLDescription("Gets the children of the content item that are available for the current culture.")]
     [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
-    public virtual IEnumerable<TContent?>? Children => PublishedContent?.Children(VariationContextAccessor, Culture)?.Select(child => CreateContentItem<TContent>(new CreateCommand()
+    public virtual IEnumerable<TContent?>? Children(IResolverContext resolverContext)
     {
-        PublishedContent = child,
-        ResolverContext = ResolverContext,
-        Redirect = null,
-        StatusCode = 200
-    }, DependencyReflectorFactory));
+        return PublishedContent?.Children(VariationContextAccessor, resolverContext.Culture())?.Select(child => CreateContentItem<TContent>(new CreateCommand()
+        {
+            PublishedContent = child,
+            ResolverContext = resolverContext,
+            Redirect = null,
+            StatusCode = 200
+        }, DependencyReflectorFactory));
+    }
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the content type.")]
@@ -160,7 +172,18 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     /// <inheritdoc/>
     [GraphQLDescription("Gets the properties of the element.")]
     [Obsolete("Use typed properties instead.")]
-    public new IEnumerable<TProperty?>? Properties => PublishedContent != null ? ResolverContext.Service<IPropertyFactory<TProperty>>().CreateProperties(PublishedContent, Culture, Segment, ResolverContext.GetScopedState<Fallback?>(ContextDataKeys.Fallback)) : default;
+    public new IEnumerable<TProperty?>? Properties(IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        return PublishedContent != null
+            ? resolverContext.Service<IPropertyFactory<TProperty>>().CreateProperties(
+                PublishedContent,
+                resolverContext.Culture(),
+                resolverContext.Segment(),
+                resolverContext.Fallback())
+            : default;
+    }
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the redirect information.")]
@@ -172,9 +195,9 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     /// </summary>
     [GraphQLDescription("Gets the named properties of the element using the content types in Umbraco.")]
     [Obsolete("Use typed properties on the Defaults.ContentItems.ContentItem")]
-    public TypedProperties NamedProperties()
+    public TypedProperties NamedProperties(IResolverContext resolverContext)
     {
-        ResolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
+        resolverContext.SetScopedState(ContextDataKeys.PublishedContent, PublishedContent);
         return new TypedProperties();
     }
 }

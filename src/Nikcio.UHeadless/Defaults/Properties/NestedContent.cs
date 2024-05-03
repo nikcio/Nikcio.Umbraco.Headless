@@ -1,6 +1,6 @@
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
@@ -39,17 +39,18 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
     /// Gets the elements of a nested content
     /// </summary>
     [GraphQLDescription("Gets the elements of a nested content.")]
-    public List<NestedContentItem> Elements()
+    public List<NestedContentItem> Elements(IResolverContext resolverContext)
     {
         return PublishedElements.Select(publishedElement =>
         {
-            return new NestedContentItem(publishedElement, ResolverContext);
+            return new NestedContentItem(publishedElement, resolverContext);
         }).ToList();
     }
 
     protected NestedContent(CreateCommand command) : base(command)
     {
-        object? publishedElementsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        object? publishedElementsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
 
         if (publishedElementsAsObject is IPublishedElement publishedElement)
         {

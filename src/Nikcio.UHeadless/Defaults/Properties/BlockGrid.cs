@@ -1,6 +1,6 @@
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Extensions;
 
@@ -38,11 +38,11 @@ public abstract class BlockGrid<TBlockGridItem> : PropertyValue
     /// Gets the blocks of a block grid model
     /// </summary>
     [GraphQLDescription("Gets the blocks of a block grid model.")]
-    public List<TBlockGridItem>? Blocks()
+    public List<TBlockGridItem>? Blocks(IResolverContext resolverContext)
     {
         return PropertyValue?.Select(blockGridItem =>
         {
-            return CreateBlockGridItem(blockGridItem, ResolverContext);
+            return CreateBlockGridItem(blockGridItem, resolverContext);
         }).ToList();
     }
 
@@ -54,7 +54,8 @@ public abstract class BlockGrid<TBlockGridItem> : PropertyValue
 
     protected BlockGrid(CreateCommand command) : base(command)
     {
-        PropertyValue = PublishedProperty.Value<BlockGridModel>(PublishedValueFallback, Culture, Segment, Fallback);
+        IResolverContext resolverContext = command.ResolverContext;
+        PropertyValue = PublishedProperty.Value<BlockGridModel>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
     }
 
     /// <summary>

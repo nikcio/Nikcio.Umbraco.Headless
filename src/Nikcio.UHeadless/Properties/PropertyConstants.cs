@@ -1,4 +1,4 @@
-namespace Nikcio.UHeadless.Common.Properties;
+namespace Nikcio.UHeadless.Properties;
 
 /// <summary>
 /// Contants concerning properties

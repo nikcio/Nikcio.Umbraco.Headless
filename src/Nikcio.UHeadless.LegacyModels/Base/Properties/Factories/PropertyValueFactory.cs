@@ -1,6 +1,6 @@
 using Nikcio.UHeadless.Base.Properties.Commands;
-using Nikcio.UHeadless.Common.Properties;
-using Nikcio.UHeadless.Common.Reflection;
+using Nikcio.UHeadless.Properties;
+using Nikcio.UHeadless.Reflection;
 
 namespace Nikcio.UHeadless.Base.Properties.Factories;
 

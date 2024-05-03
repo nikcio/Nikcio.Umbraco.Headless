@@ -1,4 +1,4 @@
-namespace Nikcio.UHeadless.Common;
+namespace Nikcio.UHeadless;
 
 public static class ContextDataKeys
 {
