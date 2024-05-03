@@ -56,6 +56,11 @@ public class MemberByIdQuery : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentNullException.ThrowIfNull(id);
 
+        if (id <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(id), "The id must be greater than zero");
+        }
+
         IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();

@@ -57,6 +57,8 @@ public class ContentByTagQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(tag);
+        ArgumentNullException.ThrowIfNull(pageSize);
+        ArgumentNullException.ThrowIfNull(page);
 
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))

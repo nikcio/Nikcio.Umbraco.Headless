@@ -56,6 +56,8 @@ public class ContentByContentTypeQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(contentType);
+        ArgumentNullException.ThrowIfNull(pageSize);
+        ArgumentNullException.ThrowIfNull(page);
 
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))

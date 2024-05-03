@@ -1,0 +1,11 @@
+{
+  "data": {
+    "contentAtRoot": {
+      "items": [],
+      "page": 1000,
+      "pageSize": 1000,
+      "totalItems": 5,
+      "hasNextPage": false
+    }
+  }
+}

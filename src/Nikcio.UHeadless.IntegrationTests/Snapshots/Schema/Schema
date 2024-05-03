@@ -594,14 +594,16 @@ type ColorPickerEditorCulture implements IColorPickerEditorCulture {
 }
 
 type ContentItem {
-  "Gets the url of a content item."
-  url(urlMode: UrlMode!): String
-  "Gets the properties of the content item."
-  properties: TypedProperties!
   "Gets the url segment of the content item."
   urlSegment: String
+  "Gets the url of a content item."
+  url(urlMode: UrlMode!): String
   "Gets the name of a content item."
   name: String
+  "Gets the parent of the content item."
+  parent: ContentItem
+  "Gets the properties of the content item."
+  properties: TypedProperties!
   "Gets the id of a content item."
   id: Int
   "Gets the key of a content item."
@@ -610,8 +612,6 @@ type ContentItem {
   templateId: Int
   "Gets the date the content item was last updated."
   updateDate: DateTime
-  "Gets the parent of the content item."
-  parent: ContentItem
   statusCode: Int!
   "Gets the redirect information for the content item."
   redirect: RedirectInfo
@@ -1049,7 +1049,7 @@ type MemberItem {
 "Represents a member picker."
 type MemberPicker implements PropertyValue {
   "Gets the member items of a picker."
-  members: [MemberPickerItem!]!
+  members: [MemberPickerItem!]! @authorize(policy: "PropertyValuesMemberPicker")
   "The model of the property value"
   model: String!
 }
@@ -1141,8 +1141,6 @@ type NumericEditorCulture implements INumericEditorCulture {
 
 "Represents a paginated list of items."
 type PaginationOfContentItem {
-  "The items in the paginated list."
-  items: [ContentItem!]!
   "The page number."
   page: Int!
   "The page size"
@@ -1151,12 +1149,12 @@ type PaginationOfContentItem {
   totalItems: Int!
   "Whether there is a next page."
   hasNextPage: Boolean!
+  "The items in the paginated list."
+  items: [ContentItem!]!
 }
 
 "Represents a paginated list of items."
 type PaginationOfMediaItem {
-  "The items in the paginated list."
-  items: [MediaItem!]!
   "The page number."
   page: Int!
   "The page size"
@@ -1165,12 +1163,12 @@ type PaginationOfMediaItem {
   totalItems: Int!
   "Whether there is a next page."
   hasNextPage: Boolean!
+  "The items in the paginated list."
+  items: [MediaItem!]!
 }
 
 "Represents a paginated list of items."
 type PaginationOfMemberItem {
-  "The items in the paginated list."
-  items: [MemberItem!]!
   "The page number."
   page: Int!
   "The page size"
@@ -1179,46 +1177,48 @@ type PaginationOfMemberItem {
   totalItems: Int!
   "Whether there is a next page."
   hasNextPage: Boolean!
+  "The items in the paginated list."
+  items: [MemberItem!]!
 }
 
 "Implements the String) query"
 type Query {
   "Gets a content item by a route."
-  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = ""): ContentItem
+  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")
   "Gets all the content items by content type."
-  contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentByContentTypeQuery")
   "Gets all the content items at root level."
-  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem!
   "Gets a content item by id."
-  contentById("The id to fetch." id: Int!): ContentItem
+  contentById("The id to fetch." id: Int! "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByIdQuery")
   "Gets a content item by Guid."
-  contentByGuid("The id to fetch." id: UUID!): ContentItem
+  contentByGuid("The id to fetch." id: UUID! "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByGuidQuery")
   "Gets content items by tag."
-  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfContentItem!
+  contentByTag("The tag to fetch." tag: String! "The tag group to fetch." tagGroup: String "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentByTagQuery")
   "Gets all the media items by content type."
-  mediaByContentType("The content type to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
+  mediaByContentType("The content type to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem! @authorize(policy: "MediaByContentTypeQuery")
   "Gets all the media items at root level."
-  mediaAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem!
+  mediaAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMediaItem! @authorize(policy: "MediaAtRootQuery")
   "Gets a Media item by id."
-  mediaById("The id to fetch." id: Int!): MediaItem
+  mediaById("The id to fetch." id: Int!): MediaItem @authorize(policy: "MediaByIdQuery")
   "Gets a Media item by Guid."
-  mediaByGuid("The Guid to fetch." id: UUID!): MediaItem
+  mediaByGuid("The Guid to fetch." id: UUID!): MediaItem @authorize(policy: "MediaByGuidQuery")
   "Finds members by display name."
-  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByDisplayNameQuery")
   "Finds members by email."
-  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByEmailQuery")
   "Finds members by role."
-  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMemberItem!
+  findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMemberItem! @authorize(policy: "FindMembersByRoleQuery")
   "Finds members by username."
-  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]!
+  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByUsernameQuery")
   "Gets a member by email."
-  memberByEmail("The email to fetch." email: String!): MemberItem
+  memberByEmail("The email to fetch." email: String!): MemberItem @authorize(policy: "MemberByEmailQuery")
   "Gets a member by Guid."
-  memberByGuid("The id to fetch." id: UUID!): MemberItem
+  memberByGuid("The id to fetch." id: UUID!): MemberItem @authorize(policy: "MemberByGuidQuery")
   "Gets a member by id."
-  memberById("The id to fetch." id: Int!): MemberItem
+  memberById("The id to fetch." id: Int!): MemberItem @authorize(policy: "MemberByIdQuery")
   "Gets a member by username."
-  memberByUsername("The username to fetch." username: String!): MemberItem
+  memberByUsername("The username to fetch." username: String!): MemberItem @authorize(policy: "MemberByUsernameQuery")
 }
 
 type RadioboxEditor implements IRadioboxEditor {
@@ -1385,6 +1385,24 @@ union TypedNestedContentProperties = EmptyPropertyType | BlockGridEditor | Block
 "Used to get typed properties on a model - For nested properties use TypedBlockListContentProperties, TypedBlockListSettingsProperties"
 union TypedProperties = EmptyPropertyType | BlockGridEditor | BlockListEditor | BlockListEditorCulture | CheckboxListEditor | CheckboxListEditorCulture | ColorPickerEditor | ColorPickerEditorCulture | ContentPickerEditor | ContentPickerEditorCulture | DatePickerEditor | DatePickerEditorCulture | DecimalEditor | DecimalEditorCulture | Default | DefaultCulture | DropdownEditor | DropdownEditorCulture | EmailAddressEditor | EmailAddressEditorCulture | EyeDropperColorPickerEditor | EyeDropperColorPickerEditorCulture | FileUpload | FileUploadCulture | ImageCropperEditor | ImageCropperEditorCulture | LabelEditor | LabelEditorCulture | MarkdownEditor | MarkdownEditorCulture | MediaPickerEditor | MediaPickerEditorCulture | MediaPickerLegacyEditor | MediaPickerLegacyEditorCulture | MemberGroupPickerEditor | MemberGroupPickerEditorCulture | MemberPickerEditor | MemberPickerEditorCulture | MultinodeTreepickerEditor | MultinodeTreepickerEditorCulture | MultiUrlPickerEditor | MultiUrlPickerEditorCulture | NumericEditor | NumericEditorCulture | RadioboxEditor | RadioboxEditorCulture | RepeatableTextstringsEditor | RepeatableTextstringsEditorCulture | RichtextEditor | RichtextEditorCulture | SiteWithCulture | SliderEditor | SliderEditorCulture | TagsEditor | TagsEditorCulture | TextareaEditor | TextareaEditorCulture | TextboxEditor | TextboxEditorCulture | ToggleEditor | ToggleEditorCulture | UmbBlockGridDemoHeadlineBlock | UmbBlockGridDemoImageBlock | UmbBlockGridDemoRichTextBlock | UserPickerEditor | UserPickerEditorCulture | Image | File | UmbracoMediaVideo | UmbracoMediaAudio | UmbracoMediaArticle | UmbracoMediaVectorGraphics | CustomMediaType | Member | TestMember
 
+"Represents the context of a query."
+input QueryContextInput {
+  "The culture of the query."
+  culture: String
+  "Whether to include preview content."
+  includePreview: Boolean
+  "The fallbacks to use on a property value."
+  fallbacks: [PropertyFallback!]
+  "The segment to use on a property value."
+  segment: String
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}
+
 enum LinkType {
   CONTENT
   MEDIA
@@ -1418,11 +1436,7 @@ enum UrlMode {
   AUTO
 }
 
-directive @hasFallback(fallbacks: [PropertyFallback]!) on FIELD
-
-directive @inContext(culture: String includePreview: Boolean!) on FIELD
-
-directive @useSegment(segment: String) on FIELD
+directive @authorize("The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!] "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase." apply: ApplyPolicy! = BEFORE_RESOLVER) repeatable on OBJECT | FIELD_DEFINITION
 
 scalar Any
 

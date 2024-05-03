@@ -58,6 +58,8 @@ public class FindMembersByUsernameQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(username);
+        ArgumentNullException.ThrowIfNull(pageSize);
+        ArgumentNullException.ThrowIfNull(page);
 
         IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 
