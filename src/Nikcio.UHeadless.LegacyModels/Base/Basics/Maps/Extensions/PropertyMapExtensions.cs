@@ -9,7 +9,7 @@ using Nikcio.UHeadless.Base.Basics.EditorsValues.MemberPicker.Models;
 using Nikcio.UHeadless.Base.Basics.EditorsValues.MultiUrlPicker.Models;
 using Nikcio.UHeadless.Base.Basics.EditorsValues.NestedContent.Models;
 using Nikcio.UHeadless.Base.Basics.EditorsValues.RichTextEditor.Models;
-using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core;
 
 namespace Nikcio.UHeadless.Base.Basics.Maps.Extensions;

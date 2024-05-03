@@ -3,12 +3,11 @@ using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
-using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.ContentTypes.Basics.Models;
 using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Defaults.ContentItems;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 

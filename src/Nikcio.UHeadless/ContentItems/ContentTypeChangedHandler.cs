@@ -1,4 +1,4 @@
-using Nikcio.UHeadless.Common.TypeModules;
+using Nikcio.UHeadless.TypeModules;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
 

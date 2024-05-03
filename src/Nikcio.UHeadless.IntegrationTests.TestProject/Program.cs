@@ -17,31 +17,33 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .AddUHeadless(options =>
     {
-        options.PropertyMap.AddDefaults();
+        options.DisableAuthorization = true;
 
-        options.RequestExecutorBuilder
-            .AddTypeExtension<ContentByRouteQuery>()
-            .AddTypeExtension<ContentByContentTypeQuery>()
-            .AddTypeExtension<ContentAtRootQuery>()
-            .AddTypeExtension<ContentByIdQuery>()
-            .AddTypeExtension<ContentByGuidQuery>()
-            .AddTypeExtension<ContentByTagQuery>();
+        options.AddDefaults();
 
-        options.RequestExecutorBuilder
-            .AddTypeExtension<MediaByContentTypeQuery>()
-            .AddTypeExtension<MediaAtRootQuery>()
-            .AddTypeExtension<MediaByIdQuery>()
-            .AddTypeExtension<MediaByGuidQuery>();
+        options
+            .AddQuery<ContentByRouteQuery>()
+            .AddQuery<ContentByContentTypeQuery>()
+            .AddQuery<ContentAtRootQuery>()
+            .AddQuery<ContentByIdQuery>()
+            .AddQuery<ContentByGuidQuery>()
+            .AddQuery<ContentByTagQuery>();
 
-        options.RequestExecutorBuilder
-            .AddTypeExtension<FindMembersByDisplayNameQuery>()
-            .AddTypeExtension<FindMembersByEmailQuery>()
-            .AddTypeExtension<FindMembersByRoleQuery>()
-            .AddTypeExtension<FindMembersByUsernameQuery>()
-            .AddTypeExtension<MemberByEmailQuery>()
-            .AddTypeExtension<MemberByGuidQuery>()
-            .AddTypeExtension<MemberByIdQuery>()
-            .AddTypeExtension<MemberByUsernameQuery>();
+        options
+            .AddQuery<MediaByContentTypeQuery>()
+            .AddQuery<MediaAtRootQuery>()
+            .AddQuery<MediaByIdQuery>()
+            .AddQuery<MediaByGuidQuery>();
+
+        options
+            .AddQuery<FindMembersByDisplayNameQuery>()
+            .AddQuery<FindMembersByEmailQuery>()
+            .AddQuery<FindMembersByRoleQuery>()
+            .AddQuery<FindMembersByUsernameQuery>()
+            .AddQuery<MemberByEmailQuery>()
+            .AddQuery<MemberByGuidQuery>()
+            .AddQuery<MemberByIdQuery>()
+            .AddQuery<MemberByUsernameQuery>();
 
         // This is to allow the long queries we build for getting all the fields for tests.
         options.RequestExecutorBuilder.ModifyParserOptions(parserOptions =>

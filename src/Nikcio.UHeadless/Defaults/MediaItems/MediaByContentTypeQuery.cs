@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
@@ -11,36 +13,62 @@ namespace Nikcio.UHeadless.Defaults.MediaItems;
 /// <summary>
 /// Implements the <see cref="MediaByContentType" /> query
 /// </summary>
-[ExtendObjectType(typeof(GraphQLQuery))]
-public class MediaByContentTypeQuery
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaByContentTypeQuery : IGraphQLQuery
 {
+    public const string PolicyName = "MediaByContentTypeQuery";
+
+    public const string ClaimValue = "media.by.contentType.query";
+
+    public virtual void ApplyConfiguration(UHeadlessOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        {
+            configure.AddPolicy(PolicyName, policy =>
+            {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMediaRead);
+            });
+        });
+    }
+
     /// <summary>
     /// Gets all the media items by content type
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the media items by content type.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public PaginationResult<MediaItem?> MediaByContentType(
         IResolverContext resolverContext,
-        [Service] ILogger<MediaByContentTypeQuery> logger,
-        [Service] IMediaItemRepository<MediaItem> mediaItemRepository,
         [GraphQLDescription("The content type to fetch.")] string contentType,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
-        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
         if (mediaCache == null)
         {
-            logger.LogError("Media cache is null");
-            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
 
         IPublishedContentType? mediaContentType = mediaCache.GetContentType(contentType);
 
         if (mediaContentType == null)
         {
+            ILogger<MediaByContentTypeQuery> logger = resolverContext.Service<ILogger<MediaByContentTypeQuery>>();
             logger.LogError("Media type not found. {ContentType}", contentType);
             return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
         }

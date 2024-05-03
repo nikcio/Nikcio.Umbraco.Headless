@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 
-namespace Nikcio.UHeadless.Common.Reflection;
+namespace Nikcio.UHeadless.Reflection;
 
 /// <summary>
 /// A factory that can create objects with DI

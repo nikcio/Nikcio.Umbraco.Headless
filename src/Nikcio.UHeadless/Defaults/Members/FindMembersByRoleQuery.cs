@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.Models;
@@ -14,36 +15,61 @@ namespace Nikcio.UHeadless.Defaults.Members;
 /// <summary>
 /// Implements the <see cref="FindMembersByRole"/> query
 /// </summary>
-[ExtendObjectType(typeof(GraphQLQuery))]
-public class FindMembersByRoleQuery
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class FindMembersByRoleQuery : IGraphQLQuery
 {
+    public const string PolicyName = "FindMembersByRoleQuery";
+
+    public const string ClaimValue = "find.members.by.role.query";
+
+    public virtual void ApplyConfiguration(UHeadlessOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        {
+            configure.AddPolicy(PolicyName, policy =>
+            {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
+            });
+        });
+    }
+
     /// <summary>
     /// Finds members by role
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Finds members by role.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public PaginationResult<MemberItem?> FindMembersByRole(
         IResolverContext resolverContext,
-        [Service] ILogger<FindMembersByRoleQuery> logger,
-        [Service] IMemberRepository<MemberItem> memberItemRepository,
-        [Service] IMemberService memberService,
         [GraphQLDescription("The role name.")] string roleName,
         [GraphQLDescription("The username to match.")] string usernameToMatch,
         [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
-        ArgumentNullException.ThrowIfNull(memberItemRepository);
-        ArgumentNullException.ThrowIfNull(memberService);
+        ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(roleName);
+
+        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
         if (memberCache == null)
         {
-            logger.LogError("Member cache is null");
-            return new PaginationResult<MemberItem?>(Enumerable.Empty<MemberItem>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
+
+        IMemberService memberService = resolverContext.Service<IMemberService>();
 
         IEnumerable<IMember> members = memberService.FindMembersInRole(roleName, usernameToMatch, matchType);
 

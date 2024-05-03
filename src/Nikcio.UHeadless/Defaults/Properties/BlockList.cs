@@ -1,6 +1,6 @@
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Common;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Extensions;
 

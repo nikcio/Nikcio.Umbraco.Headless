@@ -4,6 +4,6 @@ namespace Nikcio.UHeadless;
 /// The base query object
 /// </summary>
 [GraphQLName("Query")]
-public sealed class GraphQLQuery
+public sealed class HotChocolateQueryObject
 {
 }

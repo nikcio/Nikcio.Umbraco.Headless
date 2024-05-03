@@ -1,5 +1,7 @@
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -10,21 +12,54 @@ namespace Nikcio.UHeadless.Defaults.ContentItems;
 /// <summary>
 /// Implements the <see cref="ContentByRouteAsync" /> query
 /// </summary>
-[ExtendObjectType(typeof(GraphQLQuery))]
-public class ContentByRouteQuery
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class ContentByRouteQuery : IGraphQLQuery
 {
+    public const string PolicyName = "ContentByRouteQuery";
+
+    public const string ClaimValue = "content.by.route.query";
+
+    public virtual void ApplyConfiguration(UHeadlessOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        {
+            configure.AddPolicy(PolicyName, policy =>
+            {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalContentRead);
+            });
+        });
+    }
+
     /// <summary>
     /// Gets a content item by an absolute route
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLName("contentByRoute")]
     [GraphQLDescription("Gets a content item by a route.")]
     public async Task<ContentItem?> ContentByRouteAsync(
         IResolverContext resolverContext,
         [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
-        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "")
+        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
+        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(route);
+
+        inContext ??= new QueryContext();
+        if (!inContext.Initialize(resolverContext))
+        {
+            throw new InvalidOperationException("The context could not be initialized");
+        }
 
         ContentItem? contentItem = await GetContentItemAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
 
@@ -42,10 +77,7 @@ public class ContentByRouteQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        bool includePreview = resolverContext.IncludePreview();
-        string? culture = resolverContext.Culture();
-
-        IPublishedContent? publishedContent = contentCache.GetByRoute(includePreview, route, culture: culture);
+        IPublishedContent? publishedContent = contentCache.GetByRoute(inContext.IncludePreview.Value, route, culture: inContext.Culture);
         contentItem = contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
         {
             PublishedContent = publishedContent,

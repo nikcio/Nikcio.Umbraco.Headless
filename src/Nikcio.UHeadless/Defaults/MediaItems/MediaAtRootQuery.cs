@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -11,29 +12,54 @@ namespace Nikcio.UHeadless.Defaults.MediaItems;
 /// <summary>
 /// Implements the <see cref="MediaAtRoot" /> query
 /// </summary>
-[ExtendObjectType(typeof(GraphQLQuery))]
-public class MediaAtRootQuery
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaAtRootQuery : IGraphQLQuery
 {
+    public const string PolicyName = "MediaAtRootQuery";
+
+    public const string ClaimValue = "media.at.root.query";
+
+    public virtual void ApplyConfiguration(UHeadlessOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        {
+            configure.AddPolicy(PolicyName, policy =>
+            {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
+                policy.RequireAuthenticatedUser();
+
+                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMediaRead);
+            });
+        });
+    }
+
     /// <summary>
     /// Gets all the media items at root level
     /// </summary>
+    [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the media items at root level.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
     public PaginationResult<MediaItem?> MediaAtRoot(
         IResolverContext resolverContext,
-        [Service] ILogger<MediaAtRootQuery> logger,
-        [Service] IMediaItemRepository<MediaItem> mediaItemRepository,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
-        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
         if (mediaCache == null)
         {
-            logger.LogError("Media cache is null");
-            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
+            throw new InvalidOperationException("The content cache is not available");
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetAtRoot();

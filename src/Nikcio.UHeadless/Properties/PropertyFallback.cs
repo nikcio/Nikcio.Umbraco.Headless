@@ -1,6 +1,6 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
 
-namespace Nikcio.UHeadless.Common.Properties;
+namespace Nikcio.UHeadless.Properties;
 
 /// <summary>
 /// Represents a property fallback strategy

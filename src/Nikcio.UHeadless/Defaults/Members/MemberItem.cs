@@ -1,7 +1,6 @@
-using Nikcio.UHeadless.Common;
-using Nikcio.UHeadless.Common.Properties;
-using Nikcio.UHeadless.Common.Reflection;
 using Nikcio.UHeadless.Members;
+using Nikcio.UHeadless.Properties;
+using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
