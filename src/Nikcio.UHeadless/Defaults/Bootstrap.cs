@@ -24,8 +24,6 @@ internal static class Bootstrap
         options.PropertyMap.AddEditorMapping<NestedContent>(Constants.PropertyEditors.Aliases.NestedContent);
         options.PropertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.TinyMce);
         options.PropertyMap.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.MarkdownEditor);
-        options.PropertyMap.AddEditorMapping<MemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
-        MemberPicker.ApplyConfiguration(options.UmbracoBuilder);
         options.PropertyMap.AddEditorMapping<MultiUrlPicker>(Constants.PropertyEditors.Aliases.MultiUrlPicker);
         options.PropertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
         options.PropertyMap.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker3);
@@ -33,6 +31,8 @@ internal static class Bootstrap
         options.PropertyMap.AddEditorMapping<DateTimePicker>(Constants.PropertyEditors.Aliases.DateTime);
         options.PropertyMap.AddEditorMapping<Label>(Constants.PropertyEditors.Aliases.Label);
         options.PropertyMap.AddEditorMapping<UnsupportedProperty>(Constants.PropertyEditors.Aliases.Grid);
+        options.PropertyMap.AddEditorMapping<MemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
+        MemberPicker.ApplyConfiguration(options);
 
         if (options.DisableAuthorization)
         {

@@ -58,6 +58,8 @@ public class FindMembersByEmailQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(email);
+        ArgumentNullException.ThrowIfNull(pageSize);
+        ArgumentNullException.ThrowIfNull(page);
 
         IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 

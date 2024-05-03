@@ -83,19 +83,25 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// <returns></returns>
     protected abstract TMemberPickerItem CreateMemberPickerItem(IPublishedContent publishedContent, IResolverContext resolverContext);
 
-    internal static IUmbracoBuilder ApplyConfiguration(IUmbracoBuilder builder)
+    internal static UHeadlessOptions ApplyConfiguration(UHeadlessOptions options)
     {
-        builder.Services.AddAuthorization(options =>
+        options.UmbracoBuilder.Services.AddAuthorization(configure =>
         {
-            options.AddPolicy(PolicyName, policy =>
+            configure.AddPolicy(PolicyName, policy =>
             {
+                if (options.DisableAuthorization)
+                {
+                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                    return;
+                }
+
                 policy.RequireAuthenticatedUser();
 
                 policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
             });
         });
 
-        return builder;
+        return options;
     }
 }
 

@@ -54,6 +54,9 @@ public class MediaByContentTypeQuery : IGraphQLQuery
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
+        ArgumentException.ThrowIfNullOrEmpty(contentType);
+        ArgumentNullException.ThrowIfNull(pageSize);
+        ArgumentNullException.ThrowIfNull(page);
 
         IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
 

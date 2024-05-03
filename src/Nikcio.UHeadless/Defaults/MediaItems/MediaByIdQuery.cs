@@ -52,6 +52,11 @@ public class MediaByIdQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
+        if (id <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(id), "The id must be greater than zero");
+        }
+
         IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
