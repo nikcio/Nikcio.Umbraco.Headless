@@ -1,0 +1,1767 @@
+{
+  "data": {
+    "contentByContentType": {
+      "items": [
+        {
+          "url": "http://site-1.com/homepage/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "blockGrid": {
+              "model": "BlockGrid",
+              "gridColumns": null,
+              "blocks": []
+            },
+            "eyeDropperColorPicker": {
+              "value": "#aa7474",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [
+                {
+                  "contentAlias": "multinodeTreepickerEditor",
+                  "settingsAlias": null,
+                  "contentProperties": {
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "__typename": "MultinodeTreepickerEditor"
+                  },
+                  "settingsProperties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "__typename": "BlockListItem"
+                },
+                {
+                  "contentAlias": "multiUrlPickerEditor",
+                  "settingsAlias": null,
+                  "contentProperties": {
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "__typename": "MultiUrlPickerEditor"
+                  },
+                  "settingsProperties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "__typename": "BlockListItem"
+                }
+              ],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [
+                "2"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": false,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "bf9000",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 3.9889,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "Mark",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "my@email.com",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "Default"
+          },
+          "urlSegment": "homepage",
+          "name": "Homepage",
+          "id": 1152,
+          "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-1.com/",
+            "properties": {
+              "__typename": "EmptyPropertyType"
+            },
+            "urlSegment": "site-1",
+            "name": "Site 1",
+            "id": 1146,
+            "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-1.com/page-1/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "blockGrid": {
+              "model": "BlockGrid",
+              "gridColumns": null,
+              "blocks": []
+            },
+            "eyeDropperColorPicker": {
+              "value": "#9f3c3c",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "\u003Ch1\u003EDocumentation for version 3.0.0\u002B\u003C/h1\u003E\n\n\u003Ch2\u003EGetting started\u003C/h2\u003E\n\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\u0022installation.md\u0022\u003EInstallation\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022querying/properties.md\u0022\u003EHow to query properties\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022propertyValues/extendExistingSimple.md\u0022\u003EExtend an existing property value\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022propertyValues/newValue.md\u0022\u003ECreate a new property value\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022otherPackages/howToUseAExtendingPackage.md\u0022\u003EHow to use an extending package\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022serverOptions/disableUI.md\u0022\u003EHow to disable the GraphQL UI at /graphql\u003C/a\u003E\u003C/li\u003E\n\u003C/ul\u003E",
+              "sourceValue": "# Documentation for version 3.0.0\u002B\n\n## Getting started\n\n* [Installation](installation.md)\n* [How to query properties](querying/properties.md)\n* [Extend an existing property value](propertyValues/extendExistingSimple.md)\n* [Create a new property value](propertyValues/newValue.md)\n* [How to use an extending package](otherPackages/howToUseAExtendingPackage.md)\n* [How to disable the GraphQL UI at /graphql](serverOptions/disableUI.md)",
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [
+                {
+                  "contentAlias": "contentPickerEditor",
+                  "settingsAlias": null,
+                  "contentProperties": {
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "__typename": "ContentPickerEditor"
+                  },
+                  "settingsProperties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "__typename": "BlockListItem"
+                }
+              ],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [
+                {
+                  "url": "http://site-1.com/homepage/",
+                  "properties": {
+                    "blockGrid": {
+                      "model": "BlockGrid",
+                      "gridColumns": null,
+                      "blocks": []
+                    },
+                    "eyeDropperColorPicker": {
+                      "value": "#aa7474",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "article": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audio": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "file": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svg": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "video": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropper": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "markdown": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "imageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "blockList": {
+                      "blocks": [
+                        {
+                          "contentAlias": "multinodeTreepickerEditor",
+                          "settingsAlias": null,
+                          "contentProperties": {
+                            "multinodeTreepicker": {
+                              "items": [],
+                              "model": "ContentPicker",
+                              "__typename": "ContentPicker"
+                            },
+                            "__typename": "MultinodeTreepickerEditor"
+                          },
+                          "settingsProperties": {
+                            "__typename": "EmptyPropertyType"
+                          },
+                          "__typename": "BlockListItem"
+                        },
+                        {
+                          "contentAlias": "multiUrlPickerEditor",
+                          "settingsAlias": null,
+                          "contentProperties": {
+                            "multiUrlPicker": {
+                              "links": [],
+                              "model": "MultiUrlPicker",
+                              "__typename": "MultiUrlPicker"
+                            },
+                            "__typename": "MultiUrlPickerEditor"
+                          },
+                          "settingsProperties": {
+                            "__typename": "EmptyPropertyType"
+                          },
+                          "__typename": "BlockListItem"
+                        }
+                      ],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "memberGroupPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberPicker": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "numeric": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radiobox": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxList": {
+                      "value": [
+                        "2"
+                      ],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstrings": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "richtext": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "slider": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tags": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textarea": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstring": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalse": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPicker": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPicker": {
+                      "value": "bf9000",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "decimal": {
+                      "value": 3.9889,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdown": {
+                      "value": "Mark",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddress": {
+                      "value": "my@email.com",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "Default"
+                  },
+                  "urlSegment": "homepage",
+                  "name": "Homepage",
+                  "id": 1152,
+                  "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
+                  "__typename": "ContentPickerItem"
+                }
+              ],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [
+                {
+                  "url": "google.com",
+                  "properties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "urlSegment": null,
+                  "target": null,
+                  "type": "EXTERNAL",
+                  "name": null,
+                  "id": null,
+                  "key": null,
+                  "__typename": "MultiUrlPickerItem"
+                }
+              ],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 1234456,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": "3",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [
+                "2"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [
+                "string",
+                "1",
+                "string"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+              "sourceValue": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 2,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [
+                "tag1",
+                "normal",
+                "wrong"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "text in a text area",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "text string",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": true,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": -1,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "000000",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [
+                {
+                  "url": "http://site-1.com/homepage/",
+                  "properties": {
+                    "blockGrid": {
+                      "model": "BlockGrid",
+                      "gridColumns": null,
+                      "blocks": []
+                    },
+                    "eyeDropperColorPicker": {
+                      "value": "#aa7474",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "article": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audio": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "file": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svg": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "video": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropper": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "markdown": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "imageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "blockList": {
+                      "blocks": [
+                        {
+                          "contentAlias": "multinodeTreepickerEditor",
+                          "settingsAlias": null,
+                          "contentProperties": {
+                            "multinodeTreepicker": {
+                              "items": [],
+                              "model": "ContentPicker",
+                              "__typename": "ContentPicker"
+                            },
+                            "__typename": "MultinodeTreepickerEditor"
+                          },
+                          "settingsProperties": {
+                            "__typename": "EmptyPropertyType"
+                          },
+                          "__typename": "BlockListItem"
+                        },
+                        {
+                          "contentAlias": "multiUrlPickerEditor",
+                          "settingsAlias": null,
+                          "contentProperties": {
+                            "multiUrlPicker": {
+                              "links": [],
+                              "model": "MultiUrlPicker",
+                              "__typename": "MultiUrlPicker"
+                            },
+                            "__typename": "MultiUrlPickerEditor"
+                          },
+                          "settingsProperties": {
+                            "__typename": "EmptyPropertyType"
+                          },
+                          "__typename": "BlockListItem"
+                        }
+                      ],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "memberGroupPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberPicker": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "numeric": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radiobox": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxList": {
+                      "value": [
+                        "2"
+                      ],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstrings": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "richtext": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "slider": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tags": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textarea": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstring": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalse": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPicker": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPicker": {
+                      "value": "bf9000",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "decimal": {
+                      "value": 3.9889,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdown": {
+                      "value": "Mark",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddress": {
+                      "value": "my@email.com",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "Default"
+                  },
+                  "urlSegment": "homepage",
+                  "name": "Homepage",
+                  "id": 1152,
+                  "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
+                  "__typename": "ContentPickerItem"
+                }
+              ],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 9.008,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "Sofie",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "email@email.com",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "Default"
+          },
+          "urlSegment": "page-1",
+          "name": "Page 1",
+          "id": 1159,
+          "key": "3686dd5d-f689-4e3b-ace6-b6d4e8b06165",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-1.com/",
+            "properties": {
+              "__typename": "EmptyPropertyType"
+            },
+            "urlSegment": "site-1",
+            "name": "Site 1",
+            "id": 1146,
+            "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-1.com/page-2/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "blockGrid": {
+              "model": "BlockGrid",
+              "gridColumns": null,
+              "blocks": []
+            },
+            "eyeDropperColorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [
+                "normal"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": false,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "Default"
+          },
+          "urlSegment": "page-2",
+          "name": "Page 2",
+          "id": 1163,
+          "key": "f578f70d-13f4-444a-baa7-a1a3c1bc1666",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-1.com/",
+            "properties": {
+              "__typename": "EmptyPropertyType"
+            },
+            "urlSegment": "site-1",
+            "name": "Site 1",
+            "id": 1146,
+            "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-1.com/collection-of-pages/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "blockGrid": {
+              "model": "BlockGrid",
+              "gridColumns": null,
+              "blocks": []
+            },
+            "eyeDropperColorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": false,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "Default"
+          },
+          "urlSegment": "collection-of-pages",
+          "name": "Collection of pages",
+          "id": 1165,
+          "key": "08f23909-4751-47e9-b2e8-88ca07598947",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-1.com/",
+            "properties": {
+              "__typename": "EmptyPropertyType"
+            },
+            "urlSegment": "site-1",
+            "name": "Site 1",
+            "id": 1146,
+            "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-1.com/collection-of-pages/page-11/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "blockGrid": {
+              "model": "BlockGrid",
+              "gridColumns": null,
+              "blocks": []
+            },
+            "eyeDropperColorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [
+                "normal"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": false,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "Default"
+          },
+          "urlSegment": "page-11",
+          "name": "Page 1.1",
+          "id": 1170,
+          "key": "a719aa8a-2c24-4756-9f4c-d1f5a5b94075",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-1.com/collection-of-pages/",
+            "properties": {
+              "blockGrid": {
+                "model": "BlockGrid",
+                "gridColumns": null,
+                "blocks": []
+              },
+              "eyeDropperColorPicker": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "article": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "audio": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "file": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "svg": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "video": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "imageCropper": {
+                "value": null,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "markdown": {
+                "value": "",
+                "sourceValue": null,
+                "model": "RichText",
+                "__typename": "RichText"
+              },
+              "imageMediaPicker": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "mediaPicker": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "multipleImageMediaPicker": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "multipleMediaPicker": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "mediaPickerLegacy": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "multipleMediaPickerLegacy": {
+                "mediaItems": [],
+                "model": "MediaPicker",
+                "__typename": "MediaPicker"
+              },
+              "blockList": {
+                "blocks": [],
+                "model": "BlockList",
+                "__typename": "BlockList"
+              },
+              "memberGroupPicker": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "memberPicker": {
+                "members": [],
+                "model": "MemberPicker",
+                "__typename": "MemberPicker"
+              },
+              "multinodeTreepicker": {
+                "items": [],
+                "model": "ContentPicker",
+                "__typename": "ContentPicker"
+              },
+              "multiUrlPicker": {
+                "links": [],
+                "model": "MultiUrlPicker",
+                "__typename": "MultiUrlPicker"
+              },
+              "numeric": {
+                "value": 0,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "radiobox": {
+                "value": null,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "checkboxList": {
+                "value": [],
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "repeatableTextstrings": {
+                "value": [],
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "richtext": {
+                "value": "",
+                "sourceValue": null,
+                "model": "RichText",
+                "__typename": "RichText"
+              },
+              "slider": {
+                "value": 0,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "tags": {
+                "value": [],
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "textarea": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "textstring": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "trueOrFalse": {
+                "value": false,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "userPicker": {
+                "value": 0,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "colorPicker": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "contentPicker": {
+                "items": [],
+                "model": "ContentPicker",
+                "__typename": "ContentPicker"
+              },
+              "decimal": {
+                "value": 0,
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "dropdown": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "emailAddress": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "__typename": "Default"
+            },
+            "urlSegment": "collection-of-pages",
+            "name": "Collection of pages",
+            "id": 1165,
+            "key": "08f23909-4751-47e9-b2e8-88ca07598947",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        }
+      ],
+      "page": 1,
+      "pageSize": 5,
+      "totalItems": 15,
+      "hasNextPage": true
+    }
+  }
+}

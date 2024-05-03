@@ -14,7 +14,6 @@
           "id": 1146,
           "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
           "templateId": null,
-          "updateDate": "2024-04-18T11:24:42.603Z",
           "parent": null,
           "__typename": "ContentItem"
         },
@@ -30,7 +29,6 @@
           "id": 1147,
           "key": "cb9726b8-2307-4a01-9b39-7c2850c4d19a",
           "templateId": null,
-          "updateDate": "2024-04-18T11:24:42.707Z",
           "parent": null,
           "__typename": "ContentItem"
         },
@@ -46,7 +44,6 @@
           "id": 1148,
           "key": "dcf14fa0-dfc3-4108-8c9b-a4e9f77c0c29",
           "templateId": null,
-          "updateDate": "2024-04-18T11:24:42.782Z",
           "parent": null,
           "__typename": "ContentItem"
         },
@@ -62,7 +59,6 @@
           "id": 1150,
           "key": "805a5fe7-d8ff-472d-9dd4-b73e48a6d15b",
           "templateId": null,
-          "updateDate": "2024-04-18T11:24:44.583Z",
           "parent": null,
           "__typename": "ContentItem"
         },
@@ -88,7 +84,6 @@
           "id": 1151,
           "key": "d0351e46-e0bf-4eaa-ad2b-57a45451097e",
           "templateId": null,
-          "updateDate": "2024-04-18T11:24:44.653Z",
           "parent": null,
           "__typename": "ContentItem"
         }

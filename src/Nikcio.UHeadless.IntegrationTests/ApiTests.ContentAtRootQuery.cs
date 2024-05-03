@@ -89,7 +89,6 @@ public static class ContentAtRootQueries
               id
               key
               templateId
-              updateDate
               parent {
                 url(urlMode: ABSOLUTE)
                 properties {
@@ -101,7 +100,6 @@ public static class ContentAtRootQueries
                 id
                 key
                 templateId
-                updateDate
               }
               __typename
             }
