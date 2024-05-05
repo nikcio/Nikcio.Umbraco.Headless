@@ -42,5 +42,6 @@
 	
   <ItemGroup>
     <Folder Include="Snapshots\" />
+    <Folder Include="Snapshots\Schema\" />
   </ItemGroup>
 </Project>

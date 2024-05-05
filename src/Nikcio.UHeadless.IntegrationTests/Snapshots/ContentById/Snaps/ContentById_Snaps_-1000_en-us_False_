@@ -1,0 +1,19 @@
+{
+  "errors": [
+    {
+      "message": "Id must be greater than 0 (Parameter \u0027id\u0027)",
+      "locations": [
+        {
+          "line": 8,
+          "column": 3
+        }
+      ],
+      "path": [
+        "contentById"
+      ]
+    }
+  ],
+  "data": {
+    "contentById": null
+  }
+}

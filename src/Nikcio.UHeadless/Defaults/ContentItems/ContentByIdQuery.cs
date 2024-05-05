@@ -75,10 +75,12 @@ public class ContentByIdQuery : IGraphQLQuery
 
         IPublishedContent? contentItem = contentCache.GetById(inContext.IncludePreview.Value, id);
 
-        return contentItemRepository.GetContentItem(new ContentItemBase.CreateCommand()
+        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
         {
             PublishedContent = contentItem,
             ResolverContext = resolverContext,
+            StatusCode = 200,
+            Redirect = null
         });
     }
 }
