@@ -24,7 +24,7 @@ public class PaginationResult<T>
         PageSize = pageSize;
         TotalItems = items.Count();
 
-        int skip = Page == 0 ? 0 : (Page - 1) * PageSize;
+        int skip = (Page - 1) * PageSize;
         Items = items.Skip(skip).Take(PageSize).ToList();
     }
 
