@@ -1,0 +1,19 @@
+{
+  "data": {
+    "contentByRoute": {
+      "url": "http://localhost/no-domain-site/",
+      "redirect": null,
+      "statusCode": 200,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": "no-domain-site",
+      "name": "No domain site",
+      "id": 1147,
+      "key": "cb9726b8-2307-4a01-9b39-7c2850c4d19a",
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}
