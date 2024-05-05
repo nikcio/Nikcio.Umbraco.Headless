@@ -1,0 +1,1727 @@
+{
+  "data": {
+    "contentByTag": {
+      "items": [
+        {
+          "url": "http://site-culture.dk/filledpage-da/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "eyeDropperColorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "eyeDropperColorPickerCulture": {
+              "value": "#007b75",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "article": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audio": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "file": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svg": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "video": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "articleCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "audioCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "fileCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "svgCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "videoCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropper": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "imageCropperCulture": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "markdown": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "markdownCulture": {
+              "value": "\u003Cp\u003Epoiuytre\u003C/p\u003E",
+              "sourceValue": "poiuytre",
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "imageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPicker": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "imageMediaPickerCulture": {
+              "mediaItems": [
+                {
+                  "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
+                  "properties": {
+                    "umbracoWidth": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoHeight": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoBytes": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoExtension": {
+                      "value": "",
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "__typename": "Image"
+                  },
+                  "urlSegment": null,
+                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.51",
+                  "id": 1140,
+                  "key": "343c83c9-1782-4db5-8e13-cdcddf7ab772",
+                  "__typename": "MediaPickerItem"
+                }
+              ],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerCulture": {
+              "mediaItems": [
+                {
+                  "url": "http://localhost/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
+                  "properties": {
+                    "umbracoWidth": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoHeight": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoBytes": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoExtension": {
+                      "value": "",
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "__typename": "Image"
+                  },
+                  "urlSegment": null,
+                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.16.18 (1)",
+                  "id": 1145,
+                  "key": "f297f8da-2938-4e5c-a08b-3a7c83c5cf5d",
+                  "__typename": "MediaPickerItem"
+                }
+              ],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleImageMediaPickerCulture": {
+              "mediaItems": [
+                {
+                  "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
+                  "properties": {
+                    "umbracoWidth": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoHeight": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoBytes": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoExtension": {
+                      "value": "",
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "__typename": "Image"
+                  },
+                  "urlSegment": null,
+                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.51",
+                  "id": 1140,
+                  "key": "343c83c9-1782-4db5-8e13-cdcddf7ab772",
+                  "__typename": "MediaPickerItem"
+                }
+              ],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerCulture": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacy": {
+              "mediaItems": [],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "mediaPickerLegacyCulture": {
+              "mediaItems": [
+                {
+                  "url": "http://localhost/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
+                  "properties": {
+                    "umbracoWidth": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoHeight": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoBytes": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoExtension": {
+                      "value": "",
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "__typename": "Image"
+                  },
+                  "urlSegment": null,
+                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.16.18 (1)",
+                  "id": 1145,
+                  "key": "f297f8da-2938-4e5c-a08b-3a7c83c5cf5d",
+                  "__typename": "MediaPickerItem"
+                }
+              ],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "multipleMediaPickerLegacyCulture": {
+              "mediaItems": [
+                {
+                  "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
+                  "properties": {
+                    "umbracoWidth": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoHeight": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoBytes": {
+                      "value": 0,
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "umbracoExtension": {
+                      "value": "",
+                      "model": "Label",
+                      "__typename": "Label"
+                    },
+                    "__typename": "Image"
+                  },
+                  "urlSegment": null,
+                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.51",
+                  "id": 1140,
+                  "key": "343c83c9-1782-4db5-8e13-cdcddf7ab772",
+                  "__typename": "MediaPickerItem"
+                }
+              ],
+              "model": "MediaPicker",
+              "__typename": "MediaPicker"
+            },
+            "blockList": {
+              "blocks": [],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "blockListCulture": {
+              "blocks": [
+                {
+                  "contentAlias": "decimalEditor",
+                  "settingsAlias": null,
+                  "contentProperties": {
+                    "decimal": {
+                      "value": 678,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "DecimalEditor"
+                  },
+                  "settingsProperties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "__typename": "BlockListItem"
+                },
+                {
+                  "contentAlias": "dropdownEditor",
+                  "settingsAlias": null,
+                  "contentProperties": {
+                    "dropdown": {
+                      "value": "Andy",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "DropdownEditor"
+                  },
+                  "settingsProperties": {
+                    "__typename": "EmptyPropertyType"
+                  },
+                  "__typename": "BlockListItem"
+                }
+              ],
+              "model": "BlockList",
+              "__typename": "BlockList"
+            },
+            "memberGroupPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberGroupPickerCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "memberPicker": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "memberPickerCulture": {
+              "members": [],
+              "model": "MemberPicker",
+              "__typename": "MemberPicker"
+            },
+            "multinodeTreepicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multinodeTreepickerCulture": {
+              "items": [
+                {
+                  "url": "http://site-culture.dk/homepage/",
+                  "properties": {
+                    "eyeDropperColorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "eyeDropperColorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "article": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audio": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "file": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svg": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "video": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "articleCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audioCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "fileCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svgCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "videoCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropper": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropperCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "markdown": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "markdownCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "imageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "imageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "blockList": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "blockListCulture": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "memberGroupPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberGroupPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberPicker": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "memberPickerCulture": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multinodeTreepickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "multiUrlPickerCulture": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "numeric": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "numericCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radiobox": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radioboxCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxList": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxListCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstrings": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstringsCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "richtext": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "richtextCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "slider": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "sliderCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tags": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tagsCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textarea": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textareaCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstring": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstringCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalse": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalseCulture": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPicker": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPickerCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "contentPickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "decimal": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "decimalCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdown": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdownCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddress": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddressCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "DefaultCulture"
+                  },
+                  "urlSegment": "homepage",
+                  "name": "Homepage",
+                  "id": 1162,
+                  "key": "3fa4a316-249b-487f-8d9e-007581f7b748",
+                  "__typename": "ContentPickerItem"
+                },
+                {
+                  "url": "http://site-culture.dk/da-page/",
+                  "properties": {
+                    "eyeDropperColorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "eyeDropperColorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "article": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audio": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "file": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svg": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "video": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "articleCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audioCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "fileCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svgCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "videoCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropper": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropperCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "markdown": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "markdownCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "imageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "imageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "blockList": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "blockListCulture": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "memberGroupPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberGroupPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberPicker": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "memberPickerCulture": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multinodeTreepickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "multiUrlPickerCulture": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "numeric": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "numericCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radiobox": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radioboxCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxList": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxListCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstrings": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstringsCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "richtext": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "richtextCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "slider": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "sliderCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tags": {
+                      "value": [
+                        "unno"
+                      ],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tagsCulture": {
+                      "value": [
+                        "nononono"
+                      ],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textarea": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textareaCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstring": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstringCulture": {
+                      "value": "da string",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalse": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalseCulture": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPicker": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPickerCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "contentPickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "decimal": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "decimalCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdown": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdownCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddress": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddressCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "DefaultCulture"
+                  },
+                  "urlSegment": "da-page",
+                  "name": "Da page",
+                  "id": 1158,
+                  "key": "82ec95bd-6551-421d-acf3-e7571cef4efe",
+                  "__typename": "ContentPickerItem"
+                }
+              ],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "multiUrlPicker": {
+              "links": [],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "multiUrlPickerCulture": {
+              "links": [
+                {
+                  "url": "http://site-culture.dk/homepage/",
+                  "properties": {
+                    "eyeDropperColorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "eyeDropperColorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "article": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audio": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "file": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svg": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "video": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "articleCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "audioCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "fileCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "svgCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "videoCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropper": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "imageCropperCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "markdown": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "markdownCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "imageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPicker": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "imageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleImageMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacy": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "mediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "multipleMediaPickerLegacyCulture": {
+                      "mediaItems": [],
+                      "model": "MediaPicker",
+                      "__typename": "MediaPicker"
+                    },
+                    "blockList": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "blockListCulture": {
+                      "blocks": [],
+                      "model": "BlockList",
+                      "__typename": "BlockList"
+                    },
+                    "memberGroupPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberGroupPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "memberPicker": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "memberPickerCulture": {
+                      "members": [],
+                      "model": "MemberPicker",
+                      "__typename": "MemberPicker"
+                    },
+                    "multinodeTreepicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multinodeTreepickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "multiUrlPicker": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "multiUrlPickerCulture": {
+                      "links": [],
+                      "model": "MultiUrlPicker",
+                      "__typename": "MultiUrlPicker"
+                    },
+                    "numeric": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "numericCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radiobox": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "radioboxCulture": {
+                      "value": null,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxList": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "checkboxListCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstrings": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "repeatableTextstringsCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "richtext": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "richtextCulture": {
+                      "value": "",
+                      "sourceValue": null,
+                      "model": "RichText",
+                      "__typename": "RichText"
+                    },
+                    "slider": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "sliderCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tags": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "tagsCulture": {
+                      "value": [],
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textarea": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textareaCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstring": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstringCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalse": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "trueOrFalseCulture": {
+                      "value": false,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPicker": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "userPickerCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPicker": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "colorPickerCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "contentPicker": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "contentPickerCulture": {
+                      "items": [],
+                      "model": "ContentPicker",
+                      "__typename": "ContentPicker"
+                    },
+                    "decimal": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "decimalCulture": {
+                      "value": 0,
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdown": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "dropdownCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddress": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "emailAddressCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "DefaultCulture"
+                  },
+                  "urlSegment": "homepage",
+                  "target": null,
+                  "type": "CONTENT",
+                  "name": "Homepage",
+                  "id": 1162,
+                  "key": "3fa4a316-249b-487f-8d9e-007581f7b748",
+                  "__typename": "MultiUrlPickerItem"
+                }
+              ],
+              "model": "MultiUrlPicker",
+              "__typename": "MultiUrlPicker"
+            },
+            "numeric": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "numericCulture": {
+              "value": 8765678,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radiobox": {
+              "value": null,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "radioboxCulture": {
+              "value": "3",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxList": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "checkboxListCulture": {
+              "value": [
+                "1"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstrings": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "repeatableTextstringsCulture": {
+              "value": [
+                "fafas",
+                "fds"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "richtext": {
+              "value": "",
+              "sourceValue": null,
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "richtextCulture": {
+              "value": "\u003Cp\u003Eiuoidasojfklajs\u003C/p\u003E",
+              "sourceValue": "\u003Cp\u003Eiuoidasojfklajs\u003C/p\u003E",
+              "model": "RichText",
+              "__typename": "RichText"
+            },
+            "slider": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "sliderCulture": {
+              "value": 9,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tags": {
+              "value": [],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "tagsCulture": {
+              "value": [
+                "odd",
+                "normal"
+              ],
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textarea": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textareaCulture": {
+              "value": "jfsajpofi9asudoiaskn",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstringCulture": {
+              "value": "da",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalse": {
+              "value": false,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "trueOrFalseCulture": {
+              "value": true,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPicker": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "userPickerCulture": {
+              "value": -1,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPicker": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "colorPickerCulture": {
+              "value": "000000",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "contentPicker": {
+              "items": [],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "contentPickerCulture": {
+              "items": [
+                {
+                  "url": "http://site-culture.dk/",
+                  "properties": {
+                    "textstring": {
+                      "value": "uncultured string",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "textstringCulture": {
+                      "value": "",
+                      "model": "DefaultProperty",
+                      "__typename": "DefaultProperty"
+                    },
+                    "__typename": "SiteWithCulture"
+                  },
+                  "urlSegment": "site-with-culture-da",
+                  "name": "Site with culture (DA)",
+                  "id": 1151,
+                  "key": "d0351e46-e0bf-4eaa-ad2b-57a45451097e",
+                  "__typename": "ContentPickerItem"
+                }
+              ],
+              "model": "ContentPicker",
+              "__typename": "ContentPicker"
+            },
+            "decimal": {
+              "value": 0,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "decimalCulture": {
+              "value": 90887,
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdown": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "dropdownCulture": {
+              "value": "Mark",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddress": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "emailAddressCulture": {
+              "value": "mail@dkmail.dk",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "DefaultCulture"
+          },
+          "urlSegment": "filledpage-da",
+          "name": "FilledPage (DA)",
+          "id": 1166,
+          "key": "118fde67-8217-4c26-9234-4054cc2b1396",
+          "templateId": null,
+          "parent": {
+            "url": "http://site-culture.dk/",
+            "properties": {
+              "textstring": {
+                "value": "uncultured string",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "textstringCulture": {
+                "value": "",
+                "model": "DefaultProperty",
+                "__typename": "DefaultProperty"
+              },
+              "__typename": "SiteWithCulture"
+            },
+            "urlSegment": "site-with-culture-da",
+            "name": "Site with culture (DA)",
+            "id": 1151,
+            "key": "d0351e46-e0bf-4eaa-ad2b-57a45451097e",
+            "templateId": null
+          },
+          "__typename": "ContentItem"
+        }
+      ],
+      "page": 1,
+      "pageSize": 10,
+      "totalItems": 1,
+      "hasNextPage": false
+    }
+  }
+}
