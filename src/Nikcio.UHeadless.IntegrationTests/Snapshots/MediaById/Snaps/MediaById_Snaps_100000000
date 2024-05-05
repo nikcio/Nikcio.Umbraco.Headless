@@ -1,0 +1,17 @@
+{
+  "data": {
+    "mediaById": {
+      "url": null,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": null,
+      "name": null,
+      "id": null,
+      "key": null,
+      "templateId": null,
+      "parent": null,
+      "__typename": "MediaItem"
+    }
+  }
+}

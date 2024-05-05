@@ -1,0 +1,27 @@
+{
+  "data": {
+    "mediaById": {
+      "url": "http://localhost/media/gy0bdnwp/skaermbillede-2023-04-17-kl-201618.png",
+      "properties": {
+        "__typename": "Image"
+      },
+      "urlSegment": null,
+      "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.16.18",
+      "id": 1144,
+      "key": "b6113530-0ccf-4006-88d4-3dcd31c8297e",
+      "templateId": -1,
+      "parent": {
+        "url": "",
+        "properties": {
+          "__typename": "EmptyPropertyType"
+        },
+        "urlSegment": null,
+        "name": "My media",
+        "id": 1141,
+        "key": "01164aab-e1f7-4628-9e20-870b49951482",
+        "templateId": -1
+      },
+      "__typename": "MediaItem"
+    }
+  }
+}
