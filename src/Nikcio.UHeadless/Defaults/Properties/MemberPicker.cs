@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Defaults.Members;
 using Nikcio.UHeadless.Properties;
-using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
