@@ -1,0 +1,25 @@
+{
+  "data": {
+    "mediaByContentType": {
+      "items": [
+        {
+          "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
+          "properties": {
+            "__typename": "Image"
+          },
+          "urlSegment": null,
+          "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
+          "id": 1139,
+          "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
+          "templateId": -1,
+          "parent": null,
+          "__typename": "MediaItem"
+        }
+      ],
+      "page": 2,
+      "pageSize": 1,
+      "totalItems": 5,
+      "hasNextPage": true
+    }
+  }
+}

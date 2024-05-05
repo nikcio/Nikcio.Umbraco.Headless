@@ -4,31 +4,36 @@ namespace Nikcio.UHeadless.IntegrationTests.Defaults;
 
 public partial class ApiTests
 {
-    private const string _mediaAtRootSnapshotPath = $"{SnapshotConstants.BasePath}/MediaAtRoot";
+    private const string _mediaByContentTypeSnapshotPath = $"{SnapshotConstants.BasePath}/MediaByContentType";
 
     [Theory]
-    [InlineData(1, 0, true)]
-    [InlineData(1, 1, true)]
-    [InlineData(2, 1, true)]
-    [InlineData(1, 1000, true)]
-    [InlineData(1000, 1000, true)]
-    [InlineData(1, 5, true)]
-    [InlineData(0, 5, false)]
-    [InlineData(-1, 5, false)]
-    [InlineData(0, -1,  false)]
-    public async Task MediaAtRootQuery_Snaps_Async(
+    [InlineData("image", 1, 0, true)]
+    [InlineData("folder", 1, 0, true)]
+    [InlineData("customMediaType", 1, 10, true)]
+    [InlineData("image", 1, 1, true)]
+    [InlineData("image", 2, 1, true)]
+    [InlineData("image", 1, 1000, true)]
+    [InlineData("image", 1000, 1000, true)]
+    [InlineData("image", 1, 5, true)]
+    [InlineData("image", 0, 5, false)]
+    [InlineData("image", -1, 5, false)]
+    [InlineData("image", 0, -1, false)]
+    [InlineData("", 1, 1, false)]
+    public async Task MediaByContentTypeQuery_Snaps_Async(
+        string contentType,
         int page,
         int pageSize,
         bool expectSuccess)
     {
-        var snapshotProvider = new SnapshotProvider($"{_mediaAtRootSnapshotPath}/Snaps");
+        var snapshotProvider = new SnapshotProvider($"{_mediaByContentTypeSnapshotPath}/Snaps");
         HttpClient client = _factory.CreateClient();
 
         using var request = JsonContent.Create(new
         {
-            query = MediaAtRootQueries.GetItems,
+            query = MediaByContentTypeQueries.GetItems,
             variables = new
             {
+                contentType,
                 page,
                 pageSize,
             }
@@ -38,21 +43,23 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MediaAtRoot_Snaps_{page}_{pageSize}";
+        string snapshotName = $"MediaByContentType_Snaps_{contentType}_{page}_{pageSize}";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);
     }
 }
 
-public static class MediaAtRootQueries
+public static class MediaByContentTypeQueries
 {
     public const string GetItems = """
         query MediaAtRootQuery(
+          $contentType: String!
           $page: Int!,
           $pageSize: Int!
         ) {
-          mediaAtRoot(
+          mediaByContentType(
+            contentType: $contentType
             page: $page,
             pageSize: $pageSize
           ) {

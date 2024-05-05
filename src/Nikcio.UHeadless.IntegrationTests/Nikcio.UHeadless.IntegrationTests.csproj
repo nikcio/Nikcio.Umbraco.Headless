@@ -39,9 +39,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Nikcio.UHeadless.IntegrationTests.TestProject\Nikcio.UHeadless.IntegrationTests.TestProject.csproj" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="Snapshots\" />
-    <Folder Include="Snapshots\Schema\" />
-  </ItemGroup>
 </Project>

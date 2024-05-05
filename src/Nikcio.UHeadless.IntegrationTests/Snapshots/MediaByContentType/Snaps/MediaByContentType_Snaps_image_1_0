@@ -1,0 +1,11 @@
+{
+  "data": {
+    "mediaByContentType": {
+      "items": [],
+      "page": 1,
+      "pageSize": 0,
+      "totalItems": 5,
+      "hasNextPage": true
+    }
+  }
+}

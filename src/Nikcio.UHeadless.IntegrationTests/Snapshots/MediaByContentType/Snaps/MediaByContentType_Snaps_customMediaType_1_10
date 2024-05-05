@@ -1,72 +1,7 @@
 {
   "data": {
-    "mediaAtRoot": {
+    "mediaByContentType": {
       "items": [
-        {
-          "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
-          "properties": {
-            "__typename": "Image"
-          },
-          "urlSegment": null,
-          "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
-          "id": 1138,
-          "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
-          "templateId": -1,
-          "parent": null,
-          "__typename": "MediaItem"
-        },
-        {
-          "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
-          "properties": {
-            "__typename": "Image"
-          },
-          "urlSegment": null,
-          "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
-          "id": 1139,
-          "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
-          "templateId": -1,
-          "parent": null,
-          "__typename": "MediaItem"
-        },
-        {
-          "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
-          "properties": {
-            "__typename": "Image"
-          },
-          "urlSegment": null,
-          "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.51",
-          "id": 1140,
-          "key": "343c83c9-1782-4db5-8e13-cdcddf7ab772",
-          "templateId": -1,
-          "parent": null,
-          "__typename": "MediaItem"
-        },
-        {
-          "url": "",
-          "properties": {
-            "__typename": "EmptyPropertyType"
-          },
-          "urlSegment": null,
-          "name": "My media",
-          "id": 1141,
-          "key": "01164aab-e1f7-4628-9e20-870b49951482",
-          "templateId": -1,
-          "parent": null,
-          "__typename": "MediaItem"
-        },
-        {
-          "url": "",
-          "properties": {
-            "__typename": "EmptyPropertyType"
-          },
-          "urlSegment": null,
-          "name": "My media 2",
-          "id": 1142,
-          "key": "10641d52-54ac-43d5-9f5e-9074642715bf",
-          "templateId": -1,
-          "parent": null,
-          "__typename": "MediaItem"
-        },
         {
           "url": "",
           "properties": {
@@ -313,8 +248,8 @@
         }
       ],
       "page": 1,
-      "pageSize": 1000,
-      "totalItems": 6,
+      "pageSize": 10,
+      "totalItems": 1,
       "hasNextPage": false
     }
   }
