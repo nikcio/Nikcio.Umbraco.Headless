@@ -1,0 +1,17 @@
+{
+  "errors": [
+    {
+      "message": "Page must be greater than or equal to 1 (Parameter \u0027page\u0027)",
+      "locations": [
+        {
+          "line": 6,
+          "column": 3
+        }
+      ],
+      "path": [
+        "mediaByContentType"
+      ]
+    }
+  ],
+  "data": null
+}

@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using Nikcio.UHeadless.Properties;
 
 namespace Nikcio.UHeadless.IntegrationTests.Defaults;
 

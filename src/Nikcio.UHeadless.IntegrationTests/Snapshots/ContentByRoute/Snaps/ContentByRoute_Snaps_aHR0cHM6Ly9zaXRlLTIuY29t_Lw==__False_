@@ -1,0 +1,19 @@
+{
+  "data": {
+    "contentByRoute": {
+      "url": "http://site-2.com/",
+      "redirect": null,
+      "statusCode": 200,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": "site-2",
+      "name": "Site 2",
+      "id": 1148,
+      "key": "dcf14fa0-dfc3-4108-8c9b-a4e9f77c0c29",
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}

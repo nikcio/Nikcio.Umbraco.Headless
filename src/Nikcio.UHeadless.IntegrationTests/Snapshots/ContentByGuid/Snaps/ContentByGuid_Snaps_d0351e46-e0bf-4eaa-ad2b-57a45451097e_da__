@@ -1,0 +1,29 @@
+{
+  "data": {
+    "contentByGuid": {
+      "url": "http://site-culture.dk/",
+      "redirect": null,
+      "statusCode": 200,
+      "properties": {
+        "textstring": {
+          "value": "uncultured string",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "textstringCulture": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "__typename": "SiteWithCulture"
+      },
+      "urlSegment": "site-with-culture-da",
+      "name": "Site with culture (DA)",
+      "id": 1151,
+      "key": "d0351e46-e0bf-4eaa-ad2b-57a45451097e",
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}

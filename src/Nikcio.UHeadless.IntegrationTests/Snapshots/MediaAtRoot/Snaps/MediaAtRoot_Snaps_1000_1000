@@ -1,0 +1,11 @@
+{
+  "data": {
+    "mediaAtRoot": {
+      "items": [],
+      "page": 1000,
+      "pageSize": 1000,
+      "totalItems": 6,
+      "hasNextPage": false
+    }
+  }
+}

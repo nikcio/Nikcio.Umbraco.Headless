@@ -1,0 +1,22 @@
+{
+  "data": {
+    "contentByRoute": {
+      "url": null,
+      "redirect": {
+        "redirectUrl": "http://site-1.com/new-page/",
+        "isPermanent": true
+      },
+      "statusCode": 308,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": null,
+      "name": null,
+      "id": null,
+      "key": null,
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}

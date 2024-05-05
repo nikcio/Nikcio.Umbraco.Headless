@@ -3,7 +3,7 @@ namespace Nikcio.UHeadless.IntegrationTests;
 public static class Fragments
 {
     /// <summary>
-    /// This is meant to select as many properties as possiable to give the best image of changes in the output from the tests.
+    /// This is meant to select as many properties as possible to give the best image of changes in the output from the tests.
     /// </summary>
     public const string TypedProperties = """
         fragment typedProperties on TypedProperties {
@@ -766,7 +766,204 @@ public static class Fragments
           }
           __typename
         }
+        """ + TypedContentProperties + TypedImageProperties + TypedBlockGridContent + TypedBlockGridSettings + TypedBlockListContent + TypedBlockListSettings + TypedMemberProperties;
 
+    /// <summary>
+    /// Used to select properties from the custom media type.
+    /// </summary>
+    public const string CustomMediaType = """
+        fragment customMediaType on ICustomMediaType {
+          eyeDropperColorPicker {
+            value
+            model
+            __typename
+          }
+          article {
+            value
+            model
+            __typename
+          }
+          audio {
+            value
+            model
+            __typename
+          }
+          file {
+            value
+            model
+            __typename
+          }
+          video {
+            value
+            model
+            __typename
+          }
+          imageCropper {
+            value
+            model
+            __typename
+          }
+          imageMediaPicker {
+            mediaItems {
+              url(urlMode: ABSOLUTE)
+              properties {
+                ...typedImageProperties
+                __typename
+              }
+              urlSegment
+              name
+              id
+              key
+              __typename
+            }
+            model
+            __typename
+          }
+          blockList {
+            blocks {
+              contentAlias
+              settingsAlias
+              contentProperties {
+                ...typedBlockListContent
+                __typename
+              }
+              settingsProperties {
+                ...typedBlockListSettings
+                __typename
+              }
+              __typename
+            }
+            model
+            __typename
+          }
+          memberGroupPicker {
+            value
+            model
+            __typename
+          }
+          memberPicker {
+            members {
+              properties {
+                ...typedMemberProperties
+                __typename
+              }
+              name
+              id
+              key
+              __typename
+            }
+            model
+            __typename
+          }
+          multinodeTreepicker {
+            items {
+              url(urlMode: ABSOLUTE)
+              properties {
+                ...typedContentProperties
+                __typename
+              }
+              urlSegment
+              name
+              id
+              key
+              __typename
+            }
+            model
+            __typename
+          }
+          multiUrlPicker {
+            links {
+              url(urlMode: ABSOLUTE)
+              properties {
+                ...typedContentProperties
+                __typename
+              }
+              urlSegment
+              target
+              type
+              name
+              id
+              key
+              __typename
+            }
+            model
+            __typename
+          }
+          numeric {
+            value
+            model
+            __typename
+          }
+          radiobox {
+            value
+            model
+            __typename
+          }
+          checkboxList {
+            value
+            model
+            __typename
+          }
+          slider {
+            value
+            model
+            __typename
+          }
+          tags {
+            value
+            model
+            __typename
+          }
+          textarea {
+            value
+            model
+            __typename
+          }
+          textstring {
+            value
+            model
+            __typename
+          }
+          userPicker {
+            value
+            model
+            __typename
+          }
+          contentPicker {
+            items {
+              url(urlMode: ABSOLUTE)
+              properties {
+                ...typedContentProperties
+                __typename
+              }
+              urlSegment
+              name
+              id
+              key
+              __typename
+            }
+            model
+            __typename
+          }
+          datePickerWithTime {
+            value
+            model
+            __typename
+          }
+          decimal {
+            value
+            model
+            __typename
+          }
+          emailAddress {
+            value
+            model
+            __typename
+          }
+        }
+        """ + TypedContentProperties + TypedImageProperties + TypedBlockGridContent + TypedBlockGridSettings + TypedBlockListContent + TypedBlockListSettings + TypedMemberProperties;
+
+    private const string TypedContentProperties = """
         fragment typedContentProperties on TypedProperties {
           ... on IBlockGridEditor {
             blockGrid {
@@ -1521,7 +1718,9 @@ public static class Fragments
           }
           __typename
         }
+        """;
 
+    private const string TypedImageProperties = """
         fragment typedImageProperties on TypedProperties {
           ... on IImage {
             umbracoWidth {
@@ -1547,7 +1746,9 @@ public static class Fragments
             __typename
           }
         }
+        """;
 
+    private const string TypedBlockGridContent = """
         fragment typedBlockGridContent on TypedBlockGridContentProperties {
           ... on IUmbBlockGridDemoHeadlineBlock {
             headline {
@@ -1585,7 +1786,9 @@ public static class Fragments
             __typename
           }
         }
+        """;
 
+    private const string TypedBlockGridSettings = """
         fragment typedBlockGridSettings on TypedBlockGridSettingsProperties {
           ... on IUmbBlockGridDemoHeadlineBlock {
             headline {
@@ -1623,7 +1826,9 @@ public static class Fragments
             __typename
           }
         }
+        """;
 
+    private const string TypedBlockListContent = """
         fragment typedBlockListContent on TypedBlockListContentProperties {
           ... on IBlockGridEditor {
             blockGrid {
@@ -2402,7 +2607,9 @@ public static class Fragments
             }
           }
         }
+        """;
 
+    private const string TypedBlockListSettings = """
         fragment typedBlockListSettings on TypedBlockGridSettingsProperties {
           ... on IBlockGridEditor {
             blockGrid {
@@ -3182,7 +3389,9 @@ public static class Fragments
           }
           __typename
         }
+        """;
 
+    private const string TypedMemberProperties = """
         fragment typedMemberProperties on TypedProperties {
           ... on ITestMember {
             blockList {
