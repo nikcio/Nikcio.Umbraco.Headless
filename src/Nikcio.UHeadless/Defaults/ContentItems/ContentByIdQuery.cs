@@ -53,15 +53,15 @@ public class ContentByIdQuery : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentNullException.ThrowIfNull(id);
 
+        if (id <= 0)
+        {
+            throw new ArgumentException("Id must be greater than 0", nameof(id));
+        }
+
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))
         {
             throw new InvalidOperationException("The context could not be initialized");
-        }
-
-        if (id <= 0)
-        {
-            throw new ArgumentException("Id must be greater than 0", nameof(id));
         }
 
         IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
