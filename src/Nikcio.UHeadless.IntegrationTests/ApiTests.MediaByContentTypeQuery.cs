@@ -53,7 +53,7 @@ public partial class ApiTests
 public static class MediaByContentTypeQueries
 {
     public const string GetItems = """
-        query MediaAtRootQuery(
+        query MediaByContentTypeQuery(
           $contentType: String!
           $page: Int!,
           $pageSize: Int!

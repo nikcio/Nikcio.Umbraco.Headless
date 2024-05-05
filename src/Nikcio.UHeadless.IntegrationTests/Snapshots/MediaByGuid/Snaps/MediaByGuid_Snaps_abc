@@ -1,0 +1,10 @@
+{
+  "errors": [
+    {
+      "message": "UUID cannot parse the given literal of type \u0060StringValueNode\u0060.",
+      "path": [
+        "key"
+      ]
+    }
+  ]
+}
