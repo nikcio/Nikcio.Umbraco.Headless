@@ -54,7 +54,7 @@ public class MemberItem : MemberItemBase
     /// Gets the parent of the member item
     /// </summary>
     [GraphQLDescription("Gets the parent of the member item.")]
-    public MemberItem? Parent => PublishedContent?.Parent != null ? CreateMember<MemberItem>(new CreateCommand()
+    public MemberItem? Parent => PublishedContent?.Level != 1 && PublishedContent?.Parent != null ? CreateMember<MemberItem>(new CreateCommand()
     {
         PublishedContent = PublishedContent.Parent,
         ResolverContext = ResolverContext,

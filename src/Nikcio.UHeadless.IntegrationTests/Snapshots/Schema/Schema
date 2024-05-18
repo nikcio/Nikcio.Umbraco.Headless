@@ -1212,13 +1212,13 @@ type Query {
   "Gets a Media item by Guid."
   mediaByGuid("The Guid to fetch." id: UUID!): MediaItem @authorize(policy: "MediaByGuidQuery")
   "Finds members by display name."
-  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByDisplayNameQuery")
+  findMembersByDisplayName("The display name (may be partial)." displayName: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Int! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByDisplayNameQuery")
   "Finds members by email."
-  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByEmailQuery")
+  findMembersByEmail("The email (may be partial)." email: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Int! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByEmailQuery")
   "Finds members by role."
   findMembersByRole("The role name." roleName: String! "The username to match." usernameToMatch: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1): PaginationOfMemberItem! @authorize(policy: "FindMembersByRoleQuery")
   "Finds members by username."
-  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Long! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByUsernameQuery")
+  findMembersByUsername("The username (may be partial)." username: String! "Determines how to match a string property value." matchType: StringPropertyMatchType! "The page number to fetch. Defaults to 1." page: Int! = 1 "How many items to include in a page. Defaults to 10." pageSize: Int! = 10): [MemberItem]! @authorize(policy: "FindMembersByUsernameQuery")
   "Gets a member by email."
   memberByEmail("The email to fetch." email: String!): MemberItem @authorize(policy: "MemberByEmailQuery")
   "Gets a member by Guid."
@@ -1450,8 +1450,5 @@ scalar Any
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
 scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
-
-"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
-scalar Long
 
 scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")
