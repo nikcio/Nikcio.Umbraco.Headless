@@ -1,0 +1,12 @@
+{
+  "data": {
+    "findMembersByRole": {
+      "items": [],
+      "page": 2,
+      "pageSize": 1,
+      "totalItems": 0,
+      "hasNextPage": false,
+      "__typename": "PaginationOfMemberItem"
+    }
+  }
+}

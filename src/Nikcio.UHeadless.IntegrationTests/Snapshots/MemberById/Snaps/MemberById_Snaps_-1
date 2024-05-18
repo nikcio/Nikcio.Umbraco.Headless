@@ -1,0 +1,19 @@
+{
+  "errors": [
+    {
+      "message": "The id must be greater than zero (Parameter \u0027id\u0027)",
+      "locations": [
+        {
+          "line": 4,
+          "column": 3
+        }
+      ],
+      "path": [
+        "memberById"
+      ]
+    }
+  ],
+  "data": {
+    "memberById": null
+  }
+}

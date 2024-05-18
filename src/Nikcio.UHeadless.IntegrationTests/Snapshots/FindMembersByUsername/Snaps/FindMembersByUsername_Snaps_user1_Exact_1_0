@@ -1,0 +1,17 @@
+{
+  "errors": [
+    {
+      "message": "Parameter page and itemsPerPage must be greater then zero.",
+      "locations": [
+        {
+          "line": 7,
+          "column": 3
+        }
+      ],
+      "path": [
+        "findMembersByUsername"
+      ]
+    }
+  ],
+  "data": null
+}

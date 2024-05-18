@@ -53,13 +53,26 @@ public class FindMembersByDisplayNameQuery : IGraphQLQuery
         IResolverContext resolverContext,
         [GraphQLDescription("The display name (may be partial).")] string displayName,
         [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
-        [GraphQLDescription("The page number to fetch. Defaults to 1.")] long page = 1,
+        [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(displayName);
         ArgumentNullException.ThrowIfNull(pageSize);
         ArgumentNullException.ThrowIfNull(page);
+
+        // We normalize the page to be 0-based because the repository is 0-based
+        page--;
+
+        if (page < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(page), "The page must be greater than or equal to one");
+        }
+
+        if (pageSize < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(pageSize), "The page size must be greater than zero");
+        }
 
         IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
 
