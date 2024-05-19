@@ -1,4 +1,5 @@
 using Nikcio.UHeadless;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
@@ -10,14 +11,26 @@ builder.Services.AddErrorFilter<GraphQLErrorFilter>();
 
 builder.Services.ConfigureOptions<ConfigureExamineIndexes>();
 
-builder.CreateUmbracoBuilder()
+
+IUmbracoBuilder umbracoBuilder = builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
     .AddDeliveryApi()
-    .AddComposers()
-    .AddUHeadless(options =>
+    .AddComposers();
+
+if (builder.Environment.IsDevelopment())
+{
+    umbracoBuilder.AddUHeadless(options =>
     {
-        options.DisableAuthorization = true;
+        //options.DisableAuthorization = true;
+
+        options.AddAuth(new()
+        {
+            ApiKey = "uheadless123456789123456789123456789",
+            Secret = "uheadless123456789123456789123456789uheadless123456789123456789123456789uheadless123456789123456789123456789",
+        });
+
+        options.AddQuery<UtilityClaimGroupsQuery>();
 
         options.AddDefaults();
 
@@ -50,8 +63,10 @@ builder.CreateUmbracoBuilder()
         {
             parserOptions.MaxAllowedFields = 10000;
         });
-    })
-    .Build();
+    });
+}
+
+umbracoBuilder.Build();
 
 WebApplication app = builder.Build();
 
@@ -60,7 +75,7 @@ await app.BootUmbracoAsync().ConfigureAwait(false);
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGraphQL();
+app.MapUHeadless();
 
 app.UseUmbraco()
     .WithMiddleware(u =>

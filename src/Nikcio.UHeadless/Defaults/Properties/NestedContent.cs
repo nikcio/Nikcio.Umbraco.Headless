@@ -54,7 +54,7 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
 
         if (publishedElementsAsObject is IPublishedElement publishedElement)
         {
-            PublishedElements = new List<IPublishedElement> { publishedElement };
+            PublishedElements = [publishedElement];
         }
         else if (publishedElementsAsObject is IEnumerable<IPublishedElement> publishedElements)
         {
@@ -62,7 +62,7 @@ public abstract class NestedContent<TNestedContentItem> : PropertyValue
         }
         else
         {
-            PublishedElements = new List<IPublishedElement>();
+            PublishedElements = [];
         }
     }
 

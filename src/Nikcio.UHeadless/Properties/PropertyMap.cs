@@ -111,17 +111,17 @@ internal class PropertyMap : DictionaryMap, IPropertyMap
     /// <summary>
     /// Editor mappings
     /// </summary>
-    protected Dictionary<string, string> editorPropertyMap { get; } = new();
+    protected Dictionary<string, string> editorPropertyMap { get; } = [];
 
     /// <summary>
     /// Alias mappings
     /// </summary>
-    protected Dictionary<string, string> aliasPropertyMap { get; } = new();
+    protected Dictionary<string, string> aliasPropertyMap { get; } = [];
 
     /// <summary>
     /// A list of all the types used in the property mapping
     /// </summary>
-    protected HashSet<Type> types { get; } = new();
+    protected HashSet<Type> types { get; } = [];
 
     public void AddEditorMapping<TType>(string editorName) where TType : PropertyValue
     {
@@ -237,21 +237,13 @@ internal abstract class DictionaryMap
         ArgumentNullException.ThrowIfNull(key);
         ArgumentNullException.ThrowIfNull(map);
 
-        if (!map.ContainsKey(key))
+        string? assemblyQualifiedName = typeof(TType).AssemblyQualifiedName;
+
+        if (assemblyQualifiedName == null)
         {
-            lock (map)
-            {
-                if (!map.ContainsKey(key))
-                {
-                    string? assemblyQualifiedName = typeof(TType).AssemblyQualifiedName;
-                    if (assemblyQualifiedName != null)
-                    {
-                        map.Add(key, assemblyQualifiedName);
-                        return true;
-                    }
-                }
-            }
+            return false;
         }
-        return false;
+
+        return map.TryAdd(key, assemblyQualifiedName);
     }
 }

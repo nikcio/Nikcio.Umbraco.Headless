@@ -33,7 +33,7 @@ public partial class ApiTests
             variables = new
             {
                 email,
-                matchType = matchType.ToString().ToUpperInvariant(),
+                matchType = TestUtils.GetHotChocolateEnum(matchType.ToString()),
                 page,
                 pageSize,
             }

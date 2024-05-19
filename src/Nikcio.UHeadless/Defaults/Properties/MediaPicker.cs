@@ -50,7 +50,7 @@ public abstract class MediaPicker<TMediaPickerItem> : PropertyValue
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
-            PublishedMediaItems = new List<IPublishedContent> { publishedContent };
+            PublishedMediaItems = [publishedContent];
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
@@ -58,7 +58,7 @@ public abstract class MediaPicker<TMediaPickerItem> : PropertyValue
         }
         else
         {
-            PublishedMediaItems = new List<IPublishedContent>();
+            PublishedMediaItems = [];
         }
     }
 

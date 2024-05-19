@@ -10,7 +10,7 @@ public partial class MemberItemBase
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
 
-        TMember? createdMember = dependencyReflectorFactory.GetReflectedType<TMember>(typeof(TMember), new object[] { command });
+        TMember? createdMember = dependencyReflectorFactory.GetReflectedType<TMember>(typeof(TMember), [command]);
 
         if (createdMember == null)
         {

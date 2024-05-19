@@ -127,8 +127,8 @@ internal class UmbracoTypeModule : ITypeModule
 
     private void GenerateTypes(out List<ITypeSystemMember> types, out List<ObjectType> objectTypes)
     {
-        types = new List<ITypeSystemMember>();
-        objectTypes = new List<ObjectType>();
+        types = [];
+        objectTypes = [];
         AddEmptyPropertyType(objectTypes);
 
         List<IContentTypeComposition> contentTypes = GetContentTypes();

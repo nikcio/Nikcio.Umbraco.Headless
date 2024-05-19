@@ -33,7 +33,7 @@ public class PropertyFactory<TProperty> : IPropertyFactory<TProperty>
     {
         var createPropertyCommand = new CreateProperty(property, culture, publishedContent, segment, publishedValueFallback, fallback);
 
-        IProperty? createdProperty = dependencyReflectorFactory.GetReflectedType<IProperty>(typeof(TProperty), new object[] { createPropertyCommand });
+        IProperty? createdProperty = dependencyReflectorFactory.GetReflectedType<IProperty>(typeof(TProperty), [createPropertyCommand]);
         return createdProperty == null ? default : (TProperty) createdProperty;
     }
 

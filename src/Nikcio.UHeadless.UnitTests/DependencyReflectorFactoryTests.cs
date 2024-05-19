@@ -22,7 +22,7 @@ public class DependencyReflectorFactoryTests
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
         const string expectedRequiredValue = "Required";
-        string[] constructorRequiredParamerters = new[] { expectedRequiredValue };
+        string[] constructorRequiredParamerters = [expectedRequiredValue];
 
         BasicClass? reflectedType = reflectorFactory.GetReflectedType<BasicClass>(typeof(BasicClass), constructorRequiredParamerters);
 
@@ -51,7 +51,7 @@ public class DependencyReflectorFactoryTests
         serviceProvider.GetService(typeof(ServiceClass)).Returns(new ServiceClass(expectedRequiredValue, null));
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        string[] constructorRequiredParamerters = new[] { expectedRequiredValue };
+        string[] constructorRequiredParamerters = [expectedRequiredValue];
 
         ServiceClass? reflectedType = reflectorFactory.GetReflectedType<ServiceClass>(typeof(ServiceClass), constructorRequiredParamerters);
 
@@ -86,7 +86,7 @@ public class DependencyReflectorFactoryTests
         IServiceProvider serviceProvider = Substitute.For<IServiceProvider>();
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        object[] constructorRequiredParamerters = Array.Empty<object>();
+        object[] constructorRequiredParamerters = [];
 
         NoConstructorsClass? reflectedType = reflectorFactory.GetReflectedType<NoConstructorsClass>(typeof(NoConstructorsClass), constructorRequiredParamerters);
 
@@ -106,7 +106,7 @@ public class DependencyReflectorFactoryTests
         IServiceProvider serviceProvider = Substitute.For<IServiceProvider>();
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        object[] constructorRequiredParamerters = Array.Empty<object>();
+        object[] constructorRequiredParamerters = [];
 
         NoRequiredParametersClass? reflectedType = reflectorFactory.GetReflectedType<NoRequiredParametersClass>(typeof(NoRequiredParametersClass), constructorRequiredParamerters);
 
@@ -132,7 +132,7 @@ public class DependencyReflectorFactoryTests
         serviceProvider.GetService(typeof(ServiceClass)).Returns(new ServiceClass(expectedRequiredValue, null));
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        object[] constructorRequiredParamerters = Array.Empty<object>();
+        object[] constructorRequiredParamerters = [];
 
         NoRequiredParameters_ServiceClass? reflectedType = reflectorFactory.GetReflectedType<NoRequiredParameters_ServiceClass>(typeof(NoRequiredParameters_ServiceClass), constructorRequiredParamerters);
 
@@ -187,7 +187,7 @@ public class DependencyReflectorFactoryTests
         IServiceProvider serviceProvider = Substitute.For<IServiceProvider>();
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        object[] constructorRequiredParamerters = new object[] { new BasicClass("Required") };
+        object[] constructorRequiredParamerters = [new BasicClass("Required")];
 
         IntegerRequiredClass? reflectedType = reflectorFactory.GetReflectedType<IntegerRequiredClass>(typeof(IntegerRequiredClass), constructorRequiredParamerters);
 
@@ -200,7 +200,7 @@ public class DependencyReflectorFactoryTests
         IServiceProvider serviceProvider = Substitute.For<IServiceProvider>();
         ILogger<DependencyReflectorFactory> logger = Substitute.For<ILogger<DependencyReflectorFactory>>();
         var reflectorFactory = new DependencyReflectorFactory(serviceProvider, logger);
-        object[] constructorRequiredParamerters = new object[] { 1, "TooMuch" };
+        object[] constructorRequiredParamerters = [1, "TooMuch"];
 
         IntegerRequiredClass? reflectedType = reflectorFactory.GetReflectedType<IntegerRequiredClass>(typeof(IntegerRequiredClass), constructorRequiredParamerters);
 

@@ -49,7 +49,7 @@ public class QueryContext
         resolverContext.Initialize(this);
 
         IncludePreview ??= false;
-        Fallbacks ??= new();
+        Fallbacks ??= [];
 
         return true;
     }

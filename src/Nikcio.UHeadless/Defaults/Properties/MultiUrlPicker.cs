@@ -78,7 +78,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
 
         if (publishedContentItemsAsObject is Link publishedContent)
         {
-            PublishedContentItemsLinks = new List<Link> { publishedContent };
+            PublishedContentItemsLinks = [publishedContent];
         }
         else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
         {
@@ -86,7 +86,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
         }
         else
         {
-            PublishedContentItemsLinks = new List<Link>();
+            PublishedContentItemsLinks = [];
         }
     }
 

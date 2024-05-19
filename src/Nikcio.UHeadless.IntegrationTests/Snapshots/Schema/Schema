@@ -1056,7 +1056,7 @@ type MemberItem {
 
 "Represents a member picker."
 type MemberPicker implements PropertyValue {
-  "Gets the member items of a picker."
+  "Gets the member items of a picker. Requires the property.values.member.picker or global.member.read claim to access"
   members: [MemberPickerItem!]! @authorize(policy: "PropertyValuesMemberPicker")
   "The model of the property value"
   model: String!
@@ -1196,7 +1196,7 @@ type Query {
   "Gets all the content items by content type."
   contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentByContentTypeQuery")
   "Gets all the content items at root level."
-  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem!
+  contentAtRoot("How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentAtRootQuery")
   "Gets a content item by id."
   contentById("The id to fetch." id: Int! "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByIdQuery")
   "Gets a content item by Guid."

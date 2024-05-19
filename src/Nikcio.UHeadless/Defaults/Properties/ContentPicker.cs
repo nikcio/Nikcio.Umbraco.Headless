@@ -54,7 +54,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
-            PublishedContentItems = new List<IPublishedContent> { publishedContent };
+            PublishedContentItems = [publishedContent];
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
@@ -62,7 +62,7 @@ public abstract class ContentPicker<TContentPickerItem> : PropertyValue
         }
         else
         {
-            PublishedContentItems = new List<IPublishedContent>();
+            PublishedContentItems = [];
         }
     }
 

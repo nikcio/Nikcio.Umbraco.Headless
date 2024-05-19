@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace Nikcio.UHeadless.Defaults;
+namespace Nikcio.UHeadless.Defaults.Authorization;
 
-internal class AlwaysAllowAuthoriaztionRequirement : IAuthorizationRequirement
+public sealed class AlwaysAllowAuthoriaztionRequirement : IAuthorizationRequirement
 {
 }
 
-internal class AlwaysAllowAuthorizationHandler : AuthorizationHandler<AlwaysAllowAuthoriaztionRequirement>
+internal sealed class AlwaysAllowAuthorizationHandler : AuthorizationHandler<AlwaysAllowAuthoriaztionRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AlwaysAllowAuthoriaztionRequirement requirement)
     {

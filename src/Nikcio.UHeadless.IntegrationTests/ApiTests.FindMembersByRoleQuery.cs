@@ -37,7 +37,7 @@ public partial class ApiTests
             {
                 roleName,
                 usernameToMatch,
-                matchType = matchType.ToString().ToUpperInvariant(),
+                matchType = TestUtils.GetHotChocolateEnum(matchType.ToString()),
                 page,
                 pageSize,
             }
