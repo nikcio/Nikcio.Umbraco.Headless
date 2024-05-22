@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
-namespace Nikcio.UHeadless.IntegrationTests.Defaults;
+namespace Nikcio.UHeadless.IntegrationTests;
 
 public partial class SnapshotProvider
 {

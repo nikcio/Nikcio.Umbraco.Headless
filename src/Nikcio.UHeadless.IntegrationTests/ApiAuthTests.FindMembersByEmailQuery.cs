@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.Members;
-using Nikcio.UHeadless.IntegrationTests.Defaults;
+using Nikcio.UHeadless.IntegrationTests;
 using Umbraco.Cms.Core.Persistence.Querying;
 
 namespace Nikcio.UHeadless.IntegrationTests;

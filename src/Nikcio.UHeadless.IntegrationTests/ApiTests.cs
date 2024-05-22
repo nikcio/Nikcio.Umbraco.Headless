@@ -1,4 +1,4 @@
-namespace Nikcio.UHeadless.IntegrationTests.Defaults;
+namespace Nikcio.UHeadless.IntegrationTests;
 
 [Collection(nameof(ApplicationFactoryBase))]
 public partial class ApiTests : IClassFixture<UnAuthenticatedApplicationFactory>

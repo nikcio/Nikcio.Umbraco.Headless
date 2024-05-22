@@ -1,4 +1,4 @@
-using Nikcio.UHeadless.IntegrationTests.Defaults;
+using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 

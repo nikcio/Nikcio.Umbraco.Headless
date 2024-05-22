@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Umbraco.Cms.Core.Persistence.Querying;
 
-namespace Nikcio.UHeadless.IntegrationTests.Defaults;
+namespace Nikcio.UHeadless.IntegrationTests;
 
 public partial class ApiTests
 {

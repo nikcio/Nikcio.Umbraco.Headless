@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Nikcio.UHeadless.IntegrationTests.Defaults;
+using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 public partial class ApiAuthTests

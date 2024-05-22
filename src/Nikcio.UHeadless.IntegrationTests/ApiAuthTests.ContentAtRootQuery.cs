@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
-using Nikcio.UHeadless.IntegrationTests.Defaults;
+using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 

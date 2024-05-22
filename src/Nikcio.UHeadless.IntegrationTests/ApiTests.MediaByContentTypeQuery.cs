@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 
-namespace Nikcio.UHeadless.IntegrationTests.Defaults;
+namespace Nikcio.UHeadless.IntegrationTests;
 
 public partial class ApiTests
 {
