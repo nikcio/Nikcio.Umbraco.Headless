@@ -1,0 +1,25 @@
+{
+  "data": {
+    "mediaAtRoot": {
+      "items": [
+        {
+          "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
+          "properties": {
+            "__typename": "Image"
+          },
+          "urlSegment": null,
+          "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
+          "id": 1138,
+          "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
+          "templateId": -1,
+          "parent": null,
+          "__typename": "MediaItem"
+        }
+      ],
+      "page": 1,
+      "pageSize": 1,
+      "totalItems": 6,
+      "hasNextPage": true
+    }
+  }
+}

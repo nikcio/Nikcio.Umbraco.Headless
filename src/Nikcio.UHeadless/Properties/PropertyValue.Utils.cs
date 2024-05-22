@@ -41,7 +41,7 @@ public partial class PropertyValue
 
     private static PropertyValue? CreatePropertyValue(CreateCommand command, Type type, IDependencyReflectorFactory dependencyReflectorFactory)
     {
-        PropertyValue? createdPropertyValue = dependencyReflectorFactory.GetReflectedType<PropertyValue>(type, new object[] { command });
+        PropertyValue? createdPropertyValue = dependencyReflectorFactory.GetReflectedType<PropertyValue>(type, [command]);
 
         if (createdPropertyValue == null)
         {

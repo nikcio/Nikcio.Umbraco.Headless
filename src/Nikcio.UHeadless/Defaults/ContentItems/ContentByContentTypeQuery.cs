@@ -4,6 +4,8 @@ using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.ContentItems;
+using Nikcio.UHeadless.Defaults.Auth;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Extensions;
@@ -24,21 +26,27 @@ public class ContentByContentTypeQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(options);
 
-        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
         {
-            configure.AddPolicy(PolicyName, policy =>
+            if (options.DisableAuthorization)
             {
-                if (options.DisableAuthorization)
-                {
-                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
-                    return;
-                }
+                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                return;
+            }
 
-                policy.RequireAuthenticatedUser();
+            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
 
-                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalContentRead);
-            });
+            policy.RequireAuthenticatedUser();
+
+            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalContentRead);
         });
+
+        AvailableClaimValue availableClaimValue = new()
+        {
+            Name = DefaultClaims.UHeadlessScope,
+            Values = [ClaimValue, DefaultClaimValues.GlobalContentRead]
+        };
+        AuthorizationTokenProvider.AddAvailableClaimValue(ClaimValueGroups.Content, availableClaimValue);
     }
 
     /// <summary>
@@ -80,7 +88,7 @@ public class ContentByContentTypeQuery : IGraphQLQuery
         {
             ILogger<ContentByContentTypeQuery> logger = resolverContext.Service<ILogger<ContentByContentTypeQuery>>();
             logger.LogInformation("Content type not found");
-            return new PaginationResult<ContentItem?>(Enumerable.Empty<ContentItem?>(), page, pageSize);
+            return new PaginationResult<ContentItem?>([], page, pageSize);
         }
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(inContext.IncludePreview.Value, inContext.Culture)

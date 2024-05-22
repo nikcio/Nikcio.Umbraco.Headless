@@ -50,5 +50,5 @@ public class BasicMemberPickerItem<TProperty> : MemberPickerItem
     /// <inheritdoc/>
     [GraphQLDescription("Gets the properties of a member.")]
     [Obsolete("Transition to typed properties instead using the Defaults.Properties.MemberPickerItem model.")]
-    public new List<TProperty?> Properties { get; set; } = new();
+    public new List<TProperty?> Properties { get; set; } = [];
 }

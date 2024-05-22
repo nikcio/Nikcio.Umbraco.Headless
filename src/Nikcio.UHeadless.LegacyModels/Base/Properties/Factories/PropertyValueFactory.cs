@@ -44,6 +44,6 @@ public class PropertyValueFactory : IPropertyValueFactory
             return null;
         }
 
-        return dependencyReflectorFactory.GetReflectedType<Models.PropertyValue>(type, new object[] { createPropertyValue });
+        return dependencyReflectorFactory.GetReflectedType<Models.PropertyValue>(type, [createPropertyValue]);
     }
 }

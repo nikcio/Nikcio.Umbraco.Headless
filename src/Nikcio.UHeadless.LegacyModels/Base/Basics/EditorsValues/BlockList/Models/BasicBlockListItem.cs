@@ -55,10 +55,10 @@ public class BasicBlockListItem<TProperty> : BlockListItem
     /// <inheritdoc/>
     [GraphQLDescription("Gets the content properties of the block list item.")]
     [Obsolete("Transition to typed properties instead using the Defaults.Properties.BlockListItem model.")]
-    public new List<TProperty?> ContentProperties { get; set; } = new();
+    public new List<TProperty?> ContentProperties { get; set; } = [];
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the setting properties of the block list item.")]
     [Obsolete("Transition to typed properties instead using the Defaults.Properties.BlockListItem model.")]
-    public new List<TProperty?> SettingsProperties { get; set; } = new();
+    public new List<TProperty?> SettingsProperties { get; set; } = [];
 }

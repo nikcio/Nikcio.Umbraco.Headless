@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.Properties;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core;
@@ -11,7 +12,7 @@ internal static class Bootstrap
     /// <summary>
     /// Adds default property mappings and services to be used for the default queries.
     /// </summary>
-    public static void AddDefaultsInternal(this UHeadlessOptions options)
+    public static UHeadlessOptions AddDefaultsInternal(this UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
 
@@ -34,9 +35,6 @@ internal static class Bootstrap
         options.PropertyMap.AddEditorMapping<MemberPicker>(Constants.PropertyEditors.Aliases.MemberPicker);
         MemberPicker.ApplyConfiguration(options);
 
-        if (options.DisableAuthorization)
-        {
-            options.UmbracoBuilder.Services.AddSingleton<IAuthorizationHandler, AlwaysAllowAuthorizationHandler>();
-        }
+        return options;
     }
 }

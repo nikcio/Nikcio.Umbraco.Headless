@@ -10,7 +10,7 @@ public partial class MediaItemBase
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
 
-        TMediaItem? createdMediaItem = dependencyReflectorFactory.GetReflectedType<TMediaItem>(typeof(TMediaItem), new object[] { command });
+        TMediaItem? createdMediaItem = dependencyReflectorFactory.GetReflectedType<TMediaItem>(typeof(TMediaItem), [command]);
 
         if (createdMediaItem == null)
         {

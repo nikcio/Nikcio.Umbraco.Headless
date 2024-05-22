@@ -54,5 +54,5 @@ public class BasicNestedContentElement<TProperty> : NestedContentItem
     /// </summary>
     [GraphQLDescription("Gets the properties of the nested content.")]
     [Obsolete("Transition to using typed properties by using the Defaults.Properties.NestedContentItem.")]
-    public new List<TProperty?> Properties { get; set; } = new();
+    public new List<TProperty?> Properties { get; set; } = [];
 }

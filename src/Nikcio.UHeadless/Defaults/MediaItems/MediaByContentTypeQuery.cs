@@ -3,6 +3,8 @@ using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nikcio.UHeadless.Defaults.Auth;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -24,21 +26,27 @@ public class MediaByContentTypeQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(options);
 
-        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
         {
-            configure.AddPolicy(PolicyName, policy =>
+            if (options.DisableAuthorization)
             {
-                if (options.DisableAuthorization)
-                {
-                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
-                    return;
-                }
+                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                return;
+            }
 
-                policy.RequireAuthenticatedUser();
+            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
 
-                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMediaRead);
-            });
+            policy.RequireAuthenticatedUser();
+
+            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMediaRead);
         });
+
+        AvailableClaimValue availableClaimValue = new()
+        {
+            Name = DefaultClaims.UHeadlessScope,
+            Values = [ClaimValue, DefaultClaimValues.GlobalMediaRead]
+        };
+        AuthorizationTokenProvider.AddAvailableClaimValue(ClaimValueGroups.Media, availableClaimValue);
     }
 
     /// <summary>
@@ -73,7 +81,7 @@ public class MediaByContentTypeQuery : IGraphQLQuery
         {
             ILogger<MediaByContentTypeQuery> logger = resolverContext.Service<ILogger<MediaByContentTypeQuery>>();
             logger.LogError("Media type not found. {ContentType}", contentType);
-            return new PaginationResult<MediaItem?>(Enumerable.Empty<MediaItem?>(), page, pageSize);
+            return new PaginationResult<MediaItem?>([], page, pageSize);
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);

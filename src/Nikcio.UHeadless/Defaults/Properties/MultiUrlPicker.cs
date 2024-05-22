@@ -5,6 +5,7 @@ using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Routing;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Properties;
@@ -52,7 +53,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     {
         return PublishedContentItemsLinks.Select(link =>
         {
-            if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
+            if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot))
             {
                 resolverContext.Service<ILogger<MultiUrlPicker>>().LogError("Could not get published snapshot.");
                 return null;
@@ -78,7 +79,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
 
         if (publishedContentItemsAsObject is Link publishedContent)
         {
-            PublishedContentItemsLinks = new List<Link> { publishedContent };
+            PublishedContentItemsLinks = [publishedContent];
         }
         else if (publishedContentItemsAsObject is IEnumerable<Link> publishedContentItems)
         {
@@ -86,7 +87,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
         }
         else
         {
-            PublishedContentItemsLinks = new List<Link>();
+            PublishedContentItemsLinks = [];
         }
     }
 
@@ -145,9 +146,11 @@ public class MultiUrlPickerItem
     /// Gets the url of a content item
     /// </summary>
     [GraphQLDescription("Gets the url of a content item. If the link isn't to a content item or media item then the UrlMode doesn't affect the url.")]
-    public string Url(UrlMode urlMode)
+    public string Url(IResolverContext resolverContext, UrlMode urlMode)
     {
-        return PublishedContent?.Url(Culture, urlMode) ?? Link.Url ?? string.Empty;
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), Culture, urlMode) ?? Link.Url ?? string.Empty;
     }
 
     /// <summary>

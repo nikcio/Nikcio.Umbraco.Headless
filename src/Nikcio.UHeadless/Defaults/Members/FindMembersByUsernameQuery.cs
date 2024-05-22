@@ -2,6 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
+using Nikcio.UHeadless.Defaults.Auth;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
 using Umbraco.Cms.Core.Models;
@@ -26,21 +28,27 @@ public class FindMembersByUsernameQuery : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(options);
 
-        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
         {
-            configure.AddPolicy(PolicyName, policy =>
+            if (options.DisableAuthorization)
             {
-                if (options.DisableAuthorization)
-                {
-                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
-                    return;
-                }
+                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                return;
+            }
 
-                policy.RequireAuthenticatedUser();
+            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
 
-                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
-            });
+            policy.RequireAuthenticatedUser();
+
+            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
         });
+
+        AvailableClaimValue availableClaimValue = new()
+        {
+            Name = DefaultClaims.UHeadlessScope,
+            Values = [ClaimValue, DefaultClaimValues.GlobalMemberRead]
+        };
+        AuthorizationTokenProvider.AddAvailableClaimValue(ClaimValueGroups.Members, availableClaimValue);
     }
 
     /// <summary>

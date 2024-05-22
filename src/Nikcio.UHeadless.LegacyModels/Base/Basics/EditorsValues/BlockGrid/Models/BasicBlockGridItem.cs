@@ -73,10 +73,10 @@ public abstract class BasicBlockGridItem<TProperty, TBlockGridArea> : BlockGridI
     /// <inheritdoc/>
     [GraphQLDescription("Gets the content properties of the block grid item.")]
     [Obsolete("Transition to typed properties instead using the Defaults.Properties.BlockGridItem model.")]
-    public new List<TProperty?> ContentProperties { get; set; } = new();
+    public new List<TProperty?> ContentProperties { get; set; } = [];
 
     /// <inheritdoc/>
     [GraphQLDescription("Gets the setting properties of the block grid item.")]
     [Obsolete("Transition to typed properties instead using the Defaults.Properties.BlockGridItem model.")]
-    public new List<TProperty?> SettingsProperties { get; set; } = new();
+    public new List<TProperty?> SettingsProperties { get; set; } = [];
 }

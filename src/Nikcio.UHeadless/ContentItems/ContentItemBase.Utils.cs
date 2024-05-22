@@ -10,7 +10,7 @@ public partial class ContentItemBase
         ArgumentNullException.ThrowIfNull(command);
         ArgumentNullException.ThrowIfNull(dependencyReflectorFactory);
 
-        TContentItem? createdContent = dependencyReflectorFactory.GetReflectedType<TContentItem>(typeof(TContentItem), new object[] { command });
+        TContentItem? createdContent = dependencyReflectorFactory.GetReflectedType<TContentItem>(typeof(TContentItem), [command]);
 
         if (createdContent == null)
         {

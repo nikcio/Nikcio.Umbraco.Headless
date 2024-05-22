@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
+using Nikcio.UHeadless.Defaults.Authorization;
+using Nikcio.UHeadless.Defaults.MediaItems;
+using Nikcio.UHeadless.IntegrationTests;
+
+namespace Nikcio.UHeadless.IntegrationTests;
+
+public partial class ApiAuthTests
+{
+    private const string _mediaByIdSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MediaById";
+
+    [Theory]
+    [InlineData(1138, true, MediaByIdQuery.ClaimValue)]
+    [InlineData(1138, true, DefaultClaimValues.GlobalMediaRead)]
+    [InlineData(1138, true, "Invalid")] // Doesn't error because null is a vaild response
+    public async Task MediaByIdQuery_Snaps_Async(
+        int id,
+        bool expectSuccess,
+        params string[] claims)
+    {
+        var snapshotProvider = new SnapshotProvider($"{_mediaByIdSnapshotPath}/Snaps");
+        HttpClient client = _factory.CreateClient();
+
+        JwtToken token = await CreateTokenMutation_Async(client, new TokenClaim() { Name = DefaultClaims.UHeadlessScope, Value = claims }).ConfigureAwait(true);
+
+        client.DefaultRequestHeaders.Add(token.Header, token.Prefix + token.Token);
+
+        using var request = JsonContent.Create(new
+        {
+            query = MediaByIdQueries.GetItems,
+            variables = new
+            {
+                id,
+            }
+        });
+
+        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+
+        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+
+        string snapshotName = $"MediaById_Snaps_{id}_{string.Join("-", claims)}";
+
+        await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
+        Assert.Equal(expectSuccess, response.IsSuccessStatusCode);
+    }
+}

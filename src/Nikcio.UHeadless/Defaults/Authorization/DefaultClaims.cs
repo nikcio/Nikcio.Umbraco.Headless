@@ -1,4 +1,4 @@
-namespace Nikcio.UHeadless.Defaults;
+namespace Nikcio.UHeadless.Defaults.Authorization;
 
 public static class DefaultClaims
 {

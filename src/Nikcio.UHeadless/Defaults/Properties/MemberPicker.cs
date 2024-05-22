@@ -2,6 +2,8 @@ using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Properties;
+using Nikcio.UHeadless.Defaults.Auth;
+using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.Members;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -46,7 +48,7 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
     /// Gets the member items of a picker
     /// </summary>
     [Authorize(Policy = PolicyName)]
-    [GraphQLDescription("Gets the member items of a picker.")]
+    [GraphQLDescription($"Gets the member items of a picker. Requires the {ClaimValue} or {DefaultClaimValues.GlobalMemberRead} claim to access")]
     public List<TMemberPickerItem> Members(IResolverContext resolverContext)
     {
         return PublishedMembers.Select(publishedMember =>
@@ -62,7 +64,7 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
 
         if (publishedContentItemsAsObject is IPublishedContent publishedContent)
         {
-            PublishedMembers = new List<IPublishedContent> { publishedContent };
+            PublishedMembers = [publishedContent];
         }
         else if (publishedContentItemsAsObject is IEnumerable<IPublishedContent> publishedContentItems)
         {
@@ -70,7 +72,7 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
         }
         else
         {
-            PublishedMembers = new List<IPublishedContent>();
+            PublishedMembers = [];
         }
     }
 
@@ -84,21 +86,27 @@ public abstract class MemberPicker<TMemberPickerItem> : PropertyValue
 
     internal static UHeadlessOptions ApplyConfiguration(UHeadlessOptions options)
     {
-        options.UmbracoBuilder.Services.AddAuthorization(configure =>
+        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
         {
-            configure.AddPolicy(PolicyName, policy =>
+            if (options.DisableAuthorization)
             {
-                if (options.DisableAuthorization)
-                {
-                    policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
-                    return;
-                }
+                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+                return;
+            }
 
-                policy.RequireAuthenticatedUser();
+            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
 
-                policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
-            });
+            policy.RequireAuthenticatedUser();
+
+            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue, DefaultClaimValues.GlobalMemberRead);
         });
+
+        AvailableClaimValue availableClaimValue = new()
+        {
+            Name = DefaultClaims.UHeadlessScope,
+            Values = [ClaimValue, DefaultClaimValues.GlobalMemberRead]
+        };
+        AuthorizationTokenProvider.AddAvailableClaimValue(ClaimValueGroups.Members, availableClaimValue);
 
         return options;
     }
