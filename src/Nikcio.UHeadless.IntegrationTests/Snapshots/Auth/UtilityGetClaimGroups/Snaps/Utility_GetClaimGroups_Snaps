@@ -1,0 +1,58 @@
+{
+  "data": {
+    "utility_GetClaimGroups": [
+      {
+        "groupName": "Members",
+        "claimValues": [
+          {
+            "name": "headless-scope",
+            "values": [
+              "property.values.member.picker",
+              "global.member.read",
+              "find.members.by.display.name.query",
+              "find.members.by.email.query",
+              "find.members.by.role.query",
+              "find.members.by.username.query",
+              "member.by.email.query",
+              "member.by.guid.query",
+              "member.by.id.query",
+              "member.by.username.query"
+            ]
+          }
+        ]
+      },
+      {
+        "groupName": "Content",
+        "claimValues": [
+          {
+            "name": "headless-scope",
+            "values": [
+              "content.by.route.query",
+              "global.content.read",
+              "content.by.contentType.query",
+              "content.at.root.query",
+              "content.by.id.query",
+              "content.by.guid.query",
+              "content.by.tag.query"
+            ]
+          }
+        ]
+      },
+      {
+        "groupName": "Media",
+        "claimValues": [
+          {
+            "name": "headless-scope",
+            "values": [
+              "media.by.contentType.query",
+              "global.media.read",
+              "media.at.root.query",
+              "media.by.id.query",
+              "media.by.guid.query"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
