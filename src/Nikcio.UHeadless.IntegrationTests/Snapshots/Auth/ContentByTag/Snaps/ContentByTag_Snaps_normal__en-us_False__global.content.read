@@ -24,26 +24,6 @@
       "message": "The current user is not authorized to access this resource.",
       "locations": [
         {
-          "line": 427,
-          "column": 7
-        }
-      ],
-      "path": [
-        "contentByTag",
-        "items",
-        1,
-        "properties",
-        "memberPicker",
-        "members"
-      ],
-      "extensions": {
-        "code": "AUTH_NOT_AUTHORIZED"
-      }
-    },
-    {
-      "message": "The current user is not authorized to access this resource.",
-      "locations": [
-        {
           "line": 443,
           "column": 7
         }
@@ -54,6 +34,26 @@
         0,
         "properties",
         "memberPickerCulture",
+        "members"
+      ],
+      "extensions": {
+        "code": "AUTH_NOT_AUTHORIZED"
+      }
+    },
+    {
+      "message": "The current user is not authorized to access this resource.",
+      "locations": [
+        {
+          "line": 427,
+          "column": 7
+        }
+      ],
+      "path": [
+        "contentByTag",
+        "items",
+        1,
+        "properties",
+        "memberPicker",
         "members"
       ],
       "extensions": {
