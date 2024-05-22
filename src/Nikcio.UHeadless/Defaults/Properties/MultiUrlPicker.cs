@@ -5,6 +5,7 @@ using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Routing;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Properties;
@@ -145,9 +146,9 @@ public class MultiUrlPickerItem
     /// Gets the url of a content item
     /// </summary>
     [GraphQLDescription("Gets the url of a content item. If the link isn't to a content item or media item then the UrlMode doesn't affect the url.")]
-    public string Url(UrlMode urlMode)
+    public string Url(IResolverContext resolverContext, UrlMode urlMode)
     {
-        return PublishedContent?.Url(Culture, urlMode) ?? Link.Url ?? string.Empty;
+        return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), Culture, urlMode) ?? Link.Url ?? string.Empty;
     }
 
     /// <summary>

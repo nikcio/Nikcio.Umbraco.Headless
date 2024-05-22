@@ -2,6 +2,7 @@ using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Routing;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Properties;
@@ -115,9 +116,11 @@ public class ContentPickerItem
     /// Gets the url of a content item
     /// </summary>
     [GraphQLDescription("Gets the url of a content item.")]
-    public string Url(UrlMode urlMode)
+    public string Url(IResolverContext resolverContext, UrlMode urlMode)
     {
-        return PublishedContent.Url(Culture, urlMode);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        return PublishedContent.Url(resolverContext.Service<IPublishedUrlProvider>(), Culture, urlMode);
     }
 
     /// <summary>

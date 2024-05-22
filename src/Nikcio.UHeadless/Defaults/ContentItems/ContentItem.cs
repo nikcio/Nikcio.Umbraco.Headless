@@ -14,15 +14,12 @@ public partial class ContentItem : ContentItemBase
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
-    protected IPublishedUrlProvider PublishedUrlProvider { get; }
-
     public ContentItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         VariationContextAccessor = command.ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = command.ResolverContext.Service<IDependencyReflectorFactory>();
-        PublishedUrlProvider = command.ResolverContext.Service<IPublishedUrlProvider>();
 
         StatusCode = command.StatusCode;
         Redirect = command.Redirect == null ? null : new RedirectInfo()
@@ -47,7 +44,9 @@ public partial class ContentItem : ContentItemBase
     [GraphQLDescription("Gets the url of a content item.")]
     public string? Url(IResolverContext resolverContext, UrlMode urlMode)
     {
-        return PublishedContent?.Url(PublishedUrlProvider, resolverContext.Culture(), urlMode);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), resolverContext.Culture(), urlMode);
     }
 
     /// <summary>
