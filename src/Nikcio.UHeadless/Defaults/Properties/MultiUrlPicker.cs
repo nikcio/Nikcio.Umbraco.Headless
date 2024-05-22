@@ -53,7 +53,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     {
         return PublishedContentItemsLinks.Select(link =>
         {
-            if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
+            if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot))
             {
                 resolverContext.Service<ILogger<MultiUrlPicker>>().LogError("Could not get published snapshot.");
                 return null;
@@ -148,6 +148,8 @@ public class MultiUrlPickerItem
     [GraphQLDescription("Gets the url of a content item. If the link isn't to a content item or media item then the UrlMode doesn't affect the url.")]
     public string Url(IResolverContext resolverContext, UrlMode urlMode)
     {
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
         return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), Culture, urlMode) ?? Link.Url ?? string.Empty;
     }
 

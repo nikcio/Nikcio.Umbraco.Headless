@@ -72,7 +72,7 @@ internal class AuthorizationTokenProvider : IAuthorizationTokenProvider
 
             ArgumentNullException.ThrowIfNull(claimValue);
 
-            ClaimValueGroup? claimValueGroup = _availableClaims.FirstOrDefault(x => x.GroupName == groupName);
+            ClaimValueGroup? claimValueGroup = _availableClaims.Find(x => x.GroupName == groupName);
 
             if (claimValueGroup == null)
             {
@@ -87,7 +87,7 @@ internal class AuthorizationTokenProvider : IAuthorizationTokenProvider
                 return;
             }
 
-            AvailableClaimValue? existingValue = claimValueGroup.ClaimValues.FirstOrDefault(claimValue => claimValue.Name == claimValue.Name);
+            AvailableClaimValue? existingValue = claimValueGroup.ClaimValues.Find(value => value.Name == claimValue.Name);
 
             if (existingValue != null)
             {

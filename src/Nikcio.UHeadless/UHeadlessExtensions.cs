@@ -41,7 +41,7 @@ public static class UHeadlessExtensions
         };
         configure?.Invoke(options);
 
-        if (options.DisableAuthorization == false && options.AuthorizationOptions == null)
+        if (!options.DisableAuthorization && options.AuthorizationOptions == null)
         {
             throw new InvalidOperationException("Authorization options must be set when authorization is enabled. Set the options in the UHeadless options using .AddAuth().");
         }

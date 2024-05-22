@@ -22,8 +22,6 @@ if (builder.Environment.IsDevelopment())
 {
     umbracoBuilder.AddUHeadless(options =>
     {
-        //options.DisableAuthorization = true;
-
         options.AddAuth(new()
         {
             ApiKey = "uheadless123456789123456789123456789",
