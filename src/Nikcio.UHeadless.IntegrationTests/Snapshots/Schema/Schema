@@ -1189,7 +1189,7 @@ type PaginationOfMemberItem {
   items: [MemberItem!]!
 }
 
-"Implements the String) query"
+"The base query object"
 type Query {
   "Gets a content item by a route."
   contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")

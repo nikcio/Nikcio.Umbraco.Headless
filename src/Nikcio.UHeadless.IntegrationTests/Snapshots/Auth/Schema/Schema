@@ -1223,7 +1223,7 @@ type PaginationOfMemberItem {
   items: [MemberItem!]!
 }
 
-"Implements the String) query"
+"Implements the UtilityClaimGroupsQuery query"
 type Query {
   "Utility query. Gets a which claims are used by the registered queries."
   utility_GetClaimGroups: [ClaimGroup!]!

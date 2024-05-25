@@ -28,9 +28,9 @@ if (builder.Environment.IsDevelopment())
             Secret = "uheadless123456789123456789123456789uheadless123456789123456789123456789uheadless123456789123456789123456789",
         });
 
-        options.AddQuery<UtilityClaimGroupsQuery>();
-
         options.AddDefaults();
+
+        options.AddQuery<UtilityClaimGroupsQuery>();
 
         options
             .AddQuery<ContentByRouteQuery>()

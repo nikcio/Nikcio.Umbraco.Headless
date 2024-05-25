@@ -3,7 +3,7 @@
     "contentById": {
       "url": null,
       "redirect": null,
-      "statusCode": 200,
+      "statusCode": 404,
       "properties": {
         "__typename": "EmptyPropertyType"
       },
