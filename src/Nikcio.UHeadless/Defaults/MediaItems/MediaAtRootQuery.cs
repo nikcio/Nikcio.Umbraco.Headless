@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,16 +10,32 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaAtRootQuery : MediaAtRootQuery<MediaItem>
+{
+    protected override MediaItem? CreateMediaItem(IPublishedContent media, IMediaItemRepository<MediaItem> mediaItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+
+        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        {
+            PublishedContent = media,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MediaAtRoot" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MediaAtRootQuery : IGraphQLQuery
+public abstract class MediaAtRootQuery<TMediaItem> : IGraphQLQuery
+    where TMediaItem : MediaItemBase
 {
     public const string PolicyName = "MediaAtRootQuery";
 
     public const string ClaimValue = "media.at.root.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -53,8 +68,7 @@ public class MediaAtRootQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the media items at root level.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<MediaItem?> MediaAtRoot(
+    public virtual PaginationResult<TMediaItem?> MediaAtRoot(
         IResolverContext resolverContext,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
@@ -63,7 +77,7 @@ public class MediaAtRootQuery : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(pageSize);
         ArgumentNullException.ThrowIfNull(page);
 
-        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
+        IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -74,12 +88,10 @@ public class MediaAtRootQuery : IGraphQLQuery
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetAtRoot();
 
-        IEnumerable<MediaItem?> resultItems = mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
-        {
-            PublishedContent = mediaItem,
-            ResolverContext = resolverContext,
-        }));
+        IEnumerable<TMediaItem?> resultItems = mediaItems.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
 
-        return new PaginationResult<MediaItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TMediaItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TMediaItem? CreateMediaItem(IPublishedContent media, IMediaItemRepository<TMediaItem> mediaItemRepository, IResolverContext resolverContext);
 }

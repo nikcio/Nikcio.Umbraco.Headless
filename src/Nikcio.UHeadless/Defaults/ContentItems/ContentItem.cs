@@ -1,4 +1,5 @@
 using HotChocolate.Resolvers;
+using Microsoft.AspNetCore.Http;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
@@ -93,7 +94,7 @@ public partial class ContentItem : ContentItemBase
             PublishedContent = PublishedContent.Parent,
             ResolverContext = resolverContext,
             Redirect = null,
-            StatusCode = 200,
+            StatusCode = StatusCodes.Status200OK,
         }, DependencyReflectorFactory) : default;
     }
 

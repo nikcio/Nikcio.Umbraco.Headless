@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +13,32 @@ using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class FindMembersByRoleQuery : FindMembersByRoleQuery<MemberItem>
+{
+    protected override MemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<MemberItem> memberItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(memberItemRepository);
+
+        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
+        {
+            PublishedContent = member,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="FindMembersByRole"/> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class FindMembersByRoleQuery : IGraphQLQuery
+public abstract class FindMembersByRoleQuery<TMemberItem> : IGraphQLQuery
+    where TMemberItem : MemberItemBase
 {
     public const string PolicyName = "FindMembersByRoleQuery";
 
     public const string ClaimValue = "find.members.by.role.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -56,8 +71,7 @@ public class FindMembersByRoleQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Finds members by role.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<MemberItem?> FindMembersByRole(
+    public virtual PaginationResult<TMemberItem?> FindMembersByRole(
         IResolverContext resolverContext,
         [GraphQLDescription("The role name.")] string roleName,
         [GraphQLDescription("The username to match.")] string usernameToMatch,
@@ -70,7 +84,7 @@ public class FindMembersByRoleQuery : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(pageSize);
         ArgumentNullException.ThrowIfNull(page);
 
-        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
+        IMemberItemRepository<TMemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<TMemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
@@ -85,12 +99,10 @@ public class FindMembersByRoleQuery : IGraphQLQuery
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 
-        IEnumerable<MemberItem?> resultItems = memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
-        {
-            PublishedContent = member,
-            ResolverContext = resolverContext,
-        }));
+        IEnumerable<TMemberItem?> resultItems = memberItems.Select(member => CreateMemberItem(member, memberItemRepository, resolverContext));
 
-        return new PaginationResult<MemberItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TMemberItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TMemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<TMemberItem> memberItemRepository, IResolverContext resolverContext);
 }

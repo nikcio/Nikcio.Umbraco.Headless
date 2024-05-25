@@ -1,6 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.Auth;
@@ -12,16 +12,34 @@ using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class ContentByTagQuery : ContentByTagQuery<ContentItem>
+{
+    protected override ContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<ContentItem> contentItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(contentItemRepository);
+
+        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        {
+            PublishedContent = publishedContent,
+            ResolverContext = resolverContext,
+            StatusCode = StatusCodes.Status200OK,
+            Redirect = null
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="ContentByTag" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class ContentByTagQuery : IGraphQLQuery
+public abstract class ContentByTagQuery<TContentItem> : IGraphQLQuery
+    where TContentItem : ContentItemBase
 {
     public const string PolicyName = "ContentByTagQuery";
 
     public const string ClaimValue = "content.by.tag.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -54,8 +72,7 @@ public class ContentByTagQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets content items by tag.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<ContentItem?> ContentByTag(
+    public virtual PaginationResult<TContentItem?> ContentByTag(
         IResolverContext resolverContext,
         [GraphQLDescription("The tag to fetch.")] string tag,
         [GraphQLDescription("The tag group to fetch.")] string? tagGroup = null,
@@ -74,7 +91,7 @@ public class ContentByTagQuery : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
         ITagService tagService = resolverContext.Service<ITagService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
@@ -87,14 +104,10 @@ public class ContentByTagQuery : IGraphQLQuery
         IEnumerable<TaggedEntity> taggedEntities = tagService.GetTaggedContentByTag(tag, tagGroup, inContext.Culture);
         IEnumerable<IPublishedContent> contentItems = taggedEntities.Select(entity => contentCache?.GetById(entity.EntityId)).OfType<IPublishedContent>();
 
-        IEnumerable<ContentItem?> resultItems = contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-        {
-            PublishedContent = contentItem,
-            ResolverContext = resolverContext,
-            Redirect = null,
-            StatusCode = 200
-        }));
+        IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 
-        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TContentItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<TContentItem> contentItemRepository, IResolverContext resolverContext);
 }

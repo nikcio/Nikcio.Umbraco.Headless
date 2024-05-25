@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +13,32 @@ using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MemberByGuidQuery : MemberByGuidQuery<MemberItem>
+{
+    protected override MemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<MemberItem> memberItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(memberItemRepository);
+
+        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
+        {
+            PublishedContent = member,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MemberByGuid"/> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MemberByGuidQuery : IGraphQLQuery
+public abstract class MemberByGuidQuery<TMemberItem> : IGraphQLQuery
+    where TMemberItem : MemberItemBase
 {
     public const string PolicyName = "MemberByGuidQuery";
 
     public const string ClaimValue = "member.by.guid.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -56,15 +71,14 @@ public class MemberByGuidQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets a member by Guid.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public MemberItem? MemberByGuid(
+    public virtual TMemberItem? MemberByGuid(
         IResolverContext resolverContext,
         [GraphQLDescription("The id to fetch.")] Guid id)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentNullException.ThrowIfNull(id);
 
-        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
+        IMemberItemRepository<TMemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<TMemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
@@ -86,10 +100,8 @@ public class MemberByGuidQuery : IGraphQLQuery
 
         IPublishedContent? memberItem = memberCache.Get(member);
 
-        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
-        {
-            PublishedContent = memberItem,
-            ResolverContext = resolverContext,
-        });
+        return CreateMemberItem(memberItem, memberItemRepository, resolverContext);
     }
+
+    protected abstract TMemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<TMemberItem> memberItemRepository, IResolverContext resolverContext);
 }

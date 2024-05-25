@@ -1,6 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.ContentItems;
@@ -12,16 +12,34 @@ using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class ContentByContentTypeQuery : ContentByContentTypeQuery<ContentItem>
+{
+    protected override ContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<ContentItem> contentItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(contentItemRepository);
+
+        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        {
+            PublishedContent = publishedContent,
+            ResolverContext = resolverContext,
+            Redirect = null,
+            StatusCode = StatusCodes.Status200OK
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="ContentByContentType" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class ContentByContentTypeQuery : IGraphQLQuery
+public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
+    where TContentItem : ContentItemBase
 {
     public const string PolicyName = "ContentByContentTypeQuery";
 
     public const string ClaimValue = "content.by.contentType.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -54,8 +72,7 @@ public class ContentByContentTypeQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the content items by content type.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<ContentItem?> ContentByContentType(
+    public virtual PaginationResult<TContentItem?> ContentByContentType(
         IResolverContext resolverContext,
         [GraphQLDescription("The contentType to fetch.")] string contentType,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
@@ -73,7 +90,7 @@ public class ContentByContentTypeQuery : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
         IVariationContextAccessor variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
@@ -88,21 +105,17 @@ public class ContentByContentTypeQuery : IGraphQLQuery
         {
             ILogger<ContentByContentTypeQuery> logger = resolverContext.Service<ILogger<ContentByContentTypeQuery>>();
             logger.LogInformation("Content type not found");
-            return new PaginationResult<ContentItem?>([], page, pageSize);
+            return new PaginationResult<TContentItem?>([], page, pageSize);
         }
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(inContext.IncludePreview.Value, inContext.Culture)
                     .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, inContext.Culture))
                     .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        IEnumerable<ContentItem?> resultItems = contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-        {
-            PublishedContent = contentItem,
-            ResolverContext = resolverContext,
-            Redirect = null,
-            StatusCode = 200
-        }));
+        IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 
-        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TContentItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<TContentItem> contentItemRepository, IResolverContext resolverContext);
 }

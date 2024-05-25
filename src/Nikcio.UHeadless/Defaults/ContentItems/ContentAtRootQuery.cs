@@ -1,7 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.Auth;
@@ -12,16 +11,34 @@ using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class ContentAtRootQuery : ContentAtRootQuery<ContentItem>
+{
+    protected override ContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<ContentItem> contentItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(contentItemRepository);
+
+        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        {
+            PublishedContent = publishedContent,
+            ResolverContext = resolverContext,
+            Redirect = null,
+            StatusCode = StatusCodes.Status200OK
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="ContentAtRoot" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class ContentAtRootQuery : IGraphQLQuery
+public abstract class ContentAtRootQuery<TContentItem> : IGraphQLQuery
+    where TContentItem : ContentItemBase
 {
     public const string PolicyName = "ContentAtRootQuery";
 
     public const string ClaimValue = "content.at.root.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -54,8 +71,7 @@ public class ContentAtRootQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the content items at root level.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<ContentItem?> ContentAtRoot(
+    public virtual PaginationResult<TContentItem?> ContentAtRoot(
         IResolverContext resolverContext,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1,
@@ -71,7 +87,7 @@ public class ContentAtRootQuery : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -82,14 +98,10 @@ public class ContentAtRootQuery : IGraphQLQuery
 
         IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(inContext.IncludePreview.Value, inContext.Culture);
 
-        IEnumerable<ContentItem?> resultItems = contentItems.Select(contentItem => contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-        {
-            PublishedContent = contentItem,
-            ResolverContext = resolverContext,
-            Redirect = null,
-            StatusCode = 200
-        }));
+        IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 
-        return new PaginationResult<ContentItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TContentItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TContentItem? CreateContentItem(IPublishedContent publishedContent, IContentItemRepository<TContentItem> contentItemRepository, IResolverContext resolverContext);
 }

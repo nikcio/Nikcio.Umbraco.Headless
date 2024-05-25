@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.Properties;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core;

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +13,32 @@ using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class FindMembersByUsernameQuery : FindMembersByUsernameQuery<MemberItem>
+{
+    protected override MemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<MemberItem> memberItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(memberItemRepository);
+
+        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
+        {
+            PublishedContent = member,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="FindMembersByUsername"/> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class FindMembersByUsernameQuery : IGraphQLQuery
+public abstract class FindMembersByUsernameQuery<TMemberItem> : IGraphQLQuery
+    where TMemberItem : MemberItemBase
 {
     public const string PolicyName = "FindMembersByUsernameQuery";
 
     public const string ClaimValue = "find.members.by.username.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -56,8 +71,7 @@ public class FindMembersByUsernameQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Finds members by username.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public IEnumerable<MemberItem?> FindMembersByUsername(
+    public virtual List<TMemberItem?> FindMembersByUsername(
         IResolverContext resolverContext,
         [GraphQLDescription("The username (may be partial).")] string username,
         [GraphQLDescription("Determines how to match a string property value.")] StringPropertyMatchType matchType,
@@ -82,7 +96,7 @@ public class FindMembersByUsernameQuery : IGraphQLQuery
             throw new ArgumentOutOfRangeException(nameof(pageSize), "The page size must be greater than zero");
         }
 
-        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
+        IMemberItemRepository<TMemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<TMemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
@@ -97,10 +111,8 @@ public class FindMembersByUsernameQuery : IGraphQLQuery
 
         IEnumerable<IPublishedContent?> memberItems = members.Select(memberCache.Get);
 
-        return memberItems.Select(member => memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
-        {
-            PublishedContent = member,
-            ResolverContext = resolverContext,
-        }));
+        return memberItems.Select(member => CreateMemberItem(member, memberItemRepository, resolverContext)).ToList();
     }
+
+    protected abstract TMemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<TMemberItem> memberItemRepository, IResolverContext resolverContext);
 }

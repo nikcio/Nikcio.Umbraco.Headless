@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,16 +11,32 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaByContentTypeQuery : MediaByContentTypeQuery<MediaItem>
+{
+    protected override MediaItem? CreateMediaItem(IPublishedContent media, IMediaItemRepository<MediaItem> mediaItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+
+        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        {
+            PublishedContent = media,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MediaByContentType" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MediaByContentTypeQuery : IGraphQLQuery
+public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
+    where TMediaItem : MediaItemBase
 {
     public const string PolicyName = "MediaByContentTypeQuery";
 
     public const string ClaimValue = "media.by.contentType.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -54,8 +69,7 @@ public class MediaByContentTypeQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets all the media items by content type.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public PaginationResult<MediaItem?> MediaByContentType(
+    public virtual PaginationResult<TMediaItem?> MediaByContentType(
         IResolverContext resolverContext,
         [GraphQLDescription("The content type to fetch.")] string contentType,
         [GraphQLDescription("How many items to include in a page. Defaults to 10.")] int pageSize = 10,
@@ -66,7 +80,7 @@ public class MediaByContentTypeQuery : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(pageSize);
         ArgumentNullException.ThrowIfNull(page);
 
-        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
+        IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -81,17 +95,15 @@ public class MediaByContentTypeQuery : IGraphQLQuery
         {
             ILogger<MediaByContentTypeQuery> logger = resolverContext.Service<ILogger<MediaByContentTypeQuery>>();
             logger.LogError("Media type not found. {ContentType}", contentType);
-            return new PaginationResult<MediaItem?>([], page, pageSize);
+            return new PaginationResult<TMediaItem?>([], page, pageSize);
         }
 
         IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);
 
-        IEnumerable<MediaItem?> resultItems = mediaItems.Select(mediaItem => mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
-        {
-            PublishedContent = mediaItem,
-            ResolverContext = resolverContext,
-        }));
+        IEnumerable<TMediaItem?> resultItems = mediaItems.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
 
-        return new PaginationResult<MediaItem?>(resultItems, page, pageSize);
+        return new PaginationResult<TMediaItem?>(resultItems, page, pageSize);
     }
+
+    protected abstract TMediaItem? CreateMediaItem(IPublishedContent media, IMediaItemRepository<TMediaItem> mediaItemRepository, IResolverContext resolverContext);
 }

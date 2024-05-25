@@ -1,6 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.Auth;
@@ -10,16 +10,34 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class ContentByIdQuery : ContentByIdQuery<ContentItem>
+{
+    protected override ContentItem? CreateContentItem(IPublishedContent? publishedContent, IContentItemRepository<ContentItem> contentItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(contentItemRepository);
+
+        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+        {
+            PublishedContent = publishedContent,
+            ResolverContext = resolverContext,
+            StatusCode = publishedContent == null ? StatusCodes.Status404NotFound : StatusCodes.Status200OK,
+            Redirect = null
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="ContentById" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class ContentByIdQuery : IGraphQLQuery
+public abstract class ContentByIdQuery<TContentItem> : IGraphQLQuery
+    where TContentItem : ContentItemBase
 {
     public const string PolicyName = "ContentByIdQuery";
 
     public const string ClaimValue = "content.by.id.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -52,8 +70,7 @@ public class ContentByIdQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets a content item by id.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public ContentItem? ContentById(
+    public virtual TContentItem? ContentById(
         IResolverContext resolverContext,
         [GraphQLDescription("The id to fetch.")] int id,
         [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
@@ -72,7 +89,7 @@ public class ContentByIdQuery : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+        IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -83,12 +100,8 @@ public class ContentByIdQuery : IGraphQLQuery
 
         IPublishedContent? contentItem = contentCache.GetById(inContext.IncludePreview.Value, id);
 
-        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-        {
-            PublishedContent = contentItem,
-            ResolverContext = resolverContext,
-            StatusCode = 200,
-            Redirect = null
-        });
+        return CreateContentItem(contentItem, contentItemRepository, resolverContext);
     }
+
+    protected abstract TContentItem? CreateContentItem(IPublishedContent? publishedContent, IContentItemRepository<TContentItem> contentItemRepository, IResolverContext resolverContext);
 }
