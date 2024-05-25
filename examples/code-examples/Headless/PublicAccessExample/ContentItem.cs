@@ -15,6 +15,7 @@ namespace Code.Examples.Headless.PublicAccessExample;
 /// This example uses the default <see cref="Nikcio.UHeadless.Defaults.ContentItems.ContentItem"/> class from UHeadless
 /// but could also be implemented using the <see cref="Nikcio.UHeadless.ContentItems.ContentItemBase"/> class.
 /// </remarks>
+[GraphQLName("PublishAccessExampleContentItem")]
 public class ContentItem : Nikcio.UHeadless.Defaults.ContentItems.ContentItem
 {
     public ContentItem(CreateCommand command) : base(command)

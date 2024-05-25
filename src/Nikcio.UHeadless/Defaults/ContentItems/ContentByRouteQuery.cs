@@ -187,7 +187,7 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
 
         baseUrl = SetBaseUrl(httpContextAccessor, baseUrl);
 
-        var uri = new Uri($"{baseUrl}{route}");
+        var uri = new Uri($"{baseUrl.TrimEnd('/')}{route}");
 
         IPublishedRequestBuilder builder = await publishedRouter.CreateRequestAsync(uri).ConfigureAwait(false);
         IPublishedRequest request = await publishedRouter.RouteRequestAsync(builder, new RouteRequestOptions(RouteDirection.Inbound)).ConfigureAwait(false);

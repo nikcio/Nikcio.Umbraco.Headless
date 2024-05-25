@@ -1,5 +1,6 @@
+using Code.Examples.Headless.PublicAccessExample;
+using Code.Examples.Headless.SkybrudRedirectsExample;
 using Nikcio.UHeadless;
-using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
@@ -13,16 +14,15 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .AddUHeadless(options =>
     {
-        options.AddAuth(new()
-        {
-            ApiKey = "uheadless123456789123456789123456789",
-            Secret = "uheadless123456789123456789123456789uheadless123456789123456789123456789uheadless123456789123456789123456789",
-        });
+        options.DisableAuthorization = true;
 
         options.AddDefaults();
 
-        options.AddQuery<UtilityClaimGroupsQuery>();
+        options.AddQuery<PublishAccessExampleQuery>();
 
+        options.AddQuery<SkybrudRedirectsExampleQuery>();
+
+        // Default queries
         options
             .AddQuery<ContentByRouteQuery>()
             .AddQuery<ContentByContentTypeQuery>()
