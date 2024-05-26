@@ -1049,9 +1049,10 @@ $RECYCLE.BIN/
 **/umbraco/Data/TEMP/
 
 # SQLite database files
-**/umbraco/Data/UHeadlessTestProject
-**/umbraco/Data/UHeadlessTestProject-shm
-**/umbraco/Data/UHeadlessTestProject-wal
+**/umbraco/Data/UHeadlessTestProject.sqlite
+
+**/umbraco/Data/*.sqlite-shm
+**/umbraco/Data/*.sqlite-wal
 
 # Log files
 **/umbraco/Logs/

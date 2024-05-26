@@ -15,12 +15,9 @@
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
     <PackageReference Include="UrlTracker" Version="13.1.0" />
+    <PackageReference Include="uSync" Version="13.2.3" />
     <ProjectReference Include="..\..\src\Nikcio.UHeadless\Nikcio.UHeadless.csproj" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="umbraco\Data\" />
   </ItemGroup>
 
   <PropertyGroup>

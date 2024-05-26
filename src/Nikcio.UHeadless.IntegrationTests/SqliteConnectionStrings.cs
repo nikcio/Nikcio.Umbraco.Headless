@@ -4,6 +4,6 @@ public static class SqliteConnectionStrings
 {
     public static string ConnectionString()
     {
-        return $"Data Source=|DataDirectory|/Default-Tests;Cache=Shared;Foreign Keys=True;Pooling=True";
+        return $"Data Source=|DataDirectory|/Default-Tests.sqlite;Cache=Shared;Foreign Keys=True;Pooling=True";
     }
 }
