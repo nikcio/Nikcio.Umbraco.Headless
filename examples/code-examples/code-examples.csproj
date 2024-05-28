@@ -14,6 +14,7 @@
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.0" />
     <PackageReference Include="UrlTracker" Version="13.1.0" />
     <PackageReference Include="uSync" Version="13.2.3" />
     <ProjectReference Include="..\..\src\Nikcio.UHeadless\Nikcio.UHeadless.csproj" />
