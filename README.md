@@ -16,7 +16,7 @@ The Nikcio.UHeadless package is compatible with the following Umbraco versions:
 |----------------------|-----------------------|
 | Umbraco 10           | v3.x.x                |
 | Umbraco 12           | v4.x.x                |
-| Umbraco 13           | v4.2.x+               |
+| Umbraco 13           | v4.2.x+ & v5.x.x      |
 
 For more information, please refer to the [Versioning](#versioning) section.
 
@@ -86,27 +86,6 @@ With these configurations in place, your content will be available at `/graphql`
 
 For detailed documentation and usage instructions, please refer to the [Nikcio.UHeadless Documentation](https://nikcio.github.io/Nikcio.UHeadless).
 
-## Extending Packages
-
-Nikcio.UHeadless offers various packages for extending its functionality. The following table lists the available packages and their current status:
-
-| Package Name                      | Status       |
-| --------------------------------- | ------------ |
-| Nikcio.UHeadless.Content          | Included*    |
-| Nikcio.UHeadless.Media            | Included*    |
-| Nikcio.UHeadless.ContentTypes     | Included*    |
-| Nikcio.UHeadless.Members          | Available    |
-| Nikcio.UHeadless.DataTypes        | Not started  |
-| Nikcio.UHeadless.Dictionary       | Not started  |
-| Nikcio.UHeadless.MediaTypes       | Not started  |
-| Nikcio.UHeadless.MemberTypes      | Not started  |
-
-\***Included** indicates that the package is included in the Nikcio.UHeadless NuGet package.
-
-\*\***Preview** indicates that the package is available in a preview version.
-
-Please note that if a Nikcio.UHeadless.\* package is not listed above, it either means that the package is not ready for use or it is a core/base package used in the packages mentioned above.
-
 ## Versioning
 
 Nikcio.UHeadless follows the principles of Semantic Versioning to ensure consistency. The version numbers have the following meaning:
@@ -127,7 +106,7 @@ vX.Y.Z
 | Umbraco 10           | v2.x.x & v3.x.x       | Only reported issues for v3.x.x       |
 | Umbraco 11           | v3.x.x & v4.x.x       | No development                        |
 | Umbraco 12           | v4.x.x                | Only reported issues for v4.x.x       |
-| Umbraco 13           | v4.2.x+               | Active branch                         |
+| Umbraco 13           | v4.2.x+ & v5.x.x      | Active branch (v5.x.x)                |
 
 ## Contributing
 
