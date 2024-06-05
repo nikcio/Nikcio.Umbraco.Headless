@@ -29,11 +29,19 @@ public class SkybrudRedirectsExampleQuery : ContentByRouteQuery
 
         IRedirectsService redirectService = resolverContext.Service<IRedirectsService>();
 
-        IRedirect? redirect = redirectService.GetRedirectByUri(new Uri($"{baseUrl.TrimEnd('/')}{route}"));
+        var uri = new Uri($"{baseUrl.TrimEnd('/')}{route}");
+        IRedirect? redirect = redirectService.GetRedirectByUri(uri);
 
         if (redirect != null)
         {
             IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+
+            string redirectUrl = redirect.Destination.FullUrl;
+
+            if (redirect.ForwardQueryString)
+            {
+                redirectUrl = redirectUrl.TrimEnd('/') + uri.Query;
+            }
 
             return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
             {
@@ -42,7 +50,7 @@ public class SkybrudRedirectsExampleQuery : ContentByRouteQuery
                 Redirect = new()
                 {
                     IsPermanent = redirect.IsPermanent,
-                    RedirectUrl = redirect.Destination.FullUrl,
+                    RedirectUrl = redirectUrl,
                 },
                 StatusCode = redirect.IsPermanent ? StatusCodes.Status301MovedPermanently : StatusCodes.Status307TemporaryRedirect,
             });

@@ -1,19 +1,12 @@
 {
-  "errors": [
-    {
-      "message": "Unexpected Execution Error",
-      "locations": [
-        {
-          "line": 2,
-          "column": 3
-        }
-      ],
-      "path": [
-        "urlTrackerExampleQuery"
-      ]
-    }
-  ],
   "data": {
-    "urlTrackerExampleQuery": null
+    "urlTrackerExampleQuery": {
+      "redirect": {
+        "redirectUrl": "/regexhttp://example.com/ipsum",
+        "isPermanent": true
+      },
+      "name": null,
+      "statusCode": 301
+    }
   }
 }

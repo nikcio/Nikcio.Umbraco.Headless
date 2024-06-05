@@ -4,7 +4,7 @@
       "name": null,
       "url": null,
       "redirect": {
-        "redirectUrl": "https://site-2.com/page-1/",
+        "redirectUrl": "https://site-2.com/page-1?q=my-query",
         "isPermanent": false
       },
       "statusCode": 307

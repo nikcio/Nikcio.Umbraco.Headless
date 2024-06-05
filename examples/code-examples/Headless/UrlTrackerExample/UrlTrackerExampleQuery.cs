@@ -96,8 +96,15 @@ public class UrlTrackerExampleQuery : ContentByRouteQuery
             url.Query = requestedUrl.Query;
         }
 
-        RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
-        return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
+        {
+            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
+            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+        }
+        else
+        {
+            return url.ToString();
+        }
     }
 
     private static string? GetUrl(IResolverContext resolverContext, Redirect redirect, ContentPageTargetStrategy target, Url requestedUrl)
@@ -115,7 +122,14 @@ public class UrlTrackerExampleQuery : ContentByRouteQuery
             url.Query = requestedUrl.Query;
         }
 
-        RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
-        return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
+        {
+            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
+            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+        }
+        else
+        {
+            return url.ToString();
+        }
     }
 }
