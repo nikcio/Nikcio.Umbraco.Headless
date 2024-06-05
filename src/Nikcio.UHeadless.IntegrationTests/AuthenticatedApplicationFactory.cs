@@ -6,11 +6,13 @@ using Nikcio.UHeadless.Defaults.Members;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
-public class AuthenticatedApplicationFactory : ApplicationFactoryBase
+public class AuthenticatedApplicationFactory : ApplicationFactoryBase<TestProject.Program>
 {
     public const string ApiKey = "AJvT7FWOPL61h*PFXCsduJbLQKX5Q@w2l9c6VGIzTT4twUhX374dltXfQUwg89lUD&dk@5B^3aYb@QmepnuEARPAUhkAp%czAcQ";
 
     public override UHeadlessSetup UHeadlessSetup => new AuthenticatedUHeadlessSetup();
+
+    public override string TestDatabaseName => "Default-Tests.sqlite";
 }
 
 public class AuthenticatedUHeadlessSetup : UHeadlessSetup

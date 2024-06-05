@@ -7,10 +7,11 @@ public partial class ApiTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByTag";
 
     [Theory]
-    [InlineData("normal", null, "en-us", false, null, true)]
-    [InlineData("normal", null, "en-us", true, null, true)]
-    [InlineData("normal", null, "da", false, null, true)]
+    [InlineData("test-1", "normal", null, "en-us", false, null, true)]
+    [InlineData("test-2", "normal", null, "en-us", true, null, true)]
+    [InlineData("test-3", "normal", null, "da", false, null, true)]
     public async Task ContentByTagQuery_Snaps_Async(
+        string testCase,
         string tag,
         string? tagGroup,
         string? culture,
@@ -38,7 +39,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByTag_Snaps_{tag}_{tagGroup}_{culture}_{includePreview}_{segment}";
+        string snapshotName = $"ContentByTag_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

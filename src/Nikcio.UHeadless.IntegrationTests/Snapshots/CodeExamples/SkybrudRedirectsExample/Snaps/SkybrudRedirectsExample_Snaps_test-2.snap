@@ -1,0 +1,13 @@
+{
+  "data": {
+    "skybrudRedirectsExampleQuery": {
+      "name": null,
+      "url": null,
+      "redirect": {
+        "redirectUrl": "https://site-2.com/page-1/",
+        "isPermanent": false
+      },
+      "statusCode": 307
+    }
+  }
+}

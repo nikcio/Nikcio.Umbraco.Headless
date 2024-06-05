@@ -8,16 +8,17 @@ public partial class ApiTests
     private const string _findMembersByEmailSnapshotPath = $"{SnapshotConstants.BasePath}/FindMembersByEmail";
 
     [Theory]
-    [InlineData("user1@test.com", StringPropertyMatchType.Exact, 1, 0, false)]
-    [InlineData("user1@test.com", StringPropertyMatchType.Exact, 1, 1, true)]
-    [InlineData("user1@test.com", StringPropertyMatchType.Exact, 2, 1, true)]
-    [InlineData("user1@test.com", StringPropertyMatchType.Exact, 1, 1000, true)]
-    [InlineData("user1@test.com", StringPropertyMatchType.Exact, 1000, 1000, true)]
-    [InlineData("member", StringPropertyMatchType.Contains, 1, 5, true)]
-    [InlineData("member", StringPropertyMatchType.Contains, 0, 5, false)]
-    [InlineData("member", StringPropertyMatchType.Contains, -1, 5, false)]
-    [InlineData("member", StringPropertyMatchType.Contains, 0, -1, false)]
+    [InlineData("test-1", "user1@test.com", StringPropertyMatchType.Exact, 1, 0, false)]
+    [InlineData("test-2", "user1@test.com", StringPropertyMatchType.Exact, 1, 1, true)]
+    [InlineData("test-3", "user1@test.com", StringPropertyMatchType.Exact, 2, 1, true)]
+    [InlineData("test-4", "user1@test.com", StringPropertyMatchType.Exact, 1, 1000, true)]
+    [InlineData("test-5", "user1@test.com", StringPropertyMatchType.Exact, 1000, 1000, true)]
+    [InlineData("test-6", "member", StringPropertyMatchType.Contains, 1, 5, true)]
+    [InlineData("test-7", "member", StringPropertyMatchType.Contains, 0, 5, false)]
+    [InlineData("test-8", "member", StringPropertyMatchType.Contains, -1, 5, false)]
+    [InlineData("test-9", "member", StringPropertyMatchType.Contains, 0, -1, false)]
     public async Task FindMembersByEmailQuery_Snaps_Async(
+        string testCase,
         string email,
         StringPropertyMatchType matchType,
         int page,
@@ -43,7 +44,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"FindMembersByEmail_Snaps_{email}_{matchType}_{page}_{pageSize}";
+        string snapshotName = $"FindMembersByEmail_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

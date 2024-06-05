@@ -15,10 +15,11 @@ public partial class ApiAuthTests
     private const string _memberByEmailSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MemberByEmail";
 
     [Theory]
-    [InlineData("user1@test.com", true, MemberByEmailQuery.ClaimValue)]
-    [InlineData("user1@test.com", true, DefaultClaimValues.GlobalMemberRead)]
-    [InlineData("user1@test.com", true, "Invalid")]
+    [InlineData("test-1", "user1@test.com", true, MemberByEmailQuery.ClaimValue)]
+    [InlineData("test-2", "user1@test.com", true, DefaultClaimValues.GlobalMemberRead)]
+    [InlineData("test-3", "user1@test.com", true, "Invalid")]
     public async Task MemberByEmailQuery_Snaps_Async(
+        string testCase,
         string email,
         bool expectSuccess,
         params string[] claims)
@@ -43,7 +44,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MemberByEmail_Snaps_{email}_{string.Join("-", claims)}";
+        string snapshotName = $"MemberByEmail_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

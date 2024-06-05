@@ -7,17 +7,18 @@ public partial class ApiTests
     private const string _contentByIdSnapshotPath = $"{SnapshotConstants.BasePath}/ContentById";
 
     [Theory]
-    [InlineData(1146, "en-us", false, null, true)]
-    [InlineData(1146, "da", false, null, true)]
-    [InlineData(1146, null, false, null, true)]
-    [InlineData(1149, "en-us", true, null, true)]
-    [InlineData(1151, "da", null, null, true)]
-    [InlineData(1165, null, null, null, true)]
-    [InlineData(1175, null, null, null, true)]
-    [InlineData(1176, null, null, null, true)]
-    [InlineData(-1000, "en-us", false, null, true)]
-    [InlineData(100_000_000, "en-us", false, null, true)]
+    [InlineData("test-1", 1146, "en-us", false, null, true)]
+    [InlineData("test-2", 1146, "da", false, null, true)]
+    [InlineData("test-3", 1146, null, false, null, true)]
+    [InlineData("test-4", 1149, "en-us", true, null, true)]
+    [InlineData("test-5", 1151, "da", null, null, true)]
+    [InlineData("test-6", 1165, null, null, null, true)]
+    [InlineData("test-7", 1175, null, null, null, true)]
+    [InlineData("test-8", 1176, null, null, null, true)]
+    [InlineData("test-9", -1000, "en-us", false, null, true)]
+    [InlineData("test-10", 100_000_000, "en-us", false, null, true)]
     public async Task ContentByIdQuery_Snaps_Async(
+        string testCase,
         int id,
         string? culture,
         bool? includePreview,
@@ -43,7 +44,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentById_Snaps_{id}_{culture}_{includePreview}_{segment}";
+        string snapshotName = $"ContentById_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

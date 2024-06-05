@@ -18,6 +18,12 @@
     <None Remove="Sqlite\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="appsettings-schema.json" />
+    <None Remove="appsettings-schema.Umbraco.Cms.json" />
+    <None Remove="appsettings-schema.usync.json" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="coverlet.collector" Version="6.0.2">
 			<PrivateAssets>all</PrivateAssets>
@@ -47,8 +53,15 @@
       <DependentUpon>ApiAuthTests.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CodeExamplesTests.*.cs">
+      <DependentUpon>CodeExamplesTests.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\examples\code-examples\code-examples.csproj" />
     <ProjectReference Include="..\Nikcio.UHeadless.IntegrationTests.TestProject\Nikcio.UHeadless.IntegrationTests.TestProject.csproj" />
   </ItemGroup>
 </Project>

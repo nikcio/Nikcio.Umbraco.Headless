@@ -2,8 +2,8 @@ namespace Nikcio.UHeadless.IntegrationTests;
 
 public static class SqliteConnectionStrings
 {
-    public static string ConnectionString()
+    public static string ConnectionString(string testDatabaseName)
     {
-        return $"Data Source=|DataDirectory|/Default-Tests.sqlite;Cache=Shared;Foreign Keys=True;Pooling=True";
+        return $"Data Source=|DataDirectory|/{testDatabaseName};Cache=Shared;Foreign Keys=True;Pooling=True";
     }
 }

@@ -15,10 +15,11 @@ public partial class ApiAuthTests
     private const string _memberByGuidSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MemberByGuid";
 
     [Theory]
-    [InlineData("91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, MemberByGuidQuery.ClaimValue)]
-    [InlineData("91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, DefaultClaimValues.GlobalMemberRead)]
-    [InlineData("91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, MemberByGuidQuery.ClaimValue)]
+    [InlineData("test-2", "91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, DefaultClaimValues.GlobalMemberRead)]
+    [InlineData("test-3", "91eecdea-fc1e-408d-ac41-545ceefa3dc5", true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task MemberByGuidQuery_Snaps_Async(
+        string testCase,
         Guid key,
         bool expectSuccess,
         params string[] claims)
@@ -43,7 +44,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MemberByGuid_Snaps_{key}_{string.Join("-", claims)}";
+        string snapshotName = $"MemberByGuid_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

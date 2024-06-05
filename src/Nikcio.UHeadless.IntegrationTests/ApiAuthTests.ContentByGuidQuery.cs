@@ -16,12 +16,13 @@ public partial class ApiAuthTests
     private const string _contentByGuidSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByGuid";
 
     [Theory]
-    [InlineData("eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, ContentByGuidQuery.ClaimValue)]
-    [InlineData("ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-2", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, ContentByGuidQuery.ClaimValue)]
+    [InlineData("test-3", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByGuidQuery_Snaps_Async(
+        string testCase,
         string key,
         string? culture,
         bool? includePreview,
@@ -52,7 +53,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByGuid_Snaps_{key}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentByGuid_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

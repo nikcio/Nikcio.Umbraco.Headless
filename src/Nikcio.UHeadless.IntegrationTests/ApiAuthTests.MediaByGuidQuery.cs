@@ -15,10 +15,11 @@ public partial class ApiAuthTests
     private const string _mediaByGuidSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MediaByGuid";
 
     [Theory]
-    [InlineData("25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, MediaByGuidQuery.ClaimValue)]
-    [InlineData("25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, DefaultClaimValues.GlobalMediaRead)]
-    [InlineData("25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, MediaByGuidQuery.ClaimValue)]
+    [InlineData("test-2", "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, DefaultClaimValues.GlobalMediaRead)]
+    [InlineData("test-3", "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d", true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task MediaByGuidQuery_Snaps_Async(
+        string testCase,
         string key,
         bool expectSuccess,
         params string[] claims)
@@ -43,7 +44,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MediaByGuid_Snaps_{key}_{string.Join("-", claims)}";
+        string snapshotName = $"MediaByGuid_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

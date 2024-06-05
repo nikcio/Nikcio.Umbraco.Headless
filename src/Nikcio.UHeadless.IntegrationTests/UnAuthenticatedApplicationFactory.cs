@@ -5,9 +5,11 @@ using Nikcio.UHeadless.Defaults.Members;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
-public class UnAuthenticatedApplicationFactory : ApplicationFactoryBase
+public class UnAuthenticatedApplicationFactory : ApplicationFactoryBase<TestProject.Program>
 {
     public override UHeadlessSetup UHeadlessSetup => new UnAuthenticatedUHeadlessSetup();
+
+    public override string TestDatabaseName => "Default-Tests.sqlite";
 }
 
 public class UnAuthenticatedUHeadlessSetup : UHeadlessSetup

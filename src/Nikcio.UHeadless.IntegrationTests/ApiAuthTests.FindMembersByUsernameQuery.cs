@@ -16,10 +16,11 @@ public partial class ApiAuthTests
     private const string _findMembersByUsernameSnapshotPath = $"{SnapshotConstants.AuthBasePath}/FindMembersByUsername";
 
     [Theory]
-    [InlineData("user1", StringPropertyMatchType.Exact, 1, 1, true, FindMembersByUsernameQuery.ClaimValue)]
-    [InlineData("user1", StringPropertyMatchType.Exact, 1, 1, true, DefaultClaimValues.GlobalMemberRead)]
-    [InlineData("user1", StringPropertyMatchType.Exact, 1, 1, false, "Invalid")]
+    [InlineData("test-1", "user1", StringPropertyMatchType.Exact, 1, 1, true, FindMembersByUsernameQuery.ClaimValue)]
+    [InlineData("test-2", "user1", StringPropertyMatchType.Exact, 1, 1, true, DefaultClaimValues.GlobalMemberRead)]
+    [InlineData("test-3", "user1", StringPropertyMatchType.Exact, 1, 1, false, "Invalid")]
     public async Task FindMembersByUsernameQuery_Snaps_Async(
+        string testCase,
         string username,
         StringPropertyMatchType matchType,
         int page,
@@ -50,7 +51,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"FindMembersByUsername_Snaps_{username}_{matchType}_{page}_{pageSize}_{string.Join("-", claims)}";
+        string snapshotName = $"FindMembersByUsername_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

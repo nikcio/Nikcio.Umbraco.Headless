@@ -22,7 +22,7 @@ public partial class ApiAuthTests
         HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"Utility_GetClaimGroups_Snaps";
+        string snapshotName = $"Utility_GetClaimGroups_Snaps.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.True(response.IsSuccessStatusCode);

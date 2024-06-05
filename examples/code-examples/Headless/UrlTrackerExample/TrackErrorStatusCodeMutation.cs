@@ -37,15 +37,28 @@ public class TrackErrorStatusCodeMutation : IGraphQLMutation
 
     public async Task<TrackErrorStatusCodeResponse> TrackErrorStatusCodeAsync(
         IResolverContext resolverContext,
+        [GraphQLDescription("Status code of the client error.")] int statusCode,
         [GraphQLDescription("The URL that generated the client error.")] string url,
         [GraphQLDescription("The time and date at which the client error was generated")] DateTime timestamp,
         [GraphQLDescription("The URL from which the current URL is requested")] string? referrer)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
-        IClientErrorProcessorQueue clientErrorProcessorQueue = resolverContext.Service<IClientErrorProcessorQueue>();
-        await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(url, timestamp, referrer)).ConfigureAwait(false);
-
+        ILogger<TrackErrorStatusCodeMutation> logger = resolverContext.Service<ILogger<TrackErrorStatusCodeMutation>>();
+        switch (statusCode)
+        {
+            case StatusCodes.Status404NotFound:
+                IClientErrorProcessorQueue clientErrorProcessorQueue = resolverContext.Service<IClientErrorProcessorQueue>();
+                await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(url, timestamp, referrer)).ConfigureAwait(false);
+                break;
+            case StatusCodes.Status500InternalServerError:
+                logger.LogError("Internal server error occurred at {Timestamp} for URL {Url} with referrer {Referrer}", timestamp, url, referrer);
+                break;
+            default:
+                logger.LogWarning("Client error occurred at {Timestamp} for URL {Url} with referrer {Referrer} and status code {StatusCode}", timestamp, url, referrer, statusCode);
+                break;
+        }
+        
         return new TrackErrorStatusCodeResponse
         {
             Success = true

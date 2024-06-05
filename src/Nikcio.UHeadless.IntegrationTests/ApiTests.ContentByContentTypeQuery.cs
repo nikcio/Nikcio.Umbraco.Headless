@@ -7,22 +7,23 @@ public partial class ApiTests
     private const string _contentByContentTypeSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByContentType";
 
     [Theory]
-    [InlineData("site", 1, 0, "en-us", false, null, true)]
-    [InlineData("default", 1, 0, "en-us", false, null, true)]
-    [InlineData("default", 1, 1, "en-us", false, null, true)]
-    [InlineData("default", 2, 1, "en-us", false, null, true)]
-    [InlineData("default", 1, 1000, "en-us", false, null, true)]
-    [InlineData("default", 1000, 1000, "en-us", false, null, true)]
-    [InlineData("default", 1, 5, "da", false, null, true)]
-    [InlineData("default", 1, 5, "en-us", true, null, true)]
-    [InlineData("default", 1, 5, "en-us", false, null, true)]
-    [InlineData("default", 1, 5, null, false, null, true)]
-    [InlineData("default", 1, 5, "da", null, null, true)]
-    [InlineData("default", 0, 5, "en-us", false, null, false)]
-    [InlineData("default", -1, 5, "en-us", false, null, false)]
-    [InlineData("default", 0, -1, "en-us", false, null, false)]
-    [InlineData("", 1, 1, "en-us", false, null, false)]
+    [InlineData("test-1", "site", 1, 0, "en-us", false, null, true)]
+    [InlineData("test-2", "default", 1, 0, "en-us", false, null, true)]
+    [InlineData("test-3", "default", 1, 1, "en-us", false, null, true)]
+    [InlineData("test-4", "default", 2, 1, "en-us", false, null, true)]
+    [InlineData("test-5", "default", 1, 1000, "en-us", false, null, true)]
+    [InlineData("test-6", "default", 1000, 1000, "en-us", false, null, true)]
+    [InlineData("test-7", "default", 1, 5, "da", false, null, true)]
+    [InlineData("test-8", "default", 1, 5, "en-us", true, null, true)]
+    [InlineData("test-9", "default", 1, 5, "en-us", false, null, true)]
+    [InlineData("test-10", "default", 1, 5, null, false, null, true)]
+    [InlineData("test-11", "default", 1, 5, "da", null, null, true)]
+    [InlineData("test-12", "default", 0, 5, "en-us", false, null, false)]
+    [InlineData("test-13", "default", -1, 5, "en-us", false, null, false)]
+    [InlineData("test-14", "default", 0, -1, "en-us", false, null, false)]
+    [InlineData("test-15", "", 1, 1, "en-us", false, null, false)]
     public async Task ContentByContentTypeQuery_Snaps_Async(
+        string testCase,
         string contentType,
         int page,
         int pageSize,
@@ -52,7 +53,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByContentType_Snaps_{contentType}_{page}_{pageSize}_{culture}_{includePreview}_{segment}";
+        string snapshotName = $"ContentByContentType_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

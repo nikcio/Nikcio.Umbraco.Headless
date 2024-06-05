@@ -15,10 +15,11 @@ public partial class ApiAuthTests
     private const string _mediaByIdSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MediaById";
 
     [Theory]
-    [InlineData(1138, true, MediaByIdQuery.ClaimValue)]
-    [InlineData(1138, true, DefaultClaimValues.GlobalMediaRead)]
-    [InlineData(1138, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", 1138, true, MediaByIdQuery.ClaimValue)]
+    [InlineData("test-2", 1138, true, DefaultClaimValues.GlobalMediaRead)]
+    [InlineData("test-3", 1138, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task MediaByIdQuery_Snaps_Async(
+        string testCase,
         int id,
         bool expectSuccess,
         params string[] claims)
@@ -43,7 +44,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MediaById_Snaps_{id}_{string.Join("-", claims)}";
+        string snapshotName = $"MediaById_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

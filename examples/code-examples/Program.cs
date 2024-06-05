@@ -7,72 +7,86 @@ using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+namespace Code.Examples;
 
-builder.CreateUmbracoBuilder()
-    .AddBackOffice()
-    .AddWebsite()
-    .AddDeliveryApi()
-    .AddComposers()
-    .AddUHeadless(options =>
+public sealed class Program
+{
+    public static async Task Main(string[] args)
     {
-        options.DisableAuthorization = true;
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        options.AddDefaults();
+        IUmbracoBuilder umbracoBuilder = builder.CreateUmbracoBuilder()
+            .AddBackOffice()
+            .AddWebsite()
+            .AddDeliveryApi()
+            .AddComposers();
 
-        options.AddQuery<PublishAccessExampleQuery>();
-        options.AddQuery<SkybrudRedirectsExampleQuery>();
-        options.AddQuery<UrlTrackerExampleQuery>();
-        options.AddMutation<TrackErrorStatusCodeMutation>();
-        options.AddQuery<CustomContentItemExampleQuery>();
+        // This ensures the integration tests control the UHeadless setup
+        if (builder.Environment.IsDevelopment()) 
+        {
+            umbracoBuilder.AddUHeadless(options =>
+            {
+                options.DisableAuthorization = true;
 
-        // Default queries
-        options
-            .AddQuery<ContentByRouteQuery>()
-            .AddQuery<ContentByContentTypeQuery>()
-            .AddQuery<ContentAtRootQuery>()
-            .AddQuery<ContentByIdQuery>()
-            .AddQuery<ContentByGuidQuery>()
-            .AddQuery<ContentByTagQuery>();
+                options.AddDefaults();
 
-        options
-            .AddQuery<MediaByContentTypeQuery>()
-            .AddQuery<MediaAtRootQuery>()
-            .AddQuery<MediaByIdQuery>()
-            .AddQuery<MediaByGuidQuery>();
+                options.AddQuery<PublishAccessExampleQuery>();
+                options.AddQuery<SkybrudRedirectsExampleQuery>();
+                options.AddQuery<UrlTrackerExampleQuery>();
+                options.AddMutation<TrackErrorStatusCodeMutation>();
+                options.AddQuery<CustomContentItemExampleQuery>();
 
-        options
-            .AddQuery<FindMembersByDisplayNameQuery>()
-            .AddQuery<FindMembersByEmailQuery>()
-            .AddQuery<FindMembersByRoleQuery>()
-            .AddQuery<FindMembersByUsernameQuery>()
-            .AddQuery<MemberByEmailQuery>()
-            .AddQuery<MemberByGuidQuery>()
-            .AddQuery<MemberByIdQuery>()
-            .AddQuery<MemberByUsernameQuery>();
-    })
-    .Build();
+                // Default queries
+                options
+                    .AddQuery<ContentByRouteQuery>()
+                    .AddQuery<ContentByContentTypeQuery>()
+                    .AddQuery<ContentAtRootQuery>()
+                    .AddQuery<ContentByIdQuery>()
+                    .AddQuery<ContentByGuidQuery>()
+                    .AddQuery<ContentByTagQuery>();
 
-WebApplication app = builder.Build();
+                options
+                    .AddQuery<MediaByContentTypeQuery>()
+                    .AddQuery<MediaAtRootQuery>()
+                    .AddQuery<MediaByIdQuery>()
+                    .AddQuery<MediaByGuidQuery>();
 
-await app.BootUmbracoAsync().ConfigureAwait(false);
+                options
+                    .AddQuery<FindMembersByDisplayNameQuery>()
+                    .AddQuery<FindMembersByEmailQuery>()
+                    .AddQuery<FindMembersByRoleQuery>()
+                    .AddQuery<FindMembersByUsernameQuery>()
+                    .AddQuery<MemberByEmailQuery>()
+                    .AddQuery<MemberByGuidQuery>()
+                    .AddQuery<MemberByIdQuery>()
+                    .AddQuery<MemberByUsernameQuery>();
+            });
+        }
 
-app.UseAuthentication();
-app.UseAuthorization();
+        umbracoBuilder.Build();
 
-app.MapUHeadless();
+        WebApplication app = builder.Build();
 
-app.UseUmbraco()
-    .WithMiddleware(u =>
-    {
-        u.UseBackOffice();
-        u.UseWebsite();
-    })
-    .WithEndpoints(u =>
-    {
-        u.UseInstallerEndpoints();
-        u.UseBackOfficeEndpoints();
-        u.UseWebsiteEndpoints();
-    });
+        await app.BootUmbracoAsync().ConfigureAwait(false);
 
-await app.RunAsync().ConfigureAwait(false);
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapUHeadless();
+
+        app.UseUmbraco()
+            .WithMiddleware(u =>
+            {
+                u.UseBackOffice();
+                u.UseWebsite();
+            })
+            .WithEndpoints(u =>
+            {
+                u.UseInstallerEndpoints();
+                u.UseBackOfficeEndpoints();
+                u.UseWebsiteEndpoints();
+            });
+
+        await app.RunAsync().ConfigureAwait(false);
+    }
+}

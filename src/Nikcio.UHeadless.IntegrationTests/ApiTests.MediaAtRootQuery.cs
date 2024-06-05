@@ -7,16 +7,17 @@ public partial class ApiTests
     private const string _mediaAtRootSnapshotPath = $"{SnapshotConstants.BasePath}/MediaAtRoot";
 
     [Theory]
-    [InlineData(1, 0, true)]
-    [InlineData(1, 1, true)]
-    [InlineData(2, 1, true)]
-    [InlineData(1, 1000, true)]
-    [InlineData(1000, 1000, true)]
-    [InlineData(1, 5, true)]
-    [InlineData(0, 5, false)]
-    [InlineData(-1, 5, false)]
-    [InlineData(0, -1,  false)]
+    [InlineData("test-1", 1, 0, true)]
+    [InlineData("test-2", 1, 1, true)]
+    [InlineData("test-3", 2, 1, true)]
+    [InlineData("test-4", 1, 1000, true)]
+    [InlineData("test-5", 1000, 1000, true)]
+    [InlineData("test-6", 1, 5, true)]
+    [InlineData("test-7", 0, 5, false)]
+    [InlineData("test-8", -1, 5, false)]
+    [InlineData("test-9", 0, -1,  false)]
     public async Task MediaAtRootQuery_Snaps_Async(
+        string testCase,
         int page,
         int pageSize,
         bool expectSuccess)
@@ -38,7 +39,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MediaAtRoot_Snaps_{page}_{pageSize}";
+        string snapshotName = $"MediaAtRoot_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

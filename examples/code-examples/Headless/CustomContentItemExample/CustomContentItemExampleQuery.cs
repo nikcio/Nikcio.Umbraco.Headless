@@ -1,3 +1,4 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
 using HotChocolate.Types;
 using Nikcio.UHeadless;
@@ -10,6 +11,15 @@ namespace Code.Examples.Headless.CustomContentItemExample;
 [ExtendObjectType(typeof(HotChocolateQueryObject))]
 public class CustomContentItemExampleQuery : ContentByIdQuery<ContentItem>
 {
+    [GraphQLName("CustomContentItemExampleQuery")]
+    public override ContentItem? ContentById(
+        IResolverContext resolverContext,
+        [GraphQLDescription("The id to fetch.")] int id,
+        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
+    {
+        return base.ContentById(resolverContext, id, inContext);
+    }
+
     protected override ContentItem? CreateContentItem(IPublishedContent? publishedContent, IContentItemRepository<ContentItem> contentItemRepository, IResolverContext resolverContext)
     {
         ArgumentNullException.ThrowIfNull(contentItemRepository);
