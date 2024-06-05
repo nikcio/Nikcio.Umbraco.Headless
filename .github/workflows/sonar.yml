@@ -4,11 +4,21 @@ on:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/sonar.yml'
   pull_request_target:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/sonar.yml'
     types: [opened, synchronize, reopened]
 
@@ -78,7 +88,7 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./src
+        working-directory: ./
         
       - name: Build and analyze (PR)
         if: github.event_name == 'pull_request_target'
@@ -87,8 +97,8 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"nikcio_Nikcio.UHeadless" /o:"nikcio" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" /d:sonar.pullrequest.key=${{ github.event.pull_request.number }}
-          dotnet build ./src --no-restore
-          dotnet test ./src --no-build --no-restore --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          dotnet build ./ --no-restore
+          dotnet test ./ --no-build --no-restore --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Build and analyze
@@ -98,6 +108,6 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"nikcio_Nikcio.UHeadless" /o:"nikcio" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-          dotnet build ./src --no-restore
-          dotnet test ./src --no-build --no-restore --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          dotnet build ./ --no-restore
+          dotnet test ./ --no-build --no-restore --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"

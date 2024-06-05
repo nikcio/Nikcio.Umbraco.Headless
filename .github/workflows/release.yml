@@ -32,20 +32,20 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ./src
+      working-directory: ./
 
     - name: Build
       run: dotnet build -c Release --no-restore /p:Version=${VERSION}
-      working-directory: ./src
+      working-directory: ./
 
-    # - name: Test
-    #   run: dotnet test -c Release --no-build /p:Version=${VERSION}
-    #   working-directory: ./src
+    - name: Test
+      run: dotnet test -c Release --no-build /p:Version=${VERSION}
+      working-directory: ./
 
     - name: Pack nugets
       run: dotnet pack -c Release --no-build --output ./releases /p:Version=${VERSION}
-      working-directory: ./src
+      working-directory: ./
 
     - name: Push (Nikcio.UHeadless) to NuGet
       run: dotnet nuget push "Nikcio.UHeadless.${VERSION}.nupkg" --api-key ${{secrets.NUGET_API_TOKEN}} --source https://api.nuget.org/v3/index.json
-      working-directory: ./src/releases
+      working-directory: ./releases

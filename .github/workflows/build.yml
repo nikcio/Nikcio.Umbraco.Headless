@@ -5,11 +5,21 @@ on:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/build.yml'
   pull_request:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/build.yml'
 
 jobs:
@@ -36,12 +46,12 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ./src
+      working-directory: ./
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ./src
+      working-directory: ./
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ./src
+      working-directory: ./
