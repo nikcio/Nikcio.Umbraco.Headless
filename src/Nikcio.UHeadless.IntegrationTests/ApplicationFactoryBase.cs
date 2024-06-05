@@ -5,9 +5,12 @@ using Microsoft.Extensions.Hosting;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
-public abstract class ApplicationFactoryBase : WebApplicationFactory<Program>
+public abstract class ApplicationFactoryBase<TProgram> : WebApplicationFactory<TProgram>
+    where TProgram : class
 {
     public abstract UHeadlessSetup UHeadlessSetup { get; }
+
+    public abstract string TestDatabaseSource { get; }
 
     public override async ValueTask DisposeAsync()
     {
@@ -23,7 +26,7 @@ public abstract class ApplicationFactoryBase : WebApplicationFactory<Program>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
-                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(),
+                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(TestDatabaseSource),
                 ["ConnectionStrings:umbracoDbDSN_ProviderName"] = "Microsoft.Data.Sqlite",
                 [nameof(UHeadlessSetup)] = UHeadlessSetup.GetType().FullName,
             });

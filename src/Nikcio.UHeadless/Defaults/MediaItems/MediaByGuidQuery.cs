@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,16 +10,32 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaByGuidQuery : MediaByGuidQuery<MediaItem>
+{
+    protected override MediaItem? CreateMediaItem(IPublishedContent? media, IMediaItemRepository<MediaItem> mediaItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+
+        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        {
+            PublishedContent = media,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MediaByGuid" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MediaByGuidQuery : IGraphQLQuery
+public abstract class MediaByGuidQuery<TMediaItem> : IGraphQLQuery
+    where TMediaItem : MediaItemBase
 {
     public const string PolicyName = "MediaByGuidQuery";
 
     public const string ClaimValue = "media.by.guid.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -53,14 +68,13 @@ public class MediaByGuidQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets a Media item by Guid.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public MediaItem? MediaByGuid(
+    public virtual TMediaItem? MediaByGuid(
         IResolverContext resolverContext,
         [GraphQLDescription("The Guid to fetch.")] Guid id)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
 
-        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
+        IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -71,10 +85,8 @@ public class MediaByGuidQuery : IGraphQLQuery
 
         IPublishedContent? mediaItem = mediaCache.GetById(id);
 
-        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
-        {
-            PublishedContent = mediaItem,
-            ResolverContext = resolverContext,
-        });
+        return CreateMediaItem(mediaItem, mediaItemRepository, resolverContext);
     }
+
+    protected abstract TMediaItem? CreateMediaItem(IPublishedContent? media, IMediaItemRepository<TMediaItem> mediaItemRepository, IResolverContext resolverContext);
 }

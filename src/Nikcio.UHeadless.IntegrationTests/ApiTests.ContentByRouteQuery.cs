@@ -8,20 +8,21 @@ public partial class ApiTests
     private const string _contentByRouteSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByRoute";
 
     [Theory]
-    [InlineData("https://site-1.com", "/", null, false, null, true)]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true)]
-    [InlineData("https://site-1.com", "/page-1", null, false, null, true)]
-    [InlineData("https://site-1.com", "/page-2", null, false, null, true)]
-    [InlineData("https://site-1.com", "/collection-of-pages/block-list-page", null, false, null, true)]
-    [InlineData("", "/no-domain-site", null, false, null, true)]
-    [InlineData("", "/no-domain-homepage", null, false, null, true)]
-    [InlineData("https://site-2.com", "/", null, false, null, true)]
-    [InlineData("https://site-2.com", "/page-1", null, false, null, true)]
-    [InlineData("https://site-culture.com", "/homepage", "en-us", false, null, true)]
-    [InlineData("https://site-culture.dk", "/homepage", "da", false, null, true)]
-    [InlineData("https://site-1.com", "/old-page", "en-us", false, null, true)]
-    [InlineData("https://site-1.com", "/new-page", "en-us", false, null, true)]
+    [InlineData("test-1", "https://site-1.com", "/", null, false, null, true)]
+    [InlineData("test-2", "https://site-1.com", "/homepage", null, false, null, true)]
+    [InlineData("test-3", "https://site-1.com", "/page-1", null, false, null, true)]
+    [InlineData("test-4", "https://site-1.com", "/page-2", null, false, null, true)]
+    [InlineData("test-5", "https://site-1.com", "/collection-of-pages/block-list-page", null, false, null, true)]
+    [InlineData("test-6", "", "/no-domain-site", null, false, null, true)]
+    [InlineData("test-7", "", "/no-domain-homepage", null, false, null, true)]
+    [InlineData("test-8", "https://site-2.com", "/", null, false, null, true)]
+    [InlineData("test-9", "https://site-2.com", "/page-1", null, false, null, true)]
+    [InlineData("test-10", "https://site-culture.com", "/homepage", "en-us", false, null, true)]
+    [InlineData("test-11", "https://site-culture.dk", "/homepage", "da", false, null, true)]
+    [InlineData("test-12", "https://site-1.com", "/old-page", "en-us", false, null, true)]
+    [InlineData("test-13", "https://site-1.com", "/new-page", "en-us", false, null, true)]
     public async Task ContentByRouteQuery_Snaps_Async(
+        string testCase,
         string baseUrl,
         string route,
         string? culture,
@@ -49,7 +50,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByRoute_Snaps_{Convert.ToBase64String(Encoding.UTF8.GetBytes(baseUrl))}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(route))}_{culture}_{includePreview}_{segment}";
+        string snapshotName = $"ContentByRoute_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

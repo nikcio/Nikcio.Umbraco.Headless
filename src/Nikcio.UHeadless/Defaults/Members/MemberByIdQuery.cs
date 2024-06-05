@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +13,32 @@ using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.Members;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MemberByIdQuery : MemberByIdQuery<MemberItem>
+{
+    protected override MemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<MemberItem> memberItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(memberItemRepository);
+
+        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
+        {
+            PublishedContent = member,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MemberById"/> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MemberByIdQuery : IGraphQLQuery
+public abstract class MemberByIdQuery<TMemberItem> : IGraphQLQuery
+    where TMemberItem : MemberItemBase
 {
     public const string PolicyName = "MemberByIdQuery";
 
     public const string ClaimValue = "member.by.id.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -56,8 +71,7 @@ public class MemberByIdQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets a member by id.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public MemberItem? MemberById(
+    public virtual TMemberItem? MemberById(
         IResolverContext resolverContext,
         [GraphQLDescription("The id to fetch.")] int id)
     {
@@ -69,7 +83,7 @@ public class MemberByIdQuery : IGraphQLQuery
             throw new ArgumentOutOfRangeException(nameof(id), "The id must be greater than zero");
         }
 
-        IMemberItemRepository<MemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<MemberItem>>();
+        IMemberItemRepository<TMemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<TMemberItem>>();
 
         IPublishedMemberCache? memberCache = memberItemRepository.GetCache();
 
@@ -91,10 +105,8 @@ public class MemberByIdQuery : IGraphQLQuery
 
         IPublishedContent? memberItem = memberCache.Get(member);
 
-        return memberItemRepository.GetMemberItem(new MemberItemBase.CreateCommand()
-        {
-            PublishedContent = memberItem,
-            ResolverContext = resolverContext,
-        });
+        return CreateMemberItem(memberItem, memberItemRepository, resolverContext);
     }
+
+    protected abstract TMemberItem? CreateMemberItem(IPublishedContent? member, IMemberItemRepository<TMemberItem> memberItemRepository, IResolverContext resolverContext);
 }

@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using HotChocolate.Execution.Configuration;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.DependencyInjection;
 

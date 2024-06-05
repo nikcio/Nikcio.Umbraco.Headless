@@ -34,11 +34,11 @@
     </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.4" />
-    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.4" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.5" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.5" />
     <PackageReference Include="Umbraco.Cms.Web.Common" Version="13.0.0" />
   </ItemGroup>
 

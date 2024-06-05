@@ -16,12 +16,13 @@ public partial class ApiAuthTests
     private const string _contentByRouteSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByRoute";
 
     [Theory]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true, ContentByRouteQuery.ClaimValue)]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true, ContentByRouteQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("https://site-1.com", "/homepage", null, false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "https://site-1.com", "/homepage", null, false, null, true, ContentByRouteQuery.ClaimValue)]
+    [InlineData("test-2", "https://site-1.com", "/homepage", null, false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "https://site-1.com", "/homepage", null, false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "https://site-1.com", "/homepage", null, false, null, true, ContentByRouteQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "https://site-1.com", "/homepage", null, false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByRouteQuery_Snaps_Async(
+        string testCase,
         string baseUrl,
         string route,
         string? culture,
@@ -54,7 +55,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByRoute_Snaps_{Convert.ToBase64String(Encoding.UTF8.GetBytes(baseUrl))}_{Convert.ToBase64String(Encoding.UTF8.GetBytes(route))}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentByRoute_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

@@ -1,0 +1,16 @@
+{
+  "data": {
+    "publishAccessExampleQuery": {
+      "permissions": {
+        "urlLogin": "http://site-2.com/",
+        "urlNoAccess": "http://localhost/no-domain-site/",
+        "accessRules": [
+          {
+            "ruleType": "MemberRole",
+            "ruleValue": "Member group 1"
+          }
+        ]
+      }
+    }
+  }
+}

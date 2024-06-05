@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,16 +10,32 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
+[ExtendObjectType(typeof(HotChocolateQueryObject))]
+public class MediaByIdQuery : MediaByIdQuery<MediaItem>
+{
+    protected override MediaItem? CreateMediaItem(IPublishedContent? media, IMediaItemRepository<MediaItem> mediaItemRepository, IResolverContext resolverContext)
+    {
+        ArgumentNullException.ThrowIfNull(mediaItemRepository);
+
+        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
+        {
+            PublishedContent = media,
+            ResolverContext = resolverContext,
+        });
+    }
+}
+
 /// <summary>
 /// Implements the <see cref="MediaById" /> query
 /// </summary>
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class MediaByIdQuery : IGraphQLQuery
+public abstract class MediaByIdQuery<TMediaItem> : IGraphQLQuery
+    where TMediaItem : MediaItemBase
 {
     public const string PolicyName = "MediaByIdQuery";
 
     public const string ClaimValue = "media.by.id.query";
 
+    [GraphQLIgnore]
     public virtual void ApplyConfiguration(UHeadlessOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -53,8 +68,7 @@ public class MediaByIdQuery : IGraphQLQuery
     /// </summary>
     [Authorize(Policy = PolicyName)]
     [GraphQLDescription("Gets a Media item by id.")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Marking as static will remove this query from GraphQL")]
-    public MediaItem? MediaById(
+    public virtual TMediaItem? MediaById(
         IResolverContext resolverContext,
         [GraphQLDescription("The id to fetch.")] int id)
     {
@@ -65,7 +79,7 @@ public class MediaByIdQuery : IGraphQLQuery
             throw new ArgumentOutOfRangeException(nameof(id), "The id must be greater than zero");
         }
 
-        IMediaItemRepository<MediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<MediaItem>>();
+        IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -76,10 +90,8 @@ public class MediaByIdQuery : IGraphQLQuery
 
         IPublishedContent? mediaItem = mediaCache.GetById(id);
 
-        return mediaItemRepository.GetMediaItem(new MediaItemBase.CreateCommand()
-        {
-            PublishedContent = mediaItem,
-            ResolverContext = resolverContext,
-        });
+        return CreateMediaItem(mediaItem, mediaItemRepository, resolverContext);
     }
+
+    protected abstract TMediaItem? CreateMediaItem(IPublishedContent? media, IMediaItemRepository<TMediaItem> mediaItemRepository, IResolverContext resolverContext);
 }

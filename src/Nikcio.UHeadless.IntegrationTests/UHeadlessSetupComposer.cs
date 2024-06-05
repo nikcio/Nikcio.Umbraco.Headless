@@ -3,7 +3,7 @@ using Umbraco.Cms.Core.Composing;
 namespace Nikcio.UHeadless.IntegrationTests;
 
 /// <summary>
-/// Sets up UHeadless based on the active <see cref="ApplicationFactoryBase"/>
+/// Sets up UHeadless based on the active <see cref="ApplicationFactoryBase{TProgram}"/>
 /// </summary>
 public class UHeadlessSetupComposer : IComposer
 {
@@ -11,7 +11,7 @@ public class UHeadlessSetupComposer : IComposer
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        string? headlessSetupTypeName = builder.Config[nameof(ApplicationFactoryBase.UHeadlessSetup)];
+        string? headlessSetupTypeName = builder.Config[nameof(ApplicationFactoryBase<TestProject.Program>.UHeadlessSetup)];
 
         ArgumentException.ThrowIfNullOrWhiteSpace(headlessSetupTypeName);
 

@@ -8,18 +8,19 @@ public partial class ApiTests
     private const string _findMembersByRoleSnapshotPath = $"{SnapshotConstants.BasePath}/FindMembersByRole";
 
     [Theory]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Exact, 1, 0, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Exact, 1, 1, true)]
-    [InlineData("Member group 1", "A", StringPropertyMatchType.Exact, 1, 1, true)]
-    [InlineData("Member group 1", "B", StringPropertyMatchType.Exact, 1, 1, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Exact, 2, 1, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Exact, 1, 1000, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Exact, 1000, 1000, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Contains, 1, 5, true)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Contains, 0, 5, false)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Contains, -1, 5, false)]
-    [InlineData("Member group 1", "", StringPropertyMatchType.Contains, 0, -1, false)]
+    [InlineData("test-1", "Member group 1", "", StringPropertyMatchType.Exact, 1, 0, true)]
+    [InlineData("test-2", "Member group 1", "", StringPropertyMatchType.Exact, 1, 1, true)]
+    [InlineData("test-3", "Member group 1", "A", StringPropertyMatchType.Exact, 1, 1, true)]
+    [InlineData("test-4", "Member group 1", "B", StringPropertyMatchType.Exact, 1, 1, true)]
+    [InlineData("test-5", "Member group 1", "", StringPropertyMatchType.Exact, 2, 1, true)]
+    [InlineData("test-6", "Member group 1", "", StringPropertyMatchType.Exact, 1, 1000, true)]
+    [InlineData("test-7", "Member group 1", "", StringPropertyMatchType.Exact, 1000, 1000, true)]
+    [InlineData("test-8", "Member group 1", "", StringPropertyMatchType.Contains, 1, 5, true)]
+    [InlineData("test-9", "Member group 1", "", StringPropertyMatchType.Contains, 0, 5, false)]
+    [InlineData("test-10", "Member group 1", "", StringPropertyMatchType.Contains, -1, 5, false)]
+    [InlineData("test-11", "Member group 1", "", StringPropertyMatchType.Contains, 0, -1, false)]
     public async Task FindMembersByRoleQuery_Snaps_Async(
+        string testCase,
         string roleName,
         string usernameToMatch,
         StringPropertyMatchType matchType,
@@ -47,7 +48,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"FindMembersByRole_Snaps_{roleName}_{usernameToMatch}_{matchType}_{page}_{pageSize}";
+        string snapshotName = $"FindMembersByRole_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

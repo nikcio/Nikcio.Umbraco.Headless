@@ -10,10 +10,11 @@ public partial class ApiAuthTests
     private const string _contentAtRootSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentAtRoot";
 
     [Theory]
-    [InlineData(1, 1, "en-us", false, null, true, ContentAtRootQuery.ClaimValue)]
-    [InlineData(1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData(1, 1, "en-us", false, null, false, "Invalid")]
+    [InlineData("test-1", 1, 1, "en-us", false, null, true, ContentAtRootQuery.ClaimValue)]
+    [InlineData("test-2", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", 1, 1, "en-us", false, null, false, "Invalid")]
     public async Task ContentAtRootQuery_Snaps_Async(
+        string testCase,
         int page,
         int pageSize,
         string? culture,
@@ -46,7 +47,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentAtRoot_Snaps_{page}_{pageSize}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentAtRoot_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

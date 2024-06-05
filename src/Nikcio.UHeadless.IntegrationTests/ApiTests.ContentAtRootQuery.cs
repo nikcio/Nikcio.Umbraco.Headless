@@ -7,20 +7,21 @@ public partial class ApiTests
     private const string _contentAtRootSnapshotPath = $"{SnapshotConstants.BasePath}/ContentAtRoot";
 
     [Theory]
-    [InlineData(1, 0, "en-us", false, null, true)]
-    [InlineData(1, 1, "en-us", false, null, true)]
-    [InlineData(2, 1, "en-us", false, null, true)]
-    [InlineData(1, 1000, "en-us", false, null, true)]
-    [InlineData(1000, 1000, "en-us", false, null, true)]
-    [InlineData(1, 5, "da", false, null, true)]
-    [InlineData(1, 5, "en-us", true, null, true)]
-    [InlineData(1, 5, "en-us", false, null, true)]
-    [InlineData(1, 5, null, false, null, true)]
-    [InlineData(1, 5, "da", null, null, true)]
-    [InlineData(0, 5, "en-us", false, null, false)]
-    [InlineData(-1, 5, "en-us", false, null, false)]
-    [InlineData(0, -1, "en-us", false, null, false)]
+    [InlineData("test-1", 1, 0, "en-us", false, null, true)]
+    [InlineData("test-2", 1, 1, "en-us", false, null, true)]
+    [InlineData("test-3", 2, 1, "en-us", false, null, true)]
+    [InlineData("test-4", 1, 1000, "en-us", false, null, true)]
+    [InlineData("test-5", 1000, 1000, "en-us", false, null, true)]
+    [InlineData("test-6", 1, 5, "da", false, null, true)]
+    [InlineData("test-7", 1, 5, "en-us", true, null, true)]
+    [InlineData("test-8", 1, 5, "en-us", false, null, true)]
+    [InlineData("test-9", 1, 5, null, false, null, true)]
+    [InlineData("test-10", 1, 5, "da", null, null, true)]
+    [InlineData("test-11", 0, 5, "en-us", false, null, false)]
+    [InlineData("test-12", -1, 5, "en-us", false, null, false)]
+    [InlineData("test-13", 0, -1, "en-us", false, null, false)]
     public async Task ContentAtRootQuery_Snaps_Async(
+        string testCase,
         int page,
         int pageSize,
         string? culture,
@@ -48,7 +49,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentAtRoot_Snaps_{page}_{pageSize}_{culture}_{includePreview}_{segment}";
+        string snapshotName = $"ContentAtRoot_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

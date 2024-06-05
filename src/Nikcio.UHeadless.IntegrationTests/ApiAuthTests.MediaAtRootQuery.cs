@@ -15,10 +15,11 @@ public partial class ApiAuthTests
     private const string _mediaAtRootSnapshotPath = $"{SnapshotConstants.AuthBasePath}/MediaAtRoot";
 
     [Theory]
-    [InlineData(1, 1, true, MediaAtRootQuery.ClaimValue)]
-    [InlineData(1, 1, true, DefaultClaimValues.GlobalMediaRead)]
-    [InlineData(1, 1, false, "Invalid")]
+    [InlineData("test-1", 1, 1, true, MediaAtRootQuery.ClaimValue)]
+    [InlineData("test-2", 1, 1, true, DefaultClaimValues.GlobalMediaRead)]
+    [InlineData("test-3", 1, 1, false, "Invalid")]
     public async Task MediaAtRootQuery_Snaps_Async(
+        string testCase,
         int page,
         int pageSize,
         bool expectSuccess,
@@ -45,7 +46,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MediaAtRoot_Snaps_{page}_{pageSize}_{string.Join("-", claims)}";
+        string snapshotName = $"MediaAtRoot_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

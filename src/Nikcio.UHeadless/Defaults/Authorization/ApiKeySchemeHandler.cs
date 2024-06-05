@@ -22,7 +22,7 @@ internal class ApiKeySchemeHandler : AuthenticationHandler<ApiKeySchemeOptions>
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        if(Context.Request.Headers.TryGetValue(DefaultHeaders.ApiKey, out StringValues apiKey))
+        if (Context.Request.Headers.TryGetValue(DefaultHeaders.ApiKey, out StringValues apiKey))
         {
             bool isApiKeyValid = await Options.IsApiKeyValid.Invoke(apiKey.ToString(), Context.RequestServices).ConfigureAwait(false);
 

@@ -16,11 +16,21 @@ on:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/codeql-analysis.yml'
   pull_request:
     branches: [ contrib ]
     paths:
       - 'src/**'
+      - 'examples/**'
+      - 'Directory.Build.props'
+      - '.editorconfig'
+      - 'Nikcio.UHeadless.sln'
+      - 'nuget.config'
       - '.github/workflows/codeql-analysis.yml'
 
 jobs:
@@ -73,11 +83,11 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ./src
+      working-directory: ./
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ./src
+      working-directory: ./
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

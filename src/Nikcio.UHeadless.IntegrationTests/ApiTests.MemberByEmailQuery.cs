@@ -7,11 +7,12 @@ public partial class ApiTests
     private const string _memberByEmailSnapshotPath = $"{SnapshotConstants.BasePath}/MemberByEmail";
 
     [Theory]
-    [InlineData("user1@test.com", true)]
-    [InlineData("role@test.com", true)]
-    [InlineData("member2@test.com", true)]
-    [InlineData("Not found", true)]
+    [InlineData("test-1", "user1@test.com", true)]
+    [InlineData("test-2", "role@test.com", true)]
+    [InlineData("test-3", "member2@test.com", true)]
+    [InlineData("test-4", "Not found", true)]
     public async Task MemberByEmailQuery_Snaps_Async(
+        string testCase,
         string email,
         bool expectSuccess)
     {
@@ -31,7 +32,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MemberByEmail_Snaps_{email}";
+        string snapshotName = $"MemberByEmail_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

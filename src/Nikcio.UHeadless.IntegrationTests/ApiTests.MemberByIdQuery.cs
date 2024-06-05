@@ -7,14 +7,15 @@ public partial class ApiTests
     private const string _memberByIdSnapshotPath = $"{SnapshotConstants.BasePath}/MemberById";
 
     [Theory]
-    [InlineData(1179, true)]
-    [InlineData(1183, true)]
-    [InlineData(1181, true)]
-    [InlineData(1, true)]
-    [InlineData(0, true)]
-    [InlineData(-1, true)]
-    [InlineData(-1000, true)]
+    [InlineData("test-1", 1179, true)]
+    [InlineData("test-2", 1183, true)]
+    [InlineData("test-3", 1181, true)]
+    [InlineData("test-4", 1, true)]
+    [InlineData("test-5", 0, true)]
+    [InlineData("test-6", -1, true)]
+    [InlineData("test-7", -1000, true)]
     public async Task MemberByIdQuery_Snaps_Async(
+        string testCase,
         int id,
         bool expectSuccess)
     {
@@ -34,7 +35,7 @@ public partial class ApiTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"MemberById_Snaps_{id}";
+        string snapshotName = $"MemberById_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

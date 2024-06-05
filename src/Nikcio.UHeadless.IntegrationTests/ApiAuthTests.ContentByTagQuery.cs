@@ -16,12 +16,13 @@ public partial class ApiAuthTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByTag";
 
     [Theory]
-    //[InlineData("normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
-    //[InlineData("normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("normal", null, "en-us", false, null, false, "Invalid")]
+    //[InlineData("test-1", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
+    //[InlineData("test-2", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "normal", null, "en-us", false, null, false, "Invalid")]
     public async Task ContentByTagQuery_Snaps_Async(
+        string testCase,
         string tag,
         string? tagGroup,
         string? culture,
@@ -54,7 +55,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByTag_Snaps_{tag}_{tagGroup}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentByTag_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

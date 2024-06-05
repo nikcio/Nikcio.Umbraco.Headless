@@ -17,12 +17,13 @@ public partial class ApiAuthTests
     private const string _contentByContentTypeSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByContentType";
 
     [Theory]
-    [InlineData("default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue)]
-    [InlineData("default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("default", 1, 1, "en-us", false, null, false, "Invalid")]
+    [InlineData("test-1", "default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue)]
+    [InlineData("test-2", "default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "default", 1, 1, "en-us", false, null, false, "Invalid")]
     public async Task ContentByContentTypeQuery_Snaps_Async(
+        string testCase,
         string contentType,
         int page,
         int pageSize,
@@ -57,7 +58,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentByContentType_Snaps_{contentType}_{page}_{pageSize}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentByContentType_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

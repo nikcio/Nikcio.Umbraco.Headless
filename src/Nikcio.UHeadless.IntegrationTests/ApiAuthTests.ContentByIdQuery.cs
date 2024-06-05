@@ -16,12 +16,13 @@ public partial class ApiAuthTests
     private const string _contentByIdSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentById";
 
     [Theory]
-    [InlineData(1146, "en-us", false, null, true, ContentByIdQuery.ClaimValue)]
-    [InlineData(1146, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData(1152, "en-us", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData(1152, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData(1152, "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", 1146, "en-us", false, null, true, ContentByIdQuery.ClaimValue)]
+    [InlineData("test-2", 1146, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", 1152, "en-us", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", 1152, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", 1152, "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByIdQuery_Snaps_Async(
+        string testCase,
         int id,
         string? culture,
         bool? includePreview,
@@ -52,7 +53,7 @@ public partial class ApiAuthTests
 
         string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
-        string snapshotName = $"ContentById_Snaps_{id}_{culture}_{includePreview}_{segment}_{string.Join("-", claims)}";
+        string snapshotName = $"ContentById_Snaps_{testCase}.snap";
 
         await snapshotProvider.AssertIsSnapshotEqualAsync(snapshotName, responseContent).ConfigureAwait(true);
         Assert.Equal(expectSuccess, response.IsSuccessStatusCode);

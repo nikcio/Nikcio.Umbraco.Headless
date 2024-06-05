@@ -1,0 +1,19 @@
+{
+  "data": {
+    "contentById": {
+      "url": null,
+      "redirect": null,
+      "statusCode": 404,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": null,
+      "name": null,
+      "id": null,
+      "key": null,
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}

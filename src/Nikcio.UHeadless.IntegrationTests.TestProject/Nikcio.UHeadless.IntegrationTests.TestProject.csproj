@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="13.3.1" />
-    <PackageReference Include="usync" Version="13.2.2" />
+    <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
+    <PackageReference Include="usync" Version="13.2.3" />
   </ItemGroup>
 
   <!-- Force Windows to use ICU. Otherwise Windows 10 2019H1+ will do it, but older Windows 10 and most, if not all, Windows Server editions will run NLS -->
@@ -46,5 +46,9 @@
   
   <ItemGroup>
     <None Include="wwwroot\media\.gitkeep" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="umbraco\Data\" />
   </ItemGroup>
 </Project>
