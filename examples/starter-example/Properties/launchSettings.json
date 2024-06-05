@@ -6,7 +6,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "umbraco",
-      "applicationUrl": "https://localhost:44371;http://localhost:11129",
+      "applicationUrl": "https://localhost:44368;http://localhost:23585",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

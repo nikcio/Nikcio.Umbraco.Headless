@@ -1,0 +1,67 @@
+using HotChocolate.AspNetCore;
+using HotChocolate.AspNetCore.Extensions;
+using Nikcio.UHeadless;
+using Nikcio.UHeadless.Defaults.ContentItems;
+
+/*
+ * This setup showcases a minimal setup for UHeadless in an Umbraco application.
+ * 
+ * In this example we have:
+ * - Enabled authentication using configuration values for the API key and secret.
+ * - Disabled the GraphQL IDE in production.
+ * - Added a single query for fetching content by route.
+ * - Removed Umbraco's services and endpoints for rendering a website as this will only be used as a headless setup.
+ */
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.CreateUmbracoBuilder()
+    .AddBackOffice()
+    .AddComposers()
+    .AddUHeadless(options =>
+    {
+        options.AddAuth(new()
+        {
+            ApiKey = builder.Configuration.GetValue<string>("UHeadless:ApiKey") ?? throw new InvalidOperationException("No value for UHeadless:ApiKey was found"),
+            Secret = builder.Configuration.GetValue<string>("UHeadless:Secret") ?? throw new InvalidOperationException("No value for UHeadless:Secret was found"),
+        });
+
+        options.AddDefaults();
+
+        options.AddQuery<ContentByRouteQuery>();
+    })
+    .Build();
+
+WebApplication app = builder.Build();
+
+await app.BootUmbracoAsync().ConfigureAwait(false);
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+GraphQLEndpointConventionBuilder graphQLEndpointBuilder = app.MapUHeadless();
+
+// Only enable the GraphQL IDE in development
+if (!builder.Environment.IsDevelopment())
+{
+    graphQLEndpointBuilder.WithOptions(new GraphQLServerOptions()
+    {
+        Tool =
+        {
+            Enable = false,
+        }
+    });
+}
+
+app.UseUmbraco()
+    .WithMiddleware(u =>
+    {
+        u.UseBackOffice();
+    })
+    .WithEndpoints(u =>
+    {
+        u.UseInstallerEndpoints();
+        u.UseBackOfficeEndpoints();
+    });
+
+await app.RunAsync().ConfigureAwait(false);
