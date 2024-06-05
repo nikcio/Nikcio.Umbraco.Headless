@@ -22,9 +22,18 @@ public partial class SnapshotProvider
 
     public async Task AssertIsSnapshotEqualAsync(string snapshotName, string content)
     {
+        string snapshotErrorName = $"{snapshotName}.error";
+        string snapshotErrorPath = Path.Combine(_snapshotFolder, snapshotErrorName);
+
         string jsonContent = await GetContentAsJsonAsync(content).ConfigureAwait(true);
         string snapshot = await GetSnapshotAsync(snapshotName, content).ConfigureAwait(true);
+
+        await CreateSnapshotAsync(jsonContent, snapshotErrorPath).ConfigureAwait(true);
+
         Assert.Equal(snapshot, jsonContent);
+
+        // If the assertion passes we can delete the error snapshot
+        File.Delete(snapshotErrorPath);
     }
 
     private async Task<string> GetSnapshotAsync(string snapshotName, string content)
@@ -36,16 +45,21 @@ public partial class SnapshotProvider
         }
         else
         {
-            if (!Directory.Exists(_snapshotFolder))
-            {
-                Directory.CreateDirectory(_snapshotFolder);
-            }
-
-            string contentToSave = await GetContentAsJsonAsync(content).ConfigureAwait(true);
-            await File.WriteAllTextAsync(snapshotPath, contentToSave).ConfigureAwait(true);
+            await CreateSnapshotAsync(content, snapshotPath).ConfigureAwait(true);
 
             throw new SnapshotNotFoundException($"Snapshot '{snapshotName}' not found. Created a new snapshot at {snapshotPath}");
         }
+    }
+
+    private async Task CreateSnapshotAsync(string content, string snapshotPath)
+    {
+        if (!Directory.Exists(_snapshotFolder))
+        {
+            Directory.CreateDirectory(_snapshotFolder);
+        }
+
+        string contentToSave = await GetContentAsJsonAsync(content).ConfigureAwait(true);
+        await File.WriteAllTextAsync(snapshotPath, contentToSave).ConfigureAwait(true);
     }
 
     private async Task<string> GetContentAsJsonAsync(string content)

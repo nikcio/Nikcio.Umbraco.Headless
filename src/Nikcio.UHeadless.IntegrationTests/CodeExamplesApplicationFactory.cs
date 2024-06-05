@@ -12,7 +12,7 @@ public class CodeExamplesApplicationFactory : ApplicationFactoryBase<Code.Exampl
 {
     public override UHeadlessSetup UHeadlessSetup => new CodeExamplesUHeadlessSetup();
 
-    public override string TestDatabaseName => "code-examples.sqlite";
+    public override string TestDatabaseSource => "|DataDirectory|/code-examples.sqlite";
 }
 
 public class CodeExamplesUHeadlessSetup : UHeadlessSetup

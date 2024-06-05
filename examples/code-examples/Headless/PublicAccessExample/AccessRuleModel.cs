@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 
 namespace Code.Examples.Headless.PublicAccessExample;
 
@@ -13,6 +13,7 @@ public class AccessRuleModel
 
     [GraphQLDescription("Gets the type of protection to grant access to the content item.")]
     public string RuleType { get; set; }
+
     [GraphQLDescription("Gets the name of who has access to the content item.")]
     public string RuleValue { get; set; }
 }

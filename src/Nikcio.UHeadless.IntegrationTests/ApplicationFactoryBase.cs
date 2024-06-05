@@ -10,7 +10,7 @@ public abstract class ApplicationFactoryBase<TProgram> : WebApplicationFactory<T
 {
     public abstract UHeadlessSetup UHeadlessSetup { get; }
 
-    public abstract string TestDatabaseName { get; }
+    public abstract string TestDatabaseSource { get; }
 
     public override async ValueTask DisposeAsync()
     {
@@ -26,7 +26,7 @@ public abstract class ApplicationFactoryBase<TProgram> : WebApplicationFactory<T
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
-                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(TestDatabaseName),
+                ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(TestDatabaseSource),
                 ["ConnectionStrings:umbracoDbDSN_ProviderName"] = "Microsoft.Data.Sqlite",
                 [nameof(UHeadlessSetup)] = UHeadlessSetup.GetType().FullName,
             });

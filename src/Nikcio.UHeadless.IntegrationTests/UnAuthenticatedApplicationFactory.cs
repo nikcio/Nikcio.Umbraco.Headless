@@ -9,7 +9,7 @@ public class UnAuthenticatedApplicationFactory : ApplicationFactoryBase<TestProj
 {
     public override UHeadlessSetup UHeadlessSetup => new UnAuthenticatedUHeadlessSetup();
 
-    public override string TestDatabaseName => "Default-Tests.sqlite";
+    public override string TestDatabaseSource => "|DataDirectory|/Default-Tests.sqlite";
 }
 
 public class UnAuthenticatedUHeadlessSetup : UHeadlessSetup

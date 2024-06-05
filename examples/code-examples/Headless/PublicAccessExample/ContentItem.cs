@@ -4,6 +4,10 @@ using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using HotChocolate.Resolvers;
+using Nikcio.UHeadless.ContentItems;
+using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Routing;
+using Nikcio.UHeadless;
 
 namespace Code.Examples.Headless.PublicAccessExample;
 
@@ -30,7 +34,7 @@ public class ContentItem : Nikcio.UHeadless.Defaults.ContentItems.ContentItem
         ILogger<ContentItem> logger = resolverContext.Service<ILogger<ContentItem>>();
         IContentService contentService = resolverContext.Service<IContentService>();
         IPublicAccessService publicAccessService = resolverContext.Service<IPublicAccessService>();
-        IUmbracoContextAccessor umbracoContext = resolverContext.Service<IUmbracoContextAccessor>();
+        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
 
         if (PublishedContent == null)
         {
@@ -54,21 +58,20 @@ public class ContentItem : Nikcio.UHeadless.Defaults.ContentItems.ContentItem
             return null;
         }
 
-        IUmbracoContext cache = umbracoContext.GetRequiredUmbracoContext();
+        IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
-        if (cache.Content == null)
+        if (contentCache == null)
         {
-            logger.LogWarning("Content cache is null on Umbraco context");
-            return null;
+            throw new InvalidOperationException("The content cache is not available");
         }
 
-        IPublishedContent? loginContent = cache.Content.GetById(entry.LoginNodeId);
-        IPublishedContent? noAccessContent = cache.Content.GetById(entry.NoAccessNodeId);
+        IPublishedContent? loginContent = contentCache.GetById(entry.LoginNodeId);
+        IPublishedContent? noAccessContent = contentCache.GetById(entry.NoAccessNodeId);
 
         var permissions = new PermissionsModel
         {
-            UrlLogin = loginContent?.Url(),
-            UrlNoAccess = noAccessContent?.Url()
+            UrlLogin = loginContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), resolverContext.Culture(), UrlMode.Absolute),
+            UrlNoAccess = noAccessContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), resolverContext.Culture(), UrlMode.Absolute)
         };
 
         foreach (PublicAccessRule rule in entry.Rules)

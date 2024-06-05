@@ -3,7 +3,7 @@
     "publishAccessExampleQuery": {
       "permissions": {
         "urlLogin": "http://site-2.com/",
-        "urlNoAccess": "/no-domain-site/",
+        "urlNoAccess": "http://localhost/no-domain-site/",
         "accessRules": [
           {
             "ruleType": "MemberRole",
