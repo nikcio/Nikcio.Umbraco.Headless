@@ -86,7 +86,7 @@ public class UrlTrackerExampleQuery : ContentByRouteQuery
 
         if (redirect.Source is RegexSourceStrategy regexsource)
         {
-            urlString = Regex.Replace((requestedUrl.Path + requestedUrl.Query).TrimStart('/'), regexsource.Value, urlString);
+            urlString = Regex.Replace((requestedUrl.Path + requestedUrl.Query).TrimStart('/'), regexsource.Value, urlString, RegexOptions.None, TimeSpan.FromMilliseconds(100));
         }
 
         var url = Url.Parse(urlString);
