@@ -10,7 +10,8 @@ using Nikcio.UHeadless.Defaults.ContentItems;
  * - Enabled authentication using configuration values for the API key and secret.
  * - Disabled the GraphQL IDE in production.
  * - Added a single query for fetching content by route.
- * - Removed Umbraco's services and endpoints for rendering a website as this will only be used as a headless setup.
+ * - Removed Umbraco's services and endpoints for rendering a website as this will only be used as a headless setup. 
+ *   - .AddWebsite() is needed for the install screen to load if you're not using UnattendedInstall.
  */
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

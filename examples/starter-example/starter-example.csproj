@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
+    <PackageReference Include="UrlTracker" Version="13.2.0-alpha0003" />
+    <PackageReference Include="uSync" Version="13.2.3" />
   </ItemGroup>
 
   <ItemGroup>

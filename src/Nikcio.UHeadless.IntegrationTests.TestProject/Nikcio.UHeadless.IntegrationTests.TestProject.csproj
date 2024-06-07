@@ -47,8 +47,4 @@
   <ItemGroup>
     <None Include="wwwroot\media\.gitkeep" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="umbraco\Data\" />
-  </ItemGroup>
 </Project>
