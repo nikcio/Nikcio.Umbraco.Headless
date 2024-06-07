@@ -36,48 +36,74 @@ You can also find the package on [NuGet](https://www.nuget.org/packages/Nikcio.U
 
 To integrate the package into your project, follow these steps:
 
-1. Open your `Startup.cs` file.
-2. Add the following using statement:
+1. Open your `program.cs` file.
+2. Add the following using statements:
 
-   ```csharp
-   using Nikcio.UHeadless.Extensions;
-   ```
+    ```csharp
+    using Nikcio.UHeadless;
+    using Nikcio.UHeadless.Defaults.ContentItems;
+    ```
 
-3. In the `ConfigureServices` method, add the following code:
+3. In the `CreateUmbracoBuilder` method, add the following code:
 
-   ```csharp
-   public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddUmbraco(_env, _config)
-           /* Code omitted for clarity */
-           .AddUHeadless()
-           /* Code omitted for clarity */
-   }
-   ```
+    ```csharp
+    builder.CreateUmbracoBuilder()
+        // Default Umbraco configuration
+        .AddUHeadless(options =>
+        {
+            options.DisableAuthorization = true; // Change this later when adding authentication - See documentation
 
-4. In the `Configure` method, add the following code:
+            options.AddDefaults();
 
-   ```csharp
-   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-   {
-       /* Code omitted for clarity */
+            options.AddQuery<ContentByRouteQuery>();
+            options.AddQuery<ContentByGuidQuery>();
+        })
+        .Build();
+    ```
 
-       app.UseUHeadlessGraphQLEndpoint();
+4. Then after `app.BootUmbracoAsync()` method, add the following code:
 
-       app.UseUmbraco()
-       /* etc... */
-   }
-   ```
+    ```csharp
+    await app.BootUmbracoAsync();
 
-With these configurations in place, your content will be available at `/graphql`. To get started, try adding some content to the root and run the following query:
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    GraphQLEndpointConventionBuilder graphQLEndpointBuilder = app.MapUHeadless();
+
+    // Only enable the GraphQL IDE in development
+    if (!builder.Environment.IsDevelopment())
+    {
+        graphQLEndpointBuilder.WithOptions(new GraphQLServerOptions()
+        {
+            Tool =
+            {
+                Enable = false,
+            }
+        });
+    }
+
+    app.UseUmbraco()
+        // Default Umbraco configuration
+    ```
+
+With these configurations in place, your content will be available at `/graphql`. 
+
+To get started, try querying your content using their GUIDs or routes. For example with the query below:
+
+__Tip: GUIDs can be found in the info tab when viewing content in the backoffice__
 
 ```graphql
-{
-  contentAtRoot {
-    nodes {
-      id,
-      name
-    }
+query {
+  contentByGuid(id: "dcf18a51-6919-4cf8-89d1-36b94ce4d963") {
+    id
+    key
+    name
+    statusCode
+    templateId
+    updateDate
+    url(urlMode: ABSOLUTE)
+    urlSegment
   }
 }
 ```
