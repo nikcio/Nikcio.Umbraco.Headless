@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -29,20 +30,29 @@ internal class UmbracoTypeModule : ITypeModule
 
     private readonly IMemberTypeService _memberTypeService;
 
+    private readonly IRuntimeState _runtimeState;
+
     /// <inheritdoc/>
     public event EventHandler<EventArgs>? TypesChanged;
+
+    /// <summary>
+    /// Indicates if the module is initialized with types from Umbraco
+    /// </summary>
+    internal bool IsInitialized { get; private set; }
 
     /// <inheritdoc/>
     public UmbracoTypeModule(
         IPropertyMap propertyMap,
         IContentTypeService contentTypeService,
         IMediaTypeService mediaTypeService,
-        IMemberTypeService memberTypeService)
+        IMemberTypeService memberTypeService,
+        IRuntimeState runtimeState)
     {
         _propertyMap = propertyMap;
         _contentTypeService = contentTypeService;
         _mediaTypeService = mediaTypeService;
         _memberTypeService = memberTypeService;
+        _runtimeState = runtimeState;
     }
 
     /// <summary>
@@ -51,6 +61,13 @@ internal class UmbracoTypeModule : ITypeModule
     /// <returns></returns>
     private List<IContentTypeComposition> GetContentTypes()
     {
+        if (_runtimeState.Level != RuntimeLevel.Run)
+        {
+            return [];
+        }
+
+        IsInitialized = true;
+
         return _contentTypeService.GetAll()
             .Cast<IContentTypeComposition>()
             .Concat(_mediaTypeService.GetAll())
@@ -131,20 +148,29 @@ internal class UmbracoTypeModule : ITypeModule
         objectTypes = [];
         AddEmptyPropertyType(objectTypes);
 
-        List<IContentTypeComposition> contentTypes = GetContentTypes();
+        List<IContentTypeComposition> allContentTypes = GetContentTypes();
+        List<IContentTypeComposition> interfacedContentTypes = [];
 
-        foreach (IContentTypeComposition? contentType in contentTypes)
+        var interfaceTypeNames = new HashSet<string>(StringComparer.Ordinal);
+
+        foreach (IContentTypeComposition? contentType in allContentTypes)
         {
-            InterfaceTypeDefinition interfaceTypeDefinition = CreateInterfaceTypeDefinition(contentType);
+            InterfaceTypeDefinition? interfaceTypeDefinition = CreateInterfaceTypeDefinition(contentType);
 
-            if (interfaceTypeDefinition.Fields.Count == 0)
+            if (interfaceTypeDefinition == null)
             {
                 continue;
             }
 
             types.Add(InterfaceType.CreateUnsafe(interfaceTypeDefinition));
 
-            ObjectTypeDefinition objectTypeDefinition = CreateObjectTypeDefinition(contentType);
+            interfaceTypeNames.Add(interfaceTypeDefinition.Name);
+            interfacedContentTypes.Add(contentType);
+        }
+
+        foreach (IContentTypeComposition contentType in interfacedContentTypes)
+        {
+            ObjectTypeDefinition objectTypeDefinition = CreateObjectTypeDefinition(contentType, interfaceTypeNames);
 
             if (objectTypeDefinition.Fields.Count == 0)
             {
@@ -213,7 +239,7 @@ internal class UmbracoTypeModule : ITypeModule
         objectTypes.Add(ObjectType.CreateUnsafe(emptyNamedProperty));
     }
 
-    private InterfaceTypeDefinition CreateInterfaceTypeDefinition(IContentTypeComposition contentType)
+    private InterfaceTypeDefinition? CreateInterfaceTypeDefinition(IContentTypeComposition contentType)
     {
         var interfaceTypeDefinition = new InterfaceTypeDefinition(GetInterfaceTypeName(contentType.Alias), contentType.Description);
 
@@ -231,10 +257,15 @@ internal class UmbracoTypeModule : ITypeModule
             interfaceTypeDefinition.Fields.Add(new InterfaceFieldDefinition(property.Alias, property.Description, TypeReference.Parse(propertyType.Name)));
         }
 
+        if (interfaceTypeDefinition.Fields.Count == 0)
+        {
+            return null;
+        }
+
         return interfaceTypeDefinition;
     }
 
-    private ObjectTypeDefinition CreateObjectTypeDefinition(IContentTypeComposition contentType)
+    private ObjectTypeDefinition CreateObjectTypeDefinition(IContentTypeComposition contentType, HashSet<string> interfaceTypeNames)
     {
         var typeDefinition = new ObjectTypeDefinition(GetObjectTypeName(contentType.Alias), contentType.Description);
 
@@ -254,7 +285,12 @@ internal class UmbracoTypeModule : ITypeModule
 
         foreach (string composite in contentType.CompositionAliases())
         {
-            typeDefinition.Interfaces.Add(TypeReference.Parse(GetInterfaceTypeName(composite)));
+            string interfaceTypeName = GetInterfaceTypeName(composite);
+            if (interfaceTypeNames.Contains(interfaceTypeName))
+            {
+                typeDefinition.Interfaces.Add(TypeReference.Parse(interfaceTypeName));
+            }
+
         }
 
         typeDefinition.Interfaces.Add(TypeReference.Parse(GetInterfaceTypeName(typeDefinition.Name)));
