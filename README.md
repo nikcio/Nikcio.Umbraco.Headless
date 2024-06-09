@@ -36,7 +36,7 @@ You can also find the package on [NuGet](https://www.nuget.org/packages/Nikcio.U
 
 To integrate the package into your project, follow these steps:
 
-1. Open your `program.cs` file.
+1. Open your `Program.cs` file.
 2. Add the following using statements:
 
     ```csharp
@@ -44,7 +44,7 @@ To integrate the package into your project, follow these steps:
     using Nikcio.UHeadless.Defaults.ContentItems;
     ```
 
-3. In the `CreateUmbracoBuilder` method, add the following code:
+3. On the `UmbracoBuilder`, add the following code:
 
     ```csharp
     builder.CreateUmbracoBuilder()
@@ -61,7 +61,7 @@ To integrate the package into your project, follow these steps:
         .Build();
     ```
 
-4. Then after `app.BootUmbracoAsync()` method, add the following code:
+4. Then after the `app.BootUmbracoAsync()` method, add the following code:
 
     ```csharp
     await app.BootUmbracoAsync();
