@@ -19,23 +19,22 @@ export default defineConfig({
           label: 'Welcome',
           items: [
             { label: 'Overview', link: '/overview/' },
-            { label: 'Version 4', link: '/v4/start/' },
+            { label: 'Version 5', link: '/v5/start/' },
           ],
         },
         {
           label: 'Fundamentals',
           items: [
-            { label: 'Getting started', link: 'v4/fundamentals/getting-started/' },
-            { label: 'Security', link: 'v4/fundamentals/security/' },
-            { label: 'Extend UHeadless', link: 'v4/fundamentals/extend-uheadless/' },
+            { label: 'Getting started', link: 'v5/fundamentals/getting-started/' },
+            { label: 'Security', link: 'v5/fundamentals/security/' },
             {
               label: 'Querying',
               collapsed: true,
               items: [
-                { label: 'Content', link: 'v4/fundamentals/querying/content/' },
-                { label: 'Media', link: 'v4/fundamentals/querying/media/' },
-                { label: 'Members', link: 'v4/fundamentals/querying/members/' },
-                { label: 'Properties', link: 'v4/fundamentals/querying/properties/' }
+                { label: 'Content', link: 'v5/fundamentals/querying/content/' },
+                { label: 'Media', link: 'v5/fundamentals/querying/media/' },
+                { label: 'Members', link: 'v5/fundamentals/querying/members/' },
+                { label: 'Properties', link: 'v5/fundamentals/querying/properties/' }
               ]
             },
           ]
@@ -43,18 +42,18 @@ export default defineConfig({
         {
           label: 'Extending',
           items: [
-            { label: 'Content', link: 'v4/extending/content/' },
-            { label: 'Media', link: 'v4/extending/media/' },
-            { label: 'Member', link: 'v4/extending/member/' },
+            { label: 'Content', link: 'v5/extending/content/' },
+            { label: 'Media', link: 'v5/extending/media/' },
+            { label: 'Member', link: 'v5/extending/member/' },
             {
               label: 'Properties',
               collapsed: true,
               items: [
-                { label: 'Overview', link: 'v4/extending/properties/overview/' },
-                { label: 'Rich text', link: 'v4/extending/properties/rich-text/' },
-                { label: 'Media picker', link: 'v4/extending/properties/media-picker/' },
-                { label: 'Block list', link: 'v4/extending/properties/block-list/' },
-                { label: 'Custom editor', link: 'v4/extending/properties/custom-editor/' },
+                { label: 'Overview', link: 'v5/extending/properties/overview/' },
+                { label: 'Rich text', link: 'v5/extending/properties/rich-text/' },
+                { label: 'Media picker', link: 'v5/extending/properties/media-picker/' },
+                { label: 'Block list', link: 'v5/extending/properties/block-list/' },
+                { label: 'Custom editor', link: 'v5/extending/properties/custom-editor/' },
               ]
             },
           ]
@@ -62,51 +61,106 @@ export default defineConfig({
         {
           label: 'Reference',
           items: [
-            { label: 'Options', link: 'v4/reference/options/' },
-            { label: 'Endpoint options', link: 'v4/reference/endpoint-options/' },
-            { label: 'Paging options', link: 'v4/reference/paging-options/' },
-            {
-              label: 'Content',
-              collapsed: true,
-              items: [
-                { label: 'Content Reference', link: 'v4/reference/content/overview/' },
-                { label: 'Content Bases', link: 'v4/reference/content/bases/' },
-                { label: 'Content Basics', link: 'v4/reference/content/basics/' }
-              ]
-            },
-            {
-              label: 'Media',
-              collapsed: true,
-              items: [
-                { label: 'Media Reference', link: 'v4/reference/media/overview/' },
-                { label: 'Media Bases', link: 'v4/reference/media/bases/' },
-                { label: 'Media Basics', link: 'v4/reference/media/basics/' }
-              ]
-            },
-            {
-              label: 'Members',
-              collapsed: true,
-              items: [
-                { label: 'Members Reference', link: 'v4/reference/members/overview/' },
-                { label: 'Members Bases', link: 'v4/reference/members/bases/' },
-                { label: 'Members Basics', link: 'v4/reference/members/basics/' }
-              ]
-            },
-            {
-              label: 'Properties',
-              collapsed: true,
-              items: [
-                { label: 'Properties Reference', link: 'v4/reference/properties/overview/' },
-                { label: 'Properties Bases', link: 'v4/reference/properties/bases/' },
-                { label: 'Properties Basics', link: 'v4/reference/properties/basics/' }
-              ]
-            },
+            { label: 'Options', link: 'v5/reference/options/' },
+            { label: 'Endpoint options', link: 'v5/reference/endpoint-options/' },
+            { label: 'Content', link: 'v5/reference/content/' },
+            { label: 'Media', link: 'v5/reference/media/' },
+            { label: 'Member', link: 'v5/reference/member/' },
+            { label: 'Member', link: 'v5/reference/properties/' },
           ]
         },
         {
           label: 'Older versions',
           collapsed: true,
           items: [
+            {
+              label: 'Version 4',
+              collapsed: true,
+              items: [
+                { label: 'Overview', link: '/v4/start/' },
+                {
+                  label: 'Fundamentals',
+                  items: [
+                    { label: 'Getting started', link: 'v4/fundamentals/getting-started/' },
+                    { label: 'Security', link: 'v4/fundamentals/security/' },
+                    { label: 'Extend UHeadless', link: 'v4/fundamentals/extend-uheadless/' },
+                    {
+                      label: 'Querying',
+                      collapsed: true,
+                      items: [
+                        { label: 'Content', link: 'v4/fundamentals/querying/content/' },
+                        { label: 'Media', link: 'v4/fundamentals/querying/media/' },
+                        { label: 'Members', link: 'v4/fundamentals/querying/members/' },
+                        { label: 'Properties', link: 'v4/fundamentals/querying/properties/' }
+                      ]
+                    },
+                  ]
+                },
+                {
+                  label: 'Extending',
+                  items: [
+                    { label: 'Content', link: 'v4/extending/content/' },
+                    { label: 'Media', link: 'v4/extending/media/' },
+                    { label: 'Member', link: 'v4/extending/member/' },
+                    {
+                      label: 'Properties',
+                      collapsed: true,
+                      items: [
+                        { label: 'Overview', link: 'v4/extending/properties/overview/' },
+                        { label: 'Rich text', link: 'v4/extending/properties/rich-text/' },
+                        { label: 'Media picker', link: 'v4/extending/properties/media-picker/' },
+                        { label: 'Block list', link: 'v4/extending/properties/block-list/' },
+                        { label: 'Custom editor', link: 'v4/extending/properties/custom-editor/' },
+                      ]
+                    },
+                  ]
+                },
+                {
+                  label: 'Reference',
+                  items: [
+                    { label: 'Options', link: 'v4/reference/options/' },
+                    { label: 'Endpoint options', link: 'v4/reference/endpoint-options/' },
+                    { label: 'Paging options', link: 'v4/reference/paging-options/' },
+                    {
+                      label: 'Content',
+                      collapsed: true,
+                      items: [
+                        { label: 'Content Reference', link: 'v4/reference/content/overview/' },
+                        { label: 'Content Bases', link: 'v4/reference/content/bases/' },
+                        { label: 'Content Basics', link: 'v4/reference/content/basics/' }
+                      ]
+                    },
+                    {
+                      label: 'Media',
+                      collapsed: true,
+                      items: [
+                        { label: 'Media Reference', link: 'v4/reference/media/overview/' },
+                        { label: 'Media Bases', link: 'v4/reference/media/bases/' },
+                        { label: 'Media Basics', link: 'v4/reference/media/basics/' }
+                      ]
+                    },
+                    {
+                      label: 'Members',
+                      collapsed: true,
+                      items: [
+                        { label: 'Members Reference', link: 'v4/reference/members/overview/' },
+                        { label: 'Members Bases', link: 'v4/reference/members/bases/' },
+                        { label: 'Members Basics', link: 'v4/reference/members/basics/' }
+                      ]
+                    },
+                    {
+                      label: 'Properties',
+                      collapsed: true,
+                      items: [
+                        { label: 'Properties Reference', link: 'v4/reference/properties/overview/' },
+                        { label: 'Properties Bases', link: 'v4/reference/properties/bases/' },
+                        { label: 'Properties Basics', link: 'v4/reference/properties/basics/' }
+                      ]
+                    },
+                  ]
+                }
+              ]
+            },
             {
               label: 'Version 3',
               collapsed: true,

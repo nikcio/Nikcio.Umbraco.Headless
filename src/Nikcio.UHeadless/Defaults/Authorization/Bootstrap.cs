@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
@@ -32,8 +33,7 @@ internal static class Bootstrap
                         }
                         else
                         {
-                            // We only want to authenticate via the header
-                            context.Token = "Invalid";
+                            context.NoResult();
                         }
 
                         return Task.CompletedTask;

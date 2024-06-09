@@ -10,15 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Old\**" />
-    <Compile Remove="Sqlite\**" />
-    <EmbeddedResource Remove="Old\**" />
-    <EmbeddedResource Remove="Sqlite\**" />
-    <None Remove="Old\**" />
-    <None Remove="Sqlite\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="appsettings-schema.json" />
     <None Remove="appsettings-schema.Umbraco.Cms.json" />
     <None Remove="appsettings-schema.usync.json" />

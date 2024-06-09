@@ -1,13 +1,12 @@
 using HotChocolate;
-using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Core.Web;
 using HotChocolate.Resolvers;
+using Nikcio.UHeadless;
 using Nikcio.UHeadless.ContentItems;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
-using Nikcio.UHeadless;
+using Umbraco.Cms.Core.Services;
 
 namespace Code.Examples.Headless.PublicAccessExample;
 

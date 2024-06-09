@@ -65,6 +65,8 @@ public static class UHeadlessExtensions
 
         builder.Services.AddScoped<IDependencyReflectorFactory, DependencyReflectorFactory>();
         builder.Services.AddSingleton<UmbracoTypeModule>();
+        builder.AddNotificationAsyncHandler<UmbracoApplicationStartedNotification, UmbracoStartedHandler>();
+
         builder.Services.AddSingleton(options.PropertyMap);
         builder.Services.AddSingleton<IAuthorizationHandler, AlwaysAllowAuthorizationHandler>();
 

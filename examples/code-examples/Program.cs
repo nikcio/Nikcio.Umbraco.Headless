@@ -1,4 +1,9 @@
+using Code.Examples.Headless.CustomBlockListExample;
 using Code.Examples.Headless.CustomContentItemExample;
+using Code.Examples.Headless.CustomMediaItemExample;
+using Code.Examples.Headless.CustomMediaPickerExample;
+using Code.Examples.Headless.CustomMemberItemExample;
+using Code.Examples.Headless.CustomRichTextExample;
 using Code.Examples.Headless.PublicAccessExample;
 using Code.Examples.Headless.SkybrudRedirectsExample;
 using Code.Examples.Headless.UrlTrackerExample;
@@ -6,6 +11,7 @@ using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
+using Umbraco.Cms.Core;
 
 namespace Code.Examples;
 
@@ -35,6 +41,12 @@ public sealed class Program
                 options.AddQuery<UrlTrackerExampleQuery>();
                 options.AddMutation<TrackErrorStatusCodeMutation>();
                 options.AddQuery<CustomContentItemExampleQuery>();
+                options.AddQuery<CustomMediaItemExampleQuery>();
+                options.AddQuery<CustomMemberItemExampleQuery>();
+
+                options.AddEditorMapping<BlockList>(Constants.PropertyEditors.Aliases.BlockList);
+                options.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
+                options.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.TinyMce);
 
                 // Default queries
                 options
