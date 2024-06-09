@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightLinksValidator from 'starlight-links-validator'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nikcio.github.io',
-  base: '/Nikcio.UHeadless',
+  base: '/Nikcio.UHeadless/',
   integrations: [
     starlight({
       title: 'Nikcio.UHeadless',
@@ -14,6 +15,9 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/nikcio/Nikcio.UHeadless/tree/'
       },
+      plugins: [starlightLinksValidator({
+          errorOnRelativeLinks: false,
+        })],
       sidebar: [
         {
           label: 'Welcome',
