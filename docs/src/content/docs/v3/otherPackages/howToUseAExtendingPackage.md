@@ -12,7 +12,7 @@ dotnet add NAME_OF_PACKAGE
 ## Register the queries, mutations or subscriptions
 If the extending package includes new queries you need to register these in the `startup.cs`. This can be done like this:
 
-```CSharp
+```csharp
 public void ConfigureServices(IServiceCollection services) {
 services.AddUmbraco(_env, _config)
     .AddBackOffice()
