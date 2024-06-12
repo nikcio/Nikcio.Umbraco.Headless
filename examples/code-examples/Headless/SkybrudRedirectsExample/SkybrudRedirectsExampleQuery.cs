@@ -1,61 +1,63 @@
-using HotChocolate;
-using HotChocolate.Resolvers;
-using HotChocolate.Types;
-using Nikcio.UHeadless;
-using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.ContentItems;
-using Skybrud.Umbraco.Redirects.Models;
-using Skybrud.Umbraco.Redirects.Services;
+//using HotChocolate;
+//using HotChocolate.Resolvers;
+//using HotChocolate.Types;
+//using Nikcio.UHeadless;
+//using Nikcio.UHeadless.ContentItems;
+//using Nikcio.UHeadless.Defaults.ContentItems;
+//using Skybrud.Umbraco.Redirects.Models;
+//using Skybrud.Umbraco.Redirects.Services;
 
-namespace Code.Examples.Headless.SkybrudRedirectsExample;
+//namespace Code.Examples.Headless.SkybrudRedirectsExample;
 
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class SkybrudRedirectsExampleQuery : ContentByRouteQuery
-{
-    [GraphQLName("skybrudRedirectsExampleQuery")]
-    public override Task<ContentItem?> ContentByRouteAsync(
-        IResolverContext resolverContext,
-        [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
-        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
-        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
-    {
-        return base.ContentByRouteAsync(resolverContext, route, baseUrl, inContext);
-    }
+// TODO RE-IMPLEMENT
 
-    protected override async Task<ContentItem?> CreateContentItemFromRouteAsync(IResolverContext resolverContext, string route, string baseUrl)
-    {
-        ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(baseUrl);
+//[ExtendObjectType(typeof(HotChocolateQueryObject))]
+//public class SkybrudRedirectsExampleQuery : ContentByRouteQuery
+//{
+//    [GraphQLName("skybrudRedirectsExampleQuery")]
+//    public override Task<ContentItem?> ContentByRouteAsync(
+//        IResolverContext resolverContext,
+//        [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
+//        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
+//        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
+//    {
+//        return base.ContentByRouteAsync(resolverContext, route, baseUrl, inContext);
+//    }
 
-        IRedirectsService redirectService = resolverContext.Service<IRedirectsService>();
+//    protected override async Task<ContentItem?> CreateContentItemFromRouteAsync(IResolverContext resolverContext, string route, string baseUrl)
+//    {
+//        ArgumentNullException.ThrowIfNull(resolverContext);
+//        ArgumentNullException.ThrowIfNull(baseUrl);
 
-        var uri = new Uri($"{baseUrl.TrimEnd('/')}{route}");
-        IRedirect? redirect = redirectService.GetRedirectByUri(uri);
+//        IRedirectsService redirectService = resolverContext.Service<IRedirectsService>();
 
-        if (redirect != null)
-        {
-            IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+//        var uri = new Uri($"{baseUrl.TrimEnd('/')}{route}");
+//        IRedirect? redirect = redirectService.GetRedirectByUri(uri);
 
-            string redirectUrl = redirect.Destination.FullUrl;
+//        if (redirect != null)
+//        {
+//            IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
 
-            if (redirect.ForwardQueryString)
-            {
-                redirectUrl = redirectUrl.TrimEnd('/') + uri.Query;
-            }
+//            string redirectUrl = redirect.Destination.FullUrl;
 
-            return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-            {
-                PublishedContent = null,
-                ResolverContext = resolverContext,
-                Redirect = new()
-                {
-                    IsPermanent = redirect.IsPermanent,
-                    RedirectUrl = redirectUrl,
-                },
-                StatusCode = redirect.IsPermanent ? StatusCodes.Status301MovedPermanently : StatusCodes.Status307TemporaryRedirect,
-            });
-        }
+//            if (redirect.ForwardQueryString)
+//            {
+//                redirectUrl = redirectUrl.TrimEnd('/') + uri.Query;
+//            }
 
-        return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
-    }
-}
+//            return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+//            {
+//                PublishedContent = null,
+//                ResolverContext = resolverContext,
+//                Redirect = new()
+//                {
+//                    IsPermanent = redirect.IsPermanent,
+//                    RedirectUrl = redirectUrl,
+//                },
+//                StatusCode = redirect.IsPermanent ? StatusCodes.Status301MovedPermanently : StatusCodes.Status307TemporaryRedirect,
+//            });
+//        }
+
+//        return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
+//    }
+//}

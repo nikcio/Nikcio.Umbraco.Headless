@@ -1,72 +1,74 @@
-using HotChocolate;
-using HotChocolate.Resolvers;
-using HotChocolate.Types;
-using Nikcio.UHeadless;
-using Nikcio.UHeadless.Defaults.Authorization;
-using UrlTracker.Middleware.Background;
+//using HotChocolate;
+//using HotChocolate.Resolvers;
+//using HotChocolate.Types;
+//using Nikcio.UHeadless;
+//using Nikcio.UHeadless.Defaults.Authorization;
+//using UrlTracker.Middleware.Background;
 
-namespace Code.Examples.Headless.UrlTrackerExample;
+//namespace Code.Examples.Headless.UrlTrackerExample;
 
-[ExtendObjectType(typeof(HotChocolateMutationObject))]
-public class TrackErrorStatusCodeMutation : IGraphQLMutation
-{
-    public const string PolicyName = "TrackErrorStatusCode";
+// TODO RE-IMPLEMENT
 
-    public const string ClaimValue = "track.error.statuscode.mutation";
+//[ExtendObjectType(typeof(HotChocolateMutationObject))]
+//public class TrackErrorStatusCodeMutation : IGraphQLMutation
+//{
+//    public const string PolicyName = "TrackErrorStatusCode";
 
-    [GraphQLIgnore]
-    public virtual void ApplyConfiguration(UHeadlessOptions options)
-    {
-        ArgumentNullException.ThrowIfNull(options);
+//    public const string ClaimValue = "track.error.statuscode.mutation";
 
-        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
-        {
-            if (options.DisableAuthorization)
-            {
-                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
-                return;
-            }
+//    [GraphQLIgnore]
+//    public virtual void ApplyConfiguration(UHeadlessOptions options)
+//    {
+//        ArgumentNullException.ThrowIfNull(options);
 
-            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
+//        options.UmbracoBuilder.Services.AddAuthorizationBuilder().AddPolicy(PolicyName, policy =>
+//        {
+//            if (options.DisableAuthorization)
+//            {
+//                policy.AddRequirements(new AlwaysAllowAuthoriaztionRequirement());
+//                return;
+//            }
 
-            policy.RequireAuthenticatedUser();
+//            policy.AddAuthenticationSchemes(DefaultAuthenticationSchemes.UHeadless);
 
-            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue);
-        });
-    }
+//            policy.RequireAuthenticatedUser();
 
-    public async Task<TrackErrorStatusCodeResponse> TrackErrorStatusCodeAsync(
-        IResolverContext resolverContext,
-        [GraphQLDescription("Status code of the client error.")] int statusCode,
-        [GraphQLDescription("The URL that generated the client error.")] string url,
-        [GraphQLDescription("The time and date at which the client error was generated")] DateTime timestamp,
-        [GraphQLDescription("The URL from which the current URL is requested")] string? referrer)
-    {
-        ArgumentNullException.ThrowIfNull(resolverContext);
+//            policy.RequireClaim(DefaultClaims.UHeadlessScope, ClaimValue);
+//        });
+//    }
 
-        ILogger<TrackErrorStatusCodeMutation> logger = resolverContext.Service<ILogger<TrackErrorStatusCodeMutation>>();
-        switch (statusCode)
-        {
-            case StatusCodes.Status404NotFound:
-                IClientErrorProcessorQueue clientErrorProcessorQueue = resolverContext.Service<IClientErrorProcessorQueue>();
-                await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(url, timestamp, referrer)).ConfigureAwait(false);
-                break;
-            case StatusCodes.Status500InternalServerError:
-                logger.LogError("Internal server error occurred at {Timestamp} for URL {Url} with referrer {Referrer}", timestamp, url, referrer);
-                break;
-            default:
-                logger.LogWarning("Client error occurred at {Timestamp} for URL {Url} with referrer {Referrer} and status code {StatusCode}", timestamp, url, referrer, statusCode);
-                break;
-        }
+//    public async Task<TrackErrorStatusCodeResponse> TrackErrorStatusCodeAsync(
+//        IResolverContext resolverContext,
+//        [GraphQLDescription("Status code of the client error.")] int statusCode,
+//        [GraphQLDescription("The URL that generated the client error.")] string url,
+//        [GraphQLDescription("The time and date at which the client error was generated")] DateTime timestamp,
+//        [GraphQLDescription("The URL from which the current URL is requested")] string? referrer)
+//    {
+//        ArgumentNullException.ThrowIfNull(resolverContext);
+
+//        ILogger<TrackErrorStatusCodeMutation> logger = resolverContext.Service<ILogger<TrackErrorStatusCodeMutation>>();
+//        switch (statusCode)
+//        {
+//            case StatusCodes.Status404NotFound:
+//                IClientErrorProcessorQueue clientErrorProcessorQueue = resolverContext.Service<IClientErrorProcessorQueue>();
+//                await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(url, timestamp, referrer)).ConfigureAwait(false);
+//                break;
+//            case StatusCodes.Status500InternalServerError:
+//                logger.LogError("Internal server error occurred at {Timestamp} for URL {Url} with referrer {Referrer}", timestamp, url, referrer);
+//                break;
+//            default:
+//                logger.LogWarning("Client error occurred at {Timestamp} for URL {Url} with referrer {Referrer} and status code {StatusCode}", timestamp, url, referrer, statusCode);
+//                break;
+//        }
         
-        return new TrackErrorStatusCodeResponse
-        {
-            Success = true
-        };
-    }
-}
+//        return new TrackErrorStatusCodeResponse
+//        {
+//            Success = true
+//        };
+//    }
+//}
 
-public sealed class TrackErrorStatusCodeResponse
-{
-    public required bool Success { get; init; }
-}
+//public sealed class TrackErrorStatusCodeResponse
+//{
+//    public required bool Success { get; init; }
+//}

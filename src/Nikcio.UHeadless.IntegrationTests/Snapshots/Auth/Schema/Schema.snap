@@ -120,8 +120,8 @@ interface IDefault {
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -181,10 +181,10 @@ interface IDefaultCulture {
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
-  mediaPickerLegacyCulture: MediaPicker
-  multipleMediaPickerLegacyCulture: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
+  mediaPickerLegacyCulture: DefaultProperty
+  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker
@@ -322,13 +322,13 @@ interface IMediaPickerEditorCulture {
 }
 
 interface IMediaPickerLegacyEditor {
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
 }
 
 interface IMediaPickerLegacyEditorCulture {
-  mediaPickerLegacyCulture: MediaPicker
-  multipleMediaPickerLegacyCulture: MediaPicker
+  mediaPickerLegacyCulture: DefaultProperty
+  multipleMediaPickerLegacyCulture: DefaultProperty
 }
 
 interface IMember {
@@ -758,8 +758,8 @@ type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEdito
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -819,10 +819,10 @@ type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & IChe
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
-  mediaPickerLegacyCulture: MediaPicker
-  multipleMediaPickerLegacyCulture: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
+  mediaPickerLegacyCulture: DefaultProperty
+  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker
@@ -1038,13 +1038,13 @@ type MediaPickerItem {
 }
 
 type MediaPickerLegacyEditor implements IMediaPickerLegacyEditor {
-  mediaPickerLegacy: MediaPicker
-  multipleMediaPickerLegacy: MediaPicker
+  mediaPickerLegacy: DefaultProperty
+  multipleMediaPickerLegacy: DefaultProperty
 }
 
 type MediaPickerLegacyEditorCulture implements IMediaPickerLegacyEditorCulture {
-  mediaPickerLegacyCulture: MediaPicker
-  multipleMediaPickerLegacyCulture: MediaPicker
+  mediaPickerLegacyCulture: DefaultProperty
+  multipleMediaPickerLegacyCulture: DefaultProperty
 }
 
 type Member implements IMember {

@@ -5,8 +5,8 @@ using Code.Examples.Headless.CustomMediaPickerExample;
 using Code.Examples.Headless.CustomMemberItemExample;
 using Code.Examples.Headless.CustomRichTextExample;
 using Code.Examples.Headless.PublicAccessExample;
-using Code.Examples.Headless.SkybrudRedirectsExample;
-using Code.Examples.Headless.UrlTrackerExample;
+//using Code.Examples.Headless.SkybrudRedirectsExample;
+//using Code.Examples.Headless.UrlTrackerExample;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
@@ -37,16 +37,19 @@ public sealed class Program
                 options.AddDefaults();
 
                 options.AddQuery<PublishAccessExampleQuery>();
-                options.AddQuery<SkybrudRedirectsExampleQuery>();
-                options.AddQuery<UrlTrackerExampleQuery>();
-                options.AddMutation<TrackErrorStatusCodeMutation>();
+                //options.AddQuery<SkybrudRedirectsExampleQuery>();
+                //options.AddQuery<UrlTrackerExampleQuery>();
+                //options.AddMutation<TrackErrorStatusCodeMutation>();
                 options.AddQuery<CustomContentItemExampleQuery>();
                 options.AddQuery<CustomMediaItemExampleQuery>();
                 options.AddQuery<CustomMemberItemExampleQuery>();
 
                 options.AddEditorMapping<BlockList>(Constants.PropertyEditors.Aliases.BlockList);
-                options.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker);
+                options.AddEditorMapping<MediaPicker>(Constants.PropertyEditors.Aliases.MediaPicker3);
+#pragma warning disable CS0618 // Type or member is obsolete
                 options.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.TinyMce);
+#pragma warning restore CS0618 // Type or member is obsolete
+                options.AddEditorMapping<RichText>(Constants.PropertyEditors.Aliases.RichText);
 
                 // Default queries
                 options
@@ -94,7 +97,6 @@ public sealed class Program
             })
             .WithEndpoints(u =>
             {
-                u.UseInstallerEndpoints();
                 u.UseBackOfficeEndpoints();
                 u.UseWebsiteEndpoints();
             });

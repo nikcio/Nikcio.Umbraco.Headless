@@ -73,16 +73,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [
                 {
@@ -315,16 +305,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [
                 {
@@ -424,16 +404,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPicker": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
@@ -752,16 +722,6 @@
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
                     },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
                     "blockList": {
                       "blocks": [
                         {
@@ -1021,16 +981,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -1226,16 +1176,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
@@ -1437,16 +1377,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -1627,16 +1557,6 @@
                 "__typename": "MediaPicker"
               },
               "multipleMediaPicker": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
                 "mediaItems": [],
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
@@ -1828,16 +1748,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -2016,16 +1926,6 @@
                 "__typename": "MediaPicker"
               },
               "multipleMediaPicker": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
                 "mediaItems": [],
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
@@ -2217,16 +2117,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -2405,16 +2295,6 @@
                 "__typename": "MediaPicker"
               },
               "multipleMediaPicker": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
                 "mediaItems": [],
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
@@ -2606,16 +2486,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -2794,16 +2664,6 @@
                 "__typename": "MediaPicker"
               },
               "multipleMediaPicker": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
                 "mediaItems": [],
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
@@ -2991,16 +2851,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
@@ -3714,16 +3564,6 @@
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
               },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
               "blockList": {
                 "blocks": [],
                 "model": "BlockList",
@@ -3878,17 +3718,17 @@
                           "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                           "properties": {
                             "umbracoWidth": {
-                              "value": 0,
+                              "value": "",
                               "model": "Label",
                               "__typename": "Label"
                             },
                             "umbracoHeight": {
-                              "value": 0,
+                              "value": "",
                               "model": "Label",
                               "__typename": "Label"
                             },
                             "umbracoBytes": {
-                              "value": 0,
+                              "value": "",
                               "model": "Label",
                               "__typename": "Label"
                             },
@@ -3986,16 +3826,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
@@ -4178,16 +4008,6 @@
                 "__typename": "MediaPicker"
               },
               "multipleMediaPicker": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "mediaPickerLegacy": {
-                "mediaItems": [],
-                "model": "MediaPicker",
-                "__typename": "MediaPicker"
-              },
-              "multipleMediaPickerLegacy": {
                 "mediaItems": [],
                 "model": "MediaPicker",
                 "__typename": "MediaPicker"
@@ -4375,16 +4195,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
@@ -4586,16 +4396,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -4789,16 +4589,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
@@ -5000,16 +4790,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -5207,16 +4987,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [],
               "model": "BlockList",
@@ -5410,16 +5180,6 @@
               "__typename": "MediaPicker"
             },
             "multipleMediaPicker": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
               "mediaItems": [],
               "model": "MediaPicker",
               "__typename": "MediaPicker"

@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
-    <PackageReference Include="UrlTracker" Version="13.2.0-alpha0004" />
-    <PackageReference Include="uSync" Version="13.2.3" />
+    <PackageReference Include="Umbraco.Cms" Version="14.0.0" />
+    <PackageReference Include="uSync" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>

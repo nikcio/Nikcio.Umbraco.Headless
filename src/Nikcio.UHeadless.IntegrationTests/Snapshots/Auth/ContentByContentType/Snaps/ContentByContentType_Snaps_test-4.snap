@@ -73,16 +73,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [
                 {

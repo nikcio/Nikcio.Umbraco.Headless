@@ -1,7 +1,7 @@
 using Code.Examples.Headless.CustomContentItemExample;
 using Code.Examples.Headless.PublicAccessExample;
-using Code.Examples.Headless.SkybrudRedirectsExample;
-using Code.Examples.Headless.UrlTrackerExample;
+//using Code.Examples.Headless.SkybrudRedirectsExample;
+//using Code.Examples.Headless.UrlTrackerExample;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.Defaults.Members;
@@ -26,9 +26,9 @@ public class CodeExamplesUHeadlessSetup : UHeadlessSetup
             options.AddDefaults();
 
             options.AddQuery<PublishAccessExampleQuery>();
-            options.AddQuery<SkybrudRedirectsExampleQuery>();
-            options.AddQuery<UrlTrackerExampleQuery>();
-            options.AddMutation<TrackErrorStatusCodeMutation>();
+            //options.AddQuery<SkybrudRedirectsExampleQuery>();
+            //options.AddQuery<UrlTrackerExampleQuery>();
+            //options.AddMutation<TrackErrorStatusCodeMutation>();
             options.AddQuery<CustomContentItemExampleQuery>();
 
             // Default queries

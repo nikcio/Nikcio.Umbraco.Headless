@@ -115,17 +115,17 @@
                   "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -152,17 +152,17 @@
                   "url": "http://localhost/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -189,17 +189,17 @@
                   "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -222,90 +222,6 @@
             },
             "multipleMediaPickerCulture": {
               "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.16.18 (1)",
-                  "id": 1145,
-                  "key": "f297f8da-2938-4e5c-a08b-3a7c83c5cf5d",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/z4bdynec/skaermbillede-2023-04-17-kl-201551.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.51",
-                  "id": 1140,
-                  "key": "343c83c9-1782-4db5-8e13-cdcddf7ab772",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
@@ -500,26 +416,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPickerCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacyCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacyCulture": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
@@ -865,26 +761,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPickerCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacyCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacyCulture": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
@@ -1245,26 +1121,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPickerCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacyCulture": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacyCulture": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
