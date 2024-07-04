@@ -38,6 +38,11 @@ This section focuses on extending Nikcio.UHeadless to tailor it to your project'
 - [Skybrud Redirects](../extending/skybrud-redirects): Explore how to integrate Nikcio.UHeadless with [Skybrud Redirects](https://marketplace.umbraco.com/package/skybrud.umbraco.redirects) for enhanced functionality.
 - [Url Tracker](../extending/url-tracker): Learn how to integrate Nikcio.UHeadless with [Url Tracker](https://marketplace.umbraco.com/package/urltracker) for enhanced functionality.
 
+### Performance
+
+- Persisted queries: Learn how to use persisted queries to improve performance when querying content, media, and members in Nikcio.UHeadless.
+  - HotChocolate has a great overview of how to integrate persisted queries in their [documentation](https://chillicream.com/docs/hotchocolate/v13/performance/#persisted-queries). Use add any extension methods to the `IRequestExecutorBuilder` in the `Program.cs` file where you configure UHeadless.
+
 ### Properties
 
 - [Overview of Properties](../extending/properties/overview): Get an overview of the different property types and their usage in Nikcio.UHeadless.

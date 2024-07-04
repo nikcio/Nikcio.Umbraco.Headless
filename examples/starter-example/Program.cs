@@ -16,6 +16,9 @@ using Nikcio.UHeadless.Defaults.ContentItems;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+// This is needed for the automatic persisted query pipeline when using in-memory query storage
+builder.Services.AddMemoryCache();
+
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddComposers()
@@ -30,6 +33,11 @@ builder.CreateUmbracoBuilder()
         options.AddDefaults();
 
         options.AddQuery<ContentByRouteQuery>();
+
+        // This adds the automatic persisted query pipeline to the request executor
+        options.RequestExecutorBuilder
+            .UseAutomaticPersistedQueryPipeline()
+            .AddInMemoryQueryStorage();
     })
     .Build();
 
