@@ -1,6 +1,6 @@
 import { graphql } from '@/gql';
 import { CreateTokenMutation } from '@/gql/graphql';
-import { Client, cacheExchange, fetchExchange } from '@urql/core';
+import { Client, fetchExchange } from '@urql/core';
 import { authExchange } from '@urql/exchange-auth';
 
 const GRAPHQL_ENDPOINT = 'https://localhost:44368/graphql/';
@@ -13,8 +13,8 @@ type UHeadlessScopes =
     | 'property.values.member.picker'
     | 'global.member.read';
 
-const isTokenExpired = (token: Awaited<ReturnType<typeof createToken>>) => {
-    return Date.now() > token.expires * 1000;
+const isTokenExpired = (token: CreateTokenMutation) => {
+    return Date.now() > token.createToken.expires * 1000;
 };
 
 const createTokenQuery = graphql(/* GraphQL */ `
@@ -35,7 +35,9 @@ const tokenClient = new Client({
         headers: {
             'X-UHeadless-Api-Key': API_KEY,
         },
+        cache: 'no-cache',
     },
+    requestPolicy: 'network-only',
 });
 
 const tokenMap = new Map<string, CreateTokenMutation>();
@@ -44,12 +46,14 @@ const createToken = async (scope: UHeadlessScopes[]) => {
     const tokenKey = scope.join(',');
     if (tokenMap.has(tokenKey)) {
         const token = tokenMap.get(tokenKey);
-
-        if (token) {
-            return token.createToken;
+        
+        if (!token){        
+            throw new Error('Failed to create token. API responed with no data');
         }
 
-        throw new Error('Failed to create token. API responed with no data');
+        if (!isTokenExpired(token)) {
+            return token;
+        }
     }
 
     const { data, error } = await tokenClient.mutation(createTokenQuery, { scope });
@@ -65,7 +69,7 @@ const createToken = async (scope: UHeadlessScopes[]) => {
 
     tokenMap.set(tokenKey, data);
 
-    return data.createToken;
+    return data;
 };
 
 const createClient = (scope: UHeadlessScopes[]) =>
@@ -74,18 +78,18 @@ const createClient = (scope: UHeadlessScopes[]) =>
         exchanges: [
             authExchange(async (utils) => {
                 const token = await createToken(scope);
-                
+
                 return {
                     addAuthToOperation(operation) {
                         return utils.appendHeaders(operation, {
-                            [token.header]: token.prefix + token.token,
+                            [token.createToken.header]: token.createToken.prefix + token.createToken.token,
                         });
                     },
                     willAuthError(_operation) {
                         return isTokenExpired(token);
                     },
                     didAuthError(error, _operation) {
-                        return error.graphQLErrors.some((e) => e.message === 'Unauthorized');
+                        return error.graphQLErrors.some((e) => e.extensions.code === 'AUTH_NOT_AUTHORIZED');
                     },
                     async refreshAuth() {
                         await createToken(scope);
@@ -94,6 +98,11 @@ const createClient = (scope: UHeadlessScopes[]) =>
             }),
             fetchExchange,
         ],
+        fetchOptions: {
+            next: {
+                revalidate: 60, // 1 minute
+            }
+        }
     });
 
 export { createClient };

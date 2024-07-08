@@ -10,7 +10,8 @@ const config: CodegenConfig = {
             plugins: [],
         },
     },
-    watch: true,
+    watch: true
+    
 };
 
 export default config;
