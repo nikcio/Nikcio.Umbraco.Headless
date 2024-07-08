@@ -1,0 +1,38 @@
+{
+  "name": "nextjs-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "codegen": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --watch"
+  },
+  "dependencies": {
+    "@urql/core": "^5.0.4",
+    "@urql/exchange-auth": "^2.2.0",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.6",
+    "@parcel/watcher": "^2.4.1",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "graphql": "^16.8.1",
+    "postcss": "^8",
+    "prettier": "^3.3.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.5"
+  }
+}
