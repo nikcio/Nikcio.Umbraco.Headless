@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.2](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.1...v4.2.2) (2024-08-29)
+
+
+### Bug Fixes
+
+* Fixed clean startup not working with UHeadless installed ([db15d87](https://github.com/nikcio/Nikcio.UHeadless/commit/db15d87750bc3bda0dc0df5c07d9a7c325f42d3d))
+
 ## [4.2.1](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.0...v4.2.1) (2024-04-09)
 
 
