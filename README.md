@@ -17,6 +17,7 @@ The Nikcio.UHeadless package is compatible with the following Umbraco versions:
 | Umbraco 10           | v3.x.x                |
 | Umbraco 12           | v4.x.x                |
 | Umbraco 13           | v4.2.x+ & v5.x.x      |
+| Umbraco 14           | v6.x.x                |
 
 For more information, please refer to the [Versioning](#versioning) section.
 
@@ -133,6 +134,7 @@ vX.Y.Z
 | Umbraco 11           | v3.x.x & v4.x.x       | No development                        |
 | Umbraco 12           | v4.x.x                | Only reported issues for v4.x.x       |
 | Umbraco 13           | v4.2.x+ & v5.x.x      | Active branch (v5.x.x)                |
+| Umbraco 14           | v6.x.x                | Aligned with v5                       |
 
 ## Contributing
 
