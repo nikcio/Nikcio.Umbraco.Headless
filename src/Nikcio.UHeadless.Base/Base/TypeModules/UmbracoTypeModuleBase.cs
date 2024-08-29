@@ -1,4 +1,4 @@
-﻿using HotChocolate.Execution.Configuration;
+using HotChocolate.Execution.Configuration;
 using HotChocolate.Types.Descriptors;
 using HotChocolate.Types.Descriptors.Definitions;
 using Nikcio.UHeadless.Base.Basics.Models;
@@ -8,8 +8,10 @@ using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Maps;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Core.Extensions;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Base.TypeModules;
 
@@ -20,6 +22,8 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     where TContentType : IContentTypeComposition
     where TNamedProperties : INamedProperties
 {
+    private readonly IRuntimeState? _runtimeState;
+
     /// <summary>
     /// The key used for the scoped context value for the element being queried
     /// </summary>
@@ -33,10 +37,24 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     /// <inheritdoc/>
     public event EventHandler<EventArgs>? TypesChanged;
 
+    /// <summary>
+    /// Indicates if the module is initialized with types from Umbraco
+    /// </summary>
+    public bool IsInitialized { get; private set; }
+
     /// <inheritdoc/>
+    [Obsolete("Use constructor with all parameters instead.")]
     protected UmbracoTypeModuleBase(IPropertyMap propertyMap)
     {
         PropertyMap = propertyMap;
+        _runtimeState = null;
+    }
+
+    /// <inheritdoc/>
+    protected UmbracoTypeModuleBase(IPropertyMap propertyMap, IRuntimeState runtimeState)
+    {
+        PropertyMap = propertyMap;
+        _runtimeState = runtimeState;
     }
 
     /// <summary>
@@ -87,7 +105,7 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
 
         AddEmptyPropertyType(objectTypes);
 
-        TContentType[] contentTypes = GetContentTypes().ToArray();
+        TContentType[] contentTypes = GetContentTypesInternal().ToArray();
 
         foreach (TContentType? contentType in contentTypes)
         {
@@ -168,6 +186,18 @@ public abstract class UmbracoTypeModuleBase<TContentType, TNamedProperties> : IT
     /// </summary>
     /// <returns></returns>
     protected abstract IEnumerable<TContentType> GetContentTypes();
+
+    private IEnumerable<TContentType> GetContentTypesInternal()
+    {
+        if (_runtimeState != null && _runtimeState.Level != RuntimeLevel.Run)
+        {
+            return Enumerable.Empty<TContentType>();
+        }
+
+        IsInitialized = true;
+
+        return GetContentTypes();
+    }
 
     private ObjectTypeDefinition CreateObjectTypeDefinition(TContentType contentType)
     {

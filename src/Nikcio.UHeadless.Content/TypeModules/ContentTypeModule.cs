@@ -1,4 +1,4 @@
-﻿using Nikcio.UHeadless.Base.Properties.Maps;
+using Nikcio.UHeadless.Base.Properties.Maps;
 using Nikcio.UHeadless.Base.Properties.Models;
 using Nikcio.UHeadless.Base.TypeModules;
 using Umbraco.Cms.Core.Models;
@@ -14,6 +14,13 @@ public class ContentTypeModule : UmbracoTypeModuleBase<IContentType, INamedConte
     private readonly IContentTypeService _contentTypeService;
 
     /// <inheritdoc/>
+    public ContentTypeModule(IContentTypeService contentTypeService, IPropertyMap propertyMap, IRuntimeState runtimeState) : base(propertyMap, runtimeState)
+    {
+        _contentTypeService = contentTypeService;
+    }
+
+    /// <inheritdoc/>
+    [Obsolete("Use contructor with all parameters instead.")]
     public ContentTypeModule(IContentTypeService contentTypeService, IPropertyMap propertyMap) : base(propertyMap)
     {
         _contentTypeService = contentTypeService;

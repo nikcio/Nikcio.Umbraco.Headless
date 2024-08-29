@@ -26,6 +26,7 @@ public class MemberComposer : IUHeadlessComposer
         builder.Services.AddMemberServices();
 
         builder.AddNotificationAsyncHandler<MemberTypeChangedNotification, MemberTypeModuleMemberChangedHandler>();
+        builder.AddNotificationAsyncHandler<UmbracoApplicationStartedNotification, UmbracoStartedHandler>();
         builder.Services.AddSingleton<MemberTypeModule>();
     }
 }

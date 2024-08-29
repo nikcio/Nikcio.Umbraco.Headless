@@ -26,6 +26,7 @@ public class MediaComposer : IUHeadlessComposer
         builder.Services.AddMediaServices();
 
         builder.AddNotificationAsyncHandler<MediaTypeChangedNotification, MediaTypeModuleMediaTypeChangedHandler>();
+        builder.AddNotificationAsyncHandler<UmbracoApplicationStartedNotification, UmbracoStartedHandler>();
         builder.Services.AddSingleton<MediaTypeModule>();
     }
 }

@@ -26,6 +26,7 @@ public class ContentComposer : IUHeadlessComposer
         builder.Services.AddContentServices();
 
         builder.AddNotificationAsyncHandler<ContentTypeChangedNotification, ContentTypeModuleContentTypeChangedHandler>();
+        builder.AddNotificationAsyncHandler<UmbracoApplicationStartedNotification, UmbracoStartedHandler>();
         builder.Services.AddSingleton<ContentTypeModule>();
     }
 }
