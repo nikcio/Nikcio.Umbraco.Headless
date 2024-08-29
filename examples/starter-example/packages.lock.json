@@ -2,6 +2,16 @@
   "version": 1,
   "dependencies": {
     "net8.0": {
+      "HotChocolate.PersistedQueries.InMemory": {
+        "type": "Direct",
+        "requested": "[13.9.5, )",
+        "resolved": "13.9.5",
+        "contentHash": "Ie0V4LuNMcHPYibzCZ2S+MIOXxXc7WJpG6PnVKfD4h8IHgdE3AdwiexvF8QZAL2RGJeBe6N6SfaDM06cHXf4kw==",
+        "dependencies": {
+          "HotChocolate": "13.9.5",
+          "Microsoft.Extensions.Caching.Memory": "8.0.0"
+        }
+      },
       "Microsoft.ICU.ICU4C.Runtime": {
         "type": "Direct",
         "requested": "[72.1.0.3, )",
