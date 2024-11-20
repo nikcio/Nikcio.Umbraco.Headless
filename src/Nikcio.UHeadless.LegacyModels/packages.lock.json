@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net8.0": {
       "HotChocolate.AspNetCore": {
@@ -2396,26 +2396,6 @@
           "Umbraco.Cms.Infrastructure": "[13.0.0, 14.0.0)"
         }
       },
-      "Umbraco.Cms.Web.Common": {
-        "type": "Transitive",
-        "resolved": "13.0.0",
-        "contentHash": "pTV4p56KsP6yIwYLTgpYQ3WeGumdJRNZo23rblOupcKl7w6wxQ2aiPweVbv7rWIILYoDVejV7z6O5CRHDqmi8g==",
-        "dependencies": {
-          "Asp.Versioning.Mvc": "7.1.1",
-          "Asp.Versioning.Mvc.ApiExplorer": "7.1.0",
-          "Dazinator.Extensions.FileProviders": "2.0.0",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.0",
-          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "8.0.0",
-          "MiniProfiler.AspNetCore.Mvc": "4.3.8",
-          "Serilog.AspNetCore": "8.0.0",
-          "Smidge.InMemory": "4.3.0",
-          "Smidge.Nuglify": "4.3.0",
-          "System.Net.Http": "4.3.4",
-          "System.Text.RegularExpressions": "4.3.1",
-          "Umbraco.Cms.Examine.Lucene": "[13.0.0, 14.0.0)",
-          "Umbraco.Cms.PublishedCache.NuCache": "[13.0.0, 14.0.0)"
-        }
-      },
       "Umbraco.CSharpTest.Net.Collections": {
         "type": "Transitive",
         "resolved": "15.0.0",
@@ -2438,6 +2418,27 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )",
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.2, )",
           "Umbraco.Cms.Web.Common": "[13.0.0, )"
+        }
+      },
+      "Umbraco.Cms.Web.Common": {
+        "type": "CentralTransitive",
+        "requested": "[13.0.0, )",
+        "resolved": "13.0.0",
+        "contentHash": "pTV4p56KsP6yIwYLTgpYQ3WeGumdJRNZo23rblOupcKl7w6wxQ2aiPweVbv7rWIILYoDVejV7z6O5CRHDqmi8g==",
+        "dependencies": {
+          "Asp.Versioning.Mvc": "7.1.1",
+          "Asp.Versioning.Mvc.ApiExplorer": "7.1.0",
+          "Dazinator.Extensions.FileProviders": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.0",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "8.0.0",
+          "MiniProfiler.AspNetCore.Mvc": "4.3.8",
+          "Serilog.AspNetCore": "8.0.0",
+          "Smidge.InMemory": "4.3.0",
+          "Smidge.Nuglify": "4.3.0",
+          "System.Net.Http": "4.3.4",
+          "System.Text.RegularExpressions": "4.3.1",
+          "Umbraco.Cms.Examine.Lucene": "[13.0.0, 14.0.0)",
+          "Umbraco.Cms.PublishedCache.NuCache": "[13.0.0, 14.0.0)"
         }
       }
     }

@@ -7,6 +7,21 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31507724-45D7-4851-A348-C4B6CC8CB582}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		LICENSE = LICENSE
+		logo.png = logo.png
+		nuget.config = nuget.config
+		README.md = README.md
+		umbraco-marketplace-nikcio.uheadless.content.json = umbraco-marketplace-nikcio.uheadless.content.json
+		umbraco-marketplace-nikcio.uheadless.contenttypes.json = umbraco-marketplace-nikcio.uheadless.contenttypes.json
+		umbraco-marketplace-nikcio.uheadless.json = umbraco-marketplace-nikcio.uheadless.json
+		umbraco-marketplace-nikcio.uheadless.media.json = umbraco-marketplace-nikcio.uheadless.media.json
+		umbraco-marketplace-nikcio.uheadless.members.json = umbraco-marketplace-nikcio.uheadless.members.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9E422C4D-CDA0-486D-8201-1C48E5DF758C}"

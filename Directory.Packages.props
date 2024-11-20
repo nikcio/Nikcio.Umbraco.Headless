@@ -1,0 +1,29 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="13.9.14" />
+    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="13.9.14" />
+    <PackageVersion Include="HotChocolate.PersistedQueries.InMemory" Version="13.9.14" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
+    <PackageVersion Include="NSubstitute" Version="5.3.0" />
+    <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
+    <PackageVersion Include="Umbraco.Cms" Version="13.5.2" />
+    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="13.0.0" />
+    <PackageVersion Include="Umbraco.Community.Contentment" Version="5.0.2" />
+    <PackageVersion Include="UrlTracker" Version="13.2.0" />
+    <PackageVersion Include="uSync" Version="13.2.5" />
+    <PackageVersion Include="xunit" Version="2.9.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+</Project>
