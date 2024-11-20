@@ -41,7 +41,8 @@ public partial class ApiAuthTests
                 tagGroup,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-culture.com"
             }
         });
 

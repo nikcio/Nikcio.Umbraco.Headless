@@ -61,8 +61,14 @@ public partial class ContentItem : ContentItemBase
     public string? Url(IResolverContext resolverContext, UrlMode urlMode)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
 
-        return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), resolverContext.Culture(), urlMode);
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        return publishedUrlProvider.GetUrl(PublishedContent, urlMode, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
     }
 
     /// <summary>

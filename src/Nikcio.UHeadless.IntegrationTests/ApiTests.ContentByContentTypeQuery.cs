@@ -45,7 +45,8 @@ public partial class ApiTests
                 pageSize,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
@@ -64,6 +65,7 @@ public static class ContentByContentTypeQueries
 {
     public const string GetItems = """
         query ContentByContentTypeQuery(
+          $baseUrl: String!
           $page: Int!
           $pageSize: Int!
           $culture: String,
@@ -76,7 +78,8 @@ public static class ContentByContentTypeQueries
             culture: $culture,
             includePreview: $includePreview,
             fallbacks: $fallbacks,
-            segment: $segment
+            segment: $segment,
+            baseUrl: $baseUrl
           }) {
             items {
               url(urlMode: ABSOLUTE)

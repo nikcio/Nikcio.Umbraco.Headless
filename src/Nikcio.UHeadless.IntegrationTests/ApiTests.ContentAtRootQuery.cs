@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using System.Net.Http.Json;
 
 namespace Nikcio.UHeadless.IntegrationTests;
@@ -41,7 +42,8 @@ public partial class ApiTests
                 pageSize,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
@@ -60,6 +62,7 @@ public static class ContentAtRootQueries
 {
     public const string GetItems = """
         query ContentAtRootQuery(
+          $baseUrl: String!
           $page: Int!
           $pageSize: Int!
           $culture: String,
@@ -71,7 +74,8 @@ public static class ContentAtRootQueries
             culture: $culture,
             includePreview: $includePreview,
             fallbacks: $fallbacks,
-            segment: $segment
+            segment: $segment,
+            baseUrl: $baseUrl
           }) {
             items {
               url(urlMode: ABSOLUTE)

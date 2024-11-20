@@ -126,7 +126,6 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
     public virtual async Task<TContentItem?> ContentByRouteAsync(
         IResolverContext resolverContext,
         [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
-        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
         [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
@@ -138,7 +137,7 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        TContentItem? contentItem = await CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
+        TContentItem? contentItem = await CreateContentItemFromRouteAsync(resolverContext, route, inContext.BaseUrl).ConfigureAwait(false);
 
         if (contentItem != null)
         {

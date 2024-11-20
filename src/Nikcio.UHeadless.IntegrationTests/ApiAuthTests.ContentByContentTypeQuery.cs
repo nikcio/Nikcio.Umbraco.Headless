@@ -43,7 +43,8 @@ public partial class ApiAuthTests
                 pageSize,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 

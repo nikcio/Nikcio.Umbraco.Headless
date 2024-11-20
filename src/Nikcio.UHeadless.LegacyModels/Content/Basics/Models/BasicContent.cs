@@ -8,6 +8,7 @@ using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Routing;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Content.Basics.Models;
@@ -118,7 +119,16 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
     public string? Url(IResolverContext resolverContext)
     {
-        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Default);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
+
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        return publishedUrlProvider.GetUrl(PublishedContent, UrlMode.Default, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
     }
 
     /// <summary>
@@ -128,7 +138,16 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
     public virtual string? AbsoluteUrl(IResolverContext resolverContext)
     {
-        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Absolute);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
+
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        return publishedUrlProvider.GetUrl(PublishedContent, UrlMode.Absolute, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
     }
 
     /// <summary>

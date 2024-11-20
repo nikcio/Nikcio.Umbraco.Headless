@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Resolvers;
+using Microsoft.AspNetCore.Http;
 using Nikcio.UHeadless.Properties;
 
 namespace Nikcio.UHeadless;
@@ -41,15 +42,32 @@ public class QueryContext
     public string? Segment { get; set; }
 
     /// <summary>
+    /// The base URL of the request.
+    /// </summary>
+    [GraphQLDescription("The base URL of the request. Example: https://my-website.com. Used to return the correct URLs on content items")]
+    public string? BaseUrl { get; set; }
+
+    /// <summary>
     /// Initializes the context values with the correct context keys keys
     /// </summary>
-    [MemberNotNullWhen(true, nameof(IncludePreview), nameof(Fallbacks))]
+    [MemberNotNullWhen(true, nameof(IncludePreview), nameof(Fallbacks), nameof(BaseUrl))]
     public bool Initialize(IResolverContext resolverContext)
     {
-        resolverContext.Initialize(this);
+        ArgumentNullException.ThrowIfNull(resolverContext);
 
         IncludePreview ??= false;
         Fallbacks ??= [];
+
+        HttpContext? httpContext = resolverContext.Service<IHttpContextAccessor>().HttpContext;
+
+        if (httpContext == null)
+        {
+            return false;
+        }
+
+        BaseUrl ??= $"{httpContext.Request.Scheme}://{httpContext.Request.Host.Host}";
+
+        resolverContext.Initialize(this);
 
         return true;
     }

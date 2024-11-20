@@ -91,7 +91,7 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
         }
 
 
-        IPublishedContentType? publishedContentType = publishedContentTypeCache.Get(PublishedItemType.Content, contentType);
+        IPublishedContentType? publishedContentType = publishedContentTypeCache.Get(PublishedItemType.Media, contentType);
         if (publishedContentType == null)
         {
             ILogger<MediaByContentTypeQuery> logger = resolverContext.Service<ILogger<MediaByContentTypeQuery>>();

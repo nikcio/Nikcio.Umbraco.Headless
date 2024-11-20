@@ -68,9 +68,9 @@ public static class ContentByRouteQueries
           $segment: String
         ) {
           contentByRoute(
-            baseUrl: $baseUrl,
             route: $route,
             inContext: {
+              baseUrl: $baseUrl,
               culture: $culture
               includePreview: $includePreview
               fallbacks: $fallbacks

@@ -35,7 +35,8 @@ public partial class ApiTests
                 key,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
@@ -54,6 +55,7 @@ public static class ContentByGuidQueries
 {
     public const string GetItems = """
         query ContentByGuidQuery(
+          $baseUrl: String!
           $key: UUID!
           $culture: String
           $includePreview: Boolean
@@ -63,6 +65,7 @@ public static class ContentByGuidQueries
           contentByGuid(
             id: $key
             inContext: {
+              baseUrl: $baseUrl
               culture: $culture
               includePreview: $includePreview
               fallbacks: $fallbacks

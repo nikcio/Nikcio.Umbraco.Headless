@@ -15,6 +15,7 @@ public static class ResolverContextExtensions
         resolverContext.SetScopedState(ContextDataKeys.Culture, queryContext.Culture);
         resolverContext.SetScopedState(ContextDataKeys.Segment, queryContext.Segment);
         resolverContext.SetScopedState(ContextDataKeys.Fallback, queryContext.Fallbacks?.ToFallback() ?? default);
+        resolverContext.SetScopedState(ContextDataKeys.BaseUrl, queryContext.BaseUrl);
 
         return queryContext ?? new();
     }
@@ -57,6 +58,16 @@ public static class ResolverContextExtensions
     public static Fallback Fallback(this IResolverContext resolverContext)
     {
         return resolverContext.GetOrSetScopedState<Fallback?>(ContextDataKeys.Fallback, _ => default) ?? default;
+    }
+
+    /// <summary>
+    /// Gets the base URL of the request. Used to get the correct URLs on content items.
+    /// </summary>
+    /// <param name="resolverContext"></param>
+    /// <returns></returns>
+    public static string BaseUrl(this IResolverContext resolverContext)
+    {
+        return resolverContext.GetOrSetScopedState(ContextDataKeys.BaseUrl, _ => "");
     }
 
     /// <summary>
