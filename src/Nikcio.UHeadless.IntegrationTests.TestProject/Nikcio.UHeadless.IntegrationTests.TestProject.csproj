@@ -6,8 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
-    <PackageReference Include="usync" Version="13.2.3" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.14" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Umbraco.Cms" Version="13.5.2" />
+    <PackageReference Include="usync" Version="13.2.5" />
   </ItemGroup>
 
   <!-- Force Windows to use ICU. Otherwise Windows 10 2019H1+ will do it, but older Windows 10 and most, if not all, Windows Server editions will run NLS -->
@@ -46,5 +51,12 @@
   
   <ItemGroup>
     <None Include="wwwroot\media\.gitkeep" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

@@ -1,9 +1,12 @@
 {
   "data": {
     "urlTrackerExampleQuery": {
-      "redirect": null,
+      "redirect": {
+        "redirectUrl": "http://site-1.com/new-page/?q=my-query",
+        "isPermanent": false
+      },
       "name": null,
-      "statusCode": 404
+      "statusCode": 307
     }
   }
 }

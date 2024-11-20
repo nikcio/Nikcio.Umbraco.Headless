@@ -3,6 +3,7 @@ using HotChocolate.Resolvers;
 using HotChocolate.Types;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.Authorization;
+using UrlTracker.Core.Models;
 using UrlTracker.Middleware.Background;
 
 namespace Code.Examples.Headless.UrlTrackerExample;
@@ -49,7 +50,7 @@ public class TrackErrorStatusCodeMutation : IGraphQLMutation
         {
             case StatusCodes.Status404NotFound:
                 IClientErrorProcessorQueue clientErrorProcessorQueue = resolverContext.Service<IClientErrorProcessorQueue>();
-                await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(url, timestamp, referrer)).ConfigureAwait(false);
+                await clientErrorProcessorQueue.WriteAsync(new ClientErrorProcessorItem(Url.Parse(url), timestamp, referrer)).ConfigureAwait(false);
                 break;
             case StatusCodes.Status500InternalServerError:
                 logger.LogError("Internal server error occurred at {Timestamp} for URL {Url} with referrer {Referrer}", timestamp, url, referrer);

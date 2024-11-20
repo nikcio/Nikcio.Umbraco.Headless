@@ -7,18 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.14" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
     <PackageReference Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
-    <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
+    <PackageReference Include="Umbraco.Cms" Version="13.5.2" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
-    <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.0" />
-    <PackageReference Include="UrlTracker" Version="13.2.0-alpha0003" />
-    <PackageReference Include="uSync" Version="13.2.3" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.2" />
+    <PackageReference Include="UrlTracker" Version="13.2.0" />
+    <PackageReference Include="uSync" Version="13.2.5" />
     <ProjectReference Include="..\..\src\Nikcio.UHeadless\Nikcio.UHeadless.csproj" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <PropertyGroup>
