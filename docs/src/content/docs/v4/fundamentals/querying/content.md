@@ -116,7 +116,7 @@ Gets a content item by an absolute route.
 Parameters:
 
 - **route**: The route to fetch. Example: '/da/frontpage/'.
-- **baseUrl**: The base URL for the request. Example: 'https://localhost:4000'. Default is the current domain.
+- **baseUrl**: The base URL for the request. Example: 'https://my-website.com/'. Default is the current domain.
 - **culture**: The culture.
 - **preview**: Fetch preview values. Preview will show unpublished items.
 - **routeMode**: Modes for requesting by route.
@@ -177,7 +177,7 @@ Gets content item descendants by an absolute route.
 Parameters:
 
 - **route**: The route to fetch. Example: '/da/frontpage/'.
-- **baseUrl**: The base URL for the request. Example: 'https://localhost:4000'. Default is the current domain.
+- **baseUrl**: The base URL for the request. Example: 'https://my-website.com/'. Default is the current domain.
 - **culture**: The culture.
 - **preview**: Fetch preview values. Preview will show unpublished items.
 - **routeMode**: Modes for requesting by

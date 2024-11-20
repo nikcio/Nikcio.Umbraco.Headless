@@ -17,13 +17,13 @@ public partial class SnapshotProvider
     public SnapshotProvider(string snapshotFolder)
     {
         // We need to go up 3 levels to get to the root of the project instead of bin/Debug/netX.Z
-        _snapshotFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../..", snapshotFolder);
+        _snapshotFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../..", snapshotFolder);
     }
 
     public async Task AssertIsSnapshotEqualAsync(string snapshotName, string content)
     {
         string snapshotErrorName = $"{snapshotName}.error";
-        string snapshotErrorPath = Path.Combine(_snapshotFolder, snapshotErrorName);
+        string snapshotErrorPath = System.IO.Path.Combine(_snapshotFolder, snapshotErrorName);
 
         string jsonContent = await GetContentAsJsonAsync(content).ConfigureAwait(true);
         string snapshot = await GetSnapshotAsync(snapshotName, content).ConfigureAwait(true);
@@ -38,7 +38,7 @@ public partial class SnapshotProvider
 
     private async Task<string> GetSnapshotAsync(string snapshotName, string content)
     {
-        string snapshotPath = Path.Combine(_snapshotFolder, snapshotName);
+        string snapshotPath = System.IO.Path.Combine(_snapshotFolder, snapshotName);
         if (File.Exists(snapshotPath))
         {
             return await File.ReadAllTextAsync(snapshotPath).ConfigureAwait(true);
