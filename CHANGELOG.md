@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v5.1.0...v6.0.0) (2024-11-20)
+
+
+### Features
+
+* Update docs site ([274b67b](https://github.com/nikcio/Nikcio.UHeadless/commit/274b67b9c763642b9a49be6190102f0741560447))
+* Update v6 ([f489f72](https://github.com/nikcio/Nikcio.UHeadless/commit/f489f720b1637c5a42a6424bd5659894cc8680e3))
+
+## [6.0.0-preview001](https://github.com/nikcio/Nikcio.UHeadless/compare/v5.0.0-preview005...v6.0.0-preview001) (2024-08-29)
+
+
+### Features
+
+* Build on Umbraco v14 ([ce2b75e](https://github.com/nikcio/Nikcio.UHeadless/commit/ce2b75ed36094e45f11fe9b83a5b7fd2d122eb99))
+* Update test projects ([5e2f62e](https://github.com/nikcio/Nikcio.UHeadless/commit/5e2f62e4c53de886134dc22521af37950c111e39))
+
 ## [5.1.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v5.0.0...v5.1.0) (2024-11-20)
 
 
