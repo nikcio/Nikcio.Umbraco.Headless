@@ -1261,6 +1261,9 @@
                     "$ref": "#/definitions/WorkspaceAliasConditionConfig"
                 },
                 {
+                    "$ref": "#/definitions/WorkspaceContentTypeAliasConditionConfig"
+                },
+                {
                     "$ref": "#/definitions/WorkspaceEntityTypeConditionConfig"
                 }
             ]
@@ -8864,7 +8867,7 @@
         },
         "FontFaceSet": {
             "properties": {
-                "__@toStringTag@841": {
+                "__@toStringTag@876": {
                     "type": "string"
                 },
                 "onloading": {
@@ -8896,7 +8899,7 @@
                 }
             },
             "required": [
-                "__@toStringTag@841",
+                "__@toStringTag@876",
                 "onloading",
                 "onloadingdone",
                 "onloadingerror",
@@ -42773,6 +42776,76 @@
             ],
             "type": "object"
         },
+        "ManifestFileUploadPreview": {
+            "properties": {
+                "alias": {
+                    "description": "The alias of the extension, ensure it is unique",
+                    "type": "string"
+                },
+                "element": {
+                    "description": "The file location of the element javascript file to load",
+                    "type": "string"
+                },
+                "elementName": {
+                    "description": "The HTML web component name to use such as 'my-dashboard'\nNote it is NOT <my-dashboard></my-dashboard>, just the element name.",
+                    "type": "string"
+                },
+                "forMimeTypes": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Array of the mime types that are supported by this extension.",
+                    "examples": [
+                        [
+                            "image/png",
+                            "image/jpeg"
+                        ],
+                        "image/*"
+                    ]
+                },
+                "js": {
+                    "description": "The file location of the javascript file to load",
+                    "type": "string"
+                },
+                "kind": {
+                    "description": "The kind of the extension, used to group extensions together",
+                    "examples": [
+                        "button"
+                    ]
+                },
+                "meta": {
+                    "description": "This contains properties specific to the type of extension"
+                },
+                "name": {
+                    "description": "The friendly name of the extension",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "fileUploadPreview",
+                    "description": "The type of extension such as dashboard etc...",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "Extensions such as dashboards are ordered by weight with lower numbers being first in the list",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "alias",
+                "forMimeTypes",
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
         "ManifestGlobalContext": {
             "properties": {
                 "alias": {
@@ -43435,7 +43508,9 @@
                     ]
                 },
                 "meta": {
-                    "$ref": "#/definitions/MetaMonacoMarkdownEditorAction"
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
                 },
                 "name": {
                     "description": "The friendly name of the extension",
@@ -43503,6 +43578,63 @@
             "required": [
                 "alias",
                 "meta",
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
+        "ManifestPickerSearchResultItem": {
+            "description": "Represents a picker search result element.",
+            "properties": {
+                "alias": {
+                    "description": "The alias of the extension, ensure it is unique",
+                    "type": "string"
+                },
+                "api": {
+                    "description": "The file location of the api javascript file to load",
+                    "type": "string"
+                },
+                "element": {
+                    "description": "The file location of the element javascript file to load",
+                    "type": "string"
+                },
+                "elementName": {
+                    "description": "The HTML web component name to use such as 'my-dashboard'\nNote it is NOT <my-dashboard></my-dashboard>, just the element name.",
+                    "type": "string"
+                },
+                "forEntityTypes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "js": {
+                    "description": "The file location of the javascript file to load",
+                    "type": "string"
+                },
+                "kind": {
+                    "description": "The kind of the extension, used to group extensions together",
+                    "examples": [
+                        "button"
+                    ]
+                },
+                "name": {
+                    "description": "The friendly name of the extension",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "pickerSearchResultItem",
+                    "description": "The type of extension such as dashboard etc...",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "Extensions such as dashboards are ordered by weight with lower numbers being first in the list",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "alias",
+                "forEntityTypes",
                 "name",
                 "type"
             ],
@@ -44711,6 +44843,9 @@
                     "$ref": "#/definitions/ManifestEntryPoint"
                 },
                 {
+                    "$ref": "#/definitions/ManifestFileUploadPreview"
+                },
+                {
                     "$ref": "#/definitions/ManifestExternalLoginProvider"
                 },
                 {
@@ -44756,6 +44891,9 @@
                     "$ref": "#/definitions/ManifestPackageView"
                 },
                 {
+                    "$ref": "#/definitions/ManifestPickerSearchResultItem"
+                },
+                {
                     "$ref": "#/definitions/ManifestPreviewAppProvider"
                 },
                 {
@@ -44783,10 +44921,10 @@
                     "$ref": "#/definitions/ManifestSection"
                 },
                 {
-                    "$ref": "#/definitions/ManifestSectionView"
+                    "$ref": "#/definitions/ManifestSectionRoute"
                 },
                 {
-                    "$ref": "#/definitions/ManifestSectionRoute"
+                    "$ref": "#/definitions/ManifestSectionView"
                 },
                 {
                     "$ref": "#/definitions/ManifestStore"
@@ -44802,6 +44940,9 @@
                 },
                 {
                     "$ref": "#/definitions/ManifestUfmComponent"
+                },
+                {
+                    "$ref": "#/definitions/ManifestUfmFilter"
                 },
                 {
                     "$ref": "#/definitions/ManifestUserProfileApp"
@@ -44869,6 +45010,50 @@
                 },
                 "type": {
                     "const": "ufmComponent",
+                    "description": "The type of extension such as dashboard etc...",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "Extensions such as dashboards are ordered by weight with lower numbers being first in the list",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "alias",
+                "meta",
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
+        "ManifestUfmFilter": {
+            "properties": {
+                "alias": {
+                    "description": "The alias of the extension, ensure it is unique",
+                    "type": "string"
+                },
+                "api": {
+                    "type": "string"
+                },
+                "js": {
+                    "description": "The file location of the javascript file to load",
+                    "type": "string"
+                },
+                "kind": {
+                    "description": "The kind of the extension, used to group extensions together",
+                    "examples": [
+                        "button"
+                    ]
+                },
+                "meta": {
+                    "$ref": "#/definitions/MetaUfmFilter"
+                },
+                "name": {
+                    "description": "The friendly name of the extension",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "ufmFilter",
                     "description": "The type of extension such as dashboard etc...",
                     "type": "string"
                 },
@@ -46579,9 +46764,6 @@
             },
             "type": "object"
         },
-        "MetaMonacoMarkdownEditorAction": {
-            "type": "object"
-        },
         "MetaPackageView": {
             "properties": {
                 "packageName": {
@@ -46808,6 +46990,17 @@
             },
             "required": [
                 "marker"
+            ],
+            "type": "object"
+        },
+        "MetaUfmFilter": {
+            "properties": {
+                "alias": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "alias"
             ],
             "type": "object"
         },
@@ -48424,23 +48617,23 @@
         },
         "Promise<FontFaceSet>": {
             "properties": {
-                "__@toStringTag@841": {
+                "__@toStringTag@876": {
                     "type": "string"
                 }
             },
             "required": [
-                "__@toStringTag@841"
+                "__@toStringTag@876"
             ],
             "type": "object"
         },
         "Promise<ServiceWorkerRegistration>": {
             "properties": {
-                "__@toStringTag@841": {
+                "__@toStringTag@876": {
                     "type": "string"
                 }
             },
             "required": [
-                "__@toStringTag@841"
+                "__@toStringTag@876"
             ],
             "type": "object"
         },
@@ -62080,6 +62273,18 @@
             ],
             "type": "object"
         },
+        "UmbConditionConfigBase<\"Umb.Condition.WorkspaceContentTypeAlias\">": {
+            "properties": {
+                "alias": {
+                    "const": "Umb.Condition.WorkspaceContentTypeAlias",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "alias"
+            ],
+            "type": "object"
+        },
         "UmbConditionConfigBase<\"Umb.Condition.WorkspaceEntityType\">": {
             "properties": {
                 "alias": {
@@ -62219,8 +62424,27 @@
                 },
                 "pickableFilter": {
                     "type": "object"
+                },
+                "search": {
+                    "$ref": "#/definitions/UmbPickerModalSearchConfig"
                 }
             },
+            "type": "object"
+        },
+        "UmbPickerModalSearchConfig": {
+            "properties": {
+                "providerAlias": {
+                    "type": "string"
+                },
+                "queryParams": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "required": [
+                "providerAlias"
+            ],
             "type": "object"
         },
         "UmbPickerModalValue": {
@@ -63809,6 +64033,29 @@
                         },
                         "oneOf": {
                             "description": "Define one or more workspaces that this extension should be available in",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            ]
+        },
+        "WorkspaceContentTypeAliasConditionConfig": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/UmbConditionConfigBase<\"Umb.Condition.WorkspaceContentTypeAlias\">"
+                },
+                {
+                    "properties": {
+                        "match": {
+                            "description": "Define a content type alias in which workspace this extension should be available",
+                            "type": "string"
+                        },
+                        "oneOf": {
+                            "description": "Define one or more content type aliases in which workspace this extension should be available",
                             "items": {
                                 "type": "string"
                             },

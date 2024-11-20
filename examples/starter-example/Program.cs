@@ -20,6 +20,7 @@ builder.Services.AddMemoryCache();
 
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
+    .AddWebsite()
     .AddComposers()
     .AddUHeadless(options =>
     {

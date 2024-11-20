@@ -5,7 +5,8 @@ using Code.Examples.Headless.CustomMediaPickerExample;
 using Code.Examples.Headless.CustomMemberItemExample;
 using Code.Examples.Headless.CustomRichTextExample;
 using Code.Examples.Headless.PublicAccessExample;
-//using Code.Examples.Headless.SkybrudRedirectsExample;
+using Code.Examples.Headless.SkybrudRedirectsExample;
+
 //using Code.Examples.Headless.UrlTrackerExample;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.ContentItems;
@@ -37,7 +38,7 @@ public sealed class Program
                 options.AddDefaults();
 
                 options.AddQuery<PublishAccessExampleQuery>();
-                //options.AddQuery<SkybrudRedirectsExampleQuery>();
+                options.AddQuery<SkybrudRedirectsExampleQuery>();
                 //options.AddQuery<UrlTrackerExampleQuery>();
                 //options.AddMutation<TrackErrorStatusCodeMutation>();
                 options.AddQuery<CustomContentItemExampleQuery>();

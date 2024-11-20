@@ -90,8 +90,8 @@
       ],
       "page": 1,
       "pageSize": 5,
-      "totalItems": 5,
-      "hasNextPage": false
+      "totalItems": 6,
+      "hasNextPage": true
     }
   }
 }

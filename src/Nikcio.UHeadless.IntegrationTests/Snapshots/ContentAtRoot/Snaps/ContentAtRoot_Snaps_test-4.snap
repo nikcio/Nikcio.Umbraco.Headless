@@ -86,11 +86,26 @@
           "templateId": null,
           "parent": null,
           "__typename": "ContentItem"
+        },
+        {
+          "url": "http://localhost/home-4a038986-adf1-48c5-aba0-c10c13c1b4d1/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "home-4a038986-adf1-48c5-aba0-c10c13c1b4d1",
+          "name": "Home-4a038986-adf1-48c5-aba0-c10c13c1b4d1",
+          "id": 1184,
+          "key": "fb6ba757-b9b9-4c9c-ade2-1efe9f03e928",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
         }
       ],
       "page": 1,
       "pageSize": 1000,
-      "totalItems": 5,
+      "totalItems": 6,
       "hasNextPage": false
     }
   }

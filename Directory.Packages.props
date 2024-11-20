@@ -17,12 +17,12 @@
     <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
-    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
-    <PackageVersion Include="Umbraco.Cms" Version="13.5.2" />
-    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="13.0.0" />
-    <PackageVersion Include="Umbraco.Community.Contentment" Version="5.0.2" />
-    <PackageVersion Include="UrlTracker" Version="13.2.0" />
-    <PackageVersion Include="uSync" Version="13.2.5" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="14.0.0-alpha001" />
+    <PackageVersion Include="Umbraco.Cms" Version="14.3.1" />
+    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="14.3.1" />
+    <PackageVersion Include="Umbraco.Community.Contentment" Version="6.0.0-alpha003" />
+    <!-- <PackageVersion Include="UrlTracker" Version="13.2.0" /> -->
+    <PackageVersion Include="uSync" Version="14.2.3" />
     <PackageVersion Include="xunit" Version="2.9.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
