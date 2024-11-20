@@ -2,6 +2,111 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v5.0.0...v5.1.0) (2024-11-20)
+
+
+### Features
+
+* Centrialize package versions ([b21215f](https://github.com/nikcio/Nikcio.UHeadless/commit/b21215fe8d7d43944e0c565cc43cdbeef5694c55))
+* Update dependencies ([4fdd319](https://github.com/nikcio/Nikcio.UHeadless/commit/4fdd31993253a7fdfb3a414af6801d4e4b178848))
+
+## [5.0.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.1...v5.0.0) (2024-6-26)
+
+## ✨ Highlights
+
+- Simpler project structure
+  - You now only need to reference the `Nikcio.UHeadless` package to get started as all packages are now merged into one.
+- New defaults for Queries and Models
+  - The new defaults are now simpler and limited to the most common useable queries and models.
+- Authorization by default
+  - New defaults will include authorization by default which will help ensure you're not exposing too much data.
+- Easier to use Typed properties
+  - This release brings typed or previously 'Named properties' to the forefront and makes them easier to use.
+  - Typed properties are now available everywhere it makes sense. (See the feature section for more details)
+- Cleaner setup with new bootstrapping.
+  - The new bootstrapping is simpler and more intuitive.
+
+## 🐎 Get started
+[Getting started with version 5.0.0](https://nikcio.github.io/Nikcio.UHeadless/v5/fundamentals/getting-started/)
+
+## 🚀 Features
+- Typed properties are now available everywhere it makes sense.
+  - Use the `TypedPropertes` class for Content items/Media items and Member items
+  - Use the `TypedNestedContentProperties` class for Nested Content items
+  - Use the `TypedBlockListContentProperties` class for Block List items (Content)
+  - Use the `TypedBlockListSettingsProperties` class for Block List items (Settings)
+  - Use the `TypedBlockGridContentProperties` class for Block Grid items (Content)
+  - Use the `TypedBlockGridSettingsProperties` class for Block Grid items (Settings)
+- New defaults for Queries and Models
+  - Queries
+    - Use `ContentAtRootQuery` to get content at the root of your Umbraco site.
+    - Use `ContentByContentTypeQuery` to get content by content type.
+    - Use `ContentByGuidQuery` to get content by guid.
+    - Use `ContentByIdQuery` to get content by id.
+    - Use `ContentByRouteQuery` to get content by route.
+      - Includes built-in support for the Umbraco automatic redirects.
+    - Use `ContentByTagQuery` to get content by tag.
+    - Use `MediaAtRootQuery` to get media at the root of your Umbraco site.
+    - Use `MediaByContentTypeQuery` to get media by content type.
+    - Use `MediaByGuidQuery` to get media by guid.
+    - Use `MediaByIdQuery` to get media by id.
+    - Use `FindMembersByDisplayNameQuery` to get members by thier display name.
+    - Use `FindMembersByEmailQuery` to get members by email.
+    - Use `FindMembersByRoleQuery` to get members by role.
+    - Use `FindMembersByUsernameQuery` to get members by username.
+    - Use `MemberByEmailQuery` to get a member by email.
+    - Use `MemberByGuidQuery` to get a member by guid.
+    - Use `MemberByIdQuery` to get a member by id.
+    - Use `MemberByUsernameQuery` to get a member by username.
+  - Models
+    - `ContentItem` is used for Content queries. This has built-in support for redirect information provided by `ContentByRouteQuery`.
+    - `MediaItem` is used for Media queries.
+    - `MemberItem` is used for Member queries.
+    - `BlockGrid` to support the block grid editor.
+    - `BlockList` to support the block list editor.
+    - `ContentPicker` to support the content picker editor and the multi node picker.
+    - `DateTimePicker` to support the date time picker editor.
+    - `DefaultProperty` to support editors that doesn't require special modeling. (Used as the fallback)
+    - `Label` to support the label editor.
+    - `MediaPicker` to support the media picker editor.
+    - `MemberPicker` to support the member picker editor. (Now requires Authorization by default to avoid leaking member information. This can be disabled by setting `options.DisableAuthorization`)
+    - `MultiUrlPicker` to support the multi url picker editor.
+    - `NestedContent` to support the nested content editor.
+    - `RichText` to support the rich text editor and the markdown editor.
+    - `UnsupportedProperty` to mark properties that are not supported.
+- Authorization by default
+  - Authorization is now enabled by default for all queries to have secure by default queries.
+  - Authorization is now enabled by default for the `MemberPicker` model to avoid leaking member information.
+  - This can be disabled by setting `options.DisableAuthorization` in the `UmbracoHeadlessOptions`.
+- New bootstrapping
+  - Bootstrapping is now simpler and more intuitive. (See the getting started guide at the bottom of this release note)
+- The new `ContentPicker` model now supports querying the properties of the picked content.
+- The `IResolverContext` from HotChocolate has now been added to the default commands so it can be used to resolve services and access query arguments like `Culture`, `IncludePreivew`, `Fallback` and `Segment`.
+- `ContentByContentTypeQuery` now supports `includePreview` to fetch preview content. #229
+- Context data like `Culture`, `IncludePreivew`, `Fallback` and `Segment` are now provided with the `inContext` parameter object on content queries.
+- Instead of the `UsePaging` attribute from HotChocolate a new `Paginationresult` model has been added to avoid problems with the way Umbraco handles content data on queries. This means that the `UsePaging` attribute is no longer needed and shouldn't be used in custom queries either.
+
+## 📖 Documentation Updates
+- This release brings an overhaul of the documentation bringing you the most helpful information about the package.
+
+## 🧪 Test improvements
+- Content query tests have been rewritten and are now more stable.
+- Media query tests have been rewritten and are now more stable.
+- Member query tests have been rewritten and are now more stable.
+- Code coverage is now over 80%.
+
+## 🏛️Project stability
+- All projects are now merged into one which makes maintenance easier as this also removes a lot of code as the package could be simplified.
+- A new Nikcio.UHeadless.LegacyModels project has been added to help with migration from the old schema to the new schema. (This won't be available as a package but will be available for use for people migrating).
+  - Use this project to get a similar content model to the one found in v4.
+
+## 📦 Dependencies
+- `HotChocolate.Data` has been removed as it's no longer needed.
+
+## 💥 Breaking changes.
+- This release is a complete overhaul of the project and therefore a lot of things have changed.
+  - Take a good look in the documentation which has been updated and if not your question can be answered there open a question on GitHub.
+
 ## [4.2.1](https://github.com/nikcio/Nikcio.UHeadless/compare/v4.2.0...v4.2.1) (2024-04-09)
 
 
