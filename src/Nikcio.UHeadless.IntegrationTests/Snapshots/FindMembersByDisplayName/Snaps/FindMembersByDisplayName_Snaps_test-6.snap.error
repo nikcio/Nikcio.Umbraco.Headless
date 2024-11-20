@@ -1,0 +1,98 @@
+{
+  "errors": [
+    {
+      "message": "Level is not implemented for Member",
+      "locations": [
+        {
+          "line": 62,
+          "column": 5
+        }
+      ],
+      "path": [
+        "findMembersByDisplayName",
+        0,
+        "parent"
+      ]
+    },
+    {
+      "message": "Level is not implemented for Member",
+      "locations": [
+        {
+          "line": 62,
+          "column": 5
+        }
+      ],
+      "path": [
+        "findMembersByDisplayName",
+        1,
+        "parent"
+      ]
+    }
+  ],
+  "data": {
+    "findMembersByDisplayName": [
+      {
+        "properties": {
+          "umbracoMemberComments": {
+            "value": "member 1",
+            "model": "DefaultProperty"
+          },
+          "umbracoMemberFailedPasswordAttempts": {
+            "value": "",
+            "model": "Label"
+          },
+          "umbracoMemberApproved": {
+            "value": false,
+            "model": "DefaultProperty"
+          },
+          "umbracoMemberLockedOut": {
+            "value": false,
+            "model": "DefaultProperty"
+          },
+          "umbracoMemberLastLockoutDate": {
+            "value": "",
+            "model": "Label"
+          },
+          "umbracoMemberLastLogin": {
+            "value": "",
+            "model": "Label"
+          },
+          "umbracoMemberLastPasswordChangeDate": {
+            "value": "",
+            "model": "Label"
+          }
+        },
+        "name": "member 1",
+        "id": 1180,
+        "key": "5dea6e8d-d295-45d3-80bd-96d058b9774e",
+        "templateId": null,
+        "parent": null,
+        "__typename": "MemberItem"
+      },
+      {
+        "properties": {
+          "nestedContent": {
+            "members": [
+              {
+                "name": "user1",
+                "id": 1179,
+                "key": "91eecdea-fc1e-408d-ac41-545ceefa3dc5"
+              }
+            ],
+            "model": "MemberPicker"
+          },
+          "umbracoMemberComments": {
+            "value": "Test member",
+            "model": "DefaultProperty"
+          }
+        },
+        "name": "member 2",
+        "id": 1181,
+        "key": "1ee7e46f-372e-4cf8-b7f4-c8c87abc6ce2",
+        "templateId": null,
+        "parent": null,
+        "__typename": "MemberItem"
+      }
+    ]
+  }
+}

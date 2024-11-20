@@ -7,7 +7,7 @@ namespace Nikcio.UHeadless.IntegrationTests.TestProject;
 /// <summary>
 ///     Configures the index options to construct the Examine indexes
 /// </summary>
-public sealed class ConfigureExamineIndexes : IConfigureNamedOptions<LuceneDirectoryIndexOptions>
+internal sealed class ConfigureExamineIndexes : IConfigureNamedOptions<LuceneDirectoryIndexOptions>
 {
     public void Configure(string? name, LuceneDirectoryIndexOptions options)
     {

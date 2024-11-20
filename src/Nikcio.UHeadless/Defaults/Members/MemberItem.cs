@@ -1,7 +1,11 @@
 using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Members;
@@ -12,12 +16,23 @@ public class MemberItem : MemberItemBase
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
+
+    protected IDocumentNavigationQueryService DocumentNavigationQueryService { get; }
+
+    protected IPublishedMemberCache PublishedMemberCache { get; }
+
+    protected IMemberService MemberService { get; }
+
     public MemberItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
+        DocumentNavigationQueryService = ResolverContext.Service<IDocumentNavigationQueryService>();
+        PublishedMemberCache = ResolverContext.Service<IPublishedMemberCache>();
+        MemberService = ResolverContext.Service<IMemberService>();
+
     }
 
     /// <summary>
@@ -54,11 +69,38 @@ public class MemberItem : MemberItemBase
     /// Gets the parent of the member item
     /// </summary>
     [GraphQLDescription("Gets the parent of the member item.")]
-    public MemberItem? Parent => PublishedContent?.Level != 1 && PublishedContent?.Parent != null ? CreateMember<MemberItem>(new CreateCommand()
+    public MemberItem? Parent()
     {
-        PublishedContent = PublishedContent.Parent,
-        ResolverContext = ResolverContext,
-    }, DependencyReflectorFactory) : default;
+        if (PublishedContent == null || PublishedContent.Level == 1)
+        {
+            return default;
+        }
+
+        if (!DocumentNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
+        {
+            return default;
+        }
+
+        IMember? parentMember = MemberService.GetById(parentKey.Value);
+
+        if (parentMember == null)
+        {
+            return default;
+        }
+
+        IPublishedContent? parent = PublishedMemberCache.Get(parentMember);
+
+        if (parent == null)
+        {
+            return default;
+        }
+
+        return CreateMember<MemberItem>(new CreateCommand()
+        {
+            PublishedContent = parent,
+            ResolverContext = ResolverContext,
+        }, DependencyReflectorFactory);
+    }
 
     /// <summary>
     /// Gets the properties of the member item

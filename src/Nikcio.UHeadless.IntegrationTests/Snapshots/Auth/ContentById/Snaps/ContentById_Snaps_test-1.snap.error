@@ -1,0 +1,19 @@
+{
+  "data": {
+    "contentById": {
+      "url": "http://localhost/",
+      "redirect": null,
+      "statusCode": 200,
+      "properties": {
+        "__typename": "EmptyPropertyType"
+      },
+      "urlSegment": "site-1",
+      "name": "Site 1",
+      "id": 1146,
+      "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+      "templateId": null,
+      "parent": null,
+      "__typename": "ContentItem"
+    }
+  }
+}

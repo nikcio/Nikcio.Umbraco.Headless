@@ -1,6 +1,4 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.Members;
 using Nikcio.UHeadless.MemberItems;

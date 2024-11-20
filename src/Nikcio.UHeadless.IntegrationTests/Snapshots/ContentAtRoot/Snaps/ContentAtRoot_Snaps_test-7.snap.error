@@ -1,0 +1,87 @@
+{
+  "data": {
+    "contentAtRoot": {
+      "items": [
+        {
+          "url": "http://localhost/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-1",
+          "name": "Site 1",
+          "id": 1146,
+          "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://localhost/no-domain-site/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "no-domain-site",
+          "name": "No domain site",
+          "id": 1147,
+          "key": "cb9726b8-2307-4a01-9b39-7c2850c4d19a",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://localhost/site-2/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-2",
+          "name": "Site 2",
+          "id": 1148,
+          "key": "dcf14fa0-dfc3-4108-8c9b-a4e9f77c0c29",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "#",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": null,
+          "name": "UnpublishedSite",
+          "id": 1149,
+          "key": "f894ebb3-7353-4439-b84c-04ed7d283202",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://localhost/site-with-unpublished-pages/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-with-unpublished-pages",
+          "name": "Site with unpublished pages",
+          "id": 1150,
+          "key": "805a5fe7-d8ff-472d-9dd4-b73e48a6d15b",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        }
+      ],
+      "page": 1,
+      "pageSize": 5,
+      "totalItems": 7,
+      "hasNextPage": true
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "data": {
+    "contentByContentType": {
+      "items": [
+        {
+          "url": "http://site-1.com/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-1",
+          "name": "Site 1",
+          "id": 1146,
+          "key": "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://localhost/no-domain-site/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "no-domain-site",
+          "name": "No domain site",
+          "id": 1147,
+          "key": "cb9726b8-2307-4a01-9b39-7c2850c4d19a",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-2.com/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-2",
+          "name": "Site 2",
+          "id": 1148,
+          "key": "dcf14fa0-dfc3-4108-8c9b-a4e9f77c0c29",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-3.com/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "__typename": "EmptyPropertyType"
+          },
+          "urlSegment": "site-with-unpublished-pages",
+          "name": "Site with unpublished pages",
+          "id": 1150,
+          "key": "805a5fe7-d8ff-472d-9dd4-b73e48a6d15b",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        },
+        {
+          "url": "http://site-culture.com/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "textstring": {
+              "value": "uncultured string",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstringCulture": {
+              "value": "en-us value",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "SiteWithCulture"
+          },
+          "urlSegment": "site-with-culture",
+          "name": "Site with culture",
+          "id": 1151,
+          "key": "d0351e46-e0bf-4eaa-ad2b-57a45451097e",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
+        }
+      ],
+      "page": 1,
+      "pageSize": 5,
+      "totalItems": 6,
+      "hasNextPage": true
+    }
+  }
+}

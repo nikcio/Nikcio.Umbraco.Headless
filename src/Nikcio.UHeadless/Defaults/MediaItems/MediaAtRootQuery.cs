@@ -1,12 +1,12 @@
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services.Navigation;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
@@ -74,10 +74,9 @@ public abstract class MediaAtRootQuery<TMediaItem> : IGraphQLQuery
         [GraphQLDescription("The page number to fetch. Defaults to 1.")] int page = 1)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
+        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -86,7 +85,26 @@ public abstract class MediaAtRootQuery<TMediaItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IEnumerable<IPublishedContent> mediaItems = mediaCache.GetAtRoot();
+        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        {
+            return new PaginationResult<TMediaItem?>(
+                [],
+                page,
+                pageSize
+            );
+        }
+        List<IPublishedContent> mediaItems = [];
+
+        foreach (Guid key in rootKeys)
+        {
+            IPublishedContent? contentItem = mediaCache.GetById(key);
+            if (contentItem == null)
+            {
+                continue;
+            }
+
+            mediaItems.Add(contentItem);
+        }
 
         IEnumerable<TMediaItem?> resultItems = mediaItems.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
 

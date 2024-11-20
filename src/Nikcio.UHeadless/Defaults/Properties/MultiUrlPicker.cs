@@ -1,11 +1,11 @@
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Properties;
@@ -40,10 +40,10 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     protected List<Link> PublishedContentItemsLinks { get; }
 
     /// <summary>
-    /// The published snapshot accessor
+    /// The published content cache
     /// </summary>
     /// <value></value>
-    protected IPublishedSnapshotAccessor PublishedSnapshotAccessor { get; }
+    protected IPublishedContentCache PublicContentCache { get; }
 
     /// <summary>
     /// Gets the links of the picker
@@ -53,18 +53,12 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     {
         return PublishedContentItemsLinks.Select(link =>
         {
-            if (!PublishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot))
-            {
-                resolverContext.Service<ILogger<MultiUrlPicker>>().LogError("Could not get published snapshot.");
-                return null;
-            }
-
             if (link.Udi == null)
             {
                 return CreateMultiUrlPickerItem(null, link, resolverContext);
             }
 
-            IPublishedContent? publishedContent = publishedSnapshot.Content?.GetById(resolverContext.IncludePreview(), link.Udi);
+            IPublishedContent? publishedContent = PublicContentCache.GetById(resolverContext.IncludePreview(), link.Udi.AsGuid());
 
             return CreateMultiUrlPickerItem(publishedContent, link, resolverContext);
         }).OfType<TMultiUrlPickerItem>().ToList();
@@ -72,7 +66,7 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
 
     protected MultiUrlPicker(CreateCommand command) : base(command)
     {
-        PublishedSnapshotAccessor = command.ResolverContext.Service<IPublishedSnapshotAccessor>();
+        PublicContentCache = command.ResolverContext.Service<IPublishedContentCache>();
 
         IResolverContext resolverContext = command.ResolverContext;
         object? publishedContentItemsAsObject = PublishedProperty.Value<object>(PublishedValueFallback, resolverContext.Culture(), resolverContext.Segment(), resolverContext.Fallback());
@@ -132,6 +126,11 @@ public class MultiUrlPickerItem
     protected IResolverContext ResolverContext { get; }
 
     /// <summary>
+    /// The document url service
+    /// </summary>
+    protected IDocumentUrlService DocumentUrlService { get; }
+
+    /// <summary>
     /// The link
     /// </summary>
     protected Link Link { get; }
@@ -140,7 +139,7 @@ public class MultiUrlPickerItem
     /// Gets the url segment of the content item
     /// </summary>
     [GraphQLDescription("Gets the url segment of the content item.")]
-    public string? UrlSegment => PublishedContent?.UrlSegment(VariationContextAccessor, Culture);
+    public string? UrlSegment => PublishedContent != null ? DocumentUrlService.GetUrlSegment(PublishedContent.Key, Culture ?? VariationContextAccessor.VariationContext?.Culture ?? "*", PublishedContent.IsPublished(Culture)) : null;
 
     /// <summary>
     /// Gets the url of a content item
@@ -202,5 +201,6 @@ public class MultiUrlPickerItem
         Link = link;
         Culture = resolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
         VariationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
+        DocumentUrlService = resolverContext.Service<IDocumentUrlService>();
     }
 }

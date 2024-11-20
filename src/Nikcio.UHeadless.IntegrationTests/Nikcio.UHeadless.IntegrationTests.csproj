@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     
@@ -29,7 +29,7 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="Umbraco.Cms" />
 		<PackageReference Include="Umbraco.Cms.Web.Common" />
-		<PackageReference Include="Umbraco.Community.Contentment" />
+		<!-- <PackageReference Include="Umbraco.Community.Contentment" /> -->
 		<!-- <PackageReference Include="UrlTracker" /> -->
 		<PackageReference Include="uSync" />
 		<PackageReference Include="xunit" />

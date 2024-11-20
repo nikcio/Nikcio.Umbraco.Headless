@@ -59,7 +59,7 @@
 //                 logger.LogWarning("Client error occurred at {Timestamp} for URL {Url} with referrer {Referrer} and status code {StatusCode}", timestamp, url, referrer, statusCode);
 //                 break;
 //         }
-        
+
 //         return new TrackErrorStatusCodeResponse
 //         {
 //             Success = true

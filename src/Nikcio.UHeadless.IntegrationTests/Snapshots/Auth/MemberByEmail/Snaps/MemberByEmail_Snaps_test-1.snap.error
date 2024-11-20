@@ -1,0 +1,57 @@
+{
+  "errors": [
+    {
+      "message": "Level is not implemented for Member",
+      "locations": [
+        {
+          "line": 56,
+          "column": 5
+        }
+      ],
+      "path": [
+        "memberByEmail",
+        "parent"
+      ]
+    }
+  ],
+  "data": {
+    "memberByEmail": {
+      "properties": {
+        "umbracoMemberComments": {
+          "value": "A user comment",
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberFailedPasswordAttempts": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberApproved": {
+          "value": true,
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberLockedOut": {
+          "value": false,
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberLastLockoutDate": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberLastLogin": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberLastPasswordChangeDate": {
+          "value": "",
+          "model": "Label"
+        }
+      },
+      "name": "user1",
+      "id": 1179,
+      "key": "91eecdea-fc1e-408d-ac41-545ceefa3dc5",
+      "templateId": null,
+      "parent": null,
+      "__typename": "MemberItem"
+    }
+  }
+}

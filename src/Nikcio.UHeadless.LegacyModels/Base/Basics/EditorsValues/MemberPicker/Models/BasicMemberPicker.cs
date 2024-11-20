@@ -1,5 +1,3 @@
-using HotChocolate;
-
 namespace Nikcio.UHeadless.Base.Basics.EditorsValues.MemberPicker.Models;
 
 /// <summary>

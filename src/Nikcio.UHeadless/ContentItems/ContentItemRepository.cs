@@ -26,13 +26,13 @@ public interface IContentItemRepository<out TContentItem>
 internal class ContentItemRepository<TContentItem> : IContentItemRepository<TContentItem>
     where TContentItem : ContentItemBase
 {
-    private readonly IPublishedSnapshotService _publishedSnapshotService;
+    private readonly IPublishedContentCache _publishedContentCache;
 
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public ContentItemRepository(IPublishedSnapshotService publishedSnapshotService, IDependencyReflectorFactory dependencyReflectorFactory)
+    public ContentItemRepository(IPublishedContentCache publishedContentCache, IDependencyReflectorFactory dependencyReflectorFactory)
     {
-        _publishedSnapshotService = publishedSnapshotService;
+        _publishedContentCache = publishedContentCache;
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
@@ -45,8 +45,6 @@ internal class ContentItemRepository<TContentItem> : IContentItemRepository<TCon
 
     public IPublishedContentCache? GetCache()
     {
-        IPublishedSnapshot publishedSnapshot = _publishedSnapshotService.CreatePublishedSnapshot("IncludePreview");
-
-        return publishedSnapshot.Content;
+        return _publishedContentCache;
     }
 }

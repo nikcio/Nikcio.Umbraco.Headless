@@ -1,7 +1,6 @@
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;

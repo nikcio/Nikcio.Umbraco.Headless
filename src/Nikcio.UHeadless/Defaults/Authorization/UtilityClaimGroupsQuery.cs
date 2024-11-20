@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Resolvers;
-using Nikcio.UHeadless.Defaults.Auth;
 
 namespace Nikcio.UHeadless.Defaults.Authorization;
 

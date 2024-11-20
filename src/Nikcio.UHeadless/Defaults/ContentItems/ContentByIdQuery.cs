@@ -3,7 +3,6 @@ using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -76,7 +75,6 @@ public abstract class ContentByIdQuery<TContentItem> : IGraphQLQuery
         [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(id);
 
         if (id <= 0)
         {

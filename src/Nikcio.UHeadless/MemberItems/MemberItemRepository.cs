@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
@@ -28,16 +27,13 @@ public interface IMemberItemRepository<out TMember>
 internal class MemberItemRepository<TMember> : IMemberItemRepository<TMember>
     where TMember : MemberItemBase
 {
-    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
-
-    private readonly ILogger<MemberItemRepository<TMember>> _logger;
+    private readonly IPublishedMemberCache _publishedMemberCache;
 
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public MemberItemRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, ILogger<MemberItemRepository<TMember>> logger, IDependencyReflectorFactory dependencyReflectorFactory)
+    public MemberItemRepository(IPublishedMemberCache publishedMemberCache, IDependencyReflectorFactory dependencyReflectorFactory)
     {
-        _publishedSnapshotAccessor = publishedSnapshotAccessor;
-        _logger = logger;
+        _publishedMemberCache = publishedMemberCache;
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
@@ -50,12 +46,6 @@ internal class MemberItemRepository<TMember> : IMemberItemRepository<TMember>
 
     public IPublishedMemberCache? GetCache()
     {
-        if (!_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
-        {
-            _logger.LogError("Unable to get publishedSnapShot");
-            return default;
-        }
-
-        return publishedSnapshot.Members;
+        return _publishedMemberCache;
     }
 }

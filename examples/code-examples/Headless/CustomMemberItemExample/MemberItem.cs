@@ -1,5 +1,4 @@
 using HotChocolate.Resolvers;
-using HotChocolate;
 
 namespace Code.Examples.Headless.CustomMemberItemExample;
 

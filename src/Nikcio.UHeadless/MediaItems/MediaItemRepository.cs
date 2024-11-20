@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.PublishedCache;
@@ -28,16 +27,13 @@ public interface IMediaItemRepository<out TMediaItem>
 internal class MediaItemRepository<TMediaItem> : IMediaItemRepository<TMediaItem>
     where TMediaItem : MediaItemBase
 {
-    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
-
-    private readonly ILogger<MediaItemRepository<TMediaItem>> _logger;
+    private readonly IPublishedMediaCache _publishedMediaCache;
 
     private readonly IDependencyReflectorFactory _dependencyReflectorFactory;
 
-    public MediaItemRepository(IPublishedSnapshotAccessor publishedSnapshotAccessor, ILogger<MediaItemRepository<TMediaItem>> logger, IDependencyReflectorFactory dependencyReflectorFactory)
+    public MediaItemRepository(IPublishedMediaCache publishedMediaCache, IDependencyReflectorFactory dependencyReflectorFactory)
     {
-        _publishedSnapshotAccessor = publishedSnapshotAccessor;
-        _logger = logger;
+        _publishedMediaCache = publishedMediaCache;
         _dependencyReflectorFactory = dependencyReflectorFactory;
     }
 
@@ -50,12 +46,6 @@ internal class MediaItemRepository<TMediaItem> : IMediaItemRepository<TMediaItem
 
     public IPublishedMediaCache? GetCache()
     {
-        if (!_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot) || publishedSnapshot == null)
-        {
-            _logger.LogError("Unable to get publishedSnapShot");
-            return default;
-        }
-
-        return publishedSnapshot.Media;
+        return _publishedMediaCache;
     }
 }

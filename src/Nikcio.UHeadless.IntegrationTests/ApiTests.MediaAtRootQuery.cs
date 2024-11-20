@@ -15,7 +15,7 @@ public partial class ApiTests
     [InlineData("test-6", 1, 5, true)]
     [InlineData("test-7", 0, 5, false)]
     [InlineData("test-8", -1, 5, false)]
-    [InlineData("test-9", 0, -1,  false)]
+    [InlineData("test-9", 0, -1, false)]
     public async Task MediaAtRootQuery_Snaps_Async(
         string testCase,
         int page,

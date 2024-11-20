@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.ContentItems;

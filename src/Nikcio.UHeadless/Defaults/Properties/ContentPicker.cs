@@ -3,6 +3,7 @@ using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Properties;
@@ -107,10 +108,15 @@ public class ContentPickerItem
     protected IResolverContext ResolverContext { get; }
 
     /// <summary>
+    /// The document url service
+    /// </summary>
+    protected IDocumentUrlService DocumentUrlService { get; }
+
+    /// <summary>
     /// Gets the url segment of the content item
     /// </summary>
     [GraphQLDescription("Gets the url segment of the content item.")]
-    public string? UrlSegment => PublishedContent?.UrlSegment(VariationContextAccessor, Culture);
+    public string? UrlSegment => PublishedContent != null ? DocumentUrlService.GetUrlSegment(PublishedContent.Key, Culture ?? VariationContextAccessor.VariationContext?.Culture ?? "*", PublishedContent.IsPublished(Culture)) : null;
 
     /// <summary>
     /// Gets the url of a content item
@@ -159,5 +165,6 @@ public class ContentPickerItem
         ResolverContext = resolverContext;
         Culture = resolverContext.GetScopedState<string?>(ContextDataKeys.Culture);
         VariationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
+        DocumentUrlService = resolverContext.Service<IDocumentUrlService>();
     }
 }

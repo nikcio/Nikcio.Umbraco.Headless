@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 
 namespace Nikcio.UHeadless.Base.Basics.EditorsValues.BlockGrid.Models;

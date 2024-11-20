@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -37,7 +30,7 @@ public partial class ApiAuthTests
         HttpClient client = _factory.CreateClient();
 
         JwtToken token = await CreateTokenMutation_Async(client, new TokenClaim() { Name = DefaultClaims.UHeadlessScope, Value = claims }).ConfigureAwait(true);
-        
+
         client.DefaultRequestHeaders.Add(token.Header, token.Prefix + token.Token);
 
         using var request = JsonContent.Create(new

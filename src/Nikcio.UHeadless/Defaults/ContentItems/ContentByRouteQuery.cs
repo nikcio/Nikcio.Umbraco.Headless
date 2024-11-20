@@ -3,11 +3,11 @@ using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
@@ -146,6 +146,7 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
         }
 
         IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
+        IDocumentUrlService documentUrlService = resolverContext.Service<IDocumentUrlService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -154,7 +155,14 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IPublishedContent? publishedContent = contentCache.GetByRoute(inContext.IncludePreview.Value, route, culture: inContext.Culture);
+        Guid? contentKey = documentUrlService.GetDocumentKeyByRoute(route, inContext.Culture, null, inContext.IncludePreview.Value);
+
+        if (contentKey == null)
+        {
+            return CreateContentItem(null, contentItemRepository, resolverContext);
+        }
+
+        IPublishedContent? publishedContent = contentCache.GetById(inContext.IncludePreview.Value, contentKey.Value);
 
         return CreateContentItem(publishedContent, contentItemRepository, resolverContext);
     }

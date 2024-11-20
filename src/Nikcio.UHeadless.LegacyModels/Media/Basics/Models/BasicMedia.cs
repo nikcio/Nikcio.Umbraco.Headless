@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
 using Nikcio.UHeadless.Base.Properties.Models;
@@ -104,17 +103,6 @@ public class BasicMedia<TProperty, TContentType, TMedia> : MediaItem
     [GraphQLDescription("Gets the identifier of the user who created the content item.")]
     [Obsolete("If you need this add it to your own model")]
     public virtual int? CreatorId => PublishedContent?.CreatorId;
-
-    /// <summary>
-    /// Gets all the children of the content item, regardless of whether they are available for the current culture
-    /// </summary>
-    [GraphQLDescription("Gets all the children of the content item, regardless of whether they are available for the current culture.")]
-    [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
-    public virtual IEnumerable<TMedia?>? ChildrenForAllCultures => PublishedContent?.ChildrenForAllCultures?.Select(child => CreateMediaItem<TMedia>(new CreateCommand()
-    {
-        PublishedContent = child,
-        ResolverContext = ResolverContext
-    }, DependencyReflectorFactory));
 
     /// <summary>
     /// Gets the tree path of the content item

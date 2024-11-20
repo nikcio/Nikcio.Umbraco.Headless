@@ -2,12 +2,13 @@ using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.MediaItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services.Navigation;
+using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
 
@@ -77,10 +78,10 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(contentType);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
+        IPublishedContentTypeCache publishedContentTypeCache = resolverContext.Service<IPublishedContentTypeCache>();
+        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -89,16 +90,39 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IPublishedContentType? mediaContentType = mediaCache.GetContentType(contentType);
 
-        if (mediaContentType == null)
+        IPublishedContentType? publishedContentType = publishedContentTypeCache.Get(PublishedItemType.Content, contentType);
+        if (publishedContentType == null)
         {
             ILogger<MediaByContentTypeQuery> logger = resolverContext.Service<ILogger<MediaByContentTypeQuery>>();
-            logger.LogError("Media type not found. {ContentType}", contentType);
+            logger.LogInformation("Media type not found. {ContentType}", contentType);
             return new PaginationResult<TMediaItem?>([], page, pageSize);
         }
 
-        IEnumerable<IPublishedContent> mediaItems = mediaCache.GetByContentType(mediaContentType);
+        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        {
+            return new PaginationResult<TMediaItem?>(
+                [],
+                page,
+                pageSize
+            );
+        }
+        List<IPublishedContent> mediaItems = [];
+
+        foreach (Guid key in rootKeys)
+        {
+            IPublishedContent? mediaItem = mediaCache.GetById(key);
+            if (mediaItem == null)
+            {
+                continue;
+            }
+
+            mediaItems.Add(mediaItem);
+        }
+
+        IEnumerable<IPublishedContent> mediaItemsOfContentType = mediaItems
+            .SelectMany(content => content.DescendantsOrSelf())
+            .Where(content => content.ContentType.Id == publishedContentType.Id);
 
         IEnumerable<TMediaItem?> resultItems = mediaItems.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
 

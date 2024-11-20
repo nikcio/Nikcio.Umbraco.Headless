@@ -1,0 +1,900 @@
+{
+  "data": {
+    "contentByGuid": {
+      "url": "http://site-1.com/collection-of-pages/block-list-page/",
+      "redirect": null,
+      "statusCode": 200,
+      "properties": {
+        "blockGrid": {
+          "model": "BlockGrid",
+          "gridColumns": null,
+          "blocks": []
+        },
+        "eyeDropperColorPicker": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "article": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "audio": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "file": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "svg": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "video": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "imageCropper": {
+          "value": null,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "markdown": {
+          "value": "",
+          "sourceValue": null,
+          "model": "RichText",
+          "__typename": "RichText"
+        },
+        "imageMediaPicker": {
+          "mediaItems": [],
+          "model": "MediaPicker",
+          "__typename": "MediaPicker"
+        },
+        "mediaPicker": {
+          "mediaItems": [],
+          "model": "MediaPicker",
+          "__typename": "MediaPicker"
+        },
+        "multipleImageMediaPicker": {
+          "mediaItems": [],
+          "model": "MediaPicker",
+          "__typename": "MediaPicker"
+        },
+        "multipleMediaPicker": {
+          "mediaItems": [],
+          "model": "MediaPicker",
+          "__typename": "MediaPicker"
+        },
+        "blockList": {
+          "blocks": [
+            {
+              "contentAlias": "checkboxListEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "checkboxList": {
+                  "value": [
+                    "2"
+                  ],
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "CheckboxListEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "colorPickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "colorPicker": {
+                  "value": "000000",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "ColorPickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "contentPickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "contentPicker": {
+                  "items": [
+                    {
+                      "url": "http://site-1.com/collection-of-pages/",
+                      "properties": {
+                        "__typename": "Default"
+                      },
+                      "urlSegment": "collection-of-pages",
+                      "name": "Collection of pages",
+                      "id": 1165,
+                      "key": "08f23909-4751-47e9-b2e8-88ca07598947",
+                      "__typename": "ContentPickerItem"
+                    }
+                  ],
+                  "model": "ContentPicker",
+                  "__typename": "ContentPicker"
+                },
+                "__typename": "ContentPickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "datePickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "datePicker": {
+                  "value": "2023-03-09T00:00:00.000Z",
+                  "model": "DateTimePicker",
+                  "__typename": "DateTimePicker"
+                },
+                "datePickerWithTime": {
+                  "value": "2023-03-21T21:00:00.000Z",
+                  "model": "DateTimePicker",
+                  "__typename": "DateTimePicker"
+                },
+                "__typename": "DatePickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "decimalEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "decimal": {
+                  "value": 2345.67,
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "DecimalEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "dropdownEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "dropdown": {
+                  "value": "Andy",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "DropdownEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "emailAddressEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "emailAddress": {
+                  "value": "block@list.com",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "EmailAddressEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "eyeDropperColorPickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "eyeDropperColorPicker": {
+                  "value": "#39ac74",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "EyeDropperColorPickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "markdownEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "markdown": {
+                  "value": "\u003Ch1\u003EMarkdown\u003C/h1\u003E\n\n\u003Cp\u003ELet\u0027s make some markdown here\u003C/p\u003E\n\n\u003Cul\u003E\n\u003Cli\u003EStep 1\u003C/li\u003E\n\u003Cli\u003EStep 2\u003C/li\u003E\n\u003C/ul\u003E",
+                  "sourceValue": "# Markdown\n\nLet\u0027s make some markdown here\n\n* Step 1\n* Step 2",
+                  "model": "RichText",
+                  "__typename": "RichText"
+                },
+                "__typename": "MarkdownEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "multiUrlPickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "multiUrlPicker": {
+                  "links": [
+                    {
+                      "url": "http://site-1.com/collection-of-pages/page-13/",
+                      "properties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "urlSegment": null,
+                      "target": null,
+                      "type": "CONTENT",
+                      "name": null,
+                      "id": null,
+                      "key": null,
+                      "__typename": "MultiUrlPickerItem"
+                    },
+                    {
+                      "url": "http://site-1.com/collection-of-pages/page-11/",
+                      "properties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "urlSegment": null,
+                      "target": null,
+                      "type": "CONTENT",
+                      "name": null,
+                      "id": null,
+                      "key": null,
+                      "__typename": "MultiUrlPickerItem"
+                    },
+                    {
+                      "url": "http://site-1.com/collection-of-pages/page-12/",
+                      "properties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "urlSegment": null,
+                      "target": null,
+                      "type": "CONTENT",
+                      "name": null,
+                      "id": null,
+                      "key": null,
+                      "__typename": "MultiUrlPickerItem"
+                    }
+                  ],
+                  "model": "MultiUrlPicker",
+                  "__typename": "MultiUrlPicker"
+                },
+                "__typename": "MultiUrlPickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "multinodeTreepickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "multinodeTreepicker": {
+                  "items": [
+                    {
+                      "url": "http://site-1.com/page-1/",
+                      "properties": {
+                        "__typename": "Default"
+                      },
+                      "urlSegment": "page-1",
+                      "name": "Page 1",
+                      "id": 1159,
+                      "key": "3686dd5d-f689-4e3b-ace6-b6d4e8b06165",
+                      "__typename": "ContentPickerItem"
+                    },
+                    {
+                      "url": "http://site-1.com/page-2/",
+                      "properties": {
+                        "__typename": "Default"
+                      },
+                      "urlSegment": "page-2",
+                      "name": "Page 2",
+                      "id": 1163,
+                      "key": "f578f70d-13f4-444a-baa7-a1a3c1bc1666",
+                      "__typename": "ContentPickerItem"
+                    },
+                    {
+                      "url": "http://site-1.com/homepage/",
+                      "properties": {
+                        "__typename": "Default"
+                      },
+                      "urlSegment": "homepage",
+                      "name": "Homepage",
+                      "id": 1152,
+                      "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
+                      "__typename": "ContentPickerItem"
+                    }
+                  ],
+                  "model": "ContentPicker",
+                  "__typename": "ContentPicker"
+                },
+                "__typename": "MultinodeTreepickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "numericEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "numeric": {
+                  "value": 2348,
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "NumericEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "radioboxEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "radiobox": {
+                  "value": "2",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "RadioboxEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "repeatableTextstringsEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "repeatableTextstrings": {
+                  "value": [
+                    "string 1",
+                    "string 2",
+                    "string 3"
+                  ],
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "RepeatableTextstringsEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "richtextEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "richtext": {
+                  "value": "\u003Cp\u003E\u003Cstrong\u003EThis is some rich text\u003C/strong\u003E\u00A0\u003Cem\u003EItallic stuff\u003C/em\u003E\u003C/p\u003E\n\u003Cp style=\u0022text-align: center;\u0022\u003Ecenter\u003C/p\u003E\n\u003Cp style=\u0022text-align: right;\u0022\u003Eright\u003C/p\u003E\n\u003Cul\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003C/ul\u003E",
+                  "sourceValue": "\u003Cp\u003E\u003Cstrong\u003EThis is some rich text\u003C/strong\u003E\u00A0\u003Cem\u003EItallic stuff\u003C/em\u003E\u003C/p\u003E\n\u003Cp style=\u0022text-align: center;\u0022\u003Ecenter\u003C/p\u003E\n\u003Cp style=\u0022text-align: right;\u0022\u003Eright\u003C/p\u003E\n\u003Cul\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003C/ul\u003E",
+                  "model": "RichText",
+                  "__typename": "RichText"
+                },
+                "__typename": "RichtextEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "sliderEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "slider": {
+                  "value": 5,
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "SliderEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "tagsEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "tags": {
+                  "value": [
+                    "tag1",
+                    "mytag",
+                    "what",
+                    "is",
+                    "blocks"
+                  ],
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "TagsEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "textareaEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "textarea": {
+                  "value": "Text area",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "TextareaEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "textboxEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "textstring": {
+                  "value": "Text box",
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "TextboxEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "toggleEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "trueOrFalse": {
+                  "value": true,
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "ToggleEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "userPickerEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "userPicker": {
+                  "value": -1,
+                  "model": "DefaultProperty",
+                  "__typename": "DefaultProperty"
+                },
+                "__typename": "UserPickerEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            },
+            {
+              "contentAlias": "blockListEditor",
+              "settingsAlias": null,
+              "contentProperties": {
+                "blockList": {
+                  "blocks": [
+                    {
+                      "contentAlias": "checkboxListEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "CheckboxListEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    },
+                    {
+                      "contentAlias": "colorPickerEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "ColorPickerEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    },
+                    {
+                      "contentAlias": "contentPickerEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "ContentPickerEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    },
+                    {
+                      "contentAlias": "datePickerEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "DatePickerEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    },
+                    {
+                      "contentAlias": "decimalEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "DecimalEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    },
+                    {
+                      "contentAlias": "blockListEditor",
+                      "settingsAlias": null,
+                      "contentProperties": {
+                        "__typename": "BlockListEditor"
+                      },
+                      "settingsProperties": {
+                        "__typename": "EmptyPropertyType"
+                      },
+                      "__typename": "BlockListItem"
+                    }
+                  ],
+                  "model": "BlockList",
+                  "__typename": "BlockList"
+                },
+                "__typename": "BlockListEditor"
+              },
+              "settingsProperties": {
+                "__typename": "EmptyPropertyType"
+              },
+              "__typename": "BlockListItem"
+            }
+          ],
+          "model": "BlockList",
+          "__typename": "BlockList"
+        },
+        "memberGroupPicker": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "memberPicker": {
+          "members": [],
+          "model": "MemberPicker",
+          "__typename": "MemberPicker"
+        },
+        "multinodeTreepicker": {
+          "items": [],
+          "model": "ContentPicker",
+          "__typename": "ContentPicker"
+        },
+        "multiUrlPicker": {
+          "links": [],
+          "model": "MultiUrlPicker",
+          "__typename": "MultiUrlPicker"
+        },
+        "numeric": {
+          "value": 0,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "radiobox": {
+          "value": null,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "checkboxList": {
+          "value": [],
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "repeatableTextstrings": {
+          "value": [],
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "richtext": {
+          "value": "",
+          "sourceValue": null,
+          "model": "RichText",
+          "__typename": "RichText"
+        },
+        "slider": {
+          "value": 0,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "tags": {
+          "value": [
+            "normal"
+          ],
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "textarea": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "textstring": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "trueOrFalse": {
+          "value": false,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "userPicker": {
+          "value": 0,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "colorPicker": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "contentPicker": {
+          "items": [],
+          "model": "ContentPicker",
+          "__typename": "ContentPicker"
+        },
+        "decimal": {
+          "value": 0,
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "dropdown": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "emailAddress": {
+          "value": "",
+          "model": "DefaultProperty",
+          "__typename": "DefaultProperty"
+        },
+        "__typename": "Default"
+      },
+      "urlSegment": "block-list-page",
+      "name": "Block list page",
+      "id": 1175,
+      "key": "24099846-1261-4ee7-b2cf-223424767bdb",
+      "templateId": null,
+      "parent": {
+        "url": "http://site-1.com/collection-of-pages/",
+        "properties": {
+          "blockGrid": {
+            "model": "BlockGrid",
+            "gridColumns": null,
+            "blocks": []
+          },
+          "eyeDropperColorPicker": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "article": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "audio": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "file": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "svg": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "video": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "imageCropper": {
+            "value": null,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "markdown": {
+            "value": "",
+            "sourceValue": null,
+            "model": "RichText",
+            "__typename": "RichText"
+          },
+          "imageMediaPicker": {
+            "mediaItems": [],
+            "model": "MediaPicker",
+            "__typename": "MediaPicker"
+          },
+          "mediaPicker": {
+            "mediaItems": [],
+            "model": "MediaPicker",
+            "__typename": "MediaPicker"
+          },
+          "multipleImageMediaPicker": {
+            "mediaItems": [],
+            "model": "MediaPicker",
+            "__typename": "MediaPicker"
+          },
+          "multipleMediaPicker": {
+            "mediaItems": [],
+            "model": "MediaPicker",
+            "__typename": "MediaPicker"
+          },
+          "blockList": {
+            "blocks": [],
+            "model": "BlockList",
+            "__typename": "BlockList"
+          },
+          "memberGroupPicker": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "memberPicker": {
+            "members": [],
+            "model": "MemberPicker",
+            "__typename": "MemberPicker"
+          },
+          "multinodeTreepicker": {
+            "items": [],
+            "model": "ContentPicker",
+            "__typename": "ContentPicker"
+          },
+          "multiUrlPicker": {
+            "links": [],
+            "model": "MultiUrlPicker",
+            "__typename": "MultiUrlPicker"
+          },
+          "numeric": {
+            "value": 0,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "radiobox": {
+            "value": null,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "checkboxList": {
+            "value": [],
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "repeatableTextstrings": {
+            "value": [],
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "richtext": {
+            "value": "",
+            "sourceValue": null,
+            "model": "RichText",
+            "__typename": "RichText"
+          },
+          "slider": {
+            "value": 0,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "tags": {
+            "value": [],
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "textarea": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "textstring": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "trueOrFalse": {
+            "value": false,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "userPicker": {
+            "value": 0,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "colorPicker": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "contentPicker": {
+            "items": [],
+            "model": "ContentPicker",
+            "__typename": "ContentPicker"
+          },
+          "decimal": {
+            "value": 0,
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "dropdown": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "emailAddress": {
+            "value": "",
+            "model": "DefaultProperty",
+            "__typename": "DefaultProperty"
+          },
+          "__typename": "Default"
+        },
+        "urlSegment": "collection-of-pages",
+        "name": "Collection of pages",
+        "id": 1165,
+        "key": "08f23909-4751-47e9-b2e8-88ca07598947",
+        "templateId": null
+      },
+      "__typename": "ContentItem"
+    }
+  }
+}

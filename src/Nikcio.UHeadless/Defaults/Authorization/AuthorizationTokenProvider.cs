@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Nikcio.UHeadless.Defaults.Auth;
+namespace Nikcio.UHeadless.Defaults.Authorization;
 
 public interface IAuthorizationTokenProvider
 {
@@ -29,7 +29,7 @@ internal class AuthorizationTokenProvider : IAuthorizationTokenProvider
 
     private static readonly List<ClaimValueGroup> _availableClaims = [];
 
-    private static readonly object _availableClaimsLock = new();
+    private static readonly Lock _availableClaimsLock = new();
 
     public AuthorizationTokenProvider(UHeadlessAuthorizationOptions options)
     {

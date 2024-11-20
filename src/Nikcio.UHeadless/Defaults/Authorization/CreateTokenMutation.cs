@@ -4,7 +4,6 @@ using System.Text.Json;
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Auth;
 
 namespace Nikcio.UHeadless.Defaults.Authorization;
 

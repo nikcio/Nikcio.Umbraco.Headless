@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
@@ -90,22 +89,6 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     [GraphQLDescription("Gets the identifier of the user who created the content item.")]
     [Obsolete("If you need this add it to your own model")]
     public virtual int? CreatorId => PublishedContent?.CreatorId;
-
-    /// <summary>
-    /// Gets all the children of the content item, regardless of whether they are available for the current culture
-    /// </summary>
-    [GraphQLDescription("Gets all the children of the content item, regardless of whether they are available for the current culture.")]
-    [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
-    public virtual IEnumerable<TContent?>? ChildrenForAllCultures(IResolverContext resolverContext)
-    {
-        return PublishedContent?.ChildrenForAllCultures?.Select(child => CreateContentItem<TContent>(new CreateCommand()
-        {
-            PublishedContent = child,
-            ResolverContext = resolverContext,
-            Redirect = null,
-            StatusCode = 200,
-        }, DependencyReflectorFactory));
-    }
 
     /// <summary>
     /// Gets the tree path of the content item

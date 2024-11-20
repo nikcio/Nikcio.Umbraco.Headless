@@ -1,0 +1,57 @@
+{
+  "errors": [
+    {
+      "message": "Level is not implemented for Member",
+      "locations": [
+        {
+          "line": 56,
+          "column": 5
+        }
+      ],
+      "path": [
+        "memberByEmail",
+        "parent"
+      ]
+    }
+  ],
+  "data": {
+    "memberByEmail": {
+      "properties": {
+        "umbracoMemberComments": {
+          "value": "",
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberFailedPasswordAttempts": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberApproved": {
+          "value": false,
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberLockedOut": {
+          "value": false,
+          "model": "DefaultProperty"
+        },
+        "umbracoMemberLastLockoutDate": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberLastLogin": {
+          "value": "",
+          "model": "Label"
+        },
+        "umbracoMemberLastPasswordChangeDate": {
+          "value": "",
+          "model": "Label"
+        }
+      },
+      "name": "A role one",
+      "id": 1183,
+      "key": "c0baa0a3-2f2a-4093-a40e-96f579f43912",
+      "templateId": null,
+      "parent": null,
+      "__typename": "MemberItem"
+    }
+  }
+}

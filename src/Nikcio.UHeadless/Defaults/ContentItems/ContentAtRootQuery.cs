@@ -3,10 +3,10 @@ using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
@@ -78,8 +78,6 @@ public abstract class ContentAtRootQuery<TContentItem> : IGraphQLQuery
         [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))
@@ -88,6 +86,7 @@ public abstract class ContentAtRootQuery<TContentItem> : IGraphQLQuery
         }
 
         IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
+        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -96,7 +95,27 @@ public abstract class ContentAtRootQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(inContext.IncludePreview.Value, inContext.Culture);
+        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        {
+            return new PaginationResult<TContentItem?>(
+                [],
+                page,
+                pageSize
+            );
+        }
+
+        List<IPublishedContent> contentItems = [];
+
+        foreach (Guid key in rootKeys)
+        {
+            IPublishedContent? contentItem = contentCache.GetById(inContext.IncludePreview.Value, key);
+            if (contentItem == null)
+            {
+                continue;
+            }
+
+            contentItems.Add(contentItem);
+        }
 
         IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 

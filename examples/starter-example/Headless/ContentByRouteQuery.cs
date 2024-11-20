@@ -1,5 +1,4 @@
 using HotChocolate.Resolvers;
-using HotChocolate.Types;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.ContentItems;
