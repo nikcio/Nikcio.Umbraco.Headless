@@ -106,17 +106,17 @@
                   "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },

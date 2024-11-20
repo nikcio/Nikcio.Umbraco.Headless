@@ -323,18 +323,11 @@
           "model": "DefaultProperty"
         },
         "dataList": {
-          "value": [
-            "val1",
-            "val3"
-          ],
+          "value": "val1",
           "model": "DefaultProperty"
         },
         "dataPicker": {
-          "value": [
-            "aa",
-            "am",
-            "az"
-          ],
+          "value": "aa",
           "model": "DefaultProperty"
         },
         "__typename": "ContentmentPage"

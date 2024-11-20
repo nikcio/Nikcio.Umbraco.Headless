@@ -1,135 +1,137 @@
-using System.Text.RegularExpressions;
-using HotChocolate;
-using HotChocolate.Resolvers;
-using HotChocolate.Types;
-using Microsoft.Extensions.Options;
-using Nikcio.UHeadless;
-using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.ContentItems;
-using Umbraco.Cms.Core.Configuration.Models;
-using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Core.Routing;
-using UrlTracker.Core;
-using UrlTracker.Core.Intercepting.Models;
-using UrlTracker.Core.Models;
-using UrlTracker.Web.Processing;
+//using System.Text.RegularExpressions;
+//using HotChocolate;
+//using HotChocolate.Resolvers;
+//using HotChocolate.Types;
+//using Microsoft.Extensions.Options;
+//using Nikcio.UHeadless;
+//using Nikcio.UHeadless.ContentItems;
+//using Nikcio.UHeadless.Defaults.ContentItems;
+//using Umbraco.Cms.Core.Configuration.Models;
+//using Umbraco.Cms.Core.Models.PublishedContent;
+//using Umbraco.Cms.Core.Routing;
+//using UrlTracker.Core;
+//using UrlTracker.Core.Intercepting.Models;
+//using UrlTracker.Core.Models;
+//using UrlTracker.Web.Processing;
 
-namespace Code.Examples.Headless.UrlTrackerExample;
+//namespace Code.Examples.Headless.UrlTrackerExample;
 
-[ExtendObjectType(typeof(HotChocolateQueryObject))]
-public class UrlTrackerExampleQuery : ContentByRouteQuery
-{
-    [GraphQLName("urlTrackerExampleQuery")]
-    public override Task<ContentItem?> ContentByRouteAsync(
-        IResolverContext resolverContext,
-        [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
-        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
-        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
-    {
-        return base.ContentByRouteAsync(resolverContext, route, baseUrl, inContext);
-    }
+// TODO RE-IMPLEMENT
 
-    protected override async Task<ContentItem?> CreateContentItemFromRouteAsync(IResolverContext resolverContext, string route, string baseUrl)
-    {
-        ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(baseUrl);
+//[ExtendObjectType(typeof(HotChocolateQueryObject))]
+//public class UrlTrackerExampleQuery : ContentByRouteQuery
+//{
+//    [GraphQLName("urlTrackerExampleQuery")]
+//    public override Task<ContentItem?> ContentByRouteAsync(
+//        IResolverContext resolverContext,
+//        [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
+//        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
+//        [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
+//    {
+//        return base.ContentByRouteAsync(resolverContext, route, baseUrl, inContext);
+//    }
 
-        IRequestInterceptFilterCollection requestInterceptFilters = resolverContext.Service<IRequestInterceptFilterCollection>();
+//    protected override async Task<ContentItem?> CreateContentItemFromRouteAsync(IResolverContext resolverContext, string route, string baseUrl)
+//    {
+//        ArgumentNullException.ThrowIfNull(resolverContext);
+//        ArgumentNullException.ThrowIfNull(baseUrl);
 
-        var requestedUrl = Url.Parse($"{baseUrl.TrimEnd('/')}{route}");
+//        IRequestInterceptFilterCollection requestInterceptFilters = resolverContext.Service<IRequestInterceptFilterCollection>();
 
-        if (!await requestInterceptFilters.EvaluateCandidateAsync(requestedUrl).ConfigureAwait(false))
-        {
-            return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
-        }
+//        var requestedUrl = Url.Parse($"{baseUrl.TrimEnd('/')}{route}");
 
-        IInterceptService interceptService = resolverContext.Service<IInterceptService>();
+//        if (!await requestInterceptFilters.EvaluateCandidateAsync(requestedUrl).ConfigureAwait(false))
+//        {
+//            return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
+//        }
 
-        IIntercept intercept = await interceptService.GetAsync(requestedUrl).ConfigureAwait(false);
+//        IInterceptService interceptService = resolverContext.Service<IInterceptService>();
 
-        if (intercept.Info is not Redirect redirect)
-        {
-            return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
-        }
+//        IIntercept intercept = await interceptService.GetAsync(requestedUrl).ConfigureAwait(false);
 
-        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
+//        if (intercept.Info is not Redirect redirect)
+//        {
+//            return await base.CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
+//        }
 
-        string? redirectUrl = redirect.Target switch
-        {
+//        IContentItemRepository<ContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<ContentItem>>();
 
-            UrlTargetStrategy target => GetUrl(resolverContext, redirect, target, requestedUrl),
-            ContentPageTargetStrategy target => GetUrl(resolverContext, redirect, target, requestedUrl),
-            _ => throw new NotImplementedException(),
-        };
+//        string? redirectUrl = redirect.Target switch
+//        {
 
-        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
-        {
-            PublishedContent = null,
-            ResolverContext = resolverContext,
-            Redirect = new()
-            {
-                IsPermanent = redirect.Permanent,
-                RedirectUrl = redirectUrl,
-            },
-            StatusCode = redirectUrl == null ? StatusCodes.Status410Gone : GetStatusCode(redirect),
-        });
-    }
+//            UrlTargetStrategy target => GetUrl(resolverContext, redirect, target, requestedUrl),
+//            ContentPageTargetStrategy target => GetUrl(resolverContext, redirect, target, requestedUrl),
+//            _ => throw new NotImplementedException(),
+//        };
 
-    private static int GetStatusCode(Redirect redirect)
-    {
-        return redirect.Permanent ? StatusCodes.Status301MovedPermanently : StatusCodes.Status307TemporaryRedirect;
-    }
+//        return contentItemRepository.GetContentItem(new ContentItem.CreateCommand()
+//        {
+//            PublishedContent = null,
+//            ResolverContext = resolverContext,
+//            Redirect = new()
+//            {
+//                IsPermanent = redirect.Permanent,
+//                RedirectUrl = redirectUrl,
+//            },
+//            StatusCode = redirectUrl == null ? StatusCodes.Status410Gone : GetStatusCode(redirect),
+//        });
+//    }
 
-    private static string? GetUrl(IResolverContext resolverContext, Redirect redirect, UrlTargetStrategy target, Url requestedUrl)
-    {
-        string urlString = target.Url;
+//    private static int GetStatusCode(Redirect redirect)
+//    {
+//        return redirect.Permanent ? StatusCodes.Status301MovedPermanently : StatusCodes.Status307TemporaryRedirect;
+//    }
 
-        if (redirect.Source is RegexSourceStrategy regexsource)
-        {
-            urlString = Regex.Replace((requestedUrl.Path + requestedUrl.Query).TrimStart('/'), regexsource.Value, urlString, RegexOptions.None, TimeSpan.FromMilliseconds(100));
-        }
+//    private static string? GetUrl(IResolverContext resolverContext, Redirect redirect, UrlTargetStrategy target, Url requestedUrl)
+//    {
+//        string urlString = target.Url;
 
-        var url = Url.Parse(urlString);
+//        if (redirect.Source is RegexSourceStrategy regexsource)
+//        {
+//            urlString = Regex.Replace((requestedUrl.Path + requestedUrl.Query).TrimStart('/'), regexsource.Value, urlString, RegexOptions.None, TimeSpan.FromMilliseconds(100));
+//        }
 
-        if (redirect.RetainQuery)
-        {
-            url.Query = requestedUrl.Query;
-        }
+//        var url = Url.Parse(urlString);
 
-        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
-        {
-            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
-            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
-        }
-        else
-        {
-            return url.ToString();
-        }
-    }
+//        if (redirect.RetainQuery)
+//        {
+//            url.Query = requestedUrl.Query;
+//        }
 
-    private static string? GetUrl(IResolverContext resolverContext, Redirect redirect, ContentPageTargetStrategy target, Url requestedUrl)
-    {
-        if (target.Content is null)
-        {
-            return null;
-        }
+//        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
+//        {
+//            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
+//            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+//        }
+//        else
+//        {
+//            return url.ToString();
+//        }
+//    }
 
-        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
-        var url = Url.Parse(target.Content.Url(publishedUrlProvider, target.Culture.DefaultIfNullOrWhiteSpace(null), UrlMode.Absolute));
+//    private static string? GetUrl(IResolverContext resolverContext, Redirect redirect, ContentPageTargetStrategy target, Url requestedUrl)
+//    {
+//        if (target.Content is null)
+//        {
+//            return null;
+//        }
 
-        if (redirect.RetainQuery)
-        {
-            url.Query = requestedUrl.Query;
-        }
+//        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
+//        var url = Url.Parse(target.Content.Url(publishedUrlProvider, target.Culture.DefaultIfNullOrWhiteSpace(null), UrlMode.Absolute));
 
-        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
-        {
-            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
-            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
-        }
-        else
-        {
-            return url.ToString();
-        }
-    }
-}
+//        if (redirect.RetainQuery)
+//        {
+//            url.Query = requestedUrl.Query;
+//        }
+
+//        if (url.AvailableUrlTypes.Contains(UrlTracker.Core.Models.UrlType.Absolute))
+//        {
+//            RequestHandlerSettings requestHandlerSettingsValue = resolverContext.Service<IOptions<RequestHandlerSettings>>().Value;
+//            return url.ToString(UrlTracker.Core.Models.UrlType.Absolute, requestHandlerSettingsValue.AddTrailingSlash);
+//        }
+//        else
+//        {
+//            return url.ToString();
+//        }
+//    }
+//}

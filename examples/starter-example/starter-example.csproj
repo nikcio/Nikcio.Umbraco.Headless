@@ -14,7 +14,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="Umbraco.Cms" />
-    <PackageReference Include="UrlTracker" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" />
+    <!-- <PackageReference Include="UrlTracker" /> -->
     <PackageReference Include="uSync" />
   </ItemGroup>
 

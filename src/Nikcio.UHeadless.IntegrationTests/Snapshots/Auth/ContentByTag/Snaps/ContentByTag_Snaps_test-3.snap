@@ -115,17 +115,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -152,17 +152,17 @@
                   "url": "http://localhost/media/1t2jp2ry/skaermbillede-2023-04-17-kl-201618.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -189,17 +189,17 @@
                   "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -220,17 +220,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -257,17 +257,17 @@
                   "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -288,17 +288,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -313,121 +313,6 @@
                   "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
                   "id": 1139,
                   "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
-                  "id": 1138,
-                  "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
-                  "id": 1139,
-                  "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
-                  "__typename": "MediaPickerItem"
-                },
-                {
-                  "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
-                  "id": 1138,
-                  "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
                   "__typename": "MediaPickerItem"
                 }
               ],
@@ -850,17 +735,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -887,17 +772,17 @@
                   "url": "http://localhost/media/gy0bdnwp/skaermbillede-2023-04-17-kl-201618.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -924,17 +809,17 @@
                   "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -955,17 +840,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -992,17 +877,17 @@
                   "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -1023,17 +908,17 @@
                   "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
                   "properties": {
                     "umbracoWidth": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoHeight": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
                     "umbracoBytes": {
-                      "value": 0,
+                      "value": "",
                       "model": "Label",
                       "__typename": "Label"
                     },
@@ -1048,121 +933,6 @@
                   "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
                   "id": 1139,
                   "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "mediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
-                  "id": 1138,
-                  "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
-                  "__typename": "MediaPickerItem"
-                }
-              ],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacyCulture": {
-              "mediaItems": [
-                {
-                  "url": "http://localhost/media/eb3ogqdq/skaermbillede-2023-04-17-kl-201540.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.40",
-                  "id": 1139,
-                  "key": "40e37a26-8570-47dd-b30a-a1bd391f603b",
-                  "__typename": "MediaPickerItem"
-                },
-                {
-                  "url": "http://localhost/media/oeklujof/skaermbillede-2023-04-17-kl-201527.png",
-                  "properties": {
-                    "umbracoWidth": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoHeight": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoBytes": {
-                      "value": 0,
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "umbracoExtension": {
-                      "value": "",
-                      "model": "Label",
-                      "__typename": "Label"
-                    },
-                    "__typename": "Image"
-                  },
-                  "urlSegment": null,
-                  "name": "Sk\u00E6rmbillede 2023 04 17 Kl. 20.15.27",
-                  "id": 1138,
-                  "key": "25ba1577-a0c5-4329-8f32-9e9abe4a6d2d",
                   "__typename": "MediaPickerItem"
                 }
               ],

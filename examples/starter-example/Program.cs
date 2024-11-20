@@ -20,6 +20,7 @@ builder.Services.AddMemoryCache();
 
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
+    .AddWebsite()
     .AddComposers()
     .AddUHeadless(options =>
     {
@@ -68,7 +69,6 @@ app.UseUmbraco()
     })
     .WithEndpoints(u =>
     {
-        u.UseInstallerEndpoints();
         u.UseBackOfficeEndpoints();
     });
 

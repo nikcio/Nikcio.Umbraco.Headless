@@ -73,16 +73,6 @@
               "model": "MediaPicker",
               "__typename": "MediaPicker"
             },
-            "mediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
-            "multipleMediaPickerLegacy": {
-              "mediaItems": [],
-              "model": "MediaPicker",
-              "__typename": "MediaPicker"
-            },
             "blockList": {
               "blocks": [
                 {
@@ -182,16 +172,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPicker": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
@@ -506,16 +486,6 @@
                       "__typename": "MediaPicker"
                     },
                     "multipleMediaPicker": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "mediaPickerLegacy": {
-                      "mediaItems": [],
-                      "model": "MediaPicker",
-                      "__typename": "MediaPicker"
-                    },
-                    "multipleMediaPickerLegacy": {
                       "mediaItems": [],
                       "model": "MediaPicker",
                       "__typename": "MediaPicker"
