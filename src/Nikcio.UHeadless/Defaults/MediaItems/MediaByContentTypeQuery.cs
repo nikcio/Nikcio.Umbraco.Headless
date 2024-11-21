@@ -124,7 +124,7 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
             .SelectMany(content => content.DescendantsOrSelf())
             .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        IEnumerable<TMediaItem?> resultItems = mediaItems.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
+        IEnumerable<TMediaItem?> resultItems = mediaItemsOfContentType.Select(mediaItem => CreateMediaItem(mediaItem, mediaItemRepository, resolverContext));
 
         return new PaginationResult<TMediaItem?>(resultItems, page, pageSize);
     }

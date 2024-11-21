@@ -134,7 +134,7 @@ public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
                     .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, inContext.Culture))
                     .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
+        IEnumerable<TContentItem?> resultItems = contentItemsOfContentType.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 
         return new PaginationResult<TContentItem?>(resultItems, page, pageSize);
     }
