@@ -1,4 +1,6 @@
-﻿namespace Code.Examples.Headless.PublicAccessExample;
+using HotChocolate;
+
+namespace Code.Examples.Headless.PublicAccessExample;
 
 [GraphQLDescription("Represents a restrict public access settings of a content item.")]
 public class PermissionsModel

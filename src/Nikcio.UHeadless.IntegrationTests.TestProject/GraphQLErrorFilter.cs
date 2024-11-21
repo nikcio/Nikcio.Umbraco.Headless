@@ -1,3 +1,5 @@
+using HotChocolate;
+
 namespace Nikcio.UHeadless.IntegrationTests.TestProject;
 
 internal class GraphQLErrorFilter : IErrorFilter

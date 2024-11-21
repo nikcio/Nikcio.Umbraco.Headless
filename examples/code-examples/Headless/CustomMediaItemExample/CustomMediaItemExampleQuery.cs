@@ -1,4 +1,6 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
+using HotChocolate.Types;
 using Nikcio.UHeadless;
 using Nikcio.UHeadless.Defaults.MediaItems;
 using Nikcio.UHeadless.MediaItems;

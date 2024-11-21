@@ -1,3 +1,5 @@
+using HotChocolate;
+
 namespace Code.Examples.Headless.PublicAccessExample;
 
 [GraphQLDescription("Represents an access rule for the restrict public access settings.")]

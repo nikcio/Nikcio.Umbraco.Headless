@@ -1,3 +1,4 @@
+using HotChocolate;
 using HotChocolate.Resolvers;
 
 namespace Code.Examples.Headless.CustomContentItemExample;
