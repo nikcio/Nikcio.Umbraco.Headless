@@ -7,21 +7,21 @@ public partial class ApiTests
     private const string _contentByContentTypeSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByContentType";
 
     [Theory]
-    [InlineData("test-1", "site", 1, 0, "en-us", false, null, true)]
-    [InlineData("test-2", "default", 1, 0, "en-us", false, null, true)]
-    [InlineData("test-3", "default", 1, 1, "en-us", false, null, true)]
-    [InlineData("test-4", "default", 2, 1, "en-us", false, null, true)]
-    [InlineData("test-5", "default", 1, 1000, "en-us", false, null, true)]
-    [InlineData("test-6", "default", 1000, 1000, "en-us", false, null, true)]
+    [InlineData("test-1", "site", 1, 0, "en-US", false, null, true)]
+    [InlineData("test-2", "default", 1, 0, "en-US", false, null, true)]
+    [InlineData("test-3", "default", 1, 1, "en-US", false, null, true)]
+    [InlineData("test-4", "default", 2, 1, "en-US", false, null, true)]
+    [InlineData("test-5", "default", 1, 1000, "en-US", false, null, true)]
+    [InlineData("test-6", "default", 1000, 1000, "en-US", false, null, true)]
     [InlineData("test-7", "default", 1, 5, "da", false, null, true)]
-    [InlineData("test-8", "default", 1, 5, "en-us", true, null, true)]
-    [InlineData("test-9", "default", 1, 5, "en-us", false, null, true)]
+    [InlineData("test-8", "default", 1, 5, "en-US", true, null, true)]
+    [InlineData("test-9", "default", 1, 5, "en-US", false, null, true)]
     [InlineData("test-10", "default", 1, 5, null, false, null, true)]
     [InlineData("test-11", "default", 1, 5, "da", null, null, true)]
-    [InlineData("test-12", "default", 0, 5, "en-us", false, null, false)]
-    [InlineData("test-13", "default", -1, 5, "en-us", false, null, false)]
-    [InlineData("test-14", "default", 0, -1, "en-us", false, null, false)]
-    [InlineData("test-15", "", 1, 1, "en-us", false, null, false)]
+    [InlineData("test-12", "default", 0, 5, "en-US", false, null, false)]
+    [InlineData("test-13", "default", -1, 5, "en-US", false, null, false)]
+    [InlineData("test-14", "default", 0, -1, "en-US", false, null, false)]
+    [InlineData("test-15", "", 1, 1, "en-US", false, null, false)]
     public async Task ContentByContentTypeQuery_Snaps_Async(
         string testCase,
         string contentType,

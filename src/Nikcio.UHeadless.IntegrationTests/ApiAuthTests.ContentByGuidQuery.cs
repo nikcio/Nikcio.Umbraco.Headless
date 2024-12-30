@@ -10,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByGuidSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByGuid";
 
     [Theory]
-    [InlineData("test-1", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-2", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, ContentByGuidQuery.ClaimValue)]
-    [InlineData("test-3", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-2", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, ContentByGuidQuery.ClaimValue)]
+    [InlineData("test-3", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-US", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByGuidQuery_Snaps_Async(
         string testCase,
         string key,

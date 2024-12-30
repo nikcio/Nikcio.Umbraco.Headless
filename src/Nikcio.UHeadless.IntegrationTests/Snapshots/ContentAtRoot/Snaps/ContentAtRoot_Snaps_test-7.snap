@@ -3,7 +3,7 @@
     "contentAtRoot": {
       "items": [
         {
-          "url": "http://site-1.com/",
+          "url": "https://site-1.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -18,7 +18,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/no-domain-site/",
+          "url": "https://site-1.com/no-domain-site/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -33,7 +33,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-2.com/",
+          "url": "https://site-2.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -54,7 +54,7 @@
           "properties": {
             "__typename": "EmptyPropertyType"
           },
-          "urlSegment": "unpublishedsite",
+          "urlSegment": null,
           "name": "UnpublishedSite",
           "id": 1149,
           "key": "f894ebb3-7353-4439-b84c-04ed7d283202",
@@ -63,7 +63,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-3.com/",
+          "url": "https://site-3.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -80,7 +80,7 @@
       ],
       "page": 1,
       "pageSize": 5,
-      "totalItems": 7,
+      "totalItems": 8,
       "hasNextPage": true
     }
   }

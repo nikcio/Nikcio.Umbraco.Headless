@@ -3,7 +3,7 @@
     "contentAtRoot": {
       "items": [
         {
-          "url": "http://site-1.com/",
+          "url": "https://site-1.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -18,7 +18,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/no-domain-site/",
+          "url": "https://site-1.com/no-domain-site/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -33,7 +33,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-2.com/",
+          "url": "https://site-2.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -48,7 +48,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-3.com/",
+          "url": "https://site-3.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -63,7 +63,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-culture.com/",
+          "url": "https://site-culture.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -88,7 +88,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/home-4a038986-adf1-48c5-aba0-c10c13c1b4d1/",
+          "url": "https://site-1.com/home-4a038986-adf1-48c5-aba0-c10c13c1b4d1/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -101,11 +101,36 @@
           "templateId": null,
           "parent": null,
           "__typename": "ContentItem"
+        },
+        {
+          "url": "https://site-1.com/site-with-culture-2/",
+          "redirect": null,
+          "statusCode": 200,
+          "properties": {
+            "textstring": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "textstringCulture": {
+              "value": "",
+              "model": "DefaultProperty",
+              "__typename": "DefaultProperty"
+            },
+            "__typename": "SiteWithCulture"
+          },
+          "urlSegment": "site-with-culture-2",
+          "name": "site with culture 2",
+          "id": 1185,
+          "key": "244dbd30-29fa-45de-ab85-99d84306e7c9",
+          "templateId": null,
+          "parent": null,
+          "__typename": "ContentItem"
         }
       ],
       "page": 1,
       "pageSize": 1000,
-      "totalItems": 6,
+      "totalItems": 7,
       "hasNextPage": false
     }
   }

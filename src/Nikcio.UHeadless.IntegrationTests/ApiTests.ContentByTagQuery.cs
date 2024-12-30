@@ -7,8 +7,8 @@ public partial class ApiTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByTag";
 
     [Theory]
-    [InlineData("test-1", "normal", null, "en-us", false, null, true)]
-    [InlineData("test-2", "normal", null, "en-us", true, null, true)]
+    [InlineData("test-1", "normal", null, "en-US", false, null, true)]
+    [InlineData("test-2", "normal", null, "en-US", true, null, true)]
     [InlineData("test-3", "normal", null, "da", false, null, true)]
     public async Task ContentByTagQuery_Snaps_Async(
         string testCase,

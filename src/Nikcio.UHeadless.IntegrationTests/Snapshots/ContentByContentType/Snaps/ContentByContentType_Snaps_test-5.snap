@@ -3,7 +3,7 @@
     "contentByContentType": {
       "items": [
         {
-          "url": "http://site-1.com/homepage/",
+          "url": "https://site-1.com/homepage/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -222,7 +222,7 @@
           "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -235,7 +235,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/page-1/",
+          "url": "https://site-1.com/page-1/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -607,8 +607,8 @@
               "__typename": "DefaultProperty"
             },
             "richtext": {
-              "value": "\u003Cp\u003EHere is some text\u003C/p\u003E",
-              "sourceValue": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+              "value": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
+              "sourceValue": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
               "model": "RichText",
               "__typename": "RichText"
             },
@@ -898,7 +898,7 @@
           "key": "3686dd5d-f689-4e3b-ace6-b6d4e8b06165",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -911,7 +911,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/page-2/",
+          "url": "https://site-1.com/page-2/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1097,7 +1097,7 @@
           "key": "f578f70d-13f4-444a-baa7-a1a3c1bc1666",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -1110,7 +1110,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/",
+          "url": "https://site-1.com/collection-of-pages/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1294,7 +1294,7 @@
           "key": "08f23909-4751-47e9-b2e8-88ca07598947",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -1307,7 +1307,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/page-11/",
+          "url": "https://site-1.com/collection-of-pages/page-11/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1493,7 +1493,7 @@
           "key": "a719aa8a-2c24-4756-9f4c-d1f5a5b94075",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -1678,7 +1678,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/page-12/",
+          "url": "https://site-1.com/collection-of-pages/page-12/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1862,7 +1862,7 @@
           "key": "d12babab-8b63-49d5-8d1f-140e4eb97e8b",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -2047,7 +2047,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/page-13/",
+          "url": "https://site-1.com/collection-of-pages/page-13/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -2231,7 +2231,7 @@
           "key": "8464062f-d2da-4dae-99a1-a740e258dc09",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -2416,7 +2416,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/page-14/",
+          "url": "https://site-1.com/collection-of-pages/page-14/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -2600,7 +2600,7 @@
           "key": "0bf30869-92fe-47aa-9913-e4ec40aa6c0e",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -2785,7 +2785,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/block-list-page/",
+          "url": "https://site-1.com/collection-of-pages/block-list-page/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -3185,7 +3185,7 @@
                   "contentProperties": {
                     "richtext": {
                       "value": "\u003Cp\u003E\u003Cstrong\u003EThis is some rich text\u003C/strong\u003E\u00A0\u003Cem\u003EItallic stuff\u003C/em\u003E\u003C/p\u003E\n\u003Cp style=\u0022text-align: center;\u0022\u003Ecenter\u003C/p\u003E\n\u003Cp style=\u0022text-align: right;\u0022\u003Eright\u003C/p\u003E\n\u003Cul\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003C/ul\u003E",
-                      "sourceValue": "\u003Cp\u003E\u003Cstrong\u003EThis is some rich text\u003C/strong\u003E\u00A0\u003Cem\u003EItallic stuff\u003C/em\u003E\u003C/p\u003E\n\u003Cp style=\u0022text-align: center;\u0022\u003Ecenter\u003C/p\u003E\n\u003Cp style=\u0022text-align: right;\u0022\u003Eright\u003C/p\u003E\n\u003Cul\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003Cli style=\u0022text-align: left;\u0022\u003Edots\u003C/li\u003E\n\u003C/ul\u003E",
+                      "sourceValue": "{\u0022markup\u0022:\u0022\\u003Cp\\u003E\\u003Cstrong\\u003EThis is some rich text\\u003C/strong\\u003E\\u00A0\\u003Cem\\u003EItallic stuff\\u003C/em\\u003E\\u003C/p\\u003E\\n\\u003Cp style=\\u0022text-align: center;\\u0022\\u003Ecenter\\u003C/p\\u003E\\n\\u003Cp style=\\u0022text-align: right;\\u0022\\u003Eright\\u003C/p\\u003E\\n\\u003Cul\\u003E\\n\\u003Cli style=\\u0022text-align: left;\\u0022\\u003Edots\\u003C/li\\u003E\\n\\u003Cli style=\\u0022text-align: left;\\u0022\\u003Edots\\u003C/li\\u003E\\n\\u003C/ul\\u003E\u0022,\u0022blocks\u0022:{\u0022contentData\u0022:[],\u0022settingsData\u0022:[],\u0022expose\u0022:[],\u0022Layout\u0022:{}}}",
                       "model": "RichText",
                       "__typename": "RichText"
                     },
@@ -3496,7 +3496,7 @@
           "key": "24099846-1261-4ee7-b2cf-223424767bdb",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -3681,7 +3681,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/block-grid-page/",
+          "url": "https://site-1.com/collection-of-pages/block-grid-page/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -3944,7 +3944,7 @@
           "key": "ff3ef402-0e01-4043-b40f-85f71cc4e702",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",
@@ -4129,7 +4129,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/new-page/",
+          "url": "https://site-1.com/new-page/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -4313,7 +4313,7 @@
           "key": "706938b1-62a6-41df-a78e-982ec672c222",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -4326,7 +4326,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/no-domain-homepage/",
+          "url": "https://site-1.com/no-domain-homepage/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -4510,7 +4510,7 @@
           "key": "fa22ad17-c823-4e1f-a87f-7597d0ed75b2",
           "templateId": null,
           "parent": {
-            "url": "http://localhost/no-domain-site/",
+            "url": "https://site-1.com/no-domain-site/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -4523,7 +4523,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/page-1/",
+          "url": "https://site-1.com/page-1/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -4707,7 +4707,7 @@
           "key": "4c50202e-28cc-40ca-9f77-b960c1c01a94",
           "templateId": null,
           "parent": {
-            "url": "http://localhost/no-domain-site/",
+            "url": "https://site-1.com/no-domain-site/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -4720,7 +4720,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/page-2/",
+          "url": "https://site-1.com/page-2/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -4904,7 +4904,7 @@
           "key": "0cf0f5b5-266d-48e9-aacd-4dc41cb0d618",
           "templateId": null,
           "parent": {
-            "url": "http://localhost/no-domain-site/",
+            "url": "https://site-1.com/no-domain-site/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -4917,7 +4917,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://localhost/page-3/",
+          "url": "https://site-1.com/page-3/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -5101,7 +5101,7 @@
           "key": "9b979f25-4ffe-4686-962b-87b9dedc7447",
           "templateId": null,
           "parent": {
-            "url": "http://localhost/no-domain-site/",
+            "url": "https://site-1.com/no-domain-site/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -5114,7 +5114,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-2.com/page-1/",
+          "url": "https://site-2.com/page-1/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -5298,7 +5298,7 @@
           "key": "4706632f-6641-4b60-a6d4-31230172b197",
           "templateId": null,
           "parent": {
-            "url": "http://site-2.com/",
+            "url": "https://site-2.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },

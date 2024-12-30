@@ -10,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByIdSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentById";
 
     [Theory]
-    [InlineData("test-1", 1146, "en-us", false, null, true, ContentByIdQuery.ClaimValue)]
-    [InlineData("test-2", 1146, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", 1152, "en-us", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", 1152, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", 1152, "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", 1146, "en-US", false, null, true, ContentByIdQuery.ClaimValue)]
+    [InlineData("test-2", 1146, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", 1152, "en-US", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", 1152, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", 1152, "en-US", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByIdQuery_Snaps_Async(
         string testCase,
         int id,

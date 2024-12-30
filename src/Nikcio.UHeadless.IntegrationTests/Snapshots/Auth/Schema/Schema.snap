@@ -120,8 +120,6 @@ interface IDefault {
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -181,10 +179,6 @@ interface IDefaultCulture {
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
-  mediaPickerLegacyCulture: DefaultProperty
-  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker
@@ -735,7 +729,7 @@ type DecimalEditorCulture implements IDecimalEditorCulture {
   decimalCulture: DefaultProperty
 }
 
-type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMediaPickerLegacyEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
+type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
   blockGrid: BlockGrid
   blockList: BlockList
   checkboxList: DefaultProperty
@@ -758,8 +752,6 @@ type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEdito
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -776,7 +768,7 @@ type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEdito
   userPicker: DefaultProperty
 }
 
-type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMediaPickerLegacyEditor & IMediaPickerLegacyEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
+type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
   blockList: BlockList
   blockListCulture: BlockList
   checkboxList: DefaultProperty
@@ -819,10 +811,6 @@ type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & IChe
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
-  mediaPickerLegacyCulture: DefaultProperty
-  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker

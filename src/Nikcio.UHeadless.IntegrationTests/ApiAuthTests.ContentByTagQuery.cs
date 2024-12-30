@@ -10,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByTag";
 
     [Theory]
-    //[InlineData("test-1", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
-    //[InlineData("test-2", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", "normal", null, "en-us", false, null, false, "Invalid")]
+    //[InlineData("test-1", "normal", null, "en-US", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
+    //[InlineData("test-2", "normal", null, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "normal", null, "en-US", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "normal", null, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "normal", null, "en-US", false, null, false, "Invalid")]
     public async Task ContentByTagQuery_Snaps_Async(
         string testCase,
         string tag,

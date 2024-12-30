@@ -16,10 +16,10 @@ public partial class ApiTests
     [InlineData("test-7", "", "/no-domain-homepage", null, false, null, true)]
     [InlineData("test-8", "https://site-2.com", "/", null, false, null, true)]
     [InlineData("test-9", "https://site-2.com", "/page-1", null, false, null, true)]
-    [InlineData("test-10", "https://site-culture.com", "/homepage", "en-us", false, null, true)]
+    [InlineData("test-10", "https://site-culture.com", "/homepage", "en-US", false, null, true)]
     [InlineData("test-11", "https://site-culture.dk", "/homepage", "da", false, null, true)]
-    [InlineData("test-12", "https://site-1.com", "/old-page", "en-us", false, null, true)]
-    [InlineData("test-13", "https://site-1.com", "/new-page", "en-us", false, null, true)]
+    [InlineData("test-12", "https://site-1.com", "/old-page", "en-US", false, null, true)]
+    [InlineData("test-13", "https://site-1.com", "/new-page", "en-US", false, null, true)]
     public async Task ContentByRouteQuery_Snaps_Async(
         string testCase,
         string baseUrl,
