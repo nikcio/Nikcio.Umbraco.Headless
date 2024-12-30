@@ -1054,8 +1054,6 @@ type MemberGroupPickerEditorCulture implements IMemberGroupPickerEditorCulture {
 }
 
 type MemberItem {
-  "Gets the parent of the member item."
-  parent: MemberItem
   "Gets the properties of the member item."
   properties: TypedProperties!
   "Gets the name of a member item."

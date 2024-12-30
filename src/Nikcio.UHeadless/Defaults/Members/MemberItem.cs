@@ -1,7 +1,6 @@
 using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Services;
@@ -64,43 +63,6 @@ public class MemberItem : MemberItemBase
     /// </summary>
     [GraphQLDescription("Gets the date the member item was last updated.")]
     public DateTime? UpdateDate => PublishedContent?.UpdateDate;
-
-    /// <summary>
-    /// Gets the parent of the member item
-    /// </summary>
-    [GraphQLDescription("Gets the parent of the member item.")]
-    public MemberItem? Parent()
-    {
-        if (PublishedContent == null || PublishedContent.Level == 1)
-        {
-            return default;
-        }
-
-        if (!DocumentNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
-        {
-            return default;
-        }
-
-        IMember? parentMember = MemberService.GetById(parentKey.Value);
-
-        if (parentMember == null)
-        {
-            return default;
-        }
-
-        IPublishedContent? parent = PublishedMemberCache.Get(parentMember);
-
-        if (parent == null)
-        {
-            return default;
-        }
-
-        return CreateMember<MemberItem>(new CreateCommand()
-        {
-            PublishedContent = parent,
-            ResolverContext = ResolverContext,
-        }, DependencyReflectorFactory);
-    }
 
     /// <summary>
     /// Gets the properties of the member item

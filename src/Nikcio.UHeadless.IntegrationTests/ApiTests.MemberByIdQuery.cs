@@ -100,12 +100,6 @@ public static class MemberByIdQueries
             id
             key
             templateId
-            parent {
-              name
-              id
-              key
-              templateId
-            } 
             __typename
           }
         }

@@ -115,12 +115,6 @@ public static class FindMembersByUsernameQueries
             id
             key
             templateId
-            parent {
-              name
-              id
-              key
-              templateId
-            } 
             __typename
           }
         }

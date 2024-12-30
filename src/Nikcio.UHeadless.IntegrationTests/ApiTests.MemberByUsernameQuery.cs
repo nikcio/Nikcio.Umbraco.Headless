@@ -97,12 +97,6 @@ public static class MemberByUsernameQueries
             id
             key
             templateId
-            parent {
-              name
-              id
-              key
-              templateId
-            } 
             __typename
           }
         }

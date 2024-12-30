@@ -36,8 +36,7 @@
           "name": "A role one",
           "id": 1183,
           "key": "c0baa0a3-2f2a-4093-a40e-96f579f43912",
-          "templateId": -1,
-          "parent": null
+          "templateId": null
         }
       ],
       "page": 1,

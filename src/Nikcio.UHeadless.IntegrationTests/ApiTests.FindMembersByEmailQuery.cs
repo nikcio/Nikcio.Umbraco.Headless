@@ -115,12 +115,6 @@ public static class FindMembersByEmailQueries
             id
             key
             templateId
-            parent {
-              name
-              id
-              key
-              templateId
-            } 
             __typename
           }
         }

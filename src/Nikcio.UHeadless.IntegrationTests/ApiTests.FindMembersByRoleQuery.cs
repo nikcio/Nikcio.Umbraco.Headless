@@ -123,12 +123,6 @@ public static class FindMembersByRoleQueries
               id
               key
               templateId
-              parent {
-                name
-                id
-                key
-                templateId
-              }
             }
             page
             pageSize
