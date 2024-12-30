@@ -5,8 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
-    <PackageVersion Include="HotChocolate.AspNetCore" Version="13.9.14" />
-    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="13.9.14" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="14.3.0" />
+    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="14.3.0" />
+    <PackageVersion Include="HotChocolate.PersistedOperations.InMemory" Version="14.3.0" />
     <PackageVersion Include="HotChocolate.PersistedQueries.InMemory" Version="13.9.14" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.0" />

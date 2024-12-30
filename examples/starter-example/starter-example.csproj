@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.PersistedQueries.InMemory" />
+    <PackageReference Include="HotChocolate.PersistedOperations.InMemory" />
     <PackageReference Include="Umbraco.Cms" />
     <!-- <PackageReference Include="UrlTracker" /> -->
     <PackageReference Include="uSync" />

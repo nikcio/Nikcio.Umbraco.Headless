@@ -36,8 +36,8 @@ builder.CreateUmbracoBuilder()
 
         // This adds the automatic persisted query pipeline to the request executor
         options.RequestExecutorBuilder
-            .UseAutomaticPersistedQueryPipeline()
-            .AddInMemoryQueryStorage();
+            .UseAutomaticPersistedOperationPipeline()
+            .AddInMemoryOperationDocumentStorage();
     })
     .Build();
 
