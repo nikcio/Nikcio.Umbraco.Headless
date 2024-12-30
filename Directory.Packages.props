@@ -18,11 +18,11 @@
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
     <!-- <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="14.0.0-alpha001" /> -->
-    <PackageVersion Include="Umbraco.Cms" Version="15.0.0" />
+    <PackageVersion Include="Umbraco.Cms" Version="15.1.1" />
     <PackageVersion Include="Umbraco.Cms.Web.Common" Version="15.0.0" />
     <!-- <PackageVersion Include="Umbraco.Community.Contentment" Version="6.0.0-alpha003" /> -->
     <!-- <PackageVersion Include="UrlTracker" Version="13.2.0" /> -->
-    <PackageVersion Include="uSync" Version="15.0.1" />
+    <PackageVersion Include="uSync" Version="15.1.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.0" />
     <PackageVersion Include="xunit.v3" Version="1.0.0" />
   </ItemGroup>
