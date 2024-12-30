@@ -68,7 +68,9 @@ public partial class ContentItem : ContentItemBase
             return default;
         }
 
-        return publishedUrlProvider.GetUrl(PublishedContent, urlMode, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
+        string baseUrl = resolverContext.BaseUrl();
+        Uri? current = string.IsNullOrEmpty(baseUrl) ? null : new Uri(baseUrl);
+        return publishedUrlProvider.GetUrl(PublishedContent, urlMode, resolverContext.Culture(), current);
     }
 
     /// <summary>

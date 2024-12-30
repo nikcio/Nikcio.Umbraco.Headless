@@ -96,34 +96,7 @@
                   "settingsAlias": null,
                   "contentProperties": {
                     "multiUrlPicker": {
-                      "links": [
-                        {
-                          "url": "#",
-                          "properties": {
-                            "__typename": "Default"
-                          },
-                          "urlSegment": "unpublishedpage",
-                          "target": null,
-                          "type": "CONTENT",
-                          "name": "UnPublishedPage",
-                          "id": 1157,
-                          "key": "af060c57-4e6a-43ff-9a25-39bf4389261c",
-                          "__typename": "MultiUrlPickerItem"
-                        },
-                        {
-                          "url": "#",
-                          "properties": {
-                            "__typename": "EmptyPropertyType"
-                          },
-                          "urlSegment": "unpublishedsite",
-                          "target": null,
-                          "type": "CONTENT",
-                          "name": "UnpublishedSite",
-                          "id": 1149,
-                          "key": "f894ebb3-7353-4439-b84c-04ed7d283202",
-                          "__typename": "MultiUrlPickerItem"
-                        }
-                      ],
+                      "links": [],
                       "model": "MultiUrlPicker",
                       "__typename": "MultiUrlPicker"
                     },
@@ -1707,7 +1680,7 @@
       ],
       "page": 1,
       "pageSize": 5,
-      "totalItems": 20,
+      "totalItems": 16,
       "hasNextPage": true
     }
   }

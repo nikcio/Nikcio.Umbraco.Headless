@@ -1,6 +1,7 @@
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Common.Properties;
 using Nikcio.UHeadless.Properties;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -53,12 +54,12 @@ public abstract class MultiUrlPicker<TMultiUrlPickerItem> : PropertyValue
     {
         return PublishedContentItemsLinks.Select(link =>
         {
-            if (link.Udi == null)
+            if (link.Udi == null || link.Udi is not GuidUdi linkUdiGuid)
             {
                 return CreateMultiUrlPickerItem(null, link, resolverContext);
             }
 
-            IPublishedContent? publishedContent = PublicContentCache.GetById(resolverContext.IncludePreview(), link.Udi.AsGuid());
+            IPublishedContent? publishedContent = PublicContentCache.GetById(resolverContext.IncludePreview(), linkUdiGuid.Guid);
 
             return CreateMultiUrlPickerItem(publishedContent, link, resolverContext);
         }).OfType<TMultiUrlPickerItem>().ToList();
