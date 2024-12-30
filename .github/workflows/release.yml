@@ -37,9 +37,13 @@ jobs:
       run: dotnet build -c Release --no-restore /p:Version=${VERSION}
       working-directory: ./
 
-    - name: Test
-      run: dotnet test -c Release --no-build /p:Version=${VERSION}
-      working-directory: ./
+    - name: Unit Tests
+      run: dotnet run /p:Version=${VERSION}
+      working-directory: ./src/Nikcio.UHeadless.UnitTests
+
+    - name: Integration Tests
+      run: dotnet run /p:Version=${VERSION}
+      working-directory: ./src/Nikcio.UHeadless.IntegrationTests
 
     - name: Pack nugets
       run: dotnet pack -c Release --no-build --output ./releases /p:Version=${VERSION}
