@@ -48,9 +48,9 @@ public partial class ApiAuthTests
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentByContentType_Snaps_{testCase}.snap";
 
