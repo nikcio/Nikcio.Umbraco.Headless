@@ -3,7 +3,7 @@
     "contentAtRoot": {
       "items": [
         {
-          "url": "http://site-1.com/",
+          "url": "https://site-1.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
