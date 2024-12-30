@@ -4,7 +4,6 @@ using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Members;
@@ -14,9 +13,6 @@ public class MemberItem : MemberItemBase
     protected IVariationContextAccessor VariationContextAccessor { get; }
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
-
-
-    protected IDocumentNavigationQueryService DocumentNavigationQueryService { get; }
 
     protected IPublishedMemberCache PublishedMemberCache { get; }
 
@@ -28,7 +24,6 @@ public class MemberItem : MemberItemBase
 
         VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
-        DocumentNavigationQueryService = ResolverContext.Service<IDocumentNavigationQueryService>();
         PublishedMemberCache = ResolverContext.Service<IPublishedMemberCache>();
         MemberService = ResolverContext.Service<IMemberService>();
 

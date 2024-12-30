@@ -23,7 +23,7 @@ public class MediaItem : MediaItemBase
     /// </summary>
     protected IDocumentUrlService DocumentUrlService { get; }
 
-    protected IDocumentNavigationQueryService DocumentNavigationQueryService { get; }
+    protected IMediaNavigationQueryService MediaNavigationQueryService { get; }
 
     protected IPublishedMediaCache PublishedMediaCache { get; }
 
@@ -35,7 +35,7 @@ public class MediaItem : MediaItemBase
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
         PublishedUrlProvider = ResolverContext.Service<IPublishedUrlProvider>();
         DocumentUrlService = ResolverContext.Service<IDocumentUrlService>();
-        DocumentNavigationQueryService = command.ResolverContext.Service<IDocumentNavigationQueryService>();
+        MediaNavigationQueryService = command.ResolverContext.Service<IMediaNavigationQueryService>();
         PublishedMediaCache = command.ResolverContext.Service<IPublishedMediaCache>();
     }
 
@@ -95,7 +95,7 @@ public class MediaItem : MediaItemBase
             return default;
         }
 
-        if (!DocumentNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
+        if (!MediaNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
         {
             return default;
         }

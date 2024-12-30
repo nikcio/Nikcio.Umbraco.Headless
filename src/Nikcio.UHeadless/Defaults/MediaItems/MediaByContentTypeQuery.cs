@@ -81,7 +81,7 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
 
         IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
         IPublishedContentTypeCache publishedContentTypeCache = resolverContext.Service<IPublishedContentTypeCache>();
-        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
+        IMediaNavigationQueryService mediaNavigationQueryService = resolverContext.Service<IMediaNavigationQueryService>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -99,7 +99,7 @@ public abstract class MediaByContentTypeQuery<TMediaItem> : IGraphQLQuery
             return new PaginationResult<TMediaItem?>([], page, pageSize);
         }
 
-        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        if (!mediaNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
         {
             return new PaginationResult<TMediaItem?>(
                 [],

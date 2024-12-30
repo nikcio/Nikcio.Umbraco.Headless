@@ -76,7 +76,7 @@ public abstract class MediaAtRootQuery<TMediaItem> : IGraphQLQuery
         ArgumentNullException.ThrowIfNull(resolverContext);
 
         IMediaItemRepository<TMediaItem> mediaItemRepository = resolverContext.Service<IMediaItemRepository<TMediaItem>>();
-        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
+        IMediaNavigationQueryService mediaNavigationQueryService = resolverContext.Service<IMediaNavigationQueryService>();
 
         IPublishedMediaCache? mediaCache = mediaItemRepository.GetCache();
 
@@ -85,7 +85,7 @@ public abstract class MediaAtRootQuery<TMediaItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        if (!mediaNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
         {
             return new PaginationResult<TMediaItem?>(
                 [],
