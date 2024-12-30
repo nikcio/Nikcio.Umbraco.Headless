@@ -4,7 +4,7 @@
       "message": "The current user is not authorized to access this resource.",
       "locations": [
         {
-          "line": 8,
+          "line": 9,
           "column": 3
         }
       ],
