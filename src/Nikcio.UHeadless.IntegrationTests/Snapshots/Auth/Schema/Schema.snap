@@ -981,6 +981,8 @@ type MarkdownEditorCulture implements IMarkdownEditorCulture {
 type MediaItem {
   "Gets the url of a media item."
   url(urlMode: UrlMode! propertyAlias: String! = "umbracoFile"): String
+  "Gets the parent of the media item."
+  parent: MediaItem
   "Gets the properties of the media item."
   properties: TypedProperties!
   "Gets the url segment of the media item."
@@ -995,8 +997,6 @@ type MediaItem {
   templateId: Int
   "Gets the date the media item was last updated."
   updateDate: DateTime
-  "Gets the parent of the media item."
-  parent: MediaItem
 }
 
 "Represents a media picker item."
@@ -1066,6 +1066,8 @@ type MemberGroupPickerEditorCulture implements IMemberGroupPickerEditorCulture {
 }
 
 type MemberItem {
+  "Gets the parent of the member item."
+  parent: MemberItem
   "Gets the properties of the member item."
   properties: TypedProperties!
   "Gets the name of a member item."
@@ -1078,8 +1080,6 @@ type MemberItem {
   templateId: Int
   "Gets the date the member item was last updated."
   updateDate: DateTime
-  "Gets the parent of the member item."
-  parent: MemberItem
 }
 
 "Represents a member picker."
@@ -1228,7 +1228,7 @@ type Query {
   "Utility query. Gets a which claims are used by the registered queries."
   utility_GetClaimGroups: [ClaimGroup!]!
   "Gets a content item by a route."
-  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")
+  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")
   "Gets all the content items by content type."
   contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentByContentTypeQuery")
   "Gets all the content items at root level."
@@ -1439,6 +1439,8 @@ input QueryContextInput {
   fallbacks: [PropertyFallback!]
   "The segment to use on a property value."
   segment: String
+  "The base URL of the request. Example: https:\/\/my-website.com. Used to return the correct URLs on content items"
+  baseUrl: String
 }
 
 "A claim for a token."

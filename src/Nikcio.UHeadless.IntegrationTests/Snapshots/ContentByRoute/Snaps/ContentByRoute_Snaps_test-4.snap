@@ -1,7 +1,7 @@
 {
   "data": {
     "contentByRoute": {
-      "url": "http://site-1.com/page-2/",
+      "url": "https://site-1.com/page-2/",
       "redirect": null,
       "statusCode": 200,
       "properties": {
@@ -187,7 +187,7 @@
       "key": "f578f70d-13f4-444a-baa7-a1a3c1bc1666",
       "templateId": null,
       "parent": {
-        "url": "http://site-1.com/",
+        "url": "https://site-1.com/",
         "properties": {
           "__typename": "EmptyPropertyType"
         },

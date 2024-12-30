@@ -1,7 +1,7 @@
 {
   "data": {
     "contentByRoute": {
-      "url": "http://site-1.com/page-1/",
+      "url": "https://site-1.com/page-1/",
       "redirect": null,
       "statusCode": 200,
       "properties": {
@@ -373,8 +373,8 @@
           "__typename": "DefaultProperty"
         },
         "richtext": {
-          "value": "\u003Cp\u003EHere is some text\u003C/p\u003E",
-          "sourceValue": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+          "value": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
+          "sourceValue": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
           "model": "RichText",
           "__typename": "RichText"
         },
@@ -664,7 +664,7 @@
       "key": "3686dd5d-f689-4e3b-ace6-b6d4e8b06165",
       "templateId": null,
       "parent": {
-        "url": "http://site-1.com/",
+        "url": "https://site-1.com/",
         "properties": {
           "__typename": "EmptyPropertyType"
         },
