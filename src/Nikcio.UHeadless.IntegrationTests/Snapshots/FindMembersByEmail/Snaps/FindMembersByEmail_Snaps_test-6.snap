@@ -21,8 +21,7 @@
         "name": "member 2",
         "id": 1181,
         "key": "1ee7e46f-372e-4cf8-b7f4-c8c87abc6ce2",
-        "templateId": -1,
-        "parent": null,
+        "templateId": null,
         "__typename": "MemberItem"
       },
       {
@@ -59,8 +58,7 @@
         "name": "member 1",
         "id": 1180,
         "key": "5dea6e8d-d295-45d3-80bd-96d058b9774e",
-        "templateId": -1,
-        "parent": null,
+        "templateId": null,
         "__typename": "MemberItem"
       }
     ]

@@ -7,7 +7,7 @@
       "properties": {
         "__typename": "EmptyPropertyType"
       },
-      "urlSegment": "unpublishedsite",
+      "urlSegment": null,
       "name": "UnpublishedSite",
       "id": 1149,
       "key": "f894ebb3-7353-4439-b84c-04ed7d283202",

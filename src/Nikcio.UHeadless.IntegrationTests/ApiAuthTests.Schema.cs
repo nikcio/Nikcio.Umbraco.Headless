@@ -1,5 +1,3 @@
-using Nikcio.UHeadless.IntegrationTests;
-
 namespace Nikcio.UHeadless.IntegrationTests;
 
 public partial class ApiAuthTests
@@ -12,9 +10,9 @@ public partial class ApiAuthTests
         var snapshotProvider = new SnapshotProvider($"{_schemaSnapshotPath}");
         HttpClient client = _factory.CreateClient();
 
-        HttpResponseMessage response = await client.GetAsync("/graphql?sdl").ConfigureAwait(true);
+        HttpResponseMessage response = await client.GetAsync("/graphql?sdl", TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"Schema.snap";
 

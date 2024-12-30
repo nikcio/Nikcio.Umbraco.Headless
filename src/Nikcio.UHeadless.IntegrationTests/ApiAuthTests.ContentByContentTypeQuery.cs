@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -17,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByContentTypeSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByContentType";
 
     [Theory]
-    [InlineData("test-1", "default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue)]
-    [InlineData("test-2", "default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", "default", 1, 1, "en-us", false, null, true, ContentByContentTypeQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", "default", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", "default", 1, 1, "en-us", false, null, false, "Invalid")]
+    [InlineData("test-1", "default", 1, 1, "en-US", false, null, true, ContentByContentTypeQuery.ClaimValue)]
+    [InlineData("test-2", "default", 1, 1, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "default", 1, 1, "en-US", false, null, true, ContentByContentTypeQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "default", 1, 1, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "default", 1, 1, "en-US", false, null, false, "Invalid")]
     public async Task ContentByContentTypeQuery_Snaps_Async(
         string testCase,
         string contentType,
@@ -37,7 +30,7 @@ public partial class ApiAuthTests
         HttpClient client = _factory.CreateClient();
 
         JwtToken token = await CreateTokenMutation_Async(client, new TokenClaim() { Name = DefaultClaims.UHeadlessScope, Value = claims }).ConfigureAwait(true);
-        
+
         client.DefaultRequestHeaders.Add(token.Header, token.Prefix + token.Token);
 
         using var request = JsonContent.Create(new
@@ -50,13 +43,14 @@ public partial class ApiAuthTests
                 pageSize,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentByContentType_Snaps_{testCase}.snap";
 

@@ -1,7 +1,7 @@
 {
   "data": {
     "contentByRoute": {
-      "url": "http://site-culture.com/homepage/",
+      "url": "https://site-culture.com/homepage/",
       "redirect": null,
       "statusCode": 200,
       "properties": {
@@ -347,7 +347,7 @@
       "key": "3fa4a316-249b-487f-8d9e-007581f7b748",
       "templateId": null,
       "parent": {
-        "url": "http://site-culture.com/",
+        "url": "https://site-culture.com/",
         "properties": {
           "textstring": {
             "value": "uncultured string",

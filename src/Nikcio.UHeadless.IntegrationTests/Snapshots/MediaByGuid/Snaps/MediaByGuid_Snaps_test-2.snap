@@ -9,7 +9,7 @@
       "name": "My media",
       "id": 1141,
       "key": "01164aab-e1f7-4628-9e20-870b49951482",
-      "templateId": -1,
+      "templateId": null,
       "parent": null,
       "__typename": "MediaItem"
     }

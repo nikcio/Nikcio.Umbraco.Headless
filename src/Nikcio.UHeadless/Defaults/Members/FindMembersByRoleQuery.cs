@@ -1,7 +1,6 @@
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
@@ -81,8 +80,6 @@ public abstract class FindMembersByRoleQuery<TMemberItem> : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(roleName);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         IMemberItemRepository<TMemberItem> memberItemRepository = resolverContext.Service<IMemberItemRepository<TMemberItem>>();
 

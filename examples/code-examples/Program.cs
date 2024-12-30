@@ -5,7 +5,7 @@ using Code.Examples.Headless.CustomMediaPickerExample;
 using Code.Examples.Headless.CustomMemberItemExample;
 using Code.Examples.Headless.CustomRichTextExample;
 using Code.Examples.Headless.PublicAccessExample;
-using Code.Examples.Headless.SkybrudRedirectsExample;
+//using Code.Examples.Headless.SkybrudRedirectsExample;
 
 //using Code.Examples.Headless.UrlTrackerExample;
 using Nikcio.UHeadless;
@@ -29,7 +29,7 @@ public sealed class Program
             .AddComposers();
 
         // This ensures the integration tests control the UHeadless setup
-        if (builder.Environment.IsDevelopment()) 
+        if (builder.Environment.IsDevelopment())
         {
             umbracoBuilder.AddUHeadless(options =>
             {
@@ -38,7 +38,7 @@ public sealed class Program
                 options.AddDefaults();
 
                 options.AddQuery<PublishAccessExampleQuery>();
-                options.AddQuery<SkybrudRedirectsExampleQuery>();
+                //options.AddQuery<SkybrudRedirectsExampleQuery>();
                 //options.AddQuery<UrlTrackerExampleQuery>();
                 //options.AddMutation<TrackErrorStatusCodeMutation>();
                 options.AddQuery<CustomContentItemExampleQuery>();

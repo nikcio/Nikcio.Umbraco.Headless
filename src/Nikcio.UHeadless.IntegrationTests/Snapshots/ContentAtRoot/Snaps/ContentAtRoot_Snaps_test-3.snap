@@ -3,7 +3,7 @@
     "contentAtRoot": {
       "items": [
         {
-          "url": "http://localhost/no-domain-site/",
+          "url": "https://site-1.com/no-domain-site/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -20,7 +20,7 @@
       ],
       "page": 2,
       "pageSize": 1,
-      "totalItems": 6,
+      "totalItems": 7,
       "hasNextPage": true
     }
   }

@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -16,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByTag";
 
     [Theory]
-    //[InlineData("test-1", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
-    //[InlineData("test-2", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", "normal", null, "en-us", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", "normal", null, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", "normal", null, "en-us", false, null, false, "Invalid")]
+    //[InlineData("test-1", "normal", null, "en-US", false, null, true, ContentByTagQuery.ClaimValue)] // For some reason, this test fails only on the CI pipeline
+    //[InlineData("test-2", "normal", null, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", "normal", null, "en-US", false, null, true, ContentByTagQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "normal", null, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "normal", null, "en-US", false, null, false, "Invalid")]
     public async Task ContentByTagQuery_Snaps_Async(
         string testCase,
         string tag,
@@ -47,13 +41,14 @@ public partial class ApiAuthTests
                 tagGroup,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-culture.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentByTag_Snaps_{testCase}.snap";
 

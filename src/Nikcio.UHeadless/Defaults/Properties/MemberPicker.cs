@@ -2,7 +2,6 @@ using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.Common.Properties;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.Members;
 using Nikcio.UHeadless.Properties;

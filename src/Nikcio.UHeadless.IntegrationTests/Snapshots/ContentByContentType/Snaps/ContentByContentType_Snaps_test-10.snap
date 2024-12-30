@@ -3,7 +3,7 @@
     "contentByContentType": {
       "items": [
         {
-          "url": "http://site-1.com/homepage/",
+          "url": "https://site-1.com/homepage/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -222,7 +222,7 @@
           "key": "ca69a30f-bf47-4acf-b31b-556c585d204b",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -235,7 +235,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/page-1/",
+          "url": "https://site-1.com/page-1/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -607,8 +607,8 @@
               "__typename": "DefaultProperty"
             },
             "richtext": {
-              "value": "\u003Cp\u003EHere is some text\u003C/p\u003E",
-              "sourceValue": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+              "value": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
+              "sourceValue": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
               "model": "RichText",
               "__typename": "RichText"
             },
@@ -898,7 +898,7 @@
           "key": "3686dd5d-f689-4e3b-ace6-b6d4e8b06165",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -911,7 +911,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/page-2/",
+          "url": "https://site-1.com/page-2/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1097,7 +1097,7 @@
           "key": "f578f70d-13f4-444a-baa7-a1a3c1bc1666",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -1110,7 +1110,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/",
+          "url": "https://site-1.com/collection-of-pages/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1294,7 +1294,7 @@
           "key": "08f23909-4751-47e9-b2e8-88ca07598947",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/",
+            "url": "https://site-1.com/",
             "properties": {
               "__typename": "EmptyPropertyType"
             },
@@ -1307,7 +1307,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-1.com/collection-of-pages/page-11/",
+          "url": "https://site-1.com/collection-of-pages/page-11/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -1493,7 +1493,7 @@
           "key": "a719aa8a-2c24-4756-9f4c-d1f5a5b94075",
           "templateId": null,
           "parent": {
-            "url": "http://site-1.com/collection-of-pages/",
+            "url": "https://site-1.com/collection-of-pages/",
             "properties": {
               "blockGrid": {
                 "model": "BlockGrid",

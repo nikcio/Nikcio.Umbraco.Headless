@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.MediaItems;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -40,9 +34,9 @@ public partial class ApiAuthTests
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"MediaById_Snaps_{testCase}.snap";
 

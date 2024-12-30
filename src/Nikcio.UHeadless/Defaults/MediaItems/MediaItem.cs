@@ -2,7 +2,10 @@ using Nikcio.UHeadless.Media;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.MediaItems;
@@ -15,6 +18,15 @@ public class MediaItem : MediaItemBase
 
     protected IPublishedUrlProvider PublishedUrlProvider { get; }
 
+    /// <summary>
+    /// The document url service
+    /// </summary>
+    protected IDocumentUrlService DocumentUrlService { get; }
+
+    protected IMediaNavigationQueryService MediaNavigationQueryService { get; }
+
+    protected IPublishedMediaCache PublishedMediaCache { get; }
+
     public MediaItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
@@ -22,13 +34,16 @@ public class MediaItem : MediaItemBase
         VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
         PublishedUrlProvider = ResolverContext.Service<IPublishedUrlProvider>();
+        DocumentUrlService = ResolverContext.Service<IDocumentUrlService>();
+        MediaNavigationQueryService = command.ResolverContext.Service<IMediaNavigationQueryService>();
+        PublishedMediaCache = command.ResolverContext.Service<IPublishedMediaCache>();
     }
 
     /// <summary>
     /// Gets the url segment of the media item
     /// </summary>
     [GraphQLDescription("Gets the url segment of the media item.")]
-    public string? UrlSegment => PublishedContent?.UrlSegment(VariationContextAccessor, Culture);
+    public string? UrlSegment => PublishedContent != null ? DocumentUrlService.GetUrlSegment(PublishedContent.Key, Culture ?? VariationContextAccessor.VariationContext?.Culture ?? "*", PublishedContent.IsPublished(Culture)) : null;
 
     /// <summary>
     /// Gets the url of a media item
@@ -73,11 +88,31 @@ public class MediaItem : MediaItemBase
     /// Gets the parent of the media item
     /// </summary>
     [GraphQLDescription("Gets the parent of the media item.")]
-    public MediaItem? Parent => PublishedContent?.Parent != null ? CreateMediaItem<MediaItem>(new CreateCommand()
+    public MediaItem? Parent()
     {
-        PublishedContent = PublishedContent.Parent,
-        ResolverContext = ResolverContext,
-    }, DependencyReflectorFactory) : default;
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        if (!MediaNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
+        {
+            return default;
+        }
+
+        IPublishedContent? parent = PublishedMediaCache.GetById(parentKey.Value);
+
+        if (parent == null)
+        {
+            return default;
+        }
+
+        return CreateMediaItem<MediaItem>(new CreateCommand()
+        {
+            PublishedContent = parent,
+            ResolverContext = ResolverContext,
+        }, DependencyReflectorFactory);
+    }
 
     /// <summary>
     /// Gets the properties of the media item

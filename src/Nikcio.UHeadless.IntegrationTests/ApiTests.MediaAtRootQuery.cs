@@ -15,7 +15,7 @@ public partial class ApiTests
     [InlineData("test-6", 1, 5, true)]
     [InlineData("test-7", 0, 5, false)]
     [InlineData("test-8", -1, 5, false)]
-    [InlineData("test-9", 0, -1,  false)]
+    [InlineData("test-9", 0, -1, false)]
     public async Task MediaAtRootQuery_Snaps_Async(
         string testCase,
         int page,
@@ -35,9 +35,9 @@ public partial class ApiTests
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"MediaAtRoot_Snaps_{testCase}.snap";
 

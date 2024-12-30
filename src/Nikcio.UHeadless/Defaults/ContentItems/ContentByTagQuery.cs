@@ -3,7 +3,6 @@ using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -82,8 +81,6 @@ public abstract class ContentByTagQuery<TContentItem> : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(tag);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))

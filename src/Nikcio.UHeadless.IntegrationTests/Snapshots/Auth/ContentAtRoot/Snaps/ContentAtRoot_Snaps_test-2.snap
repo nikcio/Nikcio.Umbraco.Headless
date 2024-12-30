@@ -3,7 +3,7 @@
     "contentAtRoot": {
       "items": [
         {
-          "url": "http://site-1.com/",
+          "url": "https://site-1.com/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -20,7 +20,7 @@
       ],
       "page": 1,
       "pageSize": 1,
-      "totalItems": 6,
+      "totalItems": 7,
       "hasNextPage": true
     }
   }

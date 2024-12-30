@@ -2,7 +2,6 @@ using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
@@ -76,7 +75,6 @@ public abstract class MemberByIdQuery<TMemberItem> : IGraphQLQuery
         [GraphQLDescription("The id to fetch.")] int id)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
-        ArgumentNullException.ThrowIfNull(id);
 
         if (id <= 0)
         {

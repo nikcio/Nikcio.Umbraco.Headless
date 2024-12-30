@@ -3,11 +3,11 @@ using HotChocolate.Resolvers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
 
@@ -126,7 +126,6 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
     public virtual async Task<TContentItem?> ContentByRouteAsync(
         IResolverContext resolverContext,
         [GraphQLDescription("The route to fetch. Example '/da/frontpage/'.")] string route,
-        [GraphQLDescription("The base url for the request. Example: 'https://localhost:4000'. Default is the current domain")] string baseUrl = "",
         [GraphQLDescription("The context of the request.")] QueryContext? inContext = null)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
@@ -138,7 +137,7 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The context could not be initialized");
         }
 
-        TContentItem? contentItem = await CreateContentItemFromRouteAsync(resolverContext, route, baseUrl).ConfigureAwait(false);
+        TContentItem? contentItem = await CreateContentItemFromRouteAsync(resolverContext, route, inContext.BaseUrl).ConfigureAwait(false);
 
         if (contentItem != null)
         {
@@ -146,6 +145,7 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
         }
 
         IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
+        IDocumentUrlService documentUrlService = resolverContext.Service<IDocumentUrlService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -154,7 +154,14 @@ public abstract class ContentByRouteQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IPublishedContent? publishedContent = contentCache.GetByRoute(inContext.IncludePreview.Value, route, culture: inContext.Culture);
+        Guid? contentKey = documentUrlService.GetDocumentKeyByRoute(route, inContext.Culture, null, inContext.IncludePreview.Value);
+
+        if (contentKey == null)
+        {
+            return CreateContentItem(null, contentItemRepository, resolverContext);
+        }
+
+        IPublishedContent? publishedContent = contentCache.GetById(inContext.IncludePreview.Value, contentKey.Value);
 
         return CreateContentItem(publishedContent, contentItemRepository, resolverContext);
     }

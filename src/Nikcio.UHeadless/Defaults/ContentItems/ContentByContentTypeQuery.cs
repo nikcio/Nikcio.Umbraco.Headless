@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nikcio.UHeadless.ContentItems;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
@@ -81,8 +81,6 @@ public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(contentType);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         inContext ??= new QueryContext();
         if (!inContext.Initialize(resolverContext))
@@ -92,6 +90,8 @@ public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
 
         IContentItemRepository<TContentItem> contentItemRepository = resolverContext.Service<IContentItemRepository<TContentItem>>();
         IVariationContextAccessor variationContextAccessor = resolverContext.Service<IVariationContextAccessor>();
+        IPublishedContentTypeCache publishedContentTypeCache = resolverContext.Service<IPublishedContentTypeCache>();
+        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
 
         IPublishedContentCache? contentCache = contentItemRepository.GetCache();
 
@@ -100,7 +100,7 @@ public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
             throw new InvalidOperationException("The content cache is not available");
         }
 
-        IPublishedContentType? publishedContentType = contentCache.GetContentType(contentType);
+        IPublishedContentType? publishedContentType = publishedContentTypeCache.Get(PublishedItemType.Content, contentType);
         if (publishedContentType == null)
         {
             ILogger<ContentByContentTypeQuery> logger = resolverContext.Service<ILogger<ContentByContentTypeQuery>>();
@@ -108,11 +108,33 @@ public abstract class ContentByContentTypeQuery<TContentItem> : IGraphQLQuery
             return new PaginationResult<TContentItem?>([], page, pageSize);
         }
 
-        IEnumerable<IPublishedContent> contentItems = contentCache.GetAtRoot(inContext.IncludePreview.Value, inContext.Culture)
+        if (!documentNavigationQueryService.TryGetRootKeys(out IEnumerable<Guid>? rootKeys))
+        {
+            return new PaginationResult<TContentItem?>(
+                [],
+                page,
+                pageSize
+            );
+        }
+
+        List<IPublishedContent> contentItems = [];
+
+        foreach (Guid key in rootKeys)
+        {
+            IPublishedContent? contentItem = contentCache.GetById(inContext.IncludePreview.Value, key);
+            if (contentItem == null)
+            {
+                continue;
+            }
+
+            contentItems.Add(contentItem);
+        }
+
+        IEnumerable<IPublishedContent> contentItemsOfContentType = contentItems
                     .SelectMany(content => content.DescendantsOrSelf(variationContextAccessor, inContext.Culture))
                     .Where(content => content.ContentType.Id == publishedContentType.Id);
 
-        IEnumerable<TContentItem?> resultItems = contentItems.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
+        IEnumerable<TContentItem?> resultItems = contentItemsOfContentType.Select(contentItem => CreateContentItem(contentItem, contentItemRepository, resolverContext));
 
         return new PaginationResult<TContentItem?>(resultItems, page, pageSize);
     }

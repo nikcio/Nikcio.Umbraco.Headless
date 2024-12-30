@@ -34,8 +34,7 @@
       "name": "user1",
       "id": 1179,
       "key": "91eecdea-fc1e-408d-ac41-545ceefa3dc5",
-      "templateId": -1,
-      "parent": null,
+      "templateId": null,
       "__typename": "MemberItem"
     }
   }

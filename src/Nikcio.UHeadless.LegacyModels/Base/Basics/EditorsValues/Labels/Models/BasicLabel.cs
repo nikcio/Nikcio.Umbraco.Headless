@@ -1,4 +1,3 @@
-using HotChocolate;
 using Nikcio.UHeadless.Defaults.Properties;
 
 namespace Nikcio.UHeadless.Base.Basics.EditorsValues.Labels.Models;

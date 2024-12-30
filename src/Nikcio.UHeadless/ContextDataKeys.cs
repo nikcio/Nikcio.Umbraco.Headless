@@ -10,6 +10,8 @@ public static class ContextDataKeys
 
     public const string Fallback = "__Fallback";
 
+    public const string BaseUrl = "__BaseUrl";
+
     public const string IncludePreview = "__IncludePreview";
 
     public const string BlockListItemContent = "__BlockListItem_Content";

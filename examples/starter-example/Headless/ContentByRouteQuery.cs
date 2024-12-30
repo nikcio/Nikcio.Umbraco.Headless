@@ -5,6 +5,7 @@ using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services.Navigation;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores
 namespace starter_example.Headless;
@@ -86,12 +87,40 @@ public class ContentItemResult : ContentItem
 
     public List<ContentItemResult?> Children(IResolverContext resolverContext)
     {
-        return PublishedContent?.Children != null ? PublishedContent.Children.Select(child => CreateContentItem<ContentItemResult>(new CreateCommand()
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IDocumentNavigationQueryService documentNavigationQueryService = resolverContext.Service<IDocumentNavigationQueryService>();
+
+        if (PublishedContent == null)
+        {
+            return [];
+        }
+
+        if (!documentNavigationQueryService.TryGetChildrenKeys(PublishedContent.Key, out IEnumerable<Guid>? childrenKeys))
+        {
+            return [];
+        }
+
+        List<IPublishedContent> children = [];
+
+        foreach (Guid key in childrenKeys)
+        {
+            IPublishedContent? child = PublishedContentCache.GetById(resolverContext.IncludePreview(), key);
+
+            if (child == null)
+            {
+                continue;
+            }
+
+            children.Add(child);
+        }
+
+        return children.Select(child => CreateContentItem<ContentItemResult>(new CreateCommand()
         {
             PublishedContent = child,
             ResolverContext = resolverContext,
             Redirect = null,
             StatusCode = StatusCodes.Status200OK,
-        }, DependencyReflectorFactory)).ToList() : [];
+        }, DependencyReflectorFactory)).ToList();
     }
 }

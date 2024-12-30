@@ -1,5 +1,5 @@
-using HotChocolate.Resolvers;
 using HotChocolate;
+using HotChocolate.Resolvers;
 
 namespace Code.Examples.Headless.CustomMediaItemExample;
 

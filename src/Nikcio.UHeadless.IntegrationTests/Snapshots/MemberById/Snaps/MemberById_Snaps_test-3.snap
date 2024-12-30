@@ -20,8 +20,7 @@
       "name": "member 2",
       "id": 1181,
       "key": "1ee7e46f-372e-4cf8-b7f4-c8c87abc6ce2",
-      "templateId": -1,
-      "parent": null,
+      "templateId": null,
       "__typename": "MemberItem"
     }
   }

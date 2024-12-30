@@ -240,7 +240,7 @@
       "name": "Media custom",
       "id": 1143,
       "key": "d6355171-2e04-4b73-b11b-01f408ec242a",
-      "templateId": -1,
+      "templateId": null,
       "parent": null,
       "__typename": "MediaItem"
     }

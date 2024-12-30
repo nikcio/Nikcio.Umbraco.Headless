@@ -1,10 +1,8 @@
 using System.Text;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
-using Nikcio.UHeadless.Defaults.Auth;
 
 namespace Nikcio.UHeadless.Defaults.Authorization;
 

@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v6.0.0...v7.0.0) (2024-12-30)
+
+
+### Features
+
+* Clean up csproj ([090c1ef](https://github.com/nikcio/Nikcio.UHeadless/commit/090c1ef805122edec71c6f4093055560ba7703fa))
+* Update Umbraco.Cms in test project ([b8cefb5](https://github.com/nikcio/Nikcio.UHeadless/commit/b8cefb51dce72eea491831e271fa5e9f40317605))
+* V15 support initial ([c61cbf3](https://github.com/nikcio/Nikcio.UHeadless/commit/c61cbf3939de3ab35115781af94823e72398635f))
+
+
+### Bug Fixes
+
+* Correct culture for requests for correct URLs ([5f65963](https://github.com/nikcio/Nikcio.UHeadless/commit/5f65963a8651113dda3073c2f01154cdcd2e19fe))
+* Correct incorrect migration of decimal editor ([3b1d708](https://github.com/nikcio/Nikcio.UHeadless/commit/3b1d708f854ba5642cf90df2b8f94c60f7e9fffe))
+* Fixed by content type queries ([df631f7](https://github.com/nikcio/Nikcio.UHeadless/commit/df631f731af56d66969a535533d3d1d7f8dbbe6c))
+* Fixes to some of the changed because of obsolete changes ([3a5d0dd](https://github.com/nikcio/Nikcio.UHeadless/commit/3a5d0dd7c73330931e3467596385894cc0eaf4c3))
+* MultiUrlPicker & Content uri being empty ([1e54c87](https://github.com/nikcio/Nikcio.UHeadless/commit/1e54c8785a64bf2915b8ee1b3f2af04b1e73aaa0))
+* Remove parent from member item ([bec53a9](https://github.com/nikcio/Nikcio.UHeadless/commit/bec53a9aaf846045432baca1692a68b702f195ca))
+* Use correct query navigation service for media ([f9b0a03](https://github.com/nikcio/Nikcio.UHeadless/commit/f9b0a034ad4857923e5687478c6f8e98aac75d34))
+
 ## [6.0.0](https://github.com/nikcio/Nikcio.UHeadless/compare/v5.1.0...v6.0.0) (2024-11-20)
 
 

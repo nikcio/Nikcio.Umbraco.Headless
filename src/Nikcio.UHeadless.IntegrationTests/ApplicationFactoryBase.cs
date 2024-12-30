@@ -29,6 +29,8 @@ public abstract class ApplicationFactoryBase<TProgram> : WebApplicationFactory<T
                 ["ConnectionStrings:umbracoDbDSN"] = SqliteConnectionStrings.ConnectionString(TestDatabaseSource),
                 ["ConnectionStrings:umbracoDbDSN_ProviderName"] = "Microsoft.Data.Sqlite",
                 [nameof(UHeadlessSetup)] = UHeadlessSetup.GetType().FullName,
+                ["Umbraco:CMS:TypeFinder:AdditionalAssemblyExclusionEntries:0"] = "XUnit.",
+                ["Umbraco:CMS:TypeFinder:AdditionalAssemblyExclusionEntries:1"] = "Mono."
             });
         });
 

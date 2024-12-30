@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Defaults.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;

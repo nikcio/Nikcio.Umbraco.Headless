@@ -4,7 +4,10 @@ using Nikcio.UHeadless.ContentItems;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Services.Navigation;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.ContentItems;
@@ -15,12 +18,24 @@ public partial class ContentItem : ContentItemBase
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
+    /// <summary>
+    /// The document url service
+    /// </summary>
+    protected IDocumentUrlService DocumentUrlService { get; }
+
+    protected IDocumentNavigationQueryService DocumentNavigationQueryService { get; }
+
+    protected IPublishedContentCache PublishedContentCache { get; }
+
     public ContentItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         VariationContextAccessor = command.ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = command.ResolverContext.Service<IDependencyReflectorFactory>();
+        DocumentUrlService = command.ResolverContext.Service<IDocumentUrlService>();
+        DocumentNavigationQueryService = command.ResolverContext.Service<IDocumentNavigationQueryService>();
+        PublishedContentCache = command.ResolverContext.Service<IPublishedContentCache>();
 
         StatusCode = command.StatusCode;
         Redirect = command.Redirect == null ? null : new RedirectInfo()
@@ -36,7 +51,7 @@ public partial class ContentItem : ContentItemBase
     [GraphQLDescription("Gets the url segment of the content item.")]
     public string? UrlSegment(IResolverContext resolverContext)
     {
-        return PublishedContent?.UrlSegment(VariationContextAccessor, resolverContext.Culture());
+        return PublishedContent != null ? DocumentUrlService.GetUrlSegment(PublishedContent.Key, resolverContext.Culture() ?? VariationContextAccessor.VariationContext?.Culture ?? "*", PublishedContent.IsPublished(resolverContext.Culture())) : null;
     }
 
     /// <summary>
@@ -46,8 +61,16 @@ public partial class ContentItem : ContentItemBase
     public string? Url(IResolverContext resolverContext, UrlMode urlMode)
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
 
-        return PublishedContent?.Url(resolverContext.Service<IPublishedUrlProvider>(), resolverContext.Culture(), urlMode);
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        string baseUrl = resolverContext.BaseUrl();
+        Uri? current = string.IsNullOrEmpty(baseUrl) ? null : new Uri(baseUrl);
+        return publishedUrlProvider.GetUrl(PublishedContent, urlMode, resolverContext.Culture(), current);
     }
 
     /// <summary>
@@ -89,13 +112,30 @@ public partial class ContentItem : ContentItemBase
     [GraphQLDescription("Gets the parent of the content item.")]
     public ContentItem? Parent(IResolverContext resolverContext)
     {
-        return PublishedContent?.Parent != null ? CreateContentItem<ContentItem>(new CreateCommand()
+        if (PublishedContent == null)
         {
-            PublishedContent = PublishedContent.Parent,
+            return default;
+        }
+
+        if (!DocumentNavigationQueryService.TryGetParentKey(PublishedContent.Key, out Guid? parentKey) || parentKey == null)
+        {
+            return default;
+        }
+
+        IPublishedContent? parent = PublishedContentCache.GetById(resolverContext.IncludePreview(), parentKey.Value);
+
+        if (parent == null)
+        {
+            return default;
+        }
+
+        return CreateContentItem<ContentItem>(new CreateCommand()
+        {
+            PublishedContent = parent,
             ResolverContext = resolverContext,
             Redirect = null,
             StatusCode = StatusCodes.Status200OK,
-        }, DependencyReflectorFactory) : default;
+        }, DependencyReflectorFactory);
     }
 
     /// <summary>

@@ -7,16 +7,16 @@ public partial class ApiTests
     private const string _contentByIdSnapshotPath = $"{SnapshotConstants.BasePath}/ContentById";
 
     [Theory]
-    [InlineData("test-1", 1146, "en-us", false, null, true)]
+    [InlineData("test-1", 1146, "en-US", false, null, true)]
     [InlineData("test-2", 1146, "da", false, null, true)]
     [InlineData("test-3", 1146, null, false, null, true)]
-    [InlineData("test-4", 1149, "en-us", true, null, true)]
+    [InlineData("test-4", 1149, "en-US", true, null, true)]
     [InlineData("test-5", 1151, "da", null, null, true)]
     [InlineData("test-6", 1165, null, null, null, true)]
     [InlineData("test-7", 1175, null, null, null, true)]
     [InlineData("test-8", 1176, null, null, null, true)]
-    [InlineData("test-9", -1000, "en-us", false, null, true)]
-    [InlineData("test-10", 100_000_000, "en-us", false, null, true)]
+    [InlineData("test-9", -1000, "en-US", false, null, true)]
+    [InlineData("test-10", 100_000_000, "en-US", false, null, true)]
     public async Task ContentByIdQuery_Snaps_Async(
         string testCase,
         int id,
@@ -36,13 +36,14 @@ public partial class ApiTests
                 id,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentById_Snaps_{testCase}.snap";
 
@@ -55,6 +56,7 @@ public static class ContentByIdQueries
 {
     public const string GetItems = """
         query ContentByIdQuery(
+          $baseUrl: String!
           $id: Int!
           $culture: String
           $includePreview: Boolean
@@ -64,6 +66,7 @@ public static class ContentByIdQueries
           contentById(
             id: $id
             inContext: {
+              baseUrl: $baseUrl
               culture: $culture
               includePreview: $includePreview
               fallbacks: $fallbacks

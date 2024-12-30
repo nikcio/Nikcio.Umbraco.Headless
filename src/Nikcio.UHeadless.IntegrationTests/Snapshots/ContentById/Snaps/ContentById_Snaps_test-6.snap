@@ -1,7 +1,7 @@
 {
   "data": {
     "contentById": {
-      "url": "http://site-1.com/collection-of-pages/",
+      "url": "https://site-1.com/collection-of-pages/",
       "redirect": null,
       "statusCode": 200,
       "properties": {
@@ -185,7 +185,7 @@
       "key": "08f23909-4751-47e9-b2e8-88ca07598947",
       "templateId": null,
       "parent": {
-        "url": "http://site-1.com/",
+        "url": "https://site-1.com/",
         "properties": {
           "__typename": "EmptyPropertyType"
         },

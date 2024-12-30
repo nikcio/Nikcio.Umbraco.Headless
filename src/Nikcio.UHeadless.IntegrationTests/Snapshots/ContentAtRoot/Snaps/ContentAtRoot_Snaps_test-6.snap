@@ -63,7 +63,7 @@
           "__typename": "ContentItem"
         },
         {
-          "url": "http://site-culture.dk/",
+          "url": "https://site-culture.dk/",
           "redirect": null,
           "statusCode": 200,
           "properties": {
@@ -90,7 +90,7 @@
       ],
       "page": 1,
       "pageSize": 5,
-      "totalItems": 6,
+      "totalItems": 7,
       "hasNextPage": true
     }
   }

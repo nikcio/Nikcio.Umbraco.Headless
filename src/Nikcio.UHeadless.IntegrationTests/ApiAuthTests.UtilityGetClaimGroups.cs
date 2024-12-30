@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 public partial class ApiAuthTests
@@ -19,8 +18,8 @@ public partial class ApiAuthTests
             {
             }
         });
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"Utility_GetClaimGroups_Snaps.snap";
 

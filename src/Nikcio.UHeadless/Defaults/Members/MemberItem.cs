@@ -2,6 +2,8 @@ using Nikcio.UHeadless.Members;
 using Nikcio.UHeadless.Properties;
 using Nikcio.UHeadless.Reflection;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PublishedCache;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Defaults.Members;
@@ -12,12 +14,19 @@ public class MemberItem : MemberItemBase
 
     protected IDependencyReflectorFactory DependencyReflectorFactory { get; }
 
+    protected IPublishedMemberCache PublishedMemberCache { get; }
+
+    protected IMemberService MemberService { get; }
+
     public MemberItem(CreateCommand command) : base(command)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         VariationContextAccessor = ResolverContext.Service<IVariationContextAccessor>();
         DependencyReflectorFactory = ResolverContext.Service<IDependencyReflectorFactory>();
+        PublishedMemberCache = ResolverContext.Service<IPublishedMemberCache>();
+        MemberService = ResolverContext.Service<IMemberService>();
+
     }
 
     /// <summary>
@@ -49,16 +58,6 @@ public class MemberItem : MemberItemBase
     /// </summary>
     [GraphQLDescription("Gets the date the member item was last updated.")]
     public DateTime? UpdateDate => PublishedContent?.UpdateDate;
-
-    /// <summary>
-    /// Gets the parent of the member item
-    /// </summary>
-    [GraphQLDescription("Gets the parent of the member item.")]
-    public MemberItem? Parent => PublishedContent?.Level != 1 && PublishedContent?.Parent != null ? CreateMember<MemberItem>(new CreateCommand()
-    {
-        PublishedContent = PublishedContent.Parent,
-        ResolverContext = ResolverContext,
-    }, DependencyReflectorFactory) : default;
 
     /// <summary>
     /// Gets the properties of the member item

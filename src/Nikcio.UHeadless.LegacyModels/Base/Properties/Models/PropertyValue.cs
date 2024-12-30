@@ -1,4 +1,3 @@
-using HotChocolate.Types;
 using Nikcio.UHeadless.Base.Properties.Commands;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.Models.PublishedContent;

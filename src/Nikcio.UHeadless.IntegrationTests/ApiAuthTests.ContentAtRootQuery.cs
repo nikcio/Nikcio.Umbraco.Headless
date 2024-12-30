@@ -1,7 +1,6 @@
 using System.Net.Http.Json;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -10,9 +9,9 @@ public partial class ApiAuthTests
     private const string _contentAtRootSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentAtRoot";
 
     [Theory]
-    [InlineData("test-1", 1, 1, "en-us", false, null, true, ContentAtRootQuery.ClaimValue)]
-    [InlineData("test-2", 1, 1, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", 1, 1, "en-us", false, null, false, "Invalid")]
+    [InlineData("test-1", 1, 1, "en-US", false, null, true, ContentAtRootQuery.ClaimValue)]
+    [InlineData("test-2", 1, 1, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", 1, 1, "en-US", false, null, false, "Invalid")]
     public async Task ContentAtRootQuery_Snaps_Async(
         string testCase,
         int page,
@@ -39,13 +38,14 @@ public partial class ApiAuthTests
                 pageSize,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentAtRoot_Snaps_{testCase}.snap";
 

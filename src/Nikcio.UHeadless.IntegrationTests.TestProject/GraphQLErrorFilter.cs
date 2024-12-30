@@ -2,7 +2,7 @@ using HotChocolate;
 
 namespace Nikcio.UHeadless.IntegrationTests.TestProject;
 
-public class GraphQLErrorFilter : IErrorFilter
+internal class GraphQLErrorFilter : IErrorFilter
 {
     private readonly ILogger<GraphQLErrorFilter> _logger;
 

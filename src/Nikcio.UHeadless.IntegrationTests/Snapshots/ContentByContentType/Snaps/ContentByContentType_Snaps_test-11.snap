@@ -607,8 +607,8 @@
               "__typename": "DefaultProperty"
             },
             "richtext": {
-              "value": "\u003Cp\u003EHere is some text\u003C/p\u003E",
-              "sourceValue": "\u003Cp\u003EHere is some text\u003C/p\u003E",
+              "value": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
+              "sourceValue": "\\u003Cp\\u003EHere is some text\\u003C/p\\u003E",
               "model": "RichText",
               "__typename": "RichText"
             },

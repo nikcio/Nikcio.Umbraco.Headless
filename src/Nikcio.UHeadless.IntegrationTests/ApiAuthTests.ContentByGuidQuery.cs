@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -16,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByGuidSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentByGuid";
 
     [Theory]
-    [InlineData("test-1", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-2", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, ContentByGuidQuery.ClaimValue)]
-    [InlineData("test-3", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-2", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, ContentByGuidQuery.ClaimValue)]
+    [InlineData("test-3", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-US", false, null, true, ContentByGuidQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", "ca69a30f-bf47-4acf-b31b-556c585d204b", "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", "eadd5be4-456c-4a7d-8c4a-2f7ead9c8ecf", "en-US", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByGuidQuery_Snaps_Async(
         string testCase,
         string key,
@@ -45,13 +39,14 @@ public partial class ApiAuthTests
                 key,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentByGuid_Snaps_{testCase}.snap";
 

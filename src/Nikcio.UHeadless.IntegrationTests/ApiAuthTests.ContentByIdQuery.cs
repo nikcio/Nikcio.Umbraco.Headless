@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Defaults.Properties;
-using Nikcio.UHeadless.IntegrationTests;
 
 namespace Nikcio.UHeadless.IntegrationTests;
 
@@ -16,11 +10,11 @@ public partial class ApiAuthTests
     private const string _contentByIdSnapshotPath = $"{SnapshotConstants.AuthBasePath}/ContentById";
 
     [Theory]
-    [InlineData("test-1", 1146, "en-us", false, null, true, ContentByIdQuery.ClaimValue)]
-    [InlineData("test-2", 1146, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead)]
-    [InlineData("test-3", 1152, "en-us", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
-    [InlineData("test-4", 1152, "en-us", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
-    [InlineData("test-5", 1152, "en-us", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
+    [InlineData("test-1", 1146, "en-US", false, null, true, ContentByIdQuery.ClaimValue)]
+    [InlineData("test-2", 1146, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead)]
+    [InlineData("test-3", 1152, "en-US", false, null, true, ContentByIdQuery.ClaimValue, MemberPicker.ClaimValue)]
+    [InlineData("test-4", 1152, "en-US", false, null, true, DefaultClaimValues.GlobalContentRead, MemberPicker.ClaimValue)]
+    [InlineData("test-5", 1152, "en-US", false, null, true, "Invalid")] // Doesn't error because null is a vaild response
     public async Task ContentByIdQuery_Snaps_Async(
         string testCase,
         int id,
@@ -45,13 +39,14 @@ public partial class ApiAuthTests
                 id,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-1.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentById_Snaps_{testCase}.snap";
 

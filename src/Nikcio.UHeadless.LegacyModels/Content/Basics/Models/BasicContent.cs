@@ -1,4 +1,3 @@
-using HotChocolate;
 using HotChocolate.Resolvers;
 using Nikcio.UHeadless.Base.Basics.Models;
 using Nikcio.UHeadless.Base.Properties.Factories;
@@ -9,6 +8,7 @@ using Nikcio.UHeadless.ContentTypes.Models;
 using Nikcio.UHeadless.Defaults.ContentItems;
 using Nikcio.UHeadless.Properties;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Routing;
 using Umbraco.Extensions;
 
 namespace Nikcio.UHeadless.Content.Basics.Models;
@@ -92,22 +92,6 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     public virtual int? CreatorId => PublishedContent?.CreatorId;
 
     /// <summary>
-    /// Gets all the children of the content item, regardless of whether they are available for the current culture
-    /// </summary>
-    [GraphQLDescription("Gets all the children of the content item, regardless of whether they are available for the current culture.")]
-    [Obsolete("If you need this create your own model with this. I would also recommend not including UseFilering and UseSorting unless you're using it.")]
-    public virtual IEnumerable<TContent?>? ChildrenForAllCultures(IResolverContext resolverContext)
-    {
-        return PublishedContent?.ChildrenForAllCultures?.Select(child => CreateContentItem<TContent>(new CreateCommand()
-        {
-            PublishedContent = child,
-            ResolverContext = resolverContext,
-            Redirect = null,
-            StatusCode = 200,
-        }, DependencyReflectorFactory));
-    }
-
-    /// <summary>
     /// Gets the tree path of the content item
     /// </summary>
     [GraphQLDescription("Gets the tree path of the content item.")]
@@ -135,7 +119,16 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
     public string? Url(IResolverContext resolverContext)
     {
-        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Default);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
+
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        return publishedUrlProvider.GetUrl(PublishedContent, UrlMode.Default, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
     }
 
     /// <summary>
@@ -145,7 +138,16 @@ public class BasicContent<TProperty, TContentType, TContent> : ContentItem
     [Obsolete("Use the underlying Url(UrlMode) method instead as this takes a paramenter of the UrlMode")]
     public virtual string? AbsoluteUrl(IResolverContext resolverContext)
     {
-        return PublishedContent?.Url(resolverContext.Culture(), UrlMode.Absolute);
+        ArgumentNullException.ThrowIfNull(resolverContext);
+
+        IPublishedUrlProvider publishedUrlProvider = resolverContext.Service<IPublishedUrlProvider>();
+
+        if (PublishedContent == null)
+        {
+            return default;
+        }
+
+        return publishedUrlProvider.GetUrl(PublishedContent, UrlMode.Absolute, resolverContext.Culture(), new Uri(resolverContext.BaseUrl()));
     }
 
     /// <summary>

@@ -120,8 +120,6 @@ interface IDefault {
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -181,10 +179,6 @@ interface IDefaultCulture {
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
-  mediaPickerLegacyCulture: DefaultProperty
-  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker
@@ -735,7 +729,7 @@ type DecimalEditorCulture implements IDecimalEditorCulture {
   decimalCulture: DefaultProperty
 }
 
-type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMediaPickerLegacyEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
+type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEditor & IColorPickerEditor & IContentPickerEditor & IDatePickerEditor & IDecimalEditor & IDropdownEditor & IEmailAddressEditor & IEyeDropperColorPickerEditor & IFileUpload & IImageCropperEditor & IMarkdownEditor & IMediaPickerEditor & IMemberGroupPickerEditor & IMemberPickerEditor & IMultinodeTreepickerEditor & IMultiUrlPickerEditor & INumericEditor & IRadioboxEditor & IRepeatableTextstringsEditor & IRichtextEditor & ISliderEditor & ITagsEditor & ITextareaEditor & ITextboxEditor & IToggleEditor & IUserPickerEditor & IDefault {
   blockGrid: BlockGrid
   blockList: BlockList
   checkboxList: DefaultProperty
@@ -758,8 +752,6 @@ type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEdito
   mediaPicker: MediaPicker
   multipleImageMediaPicker: MediaPicker
   multipleMediaPicker: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberPicker: MemberPicker
   multinodeTreepicker: ContentPicker
@@ -776,7 +768,7 @@ type Default implements IBlockGridEditor & IBlockListEditor & ICheckboxListEdito
   userPicker: DefaultProperty
 }
 
-type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMediaPickerLegacyEditor & IMediaPickerLegacyEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
+type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & ICheckboxListEditor & ICheckboxListEditorCulture & IColorPickerEditor & IColorPickerEditorCulture & IContentPickerEditor & IContentPickerEditorCulture & IDatePickerEditor & IDatePickerEditorCulture & IDecimalEditor & IDecimalEditorCulture & IDropdownEditor & IDropdownEditorCulture & IEmailAddressEditor & IEmailAddressEditorCulture & IEyeDropperColorPickerEditor & IEyeDropperColorPickerEditorCulture & IFileUpload & IFileUploadCulture & IImageCropperEditor & IImageCropperEditorCulture & IMarkdownEditor & IMarkdownEditorCulture & IMediaPickerEditor & IMediaPickerEditorCulture & IMemberGroupPickerEditor & IMemberGroupPickerEditorCulture & IMemberPickerEditor & IMemberPickerEditorCulture & IMultinodeTreepickerEditor & IMultinodeTreepickerEditorCulture & IMultiUrlPickerEditor & IMultiUrlPickerEditorCulture & INumericEditor & INumericEditorCulture & IRadioboxEditor & IRadioboxEditorCulture & IRepeatableTextstringsEditor & IRepeatableTextstringsEditorCulture & IRichtextEditor & IRichtextEditorCulture & ISliderEditor & ISliderEditorCulture & ITagsEditor & ITagsEditorCulture & ITextareaEditor & ITextareaEditorCulture & ITextboxEditor & ITextboxEditorCulture & IToggleEditor & IToggleEditorCulture & IUserPickerEditor & IUserPickerEditorCulture & IDefaultCulture {
   blockList: BlockList
   blockListCulture: BlockList
   checkboxList: DefaultProperty
@@ -819,10 +811,6 @@ type DefaultCulture implements IBlockListEditor & IBlockListEditorCulture & IChe
   mediaPickerCulture: MediaPicker
   multipleImageMediaPickerCulture: MediaPicker
   multipleMediaPickerCulture: MediaPicker
-  mediaPickerLegacy: DefaultProperty
-  multipleMediaPickerLegacy: DefaultProperty
-  mediaPickerLegacyCulture: DefaultProperty
-  multipleMediaPickerLegacyCulture: DefaultProperty
   memberGroupPicker: DefaultProperty
   memberGroupPickerCulture: DefaultProperty
   memberPicker: MemberPicker
@@ -981,6 +969,8 @@ type MarkdownEditorCulture implements IMarkdownEditorCulture {
 type MediaItem {
   "Gets the url of a media item."
   url(urlMode: UrlMode! propertyAlias: String! = "umbracoFile"): String
+  "Gets the parent of the media item."
+  parent: MediaItem
   "Gets the properties of the media item."
   properties: TypedProperties!
   "Gets the url segment of the media item."
@@ -995,8 +985,6 @@ type MediaItem {
   templateId: Int
   "Gets the date the media item was last updated."
   updateDate: DateTime
-  "Gets the parent of the media item."
-  parent: MediaItem
 }
 
 "Represents a media picker item."
@@ -1078,8 +1066,6 @@ type MemberItem {
   templateId: Int
   "Gets the date the member item was last updated."
   updateDate: DateTime
-  "Gets the parent of the member item."
-  parent: MemberItem
 }
 
 "Represents a member picker."
@@ -1228,7 +1214,7 @@ type Query {
   "Utility query. Gets a which claims are used by the registered queries."
   utility_GetClaimGroups: [ClaimGroup!]!
   "Gets a content item by a route."
-  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The base url for the request. Example: 'https:\/\/localhost:4000'. Default is the current domain" baseUrl: String! = "" "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")
+  contentByRoute("The route to fetch. Example '\/da\/frontpage\/'." route: String! "The context of the request." inContext: QueryContextInput): ContentItem @authorize(policy: "ContentByRouteQuery")
   "Gets all the content items by content type."
   contentByContentType("The contentType to fetch." contentType: String! "How many items to include in a page. Defaults to 10." pageSize: Int! = 10 "The page number to fetch. Defaults to 1." page: Int! = 1 "The context of the request." inContext: QueryContextInput): PaginationOfContentItem! @authorize(policy: "ContentByContentTypeQuery")
   "Gets all the content items at root level."
@@ -1439,6 +1425,8 @@ input QueryContextInput {
   fallbacks: [PropertyFallback!]
   "The segment to use on a property value."
   segment: String
+  "The base URL of the request. Example: https:\/\/my-website.com. Used to return the correct URLs on content items"
+  baseUrl: String
 }
 
 "A claim for a token."

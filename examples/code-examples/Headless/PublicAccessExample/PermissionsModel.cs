@@ -1,4 +1,4 @@
-﻿using HotChocolate;
+using HotChocolate;
 
 namespace Code.Examples.Headless.PublicAccessExample;
 

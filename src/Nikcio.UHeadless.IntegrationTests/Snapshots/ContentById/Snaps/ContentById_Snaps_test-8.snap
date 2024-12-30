@@ -1,7 +1,7 @@
 {
   "data": {
     "contentById": {
-      "url": "http://site-1.com/collection-of-pages/block-grid-page/",
+      "url": "https://site-1.com/collection-of-pages/block-grid-page/",
       "redirect": null,
       "statusCode": 200,
       "properties": {
@@ -264,7 +264,7 @@
       "key": "ff3ef402-0e01-4043-b40f-85f71cc4e702",
       "templateId": null,
       "parent": {
-        "url": "http://site-1.com/collection-of-pages/",
+        "url": "https://site-1.com/collection-of-pages/",
         "properties": {
           "blockGrid": {
             "model": "BlockGrid",

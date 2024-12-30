@@ -7,8 +7,8 @@ public partial class ApiTests
     private const string _contentByTagSnapshotPath = $"{SnapshotConstants.BasePath}/ContentByTag";
 
     [Theory]
-    [InlineData("test-1", "normal", null, "en-us", false, null, true)]
-    [InlineData("test-2", "normal", null, "en-us", true, null, true)]
+    [InlineData("test-1", "normal", null, "en-US", false, null, true)]
+    [InlineData("test-2", "normal", null, "en-US", true, null, true)]
     [InlineData("test-3", "normal", null, "da", false, null, true)]
     public async Task ContentByTagQuery_Snaps_Async(
         string testCase,
@@ -31,13 +31,14 @@ public partial class ApiTests
                 tagGroup,
                 culture,
                 includePreview,
-                segment
+                segment,
+                baseUrl = "https://site-culture.com"
             }
         });
 
-        HttpResponseMessage response = await client.PostAsync("/graphql", request).ConfigureAwait(true);
+        HttpResponseMessage response = await client.PostAsync("/graphql", request, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+        string responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         string snapshotName = $"ContentByTag_Snaps_{testCase}.snap";
 
@@ -50,6 +51,7 @@ public static class ContentByTagQueries
 {
     public const string GetItems = """
         query ContentByTagQuery(
+          $baseUrl: String!,
           $tag: String!,
           $tagGroup: String,
           $culture: String
@@ -61,6 +63,7 @@ public static class ContentByTagQueries
             tag: $tag,
             tagGroup: $tagGroup
             inContext: {
+              baseUrl: $baseUrl
               culture: $culture
               includePreview: $includePreview
               fallbacks: $fallbacks

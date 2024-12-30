@@ -1,7 +1,6 @@
 using HotChocolate.Authorization;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
-using Nikcio.UHeadless.Defaults.Auth;
 using Nikcio.UHeadless.Defaults.Authorization;
 using Nikcio.UHeadless.MemberItems;
 using Nikcio.UHeadless.Members;
@@ -80,8 +79,6 @@ public abstract class FindMembersByEmailQuery<TMemberItem> : IGraphQLQuery
     {
         ArgumentNullException.ThrowIfNull(resolverContext);
         ArgumentException.ThrowIfNullOrEmpty(email);
-        ArgumentNullException.ThrowIfNull(pageSize);
-        ArgumentNullException.ThrowIfNull(page);
 
         // We normalize the page to be 0-based because the repository is 0-based
         page--;

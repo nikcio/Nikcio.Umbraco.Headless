@@ -1,4 +1,4 @@
-namespace Nikcio.UHeadless.Defaults.Auth;
+namespace Nikcio.UHeadless.Defaults.Authorization;
 
 public sealed class ClaimValueGroup
 {
